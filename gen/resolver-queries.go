@@ -120,9 +120,9 @@ func (r *GeneratedConfiguratorItemDefinitionResultTypeResolver) Count(ctx contex
 type GeneratedConfiguratorItemDefinitionResolver struct{ *GeneratedResolver }
 
 func (r *GeneratedConfiguratorItemDefinitionResolver) Attributes(ctx context.Context, obj *ConfiguratorItemDefinition) (res []*ConfiguratorAttributeDefinition, err error) {
-	return r.Handlers.ConfiguratorItemDefinitionAttributes(ctx, r, obj)
+	return r.Handlers.ConfiguratorItemDefinitionAttributes(ctx, r.GeneratedResolver, obj)
 }
-func ConfiguratorItemDefinitionAttributesHandler(ctx context.Context, r *GeneratedConfiguratorItemDefinitionResolver, obj *ConfiguratorItemDefinition) (res []*ConfiguratorAttributeDefinition, err error) {
+func ConfiguratorItemDefinitionAttributesHandler(ctx context.Context, r *GeneratedResolver, obj *ConfiguratorItemDefinition) (res []*ConfiguratorAttributeDefinition, err error) {
 
 	items := []*ConfiguratorAttributeDefinition{}
 	err = r.DB.Query().Model(obj).Related(&items, "Attributes").Error
@@ -145,9 +145,9 @@ func (r *GeneratedConfiguratorItemDefinitionResolver) AttributesIds(ctx context.
 }
 
 func (r *GeneratedConfiguratorItemDefinitionResolver) Slots(ctx context.Context, obj *ConfiguratorItemDefinition) (res []*ConfiguratorSlotDefinition, err error) {
-	return r.Handlers.ConfiguratorItemDefinitionSlots(ctx, r, obj)
+	return r.Handlers.ConfiguratorItemDefinitionSlots(ctx, r.GeneratedResolver, obj)
 }
-func ConfiguratorItemDefinitionSlotsHandler(ctx context.Context, r *GeneratedConfiguratorItemDefinitionResolver, obj *ConfiguratorItemDefinition) (res []*ConfiguratorSlotDefinition, err error) {
+func ConfiguratorItemDefinitionSlotsHandler(ctx context.Context, r *GeneratedResolver, obj *ConfiguratorItemDefinition) (res []*ConfiguratorSlotDefinition, err error) {
 
 	items := []*ConfiguratorSlotDefinition{}
 	err = r.DB.Query().Model(obj).Related(&items, "Slots").Error
@@ -170,9 +170,9 @@ func (r *GeneratedConfiguratorItemDefinitionResolver) SlotsIds(ctx context.Conte
 }
 
 func (r *GeneratedConfiguratorItemDefinitionResolver) Items(ctx context.Context, obj *ConfiguratorItemDefinition) (res []*ConfiguratorItem, err error) {
-	return r.Handlers.ConfiguratorItemDefinitionItems(ctx, r, obj)
+	return r.Handlers.ConfiguratorItemDefinitionItems(ctx, r.GeneratedResolver, obj)
 }
-func ConfiguratorItemDefinitionItemsHandler(ctx context.Context, r *GeneratedConfiguratorItemDefinitionResolver, obj *ConfiguratorItemDefinition) (res []*ConfiguratorItem, err error) {
+func ConfiguratorItemDefinitionItemsHandler(ctx context.Context, r *GeneratedResolver, obj *ConfiguratorItemDefinition) (res []*ConfiguratorItem, err error) {
 
 	items := []*ConfiguratorItem{}
 	err = r.DB.Query().Model(obj).Related(&items, "Items").Error
@@ -304,9 +304,9 @@ func (r *GeneratedConfiguratorAttributeDefinitionResultTypeResolver) Count(ctx c
 type GeneratedConfiguratorAttributeDefinitionResolver struct{ *GeneratedResolver }
 
 func (r *GeneratedConfiguratorAttributeDefinitionResolver) ItemDefinitions(ctx context.Context, obj *ConfiguratorAttributeDefinition) (res []*ConfiguratorItemDefinition, err error) {
-	return r.Handlers.ConfiguratorAttributeDefinitionItemDefinitions(ctx, r, obj)
+	return r.Handlers.ConfiguratorAttributeDefinitionItemDefinitions(ctx, r.GeneratedResolver, obj)
 }
-func ConfiguratorAttributeDefinitionItemDefinitionsHandler(ctx context.Context, r *GeneratedConfiguratorAttributeDefinitionResolver, obj *ConfiguratorAttributeDefinition) (res []*ConfiguratorItemDefinition, err error) {
+func ConfiguratorAttributeDefinitionItemDefinitionsHandler(ctx context.Context, r *GeneratedResolver, obj *ConfiguratorAttributeDefinition) (res []*ConfiguratorItemDefinition, err error) {
 
 	items := []*ConfiguratorItemDefinition{}
 	err = r.DB.Query().Model(obj).Related(&items, "ItemDefinitions").Error
@@ -329,9 +329,9 @@ func (r *GeneratedConfiguratorAttributeDefinitionResolver) ItemDefinitionsIds(ct
 }
 
 func (r *GeneratedConfiguratorAttributeDefinitionResolver) Attributes(ctx context.Context, obj *ConfiguratorAttributeDefinition) (res []*ConfiguratorAttribute, err error) {
-	return r.Handlers.ConfiguratorAttributeDefinitionAttributes(ctx, r, obj)
+	return r.Handlers.ConfiguratorAttributeDefinitionAttributes(ctx, r.GeneratedResolver, obj)
 }
-func ConfiguratorAttributeDefinitionAttributesHandler(ctx context.Context, r *GeneratedConfiguratorAttributeDefinitionResolver, obj *ConfiguratorAttributeDefinition) (res []*ConfiguratorAttribute, err error) {
+func ConfiguratorAttributeDefinitionAttributesHandler(ctx context.Context, r *GeneratedResolver, obj *ConfiguratorAttributeDefinition) (res []*ConfiguratorAttribute, err error) {
 
 	items := []*ConfiguratorAttribute{}
 	err = r.DB.Query().Model(obj).Related(&items, "Attributes").Error
@@ -463,9 +463,9 @@ func (r *GeneratedConfiguratorSlotDefinitionResultTypeResolver) Count(ctx contex
 type GeneratedConfiguratorSlotDefinitionResolver struct{ *GeneratedResolver }
 
 func (r *GeneratedConfiguratorSlotDefinitionResolver) ItemDefinition(ctx context.Context, obj *ConfiguratorSlotDefinition) (res *ConfiguratorItemDefinition, err error) {
-	return r.Handlers.ConfiguratorSlotDefinitionItemDefinition(ctx, r, obj)
+	return r.Handlers.ConfiguratorSlotDefinitionItemDefinition(ctx, r.GeneratedResolver, obj)
 }
-func ConfiguratorSlotDefinitionItemDefinitionHandler(ctx context.Context, r *GeneratedConfiguratorSlotDefinitionResolver, obj *ConfiguratorSlotDefinition) (res *ConfiguratorItemDefinition, err error) {
+func ConfiguratorSlotDefinitionItemDefinitionHandler(ctx context.Context, r *GeneratedResolver, obj *ConfiguratorSlotDefinition) (res *ConfiguratorItemDefinition, err error) {
 
 	loaders := ctx.Value(KeyLoaders).(map[string]*dataloader.Loader)
 	if obj.ItemDefinitionID != nil {
@@ -479,9 +479,9 @@ func ConfiguratorSlotDefinitionItemDefinitionHandler(ctx context.Context, r *Gen
 }
 
 func (r *GeneratedConfiguratorSlotDefinitionResolver) Slots(ctx context.Context, obj *ConfiguratorSlotDefinition) (res []*ConfiguratorSlot, err error) {
-	return r.Handlers.ConfiguratorSlotDefinitionSlots(ctx, r, obj)
+	return r.Handlers.ConfiguratorSlotDefinitionSlots(ctx, r.GeneratedResolver, obj)
 }
-func ConfiguratorSlotDefinitionSlotsHandler(ctx context.Context, r *GeneratedConfiguratorSlotDefinitionResolver, obj *ConfiguratorSlotDefinition) (res []*ConfiguratorSlot, err error) {
+func ConfiguratorSlotDefinitionSlotsHandler(ctx context.Context, r *GeneratedResolver, obj *ConfiguratorSlotDefinition) (res []*ConfiguratorSlot, err error) {
 
 	items := []*ConfiguratorSlot{}
 	err = r.DB.Query().Model(obj).Related(&items, "Slots").Error
@@ -613,9 +613,9 @@ func (r *GeneratedConfiguratorItemResultTypeResolver) Count(ctx context.Context,
 type GeneratedConfiguratorItemResolver struct{ *GeneratedResolver }
 
 func (r *GeneratedConfiguratorItemResolver) Definition(ctx context.Context, obj *ConfiguratorItem) (res *ConfiguratorItemDefinition, err error) {
-	return r.Handlers.ConfiguratorItemDefinition(ctx, r, obj)
+	return r.Handlers.ConfiguratorItemDefinition(ctx, r.GeneratedResolver, obj)
 }
-func ConfiguratorItemDefinitionHandler(ctx context.Context, r *GeneratedConfiguratorItemResolver, obj *ConfiguratorItem) (res *ConfiguratorItemDefinition, err error) {
+func ConfiguratorItemDefinitionHandler(ctx context.Context, r *GeneratedResolver, obj *ConfiguratorItem) (res *ConfiguratorItemDefinition, err error) {
 
 	loaders := ctx.Value(KeyLoaders).(map[string]*dataloader.Loader)
 	if obj.DefinitionID != nil {
@@ -629,9 +629,9 @@ func ConfiguratorItemDefinitionHandler(ctx context.Context, r *GeneratedConfigur
 }
 
 func (r *GeneratedConfiguratorItemResolver) Attributes(ctx context.Context, obj *ConfiguratorItem) (res []*ConfiguratorAttribute, err error) {
-	return r.Handlers.ConfiguratorItemAttributes(ctx, r, obj)
+	return r.Handlers.ConfiguratorItemAttributes(ctx, r.GeneratedResolver, obj)
 }
-func ConfiguratorItemAttributesHandler(ctx context.Context, r *GeneratedConfiguratorItemResolver, obj *ConfiguratorItem) (res []*ConfiguratorAttribute, err error) {
+func ConfiguratorItemAttributesHandler(ctx context.Context, r *GeneratedResolver, obj *ConfiguratorItem) (res []*ConfiguratorAttribute, err error) {
 
 	items := []*ConfiguratorAttribute{}
 	err = r.DB.Query().Model(obj).Related(&items, "Attributes").Error
@@ -654,9 +654,9 @@ func (r *GeneratedConfiguratorItemResolver) AttributesIds(ctx context.Context, o
 }
 
 func (r *GeneratedConfiguratorItemResolver) Slots(ctx context.Context, obj *ConfiguratorItem) (res []*ConfiguratorSlot, err error) {
-	return r.Handlers.ConfiguratorItemSlots(ctx, r, obj)
+	return r.Handlers.ConfiguratorItemSlots(ctx, r.GeneratedResolver, obj)
 }
-func ConfiguratorItemSlotsHandler(ctx context.Context, r *GeneratedConfiguratorItemResolver, obj *ConfiguratorItem) (res []*ConfiguratorSlot, err error) {
+func ConfiguratorItemSlotsHandler(ctx context.Context, r *GeneratedResolver, obj *ConfiguratorItem) (res []*ConfiguratorSlot, err error) {
 
 	items := []*ConfiguratorSlot{}
 	err = r.DB.Query().Model(obj).Related(&items, "Slots").Error
@@ -679,9 +679,9 @@ func (r *GeneratedConfiguratorItemResolver) SlotsIds(ctx context.Context, obj *C
 }
 
 func (r *GeneratedConfiguratorItemResolver) ParentSlot(ctx context.Context, obj *ConfiguratorItem) (res *ConfiguratorSlot, err error) {
-	return r.Handlers.ConfiguratorItemParentSlot(ctx, r, obj)
+	return r.Handlers.ConfiguratorItemParentSlot(ctx, r.GeneratedResolver, obj)
 }
-func ConfiguratorItemParentSlotHandler(ctx context.Context, r *GeneratedConfiguratorItemResolver, obj *ConfiguratorItem) (res *ConfiguratorSlot, err error) {
+func ConfiguratorItemParentSlotHandler(ctx context.Context, r *GeneratedResolver, obj *ConfiguratorItem) (res *ConfiguratorSlot, err error) {
 
 	loaders := ctx.Value(KeyLoaders).(map[string]*dataloader.Loader)
 	if obj.ParentSlotID != nil {
@@ -804,9 +804,9 @@ func (r *GeneratedConfiguratorAttributeResultTypeResolver) Count(ctx context.Con
 type GeneratedConfiguratorAttributeResolver struct{ *GeneratedResolver }
 
 func (r *GeneratedConfiguratorAttributeResolver) Definition(ctx context.Context, obj *ConfiguratorAttribute) (res *ConfiguratorAttributeDefinition, err error) {
-	return r.Handlers.ConfiguratorAttributeDefinition(ctx, r, obj)
+	return r.Handlers.ConfiguratorAttributeDefinition(ctx, r.GeneratedResolver, obj)
 }
-func ConfiguratorAttributeDefinitionHandler(ctx context.Context, r *GeneratedConfiguratorAttributeResolver, obj *ConfiguratorAttribute) (res *ConfiguratorAttributeDefinition, err error) {
+func ConfiguratorAttributeDefinitionHandler(ctx context.Context, r *GeneratedResolver, obj *ConfiguratorAttribute) (res *ConfiguratorAttributeDefinition, err error) {
 
 	loaders := ctx.Value(KeyLoaders).(map[string]*dataloader.Loader)
 	if obj.DefinitionID != nil {
@@ -820,9 +820,9 @@ func ConfiguratorAttributeDefinitionHandler(ctx context.Context, r *GeneratedCon
 }
 
 func (r *GeneratedConfiguratorAttributeResolver) Item(ctx context.Context, obj *ConfiguratorAttribute) (res *ConfiguratorItem, err error) {
-	return r.Handlers.ConfiguratorAttributeItem(ctx, r, obj)
+	return r.Handlers.ConfiguratorAttributeItem(ctx, r.GeneratedResolver, obj)
 }
-func ConfiguratorAttributeItemHandler(ctx context.Context, r *GeneratedConfiguratorAttributeResolver, obj *ConfiguratorAttribute) (res *ConfiguratorItem, err error) {
+func ConfiguratorAttributeItemHandler(ctx context.Context, r *GeneratedResolver, obj *ConfiguratorAttribute) (res *ConfiguratorItem, err error) {
 
 	loaders := ctx.Value(KeyLoaders).(map[string]*dataloader.Loader)
 	if obj.ItemID != nil {
@@ -945,9 +945,9 @@ func (r *GeneratedConfiguratorSlotResultTypeResolver) Count(ctx context.Context,
 type GeneratedConfiguratorSlotResolver struct{ *GeneratedResolver }
 
 func (r *GeneratedConfiguratorSlotResolver) Items(ctx context.Context, obj *ConfiguratorSlot) (res []*ConfiguratorItem, err error) {
-	return r.Handlers.ConfiguratorSlotItems(ctx, r, obj)
+	return r.Handlers.ConfiguratorSlotItems(ctx, r.GeneratedResolver, obj)
 }
-func ConfiguratorSlotItemsHandler(ctx context.Context, r *GeneratedConfiguratorSlotResolver, obj *ConfiguratorSlot) (res []*ConfiguratorItem, err error) {
+func ConfiguratorSlotItemsHandler(ctx context.Context, r *GeneratedResolver, obj *ConfiguratorSlot) (res []*ConfiguratorItem, err error) {
 
 	items := []*ConfiguratorItem{}
 	err = r.DB.Query().Model(obj).Related(&items, "Items").Error
@@ -970,9 +970,9 @@ func (r *GeneratedConfiguratorSlotResolver) ItemsIds(ctx context.Context, obj *C
 }
 
 func (r *GeneratedConfiguratorSlotResolver) Definition(ctx context.Context, obj *ConfiguratorSlot) (res *ConfiguratorSlotDefinition, err error) {
-	return r.Handlers.ConfiguratorSlotDefinition(ctx, r, obj)
+	return r.Handlers.ConfiguratorSlotDefinition(ctx, r.GeneratedResolver, obj)
 }
-func ConfiguratorSlotDefinitionHandler(ctx context.Context, r *GeneratedConfiguratorSlotResolver, obj *ConfiguratorSlot) (res *ConfiguratorSlotDefinition, err error) {
+func ConfiguratorSlotDefinitionHandler(ctx context.Context, r *GeneratedResolver, obj *ConfiguratorSlot) (res *ConfiguratorSlotDefinition, err error) {
 
 	loaders := ctx.Value(KeyLoaders).(map[string]*dataloader.Loader)
 	if obj.DefinitionID != nil {
@@ -986,9 +986,9 @@ func ConfiguratorSlotDefinitionHandler(ctx context.Context, r *GeneratedConfigur
 }
 
 func (r *GeneratedConfiguratorSlotResolver) ParentItem(ctx context.Context, obj *ConfiguratorSlot) (res *ConfiguratorItem, err error) {
-	return r.Handlers.ConfiguratorSlotParentItem(ctx, r, obj)
+	return r.Handlers.ConfiguratorSlotParentItem(ctx, r.GeneratedResolver, obj)
 }
-func ConfiguratorSlotParentItemHandler(ctx context.Context, r *GeneratedConfiguratorSlotResolver, obj *ConfiguratorSlot) (res *ConfiguratorItem, err error) {
+func ConfiguratorSlotParentItemHandler(ctx context.Context, r *GeneratedResolver, obj *ConfiguratorSlot) (res *ConfiguratorItem, err error) {
 
 	loaders := ctx.Value(KeyLoaders).(map[string]*dataloader.Loader)
 	if obj.ParentItemID != nil {

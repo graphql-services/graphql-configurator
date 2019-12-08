@@ -163,7 +163,7 @@ type ConfiguratorAttribute struct {
 	ID           string     `json:"id" gorm:"column:id;primary_key"`
 	StringValue  *string    `json:"stringValue" gorm:"column:stringValue"`
 	FloatValue   *float64   `json:"floatValue" gorm:"column:floatValue"`
-	IntValue     *int64     `json:"intValue" gorm:"column:intValue"`
+	IntValue     *int       `json:"intValue" gorm:"column:intValue"`
 	DefinitionID *string    `json:"definitionId" gorm:"column:definitionId"`
 	ItemID       *string    `json:"itemId" gorm:"column:itemId"`
 	UpdatedAt    *time.Time `json:"updatedAt" gorm:"column:updatedAt"`
@@ -182,7 +182,7 @@ type ConfiguratorAttributeChanges struct {
 	ID           string
 	StringValue  *string
 	FloatValue   *float64
-	IntValue     *int64
+	IntValue     *int
 	DefinitionID *string
 	ItemID       *string
 	UpdatedAt    *time.Time

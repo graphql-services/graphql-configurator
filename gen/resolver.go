@@ -16,11 +16,11 @@ type ResolutionHandlers struct {
 	QueryConfiguratorItemDefinition      func(ctx context.Context, r *GeneratedResolver, opts QueryConfiguratorItemDefinitionHandlerOptions) (*ConfiguratorItemDefinition, error)
 	QueryConfiguratorItemDefinitions     func(ctx context.Context, r *GeneratedResolver, opts QueryConfiguratorItemDefinitionsHandlerOptions) (*ConfiguratorItemDefinitionResultType, error)
 
-	ConfiguratorItemDefinitionAttributes func(ctx context.Context, r *GeneratedConfiguratorItemDefinitionResolver, obj *ConfiguratorItemDefinition) (res []*ConfiguratorAttributeDefinition, err error)
+	ConfiguratorItemDefinitionAttributes func(ctx context.Context, r *GeneratedResolver, obj *ConfiguratorItemDefinition) (res []*ConfiguratorAttributeDefinition, err error)
 
-	ConfiguratorItemDefinitionSlots func(ctx context.Context, r *GeneratedConfiguratorItemDefinitionResolver, obj *ConfiguratorItemDefinition) (res []*ConfiguratorSlotDefinition, err error)
+	ConfiguratorItemDefinitionSlots func(ctx context.Context, r *GeneratedResolver, obj *ConfiguratorItemDefinition) (res []*ConfiguratorSlotDefinition, err error)
 
-	ConfiguratorItemDefinitionItems func(ctx context.Context, r *GeneratedConfiguratorItemDefinitionResolver, obj *ConfiguratorItemDefinition) (res []*ConfiguratorItem, err error)
+	ConfiguratorItemDefinitionItems func(ctx context.Context, r *GeneratedResolver, obj *ConfiguratorItemDefinition) (res []*ConfiguratorItem, err error)
 
 	CreateConfiguratorAttributeDefinition     func(ctx context.Context, r *GeneratedResolver, input map[string]interface{}) (item *ConfiguratorAttributeDefinition, err error)
 	UpdateConfiguratorAttributeDefinition     func(ctx context.Context, r *GeneratedResolver, id string, input map[string]interface{}) (item *ConfiguratorAttributeDefinition, err error)
@@ -29,9 +29,9 @@ type ResolutionHandlers struct {
 	QueryConfiguratorAttributeDefinition      func(ctx context.Context, r *GeneratedResolver, opts QueryConfiguratorAttributeDefinitionHandlerOptions) (*ConfiguratorAttributeDefinition, error)
 	QueryConfiguratorAttributeDefinitions     func(ctx context.Context, r *GeneratedResolver, opts QueryConfiguratorAttributeDefinitionsHandlerOptions) (*ConfiguratorAttributeDefinitionResultType, error)
 
-	ConfiguratorAttributeDefinitionItemDefinitions func(ctx context.Context, r *GeneratedConfiguratorAttributeDefinitionResolver, obj *ConfiguratorAttributeDefinition) (res []*ConfiguratorItemDefinition, err error)
+	ConfiguratorAttributeDefinitionItemDefinitions func(ctx context.Context, r *GeneratedResolver, obj *ConfiguratorAttributeDefinition) (res []*ConfiguratorItemDefinition, err error)
 
-	ConfiguratorAttributeDefinitionAttributes func(ctx context.Context, r *GeneratedConfiguratorAttributeDefinitionResolver, obj *ConfiguratorAttributeDefinition) (res []*ConfiguratorAttribute, err error)
+	ConfiguratorAttributeDefinitionAttributes func(ctx context.Context, r *GeneratedResolver, obj *ConfiguratorAttributeDefinition) (res []*ConfiguratorAttribute, err error)
 
 	CreateConfiguratorSlotDefinition     func(ctx context.Context, r *GeneratedResolver, input map[string]interface{}) (item *ConfiguratorSlotDefinition, err error)
 	UpdateConfiguratorSlotDefinition     func(ctx context.Context, r *GeneratedResolver, id string, input map[string]interface{}) (item *ConfiguratorSlotDefinition, err error)
@@ -40,9 +40,9 @@ type ResolutionHandlers struct {
 	QueryConfiguratorSlotDefinition      func(ctx context.Context, r *GeneratedResolver, opts QueryConfiguratorSlotDefinitionHandlerOptions) (*ConfiguratorSlotDefinition, error)
 	QueryConfiguratorSlotDefinitions     func(ctx context.Context, r *GeneratedResolver, opts QueryConfiguratorSlotDefinitionsHandlerOptions) (*ConfiguratorSlotDefinitionResultType, error)
 
-	ConfiguratorSlotDefinitionItemDefinition func(ctx context.Context, r *GeneratedConfiguratorSlotDefinitionResolver, obj *ConfiguratorSlotDefinition) (res *ConfiguratorItemDefinition, err error)
+	ConfiguratorSlotDefinitionItemDefinition func(ctx context.Context, r *GeneratedResolver, obj *ConfiguratorSlotDefinition) (res *ConfiguratorItemDefinition, err error)
 
-	ConfiguratorSlotDefinitionSlots func(ctx context.Context, r *GeneratedConfiguratorSlotDefinitionResolver, obj *ConfiguratorSlotDefinition) (res []*ConfiguratorSlot, err error)
+	ConfiguratorSlotDefinitionSlots func(ctx context.Context, r *GeneratedResolver, obj *ConfiguratorSlotDefinition) (res []*ConfiguratorSlot, err error)
 
 	CreateConfiguratorItem     func(ctx context.Context, r *GeneratedResolver, input map[string]interface{}) (item *ConfiguratorItem, err error)
 	UpdateConfiguratorItem     func(ctx context.Context, r *GeneratedResolver, id string, input map[string]interface{}) (item *ConfiguratorItem, err error)
@@ -51,13 +51,13 @@ type ResolutionHandlers struct {
 	QueryConfiguratorItem      func(ctx context.Context, r *GeneratedResolver, opts QueryConfiguratorItemHandlerOptions) (*ConfiguratorItem, error)
 	QueryConfiguratorItems     func(ctx context.Context, r *GeneratedResolver, opts QueryConfiguratorItemsHandlerOptions) (*ConfiguratorItemResultType, error)
 
-	ConfiguratorItemDefinition func(ctx context.Context, r *GeneratedConfiguratorItemResolver, obj *ConfiguratorItem) (res *ConfiguratorItemDefinition, err error)
+	ConfiguratorItemDefinition func(ctx context.Context, r *GeneratedResolver, obj *ConfiguratorItem) (res *ConfiguratorItemDefinition, err error)
 
-	ConfiguratorItemAttributes func(ctx context.Context, r *GeneratedConfiguratorItemResolver, obj *ConfiguratorItem) (res []*ConfiguratorAttribute, err error)
+	ConfiguratorItemAttributes func(ctx context.Context, r *GeneratedResolver, obj *ConfiguratorItem) (res []*ConfiguratorAttribute, err error)
 
-	ConfiguratorItemSlots func(ctx context.Context, r *GeneratedConfiguratorItemResolver, obj *ConfiguratorItem) (res []*ConfiguratorSlot, err error)
+	ConfiguratorItemSlots func(ctx context.Context, r *GeneratedResolver, obj *ConfiguratorItem) (res []*ConfiguratorSlot, err error)
 
-	ConfiguratorItemParentSlot func(ctx context.Context, r *GeneratedConfiguratorItemResolver, obj *ConfiguratorItem) (res *ConfiguratorSlot, err error)
+	ConfiguratorItemParentSlot func(ctx context.Context, r *GeneratedResolver, obj *ConfiguratorItem) (res *ConfiguratorSlot, err error)
 
 	CreateConfiguratorAttribute     func(ctx context.Context, r *GeneratedResolver, input map[string]interface{}) (item *ConfiguratorAttribute, err error)
 	UpdateConfiguratorAttribute     func(ctx context.Context, r *GeneratedResolver, id string, input map[string]interface{}) (item *ConfiguratorAttribute, err error)
@@ -66,9 +66,9 @@ type ResolutionHandlers struct {
 	QueryConfiguratorAttribute      func(ctx context.Context, r *GeneratedResolver, opts QueryConfiguratorAttributeHandlerOptions) (*ConfiguratorAttribute, error)
 	QueryConfiguratorAttributes     func(ctx context.Context, r *GeneratedResolver, opts QueryConfiguratorAttributesHandlerOptions) (*ConfiguratorAttributeResultType, error)
 
-	ConfiguratorAttributeDefinition func(ctx context.Context, r *GeneratedConfiguratorAttributeResolver, obj *ConfiguratorAttribute) (res *ConfiguratorAttributeDefinition, err error)
+	ConfiguratorAttributeDefinition func(ctx context.Context, r *GeneratedResolver, obj *ConfiguratorAttribute) (res *ConfiguratorAttributeDefinition, err error)
 
-	ConfiguratorAttributeItem func(ctx context.Context, r *GeneratedConfiguratorAttributeResolver, obj *ConfiguratorAttribute) (res *ConfiguratorItem, err error)
+	ConfiguratorAttributeItem func(ctx context.Context, r *GeneratedResolver, obj *ConfiguratorAttribute) (res *ConfiguratorItem, err error)
 
 	CreateConfiguratorSlot     func(ctx context.Context, r *GeneratedResolver, input map[string]interface{}) (item *ConfiguratorSlot, err error)
 	UpdateConfiguratorSlot     func(ctx context.Context, r *GeneratedResolver, id string, input map[string]interface{}) (item *ConfiguratorSlot, err error)
@@ -77,11 +77,11 @@ type ResolutionHandlers struct {
 	QueryConfiguratorSlot      func(ctx context.Context, r *GeneratedResolver, opts QueryConfiguratorSlotHandlerOptions) (*ConfiguratorSlot, error)
 	QueryConfiguratorSlots     func(ctx context.Context, r *GeneratedResolver, opts QueryConfiguratorSlotsHandlerOptions) (*ConfiguratorSlotResultType, error)
 
-	ConfiguratorSlotItems func(ctx context.Context, r *GeneratedConfiguratorSlotResolver, obj *ConfiguratorSlot) (res []*ConfiguratorItem, err error)
+	ConfiguratorSlotItems func(ctx context.Context, r *GeneratedResolver, obj *ConfiguratorSlot) (res []*ConfiguratorItem, err error)
 
-	ConfiguratorSlotDefinition func(ctx context.Context, r *GeneratedConfiguratorSlotResolver, obj *ConfiguratorSlot) (res *ConfiguratorSlotDefinition, err error)
+	ConfiguratorSlotDefinition func(ctx context.Context, r *GeneratedResolver, obj *ConfiguratorSlot) (res *ConfiguratorSlotDefinition, err error)
 
-	ConfiguratorSlotParentItem func(ctx context.Context, r *GeneratedConfiguratorSlotResolver, obj *ConfiguratorSlot) (res *ConfiguratorItem, err error)
+	ConfiguratorSlotParentItem func(ctx context.Context, r *GeneratedResolver, obj *ConfiguratorSlot) (res *ConfiguratorItem, err error)
 }
 
 func DefaultResolutionHandlers() ResolutionHandlers {

@@ -193,6 +193,8 @@ github.com/novacloudcz/graphql-orm v0.1.21-0.20191207221445-85cc330ac719 h1:LY0Y
 github.com/novacloudcz/graphql-orm v0.1.21-0.20191207221445-85cc330ac719/go.mod h1:u4zUCFRlpC7dhGB6lPNy5QBFEkBy4RvshfiUrv42aXA=
 github.com/novacloudcz/graphql-orm v0.1.21-0.20191207222217-7ce86f700854 h1:2+qG4kQ2DUKRUr9NDPrxw2YnOPLrvPjx9XP3Sl+HXH0=
 github.com/novacloudcz/graphql-orm v0.1.21-0.20191207222217-7ce86f700854/go.mod h1:u4zUCFRlpC7dhGB6lPNy5QBFEkBy4RvshfiUrv42aXA=
+github.com/novacloudcz/graphql-orm v0.1.21 h1:C/rnsNO5N0QEtqGg5WOgMAm4nSxSHfRaoQgHawOOyvc=
+github.com/novacloudcz/graphql-orm v0.1.21/go.mod h1:u4zUCFRlpC7dhGB6lPNy5QBFEkBy4RvshfiUrv42aXA=
 github.com/novacloudcz/graphql-orm/test v0.0.0-20190811213627-c90bee88150a/go.mod h1:lSpA8RmGFrxAzkAYTBy9FG+R7JYSKhkmVL+oB1Zsnm0=
 github.com/onsi/ginkgo v1.6.0/go.mod h1:lLunBs/Ym6LB5Z9jYTR76FiuTmxDTDusOGeTQH+WWjE=
 github.com/onsi/ginkgo v1.7.0/go.mod h1:lLunBs/Ym6LB5Z9jYTR76FiuTmxDTDusOGeTQH+WWjE=

@@ -107,10 +107,6 @@ func (db *DB) Query() *gorm.DB {
 // AutoMigrate ...
 func (db *DB) AutoMigrate() *gorm.DB {
 	return db.db.AutoMigrate(
-		ConfiguratorAssembly{},
-		ConfiguratorAssemblyItem{},
-		ConfiguratorAssemblyAttribute{},
-		ConfiguratorAssemblySlot{},
 		ConfiguratorItemDefinition{},
 		ConfiguratorAttributeDefinition{},
 		ConfiguratorSlotDefinition{},
