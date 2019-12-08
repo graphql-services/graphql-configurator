@@ -1,0 +1,24 @@
+type ConfiguratorItem @entity {
+  stockItemID: ID @column
+
+  definition: ConfiguratorItemDefinition @relationship(inverse: items)
+  attributes: [ConfiguratorAttribute!]! @relationship(inverse: item)
+  slots: [ConfiguratorSlot!]! @relationship(inverse: parentItem)
+  parentSlot: ConfiguratorSlot @relationship(inverse: items)
+}
+
+type ConfiguratorAttribute @entity {
+  stringValue: String @column
+  floatValue: Float @column
+  intValue: Int @column
+
+  definition: ConfiguratorAttributeDefinition @relationship(inverse: attributes)
+  item: ConfiguratorItem @relationship(inverse: attributes)
+}
+
+type ConfiguratorSlot @entity {
+  items: [ConfiguratorItem!]! @relationship(inverse: parentSlot)
+
+  definition: ConfiguratorSlotDefinition @relationship(inverse: slots)
+  parentItem: ConfiguratorItem @relationship(inverse: slots)
+}

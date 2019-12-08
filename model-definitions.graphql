@@ -1,0 +1,29 @@
+type ConfiguratorItemDefinition @entity {
+  name: String @column
+
+  attributes: [ConfiguratorAttributeDefinition!]!
+    @relationship(inverse: itemDefinitions)
+  slots: [ConfiguratorSlotDefinition!]! @relationship(inverse: itemDefinition)
+  items: [ConfiguratorItem!]! @relationship(inverse: definition)
+}
+
+enum ConfiguratorAttributeType {
+  STRING
+  FLOAT
+  INT
+}
+type ConfiguratorAttributeDefinition @entity {
+  name: String @column
+  type: ConfiguratorAttributeType @column
+
+  itemDefinitions: [ConfiguratorItemDefinition!]!
+    @relationship(inverse: attributes)
+  attributes: [ConfiguratorAttribute!]! @relationship(inverse: definition)
+}
+
+type ConfiguratorSlotDefinition @entity {
+  name: String @column
+
+  itemDefinition: ConfiguratorItemDefinition @relationship(inverse: slots)
+  slots: [ConfiguratorSlot!]! @relationship(inverse: definition)
+}

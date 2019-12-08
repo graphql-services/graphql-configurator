@@ -1,0 +1,54 @@
+type ConfiguratorAssembly {
+  id: ID!
+
+  item: ConfiguratorAssemblyItem
+}
+type ConfiguratorAssemblyItem {
+  id: ID!
+  definitionId: ID!
+  slots: [ConfiguratorAssemblySlot!]!
+  attributes: [ConfiguratorAssemblyAttribute!]!
+}
+type ConfiguratorAssemblyAttribute {
+  id: ID!
+  definitionId: ID!
+  stringValue: String
+  intValue: Int
+  floatValue: Float
+}
+type ConfiguratorAssemblySlot {
+  id: ID!
+  definitionId: ID!
+  items: [ConfiguratorAssemblyItem!]!
+}
+
+input ConfiguratorAssemblyInput {
+  item: ConfiguratorAssemblyItemInput
+}
+input ConfiguratorAssemblyItemInput {
+  id: ID
+  definitionId: ID!
+  slots: [ConfiguratorAssemblySlotInput!]
+  attributes: [ConfiguratorAssemblyAttributeInput!]
+}
+input ConfiguratorAssemblyAttributeInput {
+  id: ID
+  definitionId: ID!
+  stringValue: String
+  intValue: Int
+  floatValue: Float
+}
+input ConfiguratorAssemblySlotInput {
+  id: ID
+  definitionId: ID!
+  items: [ConfiguratorAssemblyItemInput!]!
+}
+
+extend type Query {
+  configuratorAssembly(id: ID!): ConfiguratorAssembly
+}
+extend type Mutation {
+  createConfiguratorAssembly(
+    input: ConfiguratorAssemblyInput!
+  ): ConfiguratorAssembly
+}

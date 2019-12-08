@@ -1,0 +1,143 @@
+# Generated with graphql-orm
+
+schema:
+  - schema.graphql
+exec:
+  filename: generated.go
+  package: gen
+model:
+  filename: models_gen.go
+  package: gen
+resolver:
+  filename: resolver.go
+  type: Resolver
+  package: gen
+
+models:
+  
+  ConfiguratorItemDefinition:
+    model: github.com/graphql-services/graphql-configurator/gen.ConfiguratorItemDefinition
+    fields:
+      attributes:
+        resolver: true
+      slots:
+        resolver: true
+      items:
+        resolver: true
+  ConfiguratorItemDefinitionResultType:
+    model: github.com/graphql-services/graphql-configurator/gen.ConfiguratorItemDefinitionResultType
+    fields:
+      count:
+        resolver: true
+      items:
+        resolver: true
+  ConfiguratorItemDefinitionCreateInput:
+    model: "map[string]interface{}"
+  ConfiguratorItemDefinitionUpdateInput:
+    model: "map[string]interface{}"
+  
+  ConfiguratorAttributeDefinition:
+    model: github.com/graphql-services/graphql-configurator/gen.ConfiguratorAttributeDefinition
+    fields:
+      itemDefinitions:
+        resolver: true
+      attributes:
+        resolver: true
+  ConfiguratorAttributeDefinitionResultType:
+    model: github.com/graphql-services/graphql-configurator/gen.ConfiguratorAttributeDefinitionResultType
+    fields:
+      count:
+        resolver: true
+      items:
+        resolver: true
+  ConfiguratorAttributeDefinitionCreateInput:
+    model: "map[string]interface{}"
+  ConfiguratorAttributeDefinitionUpdateInput:
+    model: "map[string]interface{}"
+  
+  ConfiguratorSlotDefinition:
+    model: github.com/graphql-services/graphql-configurator/gen.ConfiguratorSlotDefinition
+    fields:
+      itemDefinition:
+        resolver: true
+      slots:
+        resolver: true
+  ConfiguratorSlotDefinitionResultType:
+    model: github.com/graphql-services/graphql-configurator/gen.ConfiguratorSlotDefinitionResultType
+    fields:
+      count:
+        resolver: true
+      items:
+        resolver: true
+  ConfiguratorSlotDefinitionCreateInput:
+    model: "map[string]interface{}"
+  ConfiguratorSlotDefinitionUpdateInput:
+    model: "map[string]interface{}"
+  
+  ConfiguratorItem:
+    model: github.com/graphql-services/graphql-configurator/gen.ConfiguratorItem
+    fields:
+      definition:
+        resolver: true
+      attributes:
+        resolver: true
+      slots:
+        resolver: true
+      parentSlot:
+        resolver: true
+  ConfiguratorItemResultType:
+    model: github.com/graphql-services/graphql-configurator/gen.ConfiguratorItemResultType
+    fields:
+      count:
+        resolver: true
+      items:
+        resolver: true
+  ConfiguratorItemCreateInput:
+    model: "map[string]interface{}"
+  ConfiguratorItemUpdateInput:
+    model: "map[string]interface{}"
+  
+  ConfiguratorAttribute:
+    model: github.com/graphql-services/graphql-configurator/gen.ConfiguratorAttribute
+    fields:
+      definition:
+        resolver: true
+      item:
+        resolver: true
+  ConfiguratorAttributeResultType:
+    model: github.com/graphql-services/graphql-configurator/gen.ConfiguratorAttributeResultType
+    fields:
+      count:
+        resolver: true
+      items:
+        resolver: true
+  ConfiguratorAttributeCreateInput:
+    model: "map[string]interface{}"
+  ConfiguratorAttributeUpdateInput:
+    model: "map[string]interface{}"
+  
+  ConfiguratorSlot:
+    model: github.com/graphql-services/graphql-configurator/gen.ConfiguratorSlot
+    fields:
+      items:
+        resolver: true
+      definition:
+        resolver: true
+      parentItem:
+        resolver: true
+  ConfiguratorSlotResultType:
+    model: github.com/graphql-services/graphql-configurator/gen.ConfiguratorSlotResultType
+    fields:
+      count:
+        resolver: true
+      items:
+        resolver: true
+  ConfiguratorSlotCreateInput:
+    model: "map[string]interface{}"
+  ConfiguratorSlotUpdateInput:
+    model: "map[string]interface{}"
+  
+  
+  
+  _Any:
+    model: github.com/graphql-services/graphql-configurator/gen._Any
