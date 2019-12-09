@@ -200,7 +200,7 @@ type ComplexityRoot struct {
 	}
 
 	Mutation struct {
-		CreateConfiguratorAssembly                func(childComplexity int, input ConfiguratorAssemblyInput) int
+		CreateConfiguratorAssembly                func(childComplexity int, input ConfiguratorAssemblyCreateInput) int
 		CreateConfiguratorAttribute               func(childComplexity int, input map[string]interface{}) int
 		CreateConfiguratorAttributeDefinition     func(childComplexity int, input map[string]interface{}) int
 		CreateConfiguratorItem                    func(childComplexity int, input map[string]interface{}) int
@@ -219,6 +219,7 @@ type ComplexityRoot struct {
 		DeleteConfiguratorItemDefinition          func(childComplexity int, id string) int
 		DeleteConfiguratorSlot                    func(childComplexity int, id string) int
 		DeleteConfiguratorSlotDefinition          func(childComplexity int, id string) int
+		UpdateConfiguratorAssembly                func(childComplexity int, id string, input ConfiguratorAssemblyUpdateInput) int
 		UpdateConfiguratorAttribute               func(childComplexity int, id string, input map[string]interface{}) int
 		UpdateConfiguratorAttributeDefinition     func(childComplexity int, id string, input map[string]interface{}) int
 		UpdateConfiguratorItem                    func(childComplexity int, id string, input map[string]interface{}) int
@@ -340,7 +341,8 @@ type MutationResolver interface {
 	UpdateConfiguratorSlot(ctx context.Context, id string, input map[string]interface{}) (*ConfiguratorSlot, error)
 	DeleteConfiguratorSlot(ctx context.Context, id string) (*ConfiguratorSlot, error)
 	DeleteAllConfiguratorSlots(ctx context.Context) (bool, error)
-	CreateConfiguratorAssembly(ctx context.Context, input ConfiguratorAssemblyInput) (*ConfiguratorAssembly, error)
+	CreateConfiguratorAssembly(ctx context.Context, input ConfiguratorAssemblyCreateInput) (*ConfiguratorAssembly, error)
+	UpdateConfiguratorAssembly(ctx context.Context, id string, input ConfiguratorAssemblyUpdateInput) (*ConfiguratorAssembly, error)
 }
 type QueryResolver interface {
 	_service(ctx context.Context) (*_Service, error)
@@ -1056,7 +1058,7 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 			return 0, false
 		}
 
-		return e.complexity.Mutation.CreateConfiguratorAssembly(childComplexity, args["input"].(ConfiguratorAssemblyInput)), true
+		return e.complexity.Mutation.CreateConfiguratorAssembly(childComplexity, args["input"].(ConfiguratorAssemblyCreateInput)), true
 
 	case "Mutation.createConfiguratorAttribute":
 		if e.complexity.Mutation.CreateConfiguratorAttribute == nil {
@@ -1243,6 +1245,18 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.Mutation.DeleteConfiguratorSlotDefinition(childComplexity, args["id"].(string)), true
+
+	case "Mutation.updateConfiguratorAssembly":
+		if e.complexity.Mutation.UpdateConfiguratorAssembly == nil {
+			break
+		}
+
+		args, err := ec.field_Mutation_updateConfiguratorAssembly_args(context.TODO(), rawArgs)
+		if err != nil {
+			return 0, false
+		}
+
+		return e.complexity.Mutation.UpdateConfiguratorAssembly(childComplexity, args["id"].(string), args["input"].(ConfiguratorAssemblyUpdateInput)), true
 
 	case "Mutation.updateConfiguratorAttribute":
 		if e.complexity.Mutation.UpdateConfiguratorAttribute == nil {
@@ -1633,7 +1647,11 @@ type ConfiguratorAssemblySlot {
   items: [ConfiguratorAssemblyItem!]!
 }
 
-input ConfiguratorAssemblyInput {
+input ConfiguratorAssemblyCreateInput {
+  item: ConfiguratorAssemblyItemInput
+}
+
+input ConfiguratorAssemblyUpdateInput {
   item: ConfiguratorAssemblyItemInput
 }
 
@@ -1663,7 +1681,8 @@ extend type Query {
 }
 
 extend type Mutation {
-  createConfiguratorAssembly(input: ConfiguratorAssemblyInput!): ConfiguratorAssembly
+  createConfiguratorAssembly(input: ConfiguratorAssemblyCreateInput!): ConfiguratorAssembly
+  updateConfiguratorAssembly(id: ID!, input: ConfiguratorAssemblyUpdateInput!): ConfiguratorAssembly
 }
 
 type ConfiguratorItemDefinition {
@@ -2399,9 +2418,9 @@ type _Service {
 func (ec *executionContext) field_Mutation_createConfiguratorAssembly_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
 	var err error
 	args := map[string]interface{}{}
-	var arg0 ConfiguratorAssemblyInput
+	var arg0 ConfiguratorAssemblyCreateInput
 	if tmp, ok := rawArgs["input"]; ok {
-		arg0, err = ec.unmarshalNConfiguratorAssemblyInput2githubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorAssemblyInput(ctx, tmp)
+		arg0, err = ec.unmarshalNConfiguratorAssemblyCreateInput2githubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorAssemblyCreateInput(ctx, tmp)
 		if err != nil {
 			return nil, err
 		}
@@ -2575,6 +2594,28 @@ func (ec *executionContext) field_Mutation_deleteConfiguratorSlot_args(ctx conte
 		}
 	}
 	args["id"] = arg0
+	return args, nil
+}
+
+func (ec *executionContext) field_Mutation_updateConfiguratorAssembly_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
+	var err error
+	args := map[string]interface{}{}
+	var arg0 string
+	if tmp, ok := rawArgs["id"]; ok {
+		arg0, err = ec.unmarshalNID2string(ctx, tmp)
+		if err != nil {
+			return nil, err
+		}
+	}
+	args["id"] = arg0
+	var arg1 ConfiguratorAssemblyUpdateInput
+	if tmp, ok := rawArgs["input"]; ok {
+		arg1, err = ec.unmarshalNConfiguratorAssemblyUpdateInput2githubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorAssemblyUpdateInput(ctx, tmp)
+		if err != nil {
+			return nil, err
+		}
+	}
+	args["input"] = arg1
 	return args, nil
 }
 
@@ -7690,7 +7731,48 @@ func (ec *executionContext) _Mutation_createConfiguratorAssembly(ctx context.Con
 	ctx = ec.Tracer.StartFieldResolverExecution(ctx, rctx)
 	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
 		ctx = rctx // use context from middleware stack in children
-		return ec.resolvers.Mutation().CreateConfiguratorAssembly(rctx, args["input"].(ConfiguratorAssemblyInput))
+		return ec.resolvers.Mutation().CreateConfiguratorAssembly(rctx, args["input"].(ConfiguratorAssemblyCreateInput))
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*ConfiguratorAssembly)
+	rctx.Result = res
+	ctx = ec.Tracer.StartFieldChildExecution(ctx)
+	return ec.marshalOConfiguratorAssembly2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorAssembly(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) _Mutation_updateConfiguratorAssembly(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
+	ctx = ec.Tracer.StartFieldExecution(ctx, field)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+		ec.Tracer.EndFieldExecution(ctx)
+	}()
+	rctx := &graphql.ResolverContext{
+		Object:   "Mutation",
+		Field:    field,
+		Args:     nil,
+		IsMethod: true,
+	}
+	ctx = graphql.WithResolverContext(ctx, rctx)
+	rawArgs := field.ArgumentMap(ec.Variables)
+	args, err := ec.field_Mutation_updateConfiguratorAssembly_args(ctx, rawArgs)
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	rctx.Args = args
+	ctx = ec.Tracer.StartFieldResolverExecution(ctx, rctx)
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
+		ctx = rctx // use context from middleware stack in children
+		return ec.resolvers.Mutation().UpdateConfiguratorAssembly(rctx, args["id"].(string), args["input"].(ConfiguratorAssemblyUpdateInput))
 	})
 	if err != nil {
 		ec.Error(ctx, err)
@@ -9577,8 +9659,8 @@ func (ec *executionContext) unmarshalInputConfiguratorAssemblyAttributeInput(ctx
 	return it, nil
 }
 
-func (ec *executionContext) unmarshalInputConfiguratorAssemblyInput(ctx context.Context, obj interface{}) (ConfiguratorAssemblyInput, error) {
-	var it ConfiguratorAssemblyInput
+func (ec *executionContext) unmarshalInputConfiguratorAssemblyCreateInput(ctx context.Context, obj interface{}) (ConfiguratorAssemblyCreateInput, error) {
+	var it ConfiguratorAssemblyCreateInput
 	var asMap = obj.(map[string]interface{})
 
 	for k, v := range asMap {
@@ -9652,6 +9734,24 @@ func (ec *executionContext) unmarshalInputConfiguratorAssemblySlotInput(ctx cont
 		case "items":
 			var err error
 			it.Items, err = ec.unmarshalNConfiguratorAssemblyItemInput2ᚕᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorAssemblyItemInputᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		}
+	}
+
+	return it, nil
+}
+
+func (ec *executionContext) unmarshalInputConfiguratorAssemblyUpdateInput(ctx context.Context, obj interface{}) (ConfiguratorAssemblyUpdateInput, error) {
+	var it ConfiguratorAssemblyUpdateInput
+	var asMap = obj.(map[string]interface{})
+
+	for k, v := range asMap {
+		switch k {
+		case "item":
+			var err error
+			it.Item, err = ec.unmarshalOConfiguratorAssemblyItemInput2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorAssemblyItemInput(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -13803,6 +13903,8 @@ func (ec *executionContext) _Mutation(ctx context.Context, sel ast.SelectionSet)
 			}
 		case "createConfiguratorAssembly":
 			out.Values[i] = ec._Mutation_createConfiguratorAssembly(ctx, field)
+		case "updateConfiguratorAssembly":
+			out.Values[i] = ec._Mutation_updateConfiguratorAssembly(ctx, field)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -14347,8 +14449,8 @@ func (ec *executionContext) unmarshalNConfiguratorAssemblyAttributeInput2ᚖgith
 	return &res, err
 }
 
-func (ec *executionContext) unmarshalNConfiguratorAssemblyInput2githubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorAssemblyInput(ctx context.Context, v interface{}) (ConfiguratorAssemblyInput, error) {
-	return ec.unmarshalInputConfiguratorAssemblyInput(ctx, v)
+func (ec *executionContext) unmarshalNConfiguratorAssemblyCreateInput2githubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorAssemblyCreateInput(ctx context.Context, v interface{}) (ConfiguratorAssemblyCreateInput, error) {
+	return ec.unmarshalInputConfiguratorAssemblyCreateInput(ctx, v)
 }
 
 func (ec *executionContext) marshalNConfiguratorAssemblyItem2githubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorAssemblyItem(ctx context.Context, sel ast.SelectionSet, v ConfiguratorAssemblyItem) graphql.Marshaler {
@@ -14495,6 +14597,10 @@ func (ec *executionContext) unmarshalNConfiguratorAssemblySlotInput2ᚖgithubᚗ
 	}
 	res, err := ec.unmarshalNConfiguratorAssemblySlotInput2githubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorAssemblySlotInput(ctx, v)
 	return &res, err
+}
+
+func (ec *executionContext) unmarshalNConfiguratorAssemblyUpdateInput2githubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorAssemblyUpdateInput(ctx context.Context, v interface{}) (ConfiguratorAssemblyUpdateInput, error) {
+	return ec.unmarshalInputConfiguratorAssemblyUpdateInput(ctx, v)
 }
 
 func (ec *executionContext) marshalNConfiguratorAttribute2githubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorAttribute(ctx context.Context, sel ast.SelectionSet, v ConfiguratorAttribute) graphql.Marshaler {

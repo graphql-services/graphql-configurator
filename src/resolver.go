@@ -17,13 +17,24 @@ func New(db *gen.DB, ec *events.EventController) *Resolver {
 	return resolver
 }
 
-func (r *MutationResolver) CreateConfiguratorAssembly(ctx context.Context, input gen.ConfiguratorAssemblyInput) (item *gen.ConfiguratorAssembly, err error) {
+func (r *MutationResolver) CreateConfiguratorAssembly(ctx context.Context, input gen.ConfiguratorAssemblyCreateInput) (item *gen.ConfiguratorAssembly, err error) {
 	var itemID string
 	err = r.BeginTransaction(ctx, func(ctx context.Context) error {
-		inputHelper := AssemblyInputHelper{
-			ConfiguratorAssemblyInput: &input,
-		}
-		itemID, err = inputHelper.Assemble(ctx, r.GeneratedResolver)
+		inputHelper := AssemblyInputHelper{}
+		itemID, err = inputHelper.Assemble(ctx, r.GeneratedResolver, input.Item)
+		return err
+	})
+
+	helper := AssemblyHelper{r.GeneratedResolver}
+	item, err = helper.Load(ctx, itemID)
+
+	return
+}
+func (r *MutationResolver) UpdateConfiguratorAssembly(ctx context.Context, id string, input gen.ConfiguratorAssemblyUpdateInput) (item *gen.ConfiguratorAssembly, err error) {
+	var itemID string
+	err = r.BeginTransaction(ctx, func(ctx context.Context) error {
+		inputHelper := AssemblyInputHelper{}
+		itemID, err = inputHelper.Assemble(ctx, r.GeneratedResolver, input.Item)
 		return err
 	})
 

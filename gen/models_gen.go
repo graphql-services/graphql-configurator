@@ -30,7 +30,7 @@ type ConfiguratorAssemblyAttributeInput struct {
 	FloatValue   *float64 `json:"floatValue"`
 }
 
-type ConfiguratorAssemblyInput struct {
+type ConfiguratorAssemblyCreateInput struct {
 	Item *ConfiguratorAssemblyItemInput `json:"item"`
 }
 
@@ -58,6 +58,10 @@ type ConfiguratorAssemblySlotInput struct {
 	ID           *string                          `json:"id"`
 	DefinitionID string                           `json:"definitionId"`
 	Items        []*ConfiguratorAssemblyItemInput `json:"items"`
+}
+
+type ConfiguratorAssemblyUpdateInput struct {
+	Item *ConfiguratorAssemblyItemInput `json:"item"`
 }
 
 type ConfiguratorAttributeDefinitionFilterType struct {

@@ -22,7 +22,10 @@ type ConfiguratorAssemblySlot {
   items: [ConfiguratorAssemblyItem!]!
 }
 
-input ConfiguratorAssemblyInput {
+input ConfiguratorAssemblyCreateInput {
+  item: ConfiguratorAssemblyItemInput
+}
+input ConfiguratorAssemblyUpdateInput {
   item: ConfiguratorAssemblyItemInput
 }
 input ConfiguratorAssemblyItemInput {
@@ -49,6 +52,10 @@ extend type Query {
 }
 extend type Mutation {
   createConfiguratorAssembly(
-    input: ConfiguratorAssemblyInput!
+    input: ConfiguratorAssemblyCreateInput!
+  ): ConfiguratorAssembly
+  updateConfiguratorAssembly(
+    id: ID!
+    input: ConfiguratorAssemblyUpdateInput!
   ): ConfiguratorAssembly
 }

@@ -7,11 +7,10 @@ import (
 )
 
 type AssemblyInputHelper struct {
-	*gen.ConfiguratorAssemblyInput
 }
 
-func (h *AssemblyInputHelper) Assemble(ctx context.Context, r *gen.GeneratedResolver) (id string, err error) {
-	return h.CreateItem(ctx, r, h.ConfiguratorAssemblyInput.Item)
+func (h *AssemblyInputHelper) Assemble(ctx context.Context, r *gen.GeneratedResolver, rootItem *gen.ConfiguratorAssemblyItemInput) (id string, err error) {
+	return h.CreateItem(ctx, r, rootItem)
 }
 func (h *AssemblyInputHelper) CreateItem(ctx context.Context, r *gen.GeneratedResolver, inputItem *gen.ConfiguratorAssemblyItemInput) (string, error) {
 	return createOrUpdateItem(ctx, r, inputItem)
