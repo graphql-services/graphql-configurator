@@ -9,7 +9,7 @@ require (
 	github.com/graph-gophers/dataloader v5.0.0+incompatible
 	github.com/jinzhu/gorm v1.9.11
 	github.com/mitchellh/mapstructure v1.1.2
-	github.com/novacloudcz/graphql-orm v0.1.21
+	github.com/novacloudcz/graphql-orm v0.1.22
 	github.com/rs/cors v1.7.0
 	github.com/urfave/cli v1.22.2
 	github.com/vektah/gqlparser v1.2.0

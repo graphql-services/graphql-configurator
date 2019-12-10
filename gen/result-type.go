@@ -42,16 +42,14 @@ type GetItemsOptions struct {
 	Preloaders []string
 }
 
+type CountResult struct {
+	Count int
+}
+
 // GetResultTypeItems ...
 func (r *EntityResultType) GetItems(ctx context.Context, db *gorm.DB, opts GetItemsOptions, out interface{}) error {
 	q := db
-
-	if r.Limit != nil {
-		q = q.Limit(*r.Limit)
-	}
-	if r.Offset != nil {
-		q = q.Offset(*r.Offset)
-	}
+	filterQuery := db.Table(opts.Alias).Select("DISTINCT " + opts.Alias + ".id")
 
 	dialect := q.Dialect()
 
@@ -79,8 +77,15 @@ func (r *EntityResultType) GetItems(ctx context.Context, db *gorm.DB, opts GetIt
 	if len(sorts) > 0 {
 		q = q.Order(strings.Join(sorts, ", "))
 	}
+
+	if r.Limit != nil {
+		filterQuery = filterQuery.Limit(*r.Limit)
+	}
+	if r.Offset != nil {
+		filterQuery = filterQuery.Offset(*r.Offset)
+	}
 	if len(wheres) > 0 {
-		q = q.Where(strings.Join(wheres, " AND "), values...)
+		filterQuery = filterQuery.Where(strings.Join(wheres, " AND "), values...)
 	}
 
 	uniqueJoinsMap := map[string]bool{}
@@ -93,6 +98,7 @@ func (r *EntityResultType) GetItems(ctx context.Context, db *gorm.DB, opts GetIt
 	}
 
 	for _, join := range uniqueJoins {
+		filterQuery = filterQuery.Joins(join)
 		q = q.Joins(join)
 	}
 
@@ -102,12 +108,12 @@ func (r *EntityResultType) GetItems(ctx context.Context, db *gorm.DB, opts GetIt
 		}
 	}
 	// q = q.Group(opts.Alias + ".id")
-	return q.Find(out).Error
+	return q.Joins("INNER JOIN (?) as filter ON "+opts.Alias+".id = filter.id", filterQuery.QueryExpr()).Find(out).Error
 }
 
 // GetCount ...
 func (r *EntityResultType) GetCount(ctx context.Context, db *gorm.DB, out interface{}) (count int, err error) {
-	q := db
+	q := db.Model(out).Select(db.NewScope(out).TableName() + ".id")
 
 	dialect := q.Dialect()
 	wheres := []string{}
@@ -142,7 +148,10 @@ func (r *EntityResultType) GetCount(ctx context.Context, db *gorm.DB, out interf
 	for _, join := range uniqueJoins {
 		q = q.Joins(join)
 	}
-	err = q.Model(out).Count(&count).Error
+
+	var result CountResult
+	err = q.Select("DISTINCT COUNT(" + db.NewScope(out).TableName() + ".id) as count").Scan(&result).Error
+	count = result.Count
 	return
 }
 
