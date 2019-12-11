@@ -110,6 +110,15 @@ func (r *GeneratedConfiguratorItemDefinitionResultTypeResolver) Items(ctx contex
 	}
 	err = obj.GetItems(ctx, r.DB.db, giOpts, &items)
 
+	uniqueItems := []*ConfiguratorItemDefinition{}
+	idMap := map[string]bool{}
+	for _, item := range items {
+		if _, ok := idMap[item.ID]; !ok {
+			idMap[item.ID] = true
+			uniqueItems = append(uniqueItems, item)
+		}
+	}
+	items = uniqueItems
 	return
 }
 
@@ -294,6 +303,15 @@ func (r *GeneratedConfiguratorAttributeDefinitionResultTypeResolver) Items(ctx c
 	}
 	err = obj.GetItems(ctx, r.DB.db, giOpts, &items)
 
+	uniqueItems := []*ConfiguratorAttributeDefinition{}
+	idMap := map[string]bool{}
+	for _, item := range items {
+		if _, ok := idMap[item.ID]; !ok {
+			idMap[item.ID] = true
+			uniqueItems = append(uniqueItems, item)
+		}
+	}
+	items = uniqueItems
 	return
 }
 
@@ -453,6 +471,15 @@ func (r *GeneratedConfiguratorSlotDefinitionResultTypeResolver) Items(ctx contex
 	}
 	err = obj.GetItems(ctx, r.DB.db, giOpts, &items)
 
+	uniqueItems := []*ConfiguratorSlotDefinition{}
+	idMap := map[string]bool{}
+	for _, item := range items {
+		if _, ok := idMap[item.ID]; !ok {
+			idMap[item.ID] = true
+			uniqueItems = append(uniqueItems, item)
+		}
+	}
+	items = uniqueItems
 	return
 }
 
@@ -603,6 +630,15 @@ func (r *GeneratedConfiguratorItemResultTypeResolver) Items(ctx context.Context,
 	}
 	err = obj.GetItems(ctx, r.DB.db, giOpts, &items)
 
+	uniqueItems := []*ConfiguratorItem{}
+	idMap := map[string]bool{}
+	for _, item := range items {
+		if _, ok := idMap[item.ID]; !ok {
+			idMap[item.ID] = true
+			uniqueItems = append(uniqueItems, item)
+		}
+	}
+	items = uniqueItems
 	return
 }
 
@@ -794,6 +830,15 @@ func (r *GeneratedConfiguratorAttributeResultTypeResolver) Items(ctx context.Con
 	}
 	err = obj.GetItems(ctx, r.DB.db, giOpts, &items)
 
+	uniqueItems := []*ConfiguratorAttribute{}
+	idMap := map[string]bool{}
+	for _, item := range items {
+		if _, ok := idMap[item.ID]; !ok {
+			idMap[item.ID] = true
+			uniqueItems = append(uniqueItems, item)
+		}
+	}
+	items = uniqueItems
 	return
 }
 
@@ -935,6 +980,15 @@ func (r *GeneratedConfiguratorSlotResultTypeResolver) Items(ctx context.Context,
 	}
 	err = obj.GetItems(ctx, r.DB.db, giOpts, &items)
 
+	uniqueItems := []*ConfiguratorSlot{}
+	idMap := map[string]bool{}
+	for _, item := range items {
+		if _, ok := idMap[item.ID]; !ok {
+			idMap[item.ID] = true
+			uniqueItems = append(uniqueItems, item)
+		}
+	}
+	items = uniqueItems
 	return
 }
 
