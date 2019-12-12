@@ -699,6 +699,18 @@ func CreateConfiguratorItemHandler(ctx context.Context, r *GeneratedResolver, in
 		event.AddNewValue("id", changes.ID)
 	}
 
+	if _, ok := input["code"]; ok && (item.Code != changes.Code) && (item.Code == nil || changes.Code == nil || *item.Code != *changes.Code) {
+		item.Code = changes.Code
+
+		event.AddNewValue("code", changes.Code)
+	}
+
+	if _, ok := input["name"]; ok && (item.Name != changes.Name) && (item.Name == nil || changes.Name == nil || *item.Name != *changes.Name) {
+		item.Name = changes.Name
+
+		event.AddNewValue("name", changes.Name)
+	}
+
 	if _, ok := input["stockItemID"]; ok && (item.StockItemID != changes.StockItemID) && (item.StockItemID == nil || changes.StockItemID == nil || *item.StockItemID != *changes.StockItemID) {
 		item.StockItemID = changes.StockItemID
 
@@ -780,6 +792,18 @@ func UpdateConfiguratorItemHandler(ctx context.Context, r *GeneratedResolver, id
 	}
 
 	item.UpdatedBy = principalID
+
+	if _, ok := input["code"]; ok && (item.Code != changes.Code) && (item.Code == nil || changes.Code == nil || *item.Code != *changes.Code) {
+		event.AddOldValue("code", item.Code)
+		event.AddNewValue("code", changes.Code)
+		item.Code = changes.Code
+	}
+
+	if _, ok := input["name"]; ok && (item.Name != changes.Name) && (item.Name == nil || changes.Name == nil || *item.Name != *changes.Name) {
+		event.AddOldValue("name", item.Name)
+		event.AddNewValue("name", changes.Name)
+		item.Name = changes.Name
+	}
 
 	if _, ok := input["stockItemID"]; ok && (item.StockItemID != changes.StockItemID) && (item.StockItemID == nil || changes.StockItemID == nil || *item.StockItemID != *changes.StockItemID) {
 		event.AddOldValue("stockItemID", item.StockItemID)

@@ -172,6 +172,8 @@ type ConfiguratorSlotDefinition {
 
 type ConfiguratorItem {
   id: ID!
+  code: String
+  name: String
   stockItemID: ID
   definition: ConfiguratorItemDefinition
   attributes: [ConfiguratorAttribute!]!
@@ -509,6 +511,8 @@ type ConfiguratorSlotDefinitionResultType {
 
 input ConfiguratorItemCreateInput {
   id: ID
+  code: String
+  name: String
   stockItemID: ID
   definitionId: ID
   parentSlotId: ID
@@ -517,6 +521,8 @@ input ConfiguratorItemCreateInput {
 }
 
 input ConfiguratorItemUpdateInput {
+  code: String
+  name: String
   stockItemID: ID
   definitionId: ID
   parentSlotId: ID
@@ -526,6 +532,8 @@ input ConfiguratorItemUpdateInput {
 
 input ConfiguratorItemSortType {
   id: ObjectSortType
+  code: ObjectSortType
+  name: ObjectSortType
   stockItemID: ObjectSortType
   definitionId: ObjectSortType
   parentSlotId: ObjectSortType
@@ -552,6 +560,28 @@ input ConfiguratorItemFilterType {
   id_lte: ID
   id_in: [ID!]
   id_null: Boolean
+  code: String
+  code_ne: String
+  code_gt: String
+  code_lt: String
+  code_gte: String
+  code_lte: String
+  code_in: [String!]
+  code_like: String
+  code_prefix: String
+  code_suffix: String
+  code_null: Boolean
+  name: String
+  name_ne: String
+  name_gt: String
+  name_lt: String
+  name_gte: String
+  name_lte: String
+  name_in: [String!]
+  name_like: String
+  name_prefix: String
+  name_suffix: String
+  name_null: Boolean
   stockItemID: ID
   stockItemID_ne: ID
   stockItemID_gt: ID

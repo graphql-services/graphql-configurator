@@ -182,6 +182,14 @@ func (s ConfiguratorItemSortType) ApplyWithAlias(ctx context.Context, dialect go
 		*sorts = append(*sorts, aliasPrefix+dialect.Quote("id")+" "+s.ID.String())
 	}
 
+	if s.Code != nil {
+		*sorts = append(*sorts, aliasPrefix+dialect.Quote("code")+" "+s.Code.String())
+	}
+
+	if s.Name != nil {
+		*sorts = append(*sorts, aliasPrefix+dialect.Quote("name")+" "+s.Name.String())
+	}
+
 	if s.StockItemID != nil {
 		*sorts = append(*sorts, aliasPrefix+dialect.Quote("stockItemID")+" "+s.StockItemID.String())
 	}

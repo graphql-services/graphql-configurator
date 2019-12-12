@@ -334,6 +334,28 @@ type ConfiguratorItemFilterType struct {
 	IDLte            *string                               `json:"id_lte"`
 	IDIn             []string                              `json:"id_in"`
 	IDNull           *bool                                 `json:"id_null"`
+	Code             *string                               `json:"code"`
+	CodeNe           *string                               `json:"code_ne"`
+	CodeGt           *string                               `json:"code_gt"`
+	CodeLt           *string                               `json:"code_lt"`
+	CodeGte          *string                               `json:"code_gte"`
+	CodeLte          *string                               `json:"code_lte"`
+	CodeIn           []string                              `json:"code_in"`
+	CodeLike         *string                               `json:"code_like"`
+	CodePrefix       *string                               `json:"code_prefix"`
+	CodeSuffix       *string                               `json:"code_suffix"`
+	CodeNull         *bool                                 `json:"code_null"`
+	Name             *string                               `json:"name"`
+	NameNe           *string                               `json:"name_ne"`
+	NameGt           *string                               `json:"name_gt"`
+	NameLt           *string                               `json:"name_lt"`
+	NameGte          *string                               `json:"name_gte"`
+	NameLte          *string                               `json:"name_lte"`
+	NameIn           []string                              `json:"name_in"`
+	NameLike         *string                               `json:"name_like"`
+	NamePrefix       *string                               `json:"name_prefix"`
+	NameSuffix       *string                               `json:"name_suffix"`
+	NameNull         *bool                                 `json:"name_null"`
 	StockItemID      *string                               `json:"stockItemID"`
 	StockItemIDNe    *string                               `json:"stockItemID_ne"`
 	StockItemIDGt    *string                               `json:"stockItemID_gt"`
@@ -398,6 +420,8 @@ type ConfiguratorItemFilterType struct {
 
 type ConfiguratorItemSortType struct {
 	ID            *ObjectSortType                     `json:"id"`
+	Code          *ObjectSortType                     `json:"code"`
+	Name          *ObjectSortType                     `json:"name"`
 	StockItemID   *ObjectSortType                     `json:"stockItemID"`
 	DefinitionID  *ObjectSortType                     `json:"definitionId"`
 	ParentSlotID  *ObjectSortType                     `json:"parentSlotId"`

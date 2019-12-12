@@ -122,6 +122,8 @@ type ConfiguratorItemResultType struct {
 
 type ConfiguratorItem struct {
 	ID           string     `json:"id" gorm:"column:id;primary_key"`
+	Code         *string    `json:"code" gorm:"column:code"`
+	Name         *string    `json:"name" gorm:"column:name"`
 	StockItemID  *string    `json:"stockItemID" gorm:"column:stockItemID"`
 	DefinitionID *string    `json:"definitionId" gorm:"column:definitionId"`
 	ParentSlotID *string    `json:"parentSlotId" gorm:"column:parentSlotId"`
@@ -143,6 +145,8 @@ func (m *ConfiguratorItem) Is_Entity() {}
 
 type ConfiguratorItemChanges struct {
 	ID           string
+	Code         *string
+	Name         *string
 	StockItemID  *string
 	DefinitionID *string
 	ParentSlotID *string

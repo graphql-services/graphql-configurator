@@ -1,4 +1,6 @@
 type ConfiguratorItem @entity {
+  code: String @column
+  name: String @column
   stockItemID: ID @column
 
   definition: ConfiguratorItemDefinition @relationship(inverse: items)

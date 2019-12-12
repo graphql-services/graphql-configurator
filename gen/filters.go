@@ -1420,6 +1420,122 @@ func (f *ConfiguratorItemFilterType) WhereContent(dialect gorm.Dialect, aliasPre
 		}
 	}
 
+	if f.Code != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("code")+" = ?")
+		values = append(values, f.Code)
+	}
+
+	if f.CodeNe != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("code")+" != ?")
+		values = append(values, f.CodeNe)
+	}
+
+	if f.CodeGt != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("code")+" > ?")
+		values = append(values, f.CodeGt)
+	}
+
+	if f.CodeLt != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("code")+" < ?")
+		values = append(values, f.CodeLt)
+	}
+
+	if f.CodeGte != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("code")+" >= ?")
+		values = append(values, f.CodeGte)
+	}
+
+	if f.CodeLte != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("code")+" <= ?")
+		values = append(values, f.CodeLte)
+	}
+
+	if f.CodeIn != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("code")+" IN (?)")
+		values = append(values, f.CodeIn)
+	}
+
+	if f.CodeLike != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("code")+" LIKE ?")
+		values = append(values, strings.Replace(strings.Replace(*f.CodeLike, "?", "_", -1), "*", "%", -1))
+	}
+
+	if f.CodePrefix != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("code")+" LIKE ?")
+		values = append(values, fmt.Sprintf("%s%%", *f.CodePrefix))
+	}
+
+	if f.CodeSuffix != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("code")+" LIKE ?")
+		values = append(values, fmt.Sprintf("%%%s", *f.CodeSuffix))
+	}
+
+	if f.CodeNull != nil {
+		if *f.CodeNull {
+			conditions = append(conditions, aliasPrefix+dialect.Quote("code")+" IS NULL")
+		} else {
+			conditions = append(conditions, aliasPrefix+dialect.Quote("code")+" IS NOT NULL")
+		}
+	}
+
+	if f.Name != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("name")+" = ?")
+		values = append(values, f.Name)
+	}
+
+	if f.NameNe != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("name")+" != ?")
+		values = append(values, f.NameNe)
+	}
+
+	if f.NameGt != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("name")+" > ?")
+		values = append(values, f.NameGt)
+	}
+
+	if f.NameLt != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("name")+" < ?")
+		values = append(values, f.NameLt)
+	}
+
+	if f.NameGte != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("name")+" >= ?")
+		values = append(values, f.NameGte)
+	}
+
+	if f.NameLte != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("name")+" <= ?")
+		values = append(values, f.NameLte)
+	}
+
+	if f.NameIn != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("name")+" IN (?)")
+		values = append(values, f.NameIn)
+	}
+
+	if f.NameLike != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("name")+" LIKE ?")
+		values = append(values, strings.Replace(strings.Replace(*f.NameLike, "?", "_", -1), "*", "%", -1))
+	}
+
+	if f.NamePrefix != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("name")+" LIKE ?")
+		values = append(values, fmt.Sprintf("%s%%", *f.NamePrefix))
+	}
+
+	if f.NameSuffix != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("name")+" LIKE ?")
+		values = append(values, fmt.Sprintf("%%%s", *f.NameSuffix))
+	}
+
+	if f.NameNull != nil {
+		if *f.NameNull {
+			conditions = append(conditions, aliasPrefix+dialect.Quote("name")+" IS NULL")
+		} else {
+			conditions = append(conditions, aliasPrefix+dialect.Quote("name")+" IS NOT NULL")
+		}
+	}
+
 	if f.StockItemID != nil {
 		conditions = append(conditions, aliasPrefix+dialect.Quote("stockItemID")+" = ?")
 		values = append(values, f.StockItemID)
