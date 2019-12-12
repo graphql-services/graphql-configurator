@@ -67,6 +67,8 @@ func (as *AssemblyHelper) LoadItem(ctx context.Context, ID string) (*gen.Configu
 
 	return &gen.ConfiguratorAssemblyItem{
 		ID:           item.ID,
+		Code:         item.Code,
+		Name:         item.Name,
 		DefinitionID: *item.DefinitionID,
 		Attributes:   attributes,
 		Slots:        slots,

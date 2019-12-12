@@ -65,6 +65,8 @@ type ConfiguratorAssembly {
 
 type ConfiguratorAssemblyItem {
   id: ID!
+  code: String
+  name: String
   definitionId: ID!
   slots: [ConfiguratorAssemblySlot!]!
   attributes: [ConfiguratorAssemblyAttribute!]!
@@ -94,6 +96,8 @@ input ConfiguratorAssemblyUpdateInput {
 
 input ConfiguratorAssemblyItemInput {
   id: ID
+  code: String
+  name: String
   definitionId: ID!
   slots: [ConfiguratorAssemblySlotInput!]
   attributes: [ConfiguratorAssemblyAttributeInput!]

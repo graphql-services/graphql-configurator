@@ -70,8 +70,10 @@ type ComplexityRoot struct {
 
 	ConfiguratorAssemblyItem struct {
 		Attributes   func(childComplexity int) int
+		Code         func(childComplexity int) int
 		DefinitionID func(childComplexity int) int
 		ID           func(childComplexity int) int
+		Name         func(childComplexity int) int
 		Slots        func(childComplexity int) int
 	}
 
@@ -434,6 +436,13 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.ConfiguratorAssemblyItem.Attributes(childComplexity), true
 
+	case "ConfiguratorAssemblyItem.code":
+		if e.complexity.ConfiguratorAssemblyItem.Code == nil {
+			break
+		}
+
+		return e.complexity.ConfiguratorAssemblyItem.Code(childComplexity), true
+
 	case "ConfiguratorAssemblyItem.definitionId":
 		if e.complexity.ConfiguratorAssemblyItem.DefinitionID == nil {
 			break
@@ -447,6 +456,13 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.ConfiguratorAssemblyItem.ID(childComplexity), true
+
+	case "ConfiguratorAssemblyItem.name":
+		if e.complexity.ConfiguratorAssemblyItem.Name == nil {
+			break
+		}
+
+		return e.complexity.ConfiguratorAssemblyItem.Name(childComplexity), true
 
 	case "ConfiguratorAssemblyItem.slots":
 		if e.complexity.ConfiguratorAssemblyItem.Slots == nil {
@@ -1644,6 +1660,8 @@ type ConfiguratorAssembly {
 
 type ConfiguratorAssemblyItem {
   id: ID!
+  code: String
+  name: String
   definitionId: ID!
   slots: [ConfiguratorAssemblySlot!]!
   attributes: [ConfiguratorAssemblyAttribute!]!
@@ -1673,6 +1691,8 @@ input ConfiguratorAssemblyUpdateInput {
 
 input ConfiguratorAssemblyItemInput {
   id: ID
+  code: String
+  name: String
   definitionId: ID!
   slots: [ConfiguratorAssemblySlotInput!]
   attributes: [ConfiguratorAssemblyAttributeInput!]
@@ -3599,6 +3619,74 @@ func (ec *executionContext) _ConfiguratorAssemblyItem_id(ctx context.Context, fi
 	rctx.Result = res
 	ctx = ec.Tracer.StartFieldChildExecution(ctx)
 	return ec.marshalNID2string(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) _ConfiguratorAssemblyItem_code(ctx context.Context, field graphql.CollectedField, obj *ConfiguratorAssemblyItem) (ret graphql.Marshaler) {
+	ctx = ec.Tracer.StartFieldExecution(ctx, field)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+		ec.Tracer.EndFieldExecution(ctx)
+	}()
+	rctx := &graphql.ResolverContext{
+		Object:   "ConfiguratorAssemblyItem",
+		Field:    field,
+		Args:     nil,
+		IsMethod: false,
+	}
+	ctx = graphql.WithResolverContext(ctx, rctx)
+	ctx = ec.Tracer.StartFieldResolverExecution(ctx, rctx)
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Code, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*string)
+	rctx.Result = res
+	ctx = ec.Tracer.StartFieldChildExecution(ctx)
+	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) _ConfiguratorAssemblyItem_name(ctx context.Context, field graphql.CollectedField, obj *ConfiguratorAssemblyItem) (ret graphql.Marshaler) {
+	ctx = ec.Tracer.StartFieldExecution(ctx, field)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+		ec.Tracer.EndFieldExecution(ctx)
+	}()
+	rctx := &graphql.ResolverContext{
+		Object:   "ConfiguratorAssemblyItem",
+		Field:    field,
+		Args:     nil,
+		IsMethod: false,
+	}
+	ctx = graphql.WithResolverContext(ctx, rctx)
+	ctx = ec.Tracer.StartFieldResolverExecution(ctx, rctx)
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Name, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*string)
+	rctx.Result = res
+	ctx = ec.Tracer.StartFieldChildExecution(ctx)
+	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) _ConfiguratorAssemblyItem_definitionId(ctx context.Context, field graphql.CollectedField, obj *ConfiguratorAssemblyItem) (ret graphql.Marshaler) {
@@ -9803,6 +9891,18 @@ func (ec *executionContext) unmarshalInputConfiguratorAssemblyItemInput(ctx cont
 			if err != nil {
 				return it, err
 			}
+		case "code":
+			var err error
+			it.Code, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "name":
+			var err error
+			it.Name, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "definitionId":
 			var err error
 			it.DefinitionID, err = ec.unmarshalNID2string(ctx, v)
@@ -13074,6 +13174,10 @@ func (ec *executionContext) _ConfiguratorAssemblyItem(ctx context.Context, sel a
 			if out.Values[i] == graphql.Null {
 				invalids++
 			}
+		case "code":
+			out.Values[i] = ec._ConfiguratorAssemblyItem_code(ctx, field, obj)
+		case "name":
+			out.Values[i] = ec._ConfiguratorAssemblyItem_name(ctx, field, obj)
 		case "definitionId":
 			out.Values[i] = ec._ConfiguratorAssemblyItem_definitionId(ctx, field, obj)
 			if out.Values[i] == graphql.Null {

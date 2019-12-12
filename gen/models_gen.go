@@ -36,6 +36,8 @@ type ConfiguratorAssemblyCreateInput struct {
 
 type ConfiguratorAssemblyItem struct {
 	ID           string                           `json:"id"`
+	Code         *string                          `json:"code"`
+	Name         *string                          `json:"name"`
 	DefinitionID string                           `json:"definitionId"`
 	Slots        []*ConfiguratorAssemblySlot      `json:"slots"`
 	Attributes   []*ConfiguratorAssemblyAttribute `json:"attributes"`
@@ -43,6 +45,8 @@ type ConfiguratorAssemblyItem struct {
 
 type ConfiguratorAssemblyItemInput struct {
 	ID           *string                               `json:"id"`
+	Code         *string                               `json:"code"`
+	Name         *string                               `json:"name"`
 	DefinitionID string                                `json:"definitionId"`
 	Slots        []*ConfiguratorAssemblySlotInput      `json:"slots"`
 	Attributes   []*ConfiguratorAssemblyAttributeInput `json:"attributes"`

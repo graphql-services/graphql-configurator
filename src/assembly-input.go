@@ -25,6 +25,8 @@ func createOrUpdateItem(ctx context.Context, r *gen.GeneratedResolver, inputItem
 	}
 
 	values := map[string]interface{}{
+		"code":         inputItem.Code,
+		"name":         inputItem.Name,
 		"definitionId": inputItem.DefinitionID,
 	}
 	var item *gen.ConfiguratorItem
