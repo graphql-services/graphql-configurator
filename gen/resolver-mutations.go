@@ -317,10 +317,10 @@ func CreateConfiguratorAttributeDefinitionHandler(ctx context.Context, r *Genera
 		return
 	}
 
-	if ids, exists := input["itemDefinitionsIds"]; exists {
+	if ids, exists := input["definitionsIds"]; exists {
 		items := []ConfiguratorItemDefinition{}
 		tx.Find(&items, "id IN (?)", ids)
-		association := tx.Model(&item).Association("ItemDefinitions")
+		association := tx.Model(&item).Association("Definitions")
 		association.Replace(items)
 	}
 
@@ -393,10 +393,10 @@ func UpdateConfiguratorAttributeDefinitionHandler(ctx context.Context, r *Genera
 		return
 	}
 
-	if ids, exists := input["itemDefinitionsIds"]; exists {
+	if ids, exists := input["definitionsIds"]; exists {
 		items := []ConfiguratorItemDefinition{}
 		tx.Find(&items, "id IN (?)", ids)
-		association := tx.Model(&item).Association("ItemDefinitions")
+		association := tx.Model(&item).Association("Definitions")
 		association.Replace(items)
 	}
 
@@ -512,10 +512,10 @@ func CreateConfiguratorSlotDefinitionHandler(ctx context.Context, r *GeneratedRe
 		event.AddNewValue("name", changes.Name)
 	}
 
-	if _, ok := input["itemDefinitionId"]; ok && (item.ItemDefinitionID != changes.ItemDefinitionID) && (item.ItemDefinitionID == nil || changes.ItemDefinitionID == nil || *item.ItemDefinitionID != *changes.ItemDefinitionID) {
-		item.ItemDefinitionID = changes.ItemDefinitionID
+	if _, ok := input["definitionId"]; ok && (item.DefinitionID != changes.DefinitionID) && (item.DefinitionID == nil || changes.DefinitionID == nil || *item.DefinitionID != *changes.DefinitionID) {
+		item.DefinitionID = changes.DefinitionID
 
-		event.AddNewValue("itemDefinitionId", changes.ItemDefinitionID)
+		event.AddNewValue("definitionId", changes.DefinitionID)
 	}
 
 	err = tx.Create(item).Error
@@ -581,10 +581,10 @@ func UpdateConfiguratorSlotDefinitionHandler(ctx context.Context, r *GeneratedRe
 		item.Name = changes.Name
 	}
 
-	if _, ok := input["itemDefinitionId"]; ok && (item.ItemDefinitionID != changes.ItemDefinitionID) && (item.ItemDefinitionID == nil || changes.ItemDefinitionID == nil || *item.ItemDefinitionID != *changes.ItemDefinitionID) {
-		event.AddOldValue("itemDefinitionId", item.ItemDefinitionID)
-		event.AddNewValue("itemDefinitionId", changes.ItemDefinitionID)
-		item.ItemDefinitionID = changes.ItemDefinitionID
+	if _, ok := input["definitionId"]; ok && (item.DefinitionID != changes.DefinitionID) && (item.DefinitionID == nil || changes.DefinitionID == nil || *item.DefinitionID != *changes.DefinitionID) {
+		event.AddOldValue("definitionId", item.DefinitionID)
+		event.AddNewValue("definitionId", changes.DefinitionID)
+		item.DefinitionID = changes.DefinitionID
 	}
 
 	err = tx.Save(item).Error

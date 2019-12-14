@@ -29,7 +29,7 @@ type ResolutionHandlers struct {
 	QueryConfiguratorAttributeDefinition      func(ctx context.Context, r *GeneratedResolver, opts QueryConfiguratorAttributeDefinitionHandlerOptions) (*ConfiguratorAttributeDefinition, error)
 	QueryConfiguratorAttributeDefinitions     func(ctx context.Context, r *GeneratedResolver, opts QueryConfiguratorAttributeDefinitionsHandlerOptions) (*ConfiguratorAttributeDefinitionResultType, error)
 
-	ConfiguratorAttributeDefinitionItemDefinitions func(ctx context.Context, r *GeneratedResolver, obj *ConfiguratorAttributeDefinition) (res []*ConfiguratorItemDefinition, err error)
+	ConfiguratorAttributeDefinitionDefinitions func(ctx context.Context, r *GeneratedResolver, obj *ConfiguratorAttributeDefinition) (res []*ConfiguratorItemDefinition, err error)
 
 	ConfiguratorAttributeDefinitionAttributes func(ctx context.Context, r *GeneratedResolver, obj *ConfiguratorAttributeDefinition) (res []*ConfiguratorAttribute, err error)
 
@@ -40,7 +40,7 @@ type ResolutionHandlers struct {
 	QueryConfiguratorSlotDefinition      func(ctx context.Context, r *GeneratedResolver, opts QueryConfiguratorSlotDefinitionHandlerOptions) (*ConfiguratorSlotDefinition, error)
 	QueryConfiguratorSlotDefinitions     func(ctx context.Context, r *GeneratedResolver, opts QueryConfiguratorSlotDefinitionsHandlerOptions) (*ConfiguratorSlotDefinitionResultType, error)
 
-	ConfiguratorSlotDefinitionItemDefinition func(ctx context.Context, r *GeneratedResolver, obj *ConfiguratorSlotDefinition) (res *ConfiguratorItemDefinition, err error)
+	ConfiguratorSlotDefinitionDefinition func(ctx context.Context, r *GeneratedResolver, obj *ConfiguratorSlotDefinition) (res *ConfiguratorItemDefinition, err error)
 
 	ConfiguratorSlotDefinitionSlots func(ctx context.Context, r *GeneratedResolver, obj *ConfiguratorSlotDefinition) (res []*ConfiguratorSlot, err error)
 
@@ -108,7 +108,7 @@ func DefaultResolutionHandlers() ResolutionHandlers {
 		QueryConfiguratorAttributeDefinition:      QueryConfiguratorAttributeDefinitionHandler,
 		QueryConfiguratorAttributeDefinitions:     QueryConfiguratorAttributeDefinitionsHandler,
 
-		ConfiguratorAttributeDefinitionItemDefinitions: ConfiguratorAttributeDefinitionItemDefinitionsHandler,
+		ConfiguratorAttributeDefinitionDefinitions: ConfiguratorAttributeDefinitionDefinitionsHandler,
 
 		ConfiguratorAttributeDefinitionAttributes: ConfiguratorAttributeDefinitionAttributesHandler,
 
@@ -119,7 +119,7 @@ func DefaultResolutionHandlers() ResolutionHandlers {
 		QueryConfiguratorSlotDefinition:      QueryConfiguratorSlotDefinitionHandler,
 		QueryConfiguratorSlotDefinitions:     QueryConfiguratorSlotDefinitionsHandler,
 
-		ConfiguratorSlotDefinitionItemDefinition: ConfiguratorSlotDefinitionItemDefinitionHandler,
+		ConfiguratorSlotDefinitionDefinition: ConfiguratorSlotDefinitionDefinitionHandler,
 
 		ConfiguratorSlotDefinitionSlots: ConfiguratorSlotDefinitionSlotsHandler,
 

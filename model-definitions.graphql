@@ -2,8 +2,8 @@ type ConfiguratorItemDefinition @entity {
   name: String @column
 
   attributes: [ConfiguratorAttributeDefinition!]!
-    @relationship(inverse: itemDefinitions)
-  slots: [ConfiguratorSlotDefinition!]! @relationship(inverse: itemDefinition)
+    @relationship(inverse: definitions)
+  slots: [ConfiguratorSlotDefinition!]! @relationship(inverse: definition)
   items: [ConfiguratorItem!]! @relationship(inverse: definition)
 }
 
@@ -16,14 +16,13 @@ type ConfiguratorAttributeDefinition @entity {
   name: String @column
   type: ConfiguratorAttributeType @column
 
-  itemDefinitions: [ConfiguratorItemDefinition!]!
-    @relationship(inverse: attributes)
+  definitions: [ConfiguratorItemDefinition!]! @relationship(inverse: attributes)
   attributes: [ConfiguratorAttribute!]! @relationship(inverse: definition)
 }
 
 type ConfiguratorSlotDefinition @entity {
   name: String @column
 
-  itemDefinition: ConfiguratorItemDefinition @relationship(inverse: slots)
+  definition: ConfiguratorItemDefinition @relationship(inverse: slots)
   slots: [ConfiguratorSlot!]! @relationship(inverse: definition)
 }

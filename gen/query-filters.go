@@ -61,7 +61,7 @@ func (qf *ConfiguratorItemDefinitionQueryFilter) applyQueryWithFields(dialect go
 	if fs, ok := fieldsMap["attributes"]; ok {
 		_fields := []*ast.Field{}
 		_alias := alias + "_attributes"
-		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configuratorAttributeDefinition_itemDefinitions"))+" "+dialect.Quote(_alias+"_jointable")+" ON "+dialect.Quote(alias)+".id = "+dialect.Quote(_alias+"_jointable")+"."+dialect.Quote("itemDefinition_id")+" LEFT JOIN "+dialect.Quote(TableName("configurator_attribute_definitions"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias+"_jointable")+"."+dialect.Quote("attribute_id")+" = "+dialect.Quote(_alias)+".id")
+		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configuratorAttributeDefinition_definitions"))+" "+dialect.Quote(_alias+"_jointable")+" ON "+dialect.Quote(alias)+".id = "+dialect.Quote(_alias+"_jointable")+"."+dialect.Quote("definition_id")+" LEFT JOIN "+dialect.Quote(TableName("configurator_attribute_definitions"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias+"_jointable")+"."+dialect.Quote("attribute_id")+" = "+dialect.Quote(_alias)+".id")
 
 		for _, f := range fs {
 			for _, s := range f.SelectionSet {
@@ -80,7 +80,7 @@ func (qf *ConfiguratorItemDefinitionQueryFilter) applyQueryWithFields(dialect go
 	if fs, ok := fieldsMap["slots"]; ok {
 		_fields := []*ast.Field{}
 		_alias := alias + "_slots"
-		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configurator_slot_definitions"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias)+"."+dialect.Quote("itemDefinitionId")+" = "+dialect.Quote(alias)+".id")
+		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configurator_slot_definitions"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias)+"."+dialect.Quote("definitionId")+" = "+dialect.Quote(alias)+".id")
 
 		for _, f := range fs {
 			for _, s := range f.SelectionSet {
@@ -167,10 +167,10 @@ func (qf *ConfiguratorAttributeDefinitionQueryFilter) applyQueryWithFields(diale
 		*values = append(*values, query+"%", "% "+query+"%")
 	}
 
-	if fs, ok := fieldsMap["itemDefinitions"]; ok {
+	if fs, ok := fieldsMap["definitions"]; ok {
 		_fields := []*ast.Field{}
-		_alias := alias + "_itemDefinitions"
-		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configuratorAttributeDefinition_itemDefinitions"))+" "+dialect.Quote(_alias+"_jointable")+" ON "+dialect.Quote(alias)+".id = "+dialect.Quote(_alias+"_jointable")+"."+dialect.Quote("attribute_id")+" LEFT JOIN "+dialect.Quote(TableName("configurator_item_definitions"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias+"_jointable")+"."+dialect.Quote("itemDefinition_id")+" = "+dialect.Quote(_alias)+".id")
+		_alias := alias + "_definitions"
+		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configuratorAttributeDefinition_definitions"))+" "+dialect.Quote(_alias+"_jointable")+" ON "+dialect.Quote(alias)+".id = "+dialect.Quote(_alias+"_jointable")+"."+dialect.Quote("attribute_id")+" LEFT JOIN "+dialect.Quote(TableName("configurator_item_definitions"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias+"_jointable")+"."+dialect.Quote("definition_id")+" = "+dialect.Quote(_alias)+".id")
 
 		for _, f := range fs {
 			for _, s := range f.SelectionSet {
@@ -257,10 +257,10 @@ func (qf *ConfiguratorSlotDefinitionQueryFilter) applyQueryWithFields(dialect go
 		*values = append(*values, query+"%", "% "+query+"%")
 	}
 
-	if fs, ok := fieldsMap["itemDefinition"]; ok {
+	if fs, ok := fieldsMap["definition"]; ok {
 		_fields := []*ast.Field{}
-		_alias := alias + "_itemDefinition"
-		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configurator_item_definitions"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias)+".id = "+alias+"."+dialect.Quote("itemDefinitionId"))
+		_alias := alias + "_definition"
+		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configurator_item_definitions"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias)+".id = "+alias+"."+dialect.Quote("definitionId"))
 
 		for _, f := range fs {
 			for _, s := range f.SelectionSet {

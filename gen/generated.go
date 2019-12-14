@@ -99,17 +99,17 @@ type ComplexityRoot struct {
 	}
 
 	ConfiguratorAttributeDefinition struct {
-		Attributes         func(childComplexity int) int
-		AttributesIds      func(childComplexity int) int
-		CreatedAt          func(childComplexity int) int
-		CreatedBy          func(childComplexity int) int
-		ID                 func(childComplexity int) int
-		ItemDefinitions    func(childComplexity int) int
-		ItemDefinitionsIds func(childComplexity int) int
-		Name               func(childComplexity int) int
-		Type               func(childComplexity int) int
-		UpdatedAt          func(childComplexity int) int
-		UpdatedBy          func(childComplexity int) int
+		Attributes     func(childComplexity int) int
+		AttributesIds  func(childComplexity int) int
+		CreatedAt      func(childComplexity int) int
+		CreatedBy      func(childComplexity int) int
+		Definitions    func(childComplexity int) int
+		DefinitionsIds func(childComplexity int) int
+		ID             func(childComplexity int) int
+		Name           func(childComplexity int) int
+		Type           func(childComplexity int) int
+		UpdatedAt      func(childComplexity int) int
+		UpdatedBy      func(childComplexity int) int
 	}
 
 	ConfiguratorAttributeDefinitionResultType struct {
@@ -181,16 +181,16 @@ type ComplexityRoot struct {
 	}
 
 	ConfiguratorSlotDefinition struct {
-		CreatedAt        func(childComplexity int) int
-		CreatedBy        func(childComplexity int) int
-		ID               func(childComplexity int) int
-		ItemDefinition   func(childComplexity int) int
-		ItemDefinitionID func(childComplexity int) int
-		Name             func(childComplexity int) int
-		Slots            func(childComplexity int) int
-		SlotsIds         func(childComplexity int) int
-		UpdatedAt        func(childComplexity int) int
-		UpdatedBy        func(childComplexity int) int
+		CreatedAt    func(childComplexity int) int
+		CreatedBy    func(childComplexity int) int
+		Definition   func(childComplexity int) int
+		DefinitionID func(childComplexity int) int
+		ID           func(childComplexity int) int
+		Name         func(childComplexity int) int
+		Slots        func(childComplexity int) int
+		SlotsIds     func(childComplexity int) int
+		UpdatedAt    func(childComplexity int) int
+		UpdatedBy    func(childComplexity int) int
 	}
 
 	ConfiguratorSlotDefinitionResultType struct {
@@ -259,10 +259,10 @@ type ConfiguratorAttributeResolver interface {
 	Item(ctx context.Context, obj *ConfiguratorAttribute) (*ConfiguratorItem, error)
 }
 type ConfiguratorAttributeDefinitionResolver interface {
-	ItemDefinitions(ctx context.Context, obj *ConfiguratorAttributeDefinition) ([]*ConfiguratorItemDefinition, error)
+	Definitions(ctx context.Context, obj *ConfiguratorAttributeDefinition) ([]*ConfiguratorItemDefinition, error)
 	Attributes(ctx context.Context, obj *ConfiguratorAttributeDefinition) ([]*ConfiguratorAttribute, error)
 
-	ItemDefinitionsIds(ctx context.Context, obj *ConfiguratorAttributeDefinition) ([]string, error)
+	DefinitionsIds(ctx context.Context, obj *ConfiguratorAttributeDefinition) ([]string, error)
 	AttributesIds(ctx context.Context, obj *ConfiguratorAttributeDefinition) ([]string, error)
 }
 type ConfiguratorAttributeDefinitionResultTypeResolver interface {
@@ -307,7 +307,7 @@ type ConfiguratorSlotResolver interface {
 	ItemsIds(ctx context.Context, obj *ConfiguratorSlot) ([]string, error)
 }
 type ConfiguratorSlotDefinitionResolver interface {
-	ItemDefinition(ctx context.Context, obj *ConfiguratorSlotDefinition) (*ConfiguratorItemDefinition, error)
+	Definition(ctx context.Context, obj *ConfiguratorSlotDefinition) (*ConfiguratorItemDefinition, error)
 	Slots(ctx context.Context, obj *ConfiguratorSlotDefinition) ([]*ConfiguratorSlot, error)
 
 	SlotsIds(ctx context.Context, obj *ConfiguratorSlotDefinition) ([]string, error)
@@ -604,26 +604,26 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.ConfiguratorAttributeDefinition.CreatedBy(childComplexity), true
 
+	case "ConfiguratorAttributeDefinition.definitions":
+		if e.complexity.ConfiguratorAttributeDefinition.Definitions == nil {
+			break
+		}
+
+		return e.complexity.ConfiguratorAttributeDefinition.Definitions(childComplexity), true
+
+	case "ConfiguratorAttributeDefinition.definitionsIds":
+		if e.complexity.ConfiguratorAttributeDefinition.DefinitionsIds == nil {
+			break
+		}
+
+		return e.complexity.ConfiguratorAttributeDefinition.DefinitionsIds(childComplexity), true
+
 	case "ConfiguratorAttributeDefinition.id":
 		if e.complexity.ConfiguratorAttributeDefinition.ID == nil {
 			break
 		}
 
 		return e.complexity.ConfiguratorAttributeDefinition.ID(childComplexity), true
-
-	case "ConfiguratorAttributeDefinition.itemDefinitions":
-		if e.complexity.ConfiguratorAttributeDefinition.ItemDefinitions == nil {
-			break
-		}
-
-		return e.complexity.ConfiguratorAttributeDefinition.ItemDefinitions(childComplexity), true
-
-	case "ConfiguratorAttributeDefinition.itemDefinitionsIds":
-		if e.complexity.ConfiguratorAttributeDefinition.ItemDefinitionsIds == nil {
-			break
-		}
-
-		return e.complexity.ConfiguratorAttributeDefinition.ItemDefinitionsIds(childComplexity), true
 
 	case "ConfiguratorAttributeDefinition.name":
 		if e.complexity.ConfiguratorAttributeDefinition.Name == nil {
@@ -996,26 +996,26 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.ConfiguratorSlotDefinition.CreatedBy(childComplexity), true
 
+	case "ConfiguratorSlotDefinition.definition":
+		if e.complexity.ConfiguratorSlotDefinition.Definition == nil {
+			break
+		}
+
+		return e.complexity.ConfiguratorSlotDefinition.Definition(childComplexity), true
+
+	case "ConfiguratorSlotDefinition.definitionId":
+		if e.complexity.ConfiguratorSlotDefinition.DefinitionID == nil {
+			break
+		}
+
+		return e.complexity.ConfiguratorSlotDefinition.DefinitionID(childComplexity), true
+
 	case "ConfiguratorSlotDefinition.id":
 		if e.complexity.ConfiguratorSlotDefinition.ID == nil {
 			break
 		}
 
 		return e.complexity.ConfiguratorSlotDefinition.ID(childComplexity), true
-
-	case "ConfiguratorSlotDefinition.itemDefinition":
-		if e.complexity.ConfiguratorSlotDefinition.ItemDefinition == nil {
-			break
-		}
-
-		return e.complexity.ConfiguratorSlotDefinition.ItemDefinition(childComplexity), true
-
-	case "ConfiguratorSlotDefinition.itemDefinitionId":
-		if e.complexity.ConfiguratorSlotDefinition.ItemDefinitionID == nil {
-			break
-		}
-
-		return e.complexity.ConfiguratorSlotDefinition.ItemDefinitionID(childComplexity), true
 
 	case "ConfiguratorSlotDefinition.name":
 		if e.complexity.ConfiguratorSlotDefinition.Name == nil {
@@ -1746,22 +1746,22 @@ type ConfiguratorAttributeDefinition {
   id: ID!
   name: String
   type: ConfiguratorAttributeType
-  itemDefinitions: [ConfiguratorItemDefinition!]!
+  definitions: [ConfiguratorItemDefinition!]!
   attributes: [ConfiguratorAttribute!]!
   updatedAt: Time
   createdAt: Time!
   updatedBy: ID
   createdBy: ID
-  itemDefinitionsIds: [ID!]!
+  definitionsIds: [ID!]!
   attributesIds: [ID!]!
 }
 
 type ConfiguratorSlotDefinition {
   id: ID!
   name: String
-  itemDefinition: ConfiguratorItemDefinition
+  definition: ConfiguratorItemDefinition
   slots: [ConfiguratorSlot!]!
-  itemDefinitionId: ID
+  definitionId: ID
   updatedAt: Time
   createdAt: Time!
   updatedBy: ID
@@ -1915,14 +1915,14 @@ input ConfiguratorAttributeDefinitionCreateInput {
   id: ID
   name: String
   type: ConfiguratorAttributeType
-  itemDefinitionsIds: [ID!]
+  definitionsIds: [ID!]
   attributesIds: [ID!]
 }
 
 input ConfiguratorAttributeDefinitionUpdateInput {
   name: String
   type: ConfiguratorAttributeType
-  itemDefinitionsIds: [ID!]
+  definitionsIds: [ID!]
   attributesIds: [ID!]
 }
 
@@ -1934,9 +1934,9 @@ input ConfiguratorAttributeDefinitionSortType {
   createdAt: ObjectSortType
   updatedBy: ObjectSortType
   createdBy: ObjectSortType
-  itemDefinitionsIds: ObjectSortType
+  definitionsIds: ObjectSortType
   attributesIds: ObjectSortType
-  itemDefinitions: ConfiguratorItemDefinitionSortType
+  definitions: ConfiguratorItemDefinitionSortType
   attributes: ConfiguratorAttributeSortType
 }
 
@@ -2002,7 +2002,7 @@ input ConfiguratorAttributeDefinitionFilterType {
   createdBy_lte: ID
   createdBy_in: [ID!]
   createdBy_null: Boolean
-  itemDefinitions: ConfiguratorItemDefinitionFilterType
+  definitions: ConfiguratorItemDefinitionFilterType
   attributes: ConfiguratorAttributeFilterType
 }
 
@@ -2014,26 +2014,26 @@ type ConfiguratorAttributeDefinitionResultType {
 input ConfiguratorSlotDefinitionCreateInput {
   id: ID
   name: String
-  itemDefinitionId: ID
+  definitionId: ID
   slotsIds: [ID!]
 }
 
 input ConfiguratorSlotDefinitionUpdateInput {
   name: String
-  itemDefinitionId: ID
+  definitionId: ID
   slotsIds: [ID!]
 }
 
 input ConfiguratorSlotDefinitionSortType {
   id: ObjectSortType
   name: ObjectSortType
-  itemDefinitionId: ObjectSortType
+  definitionId: ObjectSortType
   updatedAt: ObjectSortType
   createdAt: ObjectSortType
   updatedBy: ObjectSortType
   createdBy: ObjectSortType
   slotsIds: ObjectSortType
-  itemDefinition: ConfiguratorItemDefinitionSortType
+  definition: ConfiguratorItemDefinitionSortType
   slots: ConfiguratorSlotSortType
 }
 
@@ -2059,14 +2059,14 @@ input ConfiguratorSlotDefinitionFilterType {
   name_prefix: String
   name_suffix: String
   name_null: Boolean
-  itemDefinitionId: ID
-  itemDefinitionId_ne: ID
-  itemDefinitionId_gt: ID
-  itemDefinitionId_lt: ID
-  itemDefinitionId_gte: ID
-  itemDefinitionId_lte: ID
-  itemDefinitionId_in: [ID!]
-  itemDefinitionId_null: Boolean
+  definitionId: ID
+  definitionId_ne: ID
+  definitionId_gt: ID
+  definitionId_lt: ID
+  definitionId_gte: ID
+  definitionId_lte: ID
+  definitionId_in: [ID!]
+  definitionId_null: Boolean
   updatedAt: Time
   updatedAt_ne: Time
   updatedAt_gt: Time
@@ -2099,7 +2099,7 @@ input ConfiguratorSlotDefinitionFilterType {
   createdBy_lte: ID
   createdBy_in: [ID!]
   createdBy_null: Boolean
-  itemDefinition: ConfiguratorItemDefinitionFilterType
+  definition: ConfiguratorItemDefinitionFilterType
   slots: ConfiguratorSlotFilterType
 }
 
@@ -4430,7 +4430,7 @@ func (ec *executionContext) _ConfiguratorAttributeDefinition_type(ctx context.Co
 	return ec.marshalOConfiguratorAttributeType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorAttributeType(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) _ConfiguratorAttributeDefinition_itemDefinitions(ctx context.Context, field graphql.CollectedField, obj *ConfiguratorAttributeDefinition) (ret graphql.Marshaler) {
+func (ec *executionContext) _ConfiguratorAttributeDefinition_definitions(ctx context.Context, field graphql.CollectedField, obj *ConfiguratorAttributeDefinition) (ret graphql.Marshaler) {
 	ctx = ec.Tracer.StartFieldExecution(ctx, field)
 	defer func() {
 		if r := recover(); r != nil {
@@ -4449,7 +4449,7 @@ func (ec *executionContext) _ConfiguratorAttributeDefinition_itemDefinitions(ctx
 	ctx = ec.Tracer.StartFieldResolverExecution(ctx, rctx)
 	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
 		ctx = rctx // use context from middleware stack in children
-		return ec.resolvers.ConfiguratorAttributeDefinition().ItemDefinitions(rctx, obj)
+		return ec.resolvers.ConfiguratorAttributeDefinition().Definitions(rctx, obj)
 	})
 	if err != nil {
 		ec.Error(ctx, err)
@@ -4643,7 +4643,7 @@ func (ec *executionContext) _ConfiguratorAttributeDefinition_createdBy(ctx conte
 	return ec.marshalOID2ᚖstring(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) _ConfiguratorAttributeDefinition_itemDefinitionsIds(ctx context.Context, field graphql.CollectedField, obj *ConfiguratorAttributeDefinition) (ret graphql.Marshaler) {
+func (ec *executionContext) _ConfiguratorAttributeDefinition_definitionsIds(ctx context.Context, field graphql.CollectedField, obj *ConfiguratorAttributeDefinition) (ret graphql.Marshaler) {
 	ctx = ec.Tracer.StartFieldExecution(ctx, field)
 	defer func() {
 		if r := recover(); r != nil {
@@ -4662,7 +4662,7 @@ func (ec *executionContext) _ConfiguratorAttributeDefinition_itemDefinitionsIds(
 	ctx = ec.Tracer.StartFieldResolverExecution(ctx, rctx)
 	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
 		ctx = rctx // use context from middleware stack in children
-		return ec.resolvers.ConfiguratorAttributeDefinition().ItemDefinitionsIds(rctx, obj)
+		return ec.resolvers.ConfiguratorAttributeDefinition().DefinitionsIds(rctx, obj)
 	})
 	if err != nil {
 		ec.Error(ctx, err)
@@ -6464,7 +6464,7 @@ func (ec *executionContext) _ConfiguratorSlotDefinition_name(ctx context.Context
 	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) _ConfiguratorSlotDefinition_itemDefinition(ctx context.Context, field graphql.CollectedField, obj *ConfiguratorSlotDefinition) (ret graphql.Marshaler) {
+func (ec *executionContext) _ConfiguratorSlotDefinition_definition(ctx context.Context, field graphql.CollectedField, obj *ConfiguratorSlotDefinition) (ret graphql.Marshaler) {
 	ctx = ec.Tracer.StartFieldExecution(ctx, field)
 	defer func() {
 		if r := recover(); r != nil {
@@ -6483,7 +6483,7 @@ func (ec *executionContext) _ConfiguratorSlotDefinition_itemDefinition(ctx conte
 	ctx = ec.Tracer.StartFieldResolverExecution(ctx, rctx)
 	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
 		ctx = rctx // use context from middleware stack in children
-		return ec.resolvers.ConfiguratorSlotDefinition().ItemDefinition(rctx, obj)
+		return ec.resolvers.ConfiguratorSlotDefinition().Definition(rctx, obj)
 	})
 	if err != nil {
 		ec.Error(ctx, err)
@@ -6535,7 +6535,7 @@ func (ec *executionContext) _ConfiguratorSlotDefinition_slots(ctx context.Contex
 	return ec.marshalNConfiguratorSlot2ᚕᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorSlotᚄ(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) _ConfiguratorSlotDefinition_itemDefinitionId(ctx context.Context, field graphql.CollectedField, obj *ConfiguratorSlotDefinition) (ret graphql.Marshaler) {
+func (ec *executionContext) _ConfiguratorSlotDefinition_definitionId(ctx context.Context, field graphql.CollectedField, obj *ConfiguratorSlotDefinition) (ret graphql.Marshaler) {
 	ctx = ec.Tracer.StartFieldExecution(ctx, field)
 	defer func() {
 		if r := recover(); r != nil {
@@ -6554,7 +6554,7 @@ func (ec *executionContext) _ConfiguratorSlotDefinition_itemDefinitionId(ctx con
 	ctx = ec.Tracer.StartFieldResolverExecution(ctx, rctx)
 	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
 		ctx = rctx // use context from middleware stack in children
-		return obj.ItemDefinitionID, nil
+		return obj.DefinitionID, nil
 	})
 	if err != nil {
 		ec.Error(ctx, err)
@@ -10347,9 +10347,9 @@ func (ec *executionContext) unmarshalInputConfiguratorAttributeDefinitionFilterT
 			if err != nil {
 				return it, err
 			}
-		case "itemDefinitions":
+		case "definitions":
 			var err error
-			it.ItemDefinitions, err = ec.unmarshalOConfiguratorItemDefinitionFilterType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemDefinitionFilterType(ctx, v)
+			it.Definitions, err = ec.unmarshalOConfiguratorItemDefinitionFilterType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemDefinitionFilterType(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -10413,9 +10413,9 @@ func (ec *executionContext) unmarshalInputConfiguratorAttributeDefinitionSortTyp
 			if err != nil {
 				return it, err
 			}
-		case "itemDefinitionsIds":
+		case "definitionsIds":
 			var err error
-			it.ItemDefinitionsIds, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			it.DefinitionsIds, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -10425,9 +10425,9 @@ func (ec *executionContext) unmarshalInputConfiguratorAttributeDefinitionSortTyp
 			if err != nil {
 				return it, err
 			}
-		case "itemDefinitions":
+		case "definitions":
 			var err error
-			it.ItemDefinitions, err = ec.unmarshalOConfiguratorItemDefinitionSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemDefinitionSortType(ctx, v)
+			it.Definitions, err = ec.unmarshalOConfiguratorItemDefinitionSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemDefinitionSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -12297,51 +12297,51 @@ func (ec *executionContext) unmarshalInputConfiguratorSlotDefinitionFilterType(c
 			if err != nil {
 				return it, err
 			}
-		case "itemDefinitionId":
+		case "definitionId":
 			var err error
-			it.ItemDefinitionID, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			it.DefinitionID, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
-		case "itemDefinitionId_ne":
+		case "definitionId_ne":
 			var err error
-			it.ItemDefinitionIDNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			it.DefinitionIDNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
-		case "itemDefinitionId_gt":
+		case "definitionId_gt":
 			var err error
-			it.ItemDefinitionIDGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			it.DefinitionIDGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
-		case "itemDefinitionId_lt":
+		case "definitionId_lt":
 			var err error
-			it.ItemDefinitionIDLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			it.DefinitionIDLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
-		case "itemDefinitionId_gte":
+		case "definitionId_gte":
 			var err error
-			it.ItemDefinitionIDGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			it.DefinitionIDGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
-		case "itemDefinitionId_lte":
+		case "definitionId_lte":
 			var err error
-			it.ItemDefinitionIDLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			it.DefinitionIDLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
-		case "itemDefinitionId_in":
+		case "definitionId_in":
 			var err error
-			it.ItemDefinitionIDIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
+			it.DefinitionIDIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
-		case "itemDefinitionId_null":
+		case "definitionId_null":
 			var err error
-			it.ItemDefinitionIDNull, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
+			it.DefinitionIDNull, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -12537,9 +12537,9 @@ func (ec *executionContext) unmarshalInputConfiguratorSlotDefinitionFilterType(c
 			if err != nil {
 				return it, err
 			}
-		case "itemDefinition":
+		case "definition":
 			var err error
-			it.ItemDefinition, err = ec.unmarshalOConfiguratorItemDefinitionFilterType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemDefinitionFilterType(ctx, v)
+			it.Definition, err = ec.unmarshalOConfiguratorItemDefinitionFilterType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemDefinitionFilterType(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -12573,9 +12573,9 @@ func (ec *executionContext) unmarshalInputConfiguratorSlotDefinitionSortType(ctx
 			if err != nil {
 				return it, err
 			}
-		case "itemDefinitionId":
+		case "definitionId":
 			var err error
-			it.ItemDefinitionID, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			it.DefinitionID, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -12609,9 +12609,9 @@ func (ec *executionContext) unmarshalInputConfiguratorSlotDefinitionSortType(ctx
 			if err != nil {
 				return it, err
 			}
-		case "itemDefinition":
+		case "definition":
 			var err error
-			it.ItemDefinition, err = ec.unmarshalOConfiguratorItemDefinitionSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemDefinitionSortType(ctx, v)
+			it.Definition, err = ec.unmarshalOConfiguratorItemDefinitionSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemDefinitionSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -13331,7 +13331,7 @@ func (ec *executionContext) _ConfiguratorAttributeDefinition(ctx context.Context
 			out.Values[i] = ec._ConfiguratorAttributeDefinition_name(ctx, field, obj)
 		case "type":
 			out.Values[i] = ec._ConfiguratorAttributeDefinition_type(ctx, field, obj)
-		case "itemDefinitions":
+		case "definitions":
 			field := field
 			out.Concurrently(i, func() (res graphql.Marshaler) {
 				defer func() {
@@ -13339,7 +13339,7 @@ func (ec *executionContext) _ConfiguratorAttributeDefinition(ctx context.Context
 						ec.Error(ctx, ec.Recover(ctx, r))
 					}
 				}()
-				res = ec._ConfiguratorAttributeDefinition_itemDefinitions(ctx, field, obj)
+				res = ec._ConfiguratorAttributeDefinition_definitions(ctx, field, obj)
 				if res == graphql.Null {
 					atomic.AddUint32(&invalids, 1)
 				}
@@ -13370,7 +13370,7 @@ func (ec *executionContext) _ConfiguratorAttributeDefinition(ctx context.Context
 			out.Values[i] = ec._ConfiguratorAttributeDefinition_updatedBy(ctx, field, obj)
 		case "createdBy":
 			out.Values[i] = ec._ConfiguratorAttributeDefinition_createdBy(ctx, field, obj)
-		case "itemDefinitionsIds":
+		case "definitionsIds":
 			field := field
 			out.Concurrently(i, func() (res graphql.Marshaler) {
 				defer func() {
@@ -13378,7 +13378,7 @@ func (ec *executionContext) _ConfiguratorAttributeDefinition(ctx context.Context
 						ec.Error(ctx, ec.Recover(ctx, r))
 					}
 				}()
-				res = ec._ConfiguratorAttributeDefinition_itemDefinitionsIds(ctx, field, obj)
+				res = ec._ConfiguratorAttributeDefinition_definitionsIds(ctx, field, obj)
 				if res == graphql.Null {
 					atomic.AddUint32(&invalids, 1)
 				}
@@ -13969,7 +13969,7 @@ func (ec *executionContext) _ConfiguratorSlotDefinition(ctx context.Context, sel
 			}
 		case "name":
 			out.Values[i] = ec._ConfiguratorSlotDefinition_name(ctx, field, obj)
-		case "itemDefinition":
+		case "definition":
 			field := field
 			out.Concurrently(i, func() (res graphql.Marshaler) {
 				defer func() {
@@ -13977,7 +13977,7 @@ func (ec *executionContext) _ConfiguratorSlotDefinition(ctx context.Context, sel
 						ec.Error(ctx, ec.Recover(ctx, r))
 					}
 				}()
-				res = ec._ConfiguratorSlotDefinition_itemDefinition(ctx, field, obj)
+				res = ec._ConfiguratorSlotDefinition_definition(ctx, field, obj)
 				return res
 			})
 		case "slots":
@@ -13994,8 +13994,8 @@ func (ec *executionContext) _ConfiguratorSlotDefinition(ctx context.Context, sel
 				}
 				return res
 			})
-		case "itemDefinitionId":
-			out.Values[i] = ec._ConfiguratorSlotDefinition_itemDefinitionId(ctx, field, obj)
+		case "definitionId":
+			out.Values[i] = ec._ConfiguratorSlotDefinition_definitionId(ctx, field, obj)
 		case "updatedAt":
 			out.Values[i] = ec._ConfiguratorSlotDefinition_updatedAt(ctx, field, obj)
 		case "createdAt":

@@ -39,7 +39,7 @@ models:
   ConfiguratorAttributeDefinition:
     model: github.com/graphql-services/graphql-configurator/gen.ConfiguratorAttributeDefinition
     fields:
-      itemDefinitions:
+      definitions:
         resolver: true
       attributes:
         resolver: true
@@ -58,7 +58,7 @@ models:
   ConfiguratorSlotDefinition:
     model: github.com/graphql-services/graphql-configurator/gen.ConfiguratorSlotDefinition
     fields:
-      itemDefinition:
+      definition:
         resolver: true
       slots:
         resolver: true

@@ -29,9 +29,9 @@ type ConfiguratorItemDefinition struct {
 	UpdatedBy *string    `json:"updatedBy" gorm:"column:updatedBy"`
 	CreatedBy *string    `json:"createdBy" gorm:"column:createdBy"`
 
-	Attributes []*ConfiguratorAttributeDefinition `json:"attributes" gorm:"many2many:configuratorAttributeDefinition_itemDefinitions;jointable_foreignkey:itemDefinition_id;association_jointable_foreignkey:attribute_id"`
+	Attributes []*ConfiguratorAttributeDefinition `json:"attributes" gorm:"many2many:configuratorAttributeDefinition_definitions;jointable_foreignkey:definition_id;association_jointable_foreignkey:attribute_id"`
 
-	Slots []*ConfiguratorSlotDefinition `json:"slots" gorm:"foreignkey:ItemDefinitionID"`
+	Slots []*ConfiguratorSlotDefinition `json:"slots" gorm:"foreignkey:DefinitionID"`
 
 	Items []*ConfiguratorItem `json:"items" gorm:"foreignkey:DefinitionID"`
 }
@@ -64,7 +64,7 @@ type ConfiguratorAttributeDefinition struct {
 	UpdatedBy *string                    `json:"updatedBy" gorm:"column:updatedBy"`
 	CreatedBy *string                    `json:"createdBy" gorm:"column:createdBy"`
 
-	ItemDefinitions []*ConfiguratorItemDefinition `json:"itemDefinitions" gorm:"many2many:configuratorAttributeDefinition_itemDefinitions;jointable_foreignkey:attribute_id;association_jointable_foreignkey:itemDefinition_id"`
+	Definitions []*ConfiguratorItemDefinition `json:"definitions" gorm:"many2many:configuratorAttributeDefinition_definitions;jointable_foreignkey:attribute_id;association_jointable_foreignkey:definition_id"`
 
 	Attributes []*ConfiguratorAttribute `json:"attributes" gorm:"foreignkey:DefinitionID"`
 }
@@ -80,8 +80,8 @@ type ConfiguratorAttributeDefinitionChanges struct {
 	UpdatedBy *string
 	CreatedBy *string
 
-	ItemDefinitionsIDs []*string
-	AttributesIDs      []*string
+	DefinitionsIDs []*string
+	AttributesIDs  []*string
 }
 
 type ConfiguratorSlotDefinitionResultType struct {
@@ -89,15 +89,15 @@ type ConfiguratorSlotDefinitionResultType struct {
 }
 
 type ConfiguratorSlotDefinition struct {
-	ID               string     `json:"id" gorm:"column:id;primary_key"`
-	Name             *string    `json:"name" gorm:"column:name"`
-	ItemDefinitionID *string    `json:"itemDefinitionId" gorm:"column:itemDefinitionId"`
-	UpdatedAt        *time.Time `json:"updatedAt" gorm:"column:updatedAt"`
-	CreatedAt        time.Time  `json:"createdAt" gorm:"column:createdAt"`
-	UpdatedBy        *string    `json:"updatedBy" gorm:"column:updatedBy"`
-	CreatedBy        *string    `json:"createdBy" gorm:"column:createdBy"`
+	ID           string     `json:"id" gorm:"column:id;primary_key"`
+	Name         *string    `json:"name" gorm:"column:name"`
+	DefinitionID *string    `json:"definitionId" gorm:"column:definitionId"`
+	UpdatedAt    *time.Time `json:"updatedAt" gorm:"column:updatedAt"`
+	CreatedAt    time.Time  `json:"createdAt" gorm:"column:createdAt"`
+	UpdatedBy    *string    `json:"updatedBy" gorm:"column:updatedBy"`
+	CreatedBy    *string    `json:"createdBy" gorm:"column:createdBy"`
 
-	ItemDefinition *ConfiguratorItemDefinition `json:"itemDefinition"`
+	Definition *ConfiguratorItemDefinition `json:"definition"`
 
 	Slots []*ConfiguratorSlot `json:"slots" gorm:"foreignkey:DefinitionID"`
 }
@@ -105,13 +105,13 @@ type ConfiguratorSlotDefinition struct {
 func (m *ConfiguratorSlotDefinition) Is_Entity() {}
 
 type ConfiguratorSlotDefinitionChanges struct {
-	ID               string
-	Name             *string
-	ItemDefinitionID *string
-	UpdatedAt        *time.Time
-	CreatedAt        time.Time
-	UpdatedBy        *string
-	CreatedBy        *string
+	ID           string
+	Name         *string
+	DefinitionID *string
+	UpdatedAt    *time.Time
+	CreatedAt    time.Time
+	UpdatedBy    *string
+	CreatedBy    *string
 
 	SlotsIDs []*string
 }

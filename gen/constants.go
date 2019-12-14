@@ -151,22 +151,22 @@ type ConfiguratorAttributeDefinition {
   id: ID!
   name: String
   type: ConfiguratorAttributeType
-  itemDefinitions: [ConfiguratorItemDefinition!]!
+  definitions: [ConfiguratorItemDefinition!]!
   attributes: [ConfiguratorAttribute!]!
   updatedAt: Time
   createdAt: Time!
   updatedBy: ID
   createdBy: ID
-  itemDefinitionsIds: [ID!]!
+  definitionsIds: [ID!]!
   attributesIds: [ID!]!
 }
 
 type ConfiguratorSlotDefinition {
   id: ID!
   name: String
-  itemDefinition: ConfiguratorItemDefinition
+  definition: ConfiguratorItemDefinition
   slots: [ConfiguratorSlot!]!
-  itemDefinitionId: ID
+  definitionId: ID
   updatedAt: Time
   createdAt: Time!
   updatedBy: ID
@@ -320,14 +320,14 @@ input ConfiguratorAttributeDefinitionCreateInput {
   id: ID
   name: String
   type: ConfiguratorAttributeType
-  itemDefinitionsIds: [ID!]
+  definitionsIds: [ID!]
   attributesIds: [ID!]
 }
 
 input ConfiguratorAttributeDefinitionUpdateInput {
   name: String
   type: ConfiguratorAttributeType
-  itemDefinitionsIds: [ID!]
+  definitionsIds: [ID!]
   attributesIds: [ID!]
 }
 
@@ -339,9 +339,9 @@ input ConfiguratorAttributeDefinitionSortType {
   createdAt: ObjectSortType
   updatedBy: ObjectSortType
   createdBy: ObjectSortType
-  itemDefinitionsIds: ObjectSortType
+  definitionsIds: ObjectSortType
   attributesIds: ObjectSortType
-  itemDefinitions: ConfiguratorItemDefinitionSortType
+  definitions: ConfiguratorItemDefinitionSortType
   attributes: ConfiguratorAttributeSortType
 }
 
@@ -407,7 +407,7 @@ input ConfiguratorAttributeDefinitionFilterType {
   createdBy_lte: ID
   createdBy_in: [ID!]
   createdBy_null: Boolean
-  itemDefinitions: ConfiguratorItemDefinitionFilterType
+  definitions: ConfiguratorItemDefinitionFilterType
   attributes: ConfiguratorAttributeFilterType
 }
 
@@ -419,26 +419,26 @@ type ConfiguratorAttributeDefinitionResultType {
 input ConfiguratorSlotDefinitionCreateInput {
   id: ID
   name: String
-  itemDefinitionId: ID
+  definitionId: ID
   slotsIds: [ID!]
 }
 
 input ConfiguratorSlotDefinitionUpdateInput {
   name: String
-  itemDefinitionId: ID
+  definitionId: ID
   slotsIds: [ID!]
 }
 
 input ConfiguratorSlotDefinitionSortType {
   id: ObjectSortType
   name: ObjectSortType
-  itemDefinitionId: ObjectSortType
+  definitionId: ObjectSortType
   updatedAt: ObjectSortType
   createdAt: ObjectSortType
   updatedBy: ObjectSortType
   createdBy: ObjectSortType
   slotsIds: ObjectSortType
-  itemDefinition: ConfiguratorItemDefinitionSortType
+  definition: ConfiguratorItemDefinitionSortType
   slots: ConfiguratorSlotSortType
 }
 
@@ -464,14 +464,14 @@ input ConfiguratorSlotDefinitionFilterType {
   name_prefix: String
   name_suffix: String
   name_null: Boolean
-  itemDefinitionId: ID
-  itemDefinitionId_ne: ID
-  itemDefinitionId_gt: ID
-  itemDefinitionId_lt: ID
-  itemDefinitionId_gte: ID
-  itemDefinitionId_lte: ID
-  itemDefinitionId_in: [ID!]
-  itemDefinitionId_null: Boolean
+  definitionId: ID
+  definitionId_ne: ID
+  definitionId_gt: ID
+  definitionId_lt: ID
+  definitionId_gte: ID
+  definitionId_lte: ID
+  definitionId_in: [ID!]
+  definitionId_null: Boolean
   updatedAt: Time
   updatedAt_ne: Time
   updatedAt_gt: Time
@@ -504,7 +504,7 @@ input ConfiguratorSlotDefinitionFilterType {
   createdBy_lte: ID
   createdBy_in: [ID!]
   createdBy_null: Boolean
-  itemDefinition: ConfiguratorItemDefinitionFilterType
+  definition: ConfiguratorItemDefinitionFilterType
   slots: ConfiguratorSlotFilterType
 }
 
