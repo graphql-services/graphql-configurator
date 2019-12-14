@@ -131,6 +131,14 @@ func (s ConfiguratorSlotDefinitionSortType) ApplyWithAlias(ctx context.Context, 
 		*sorts = append(*sorts, aliasPrefix+dialect.Quote("name")+" "+s.Name.String())
 	}
 
+	if s.MinCount != nil {
+		*sorts = append(*sorts, aliasPrefix+dialect.Quote("minCount")+" "+s.MinCount.String())
+	}
+
+	if s.MaxCount != nil {
+		*sorts = append(*sorts, aliasPrefix+dialect.Quote("maxCount")+" "+s.MaxCount.String())
+	}
+
 	if s.DefinitionID != nil {
 		*sorts = append(*sorts, aliasPrefix+dialect.Quote("definitionId")+" "+s.DefinitionID.String())
 	}

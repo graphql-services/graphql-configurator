@@ -1026,6 +1026,92 @@ func (f *ConfiguratorSlotDefinitionFilterType) WhereContent(dialect gorm.Dialect
 		}
 	}
 
+	if f.MinCount != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("minCount")+" = ?")
+		values = append(values, f.MinCount)
+	}
+
+	if f.MinCountNe != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("minCount")+" != ?")
+		values = append(values, f.MinCountNe)
+	}
+
+	if f.MinCountGt != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("minCount")+" > ?")
+		values = append(values, f.MinCountGt)
+	}
+
+	if f.MinCountLt != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("minCount")+" < ?")
+		values = append(values, f.MinCountLt)
+	}
+
+	if f.MinCountGte != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("minCount")+" >= ?")
+		values = append(values, f.MinCountGte)
+	}
+
+	if f.MinCountLte != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("minCount")+" <= ?")
+		values = append(values, f.MinCountLte)
+	}
+
+	if f.MinCountIn != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("minCount")+" IN (?)")
+		values = append(values, f.MinCountIn)
+	}
+
+	if f.MinCountNull != nil {
+		if *f.MinCountNull {
+			conditions = append(conditions, aliasPrefix+dialect.Quote("minCount")+" IS NULL")
+		} else {
+			conditions = append(conditions, aliasPrefix+dialect.Quote("minCount")+" IS NOT NULL")
+		}
+	}
+
+	if f.MaxCount != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("maxCount")+" = ?")
+		values = append(values, f.MaxCount)
+	}
+
+	if f.MaxCountNe != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("maxCount")+" != ?")
+		values = append(values, f.MaxCountNe)
+	}
+
+	if f.MaxCountGt != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("maxCount")+" > ?")
+		values = append(values, f.MaxCountGt)
+	}
+
+	if f.MaxCountLt != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("maxCount")+" < ?")
+		values = append(values, f.MaxCountLt)
+	}
+
+	if f.MaxCountGte != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("maxCount")+" >= ?")
+		values = append(values, f.MaxCountGte)
+	}
+
+	if f.MaxCountLte != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("maxCount")+" <= ?")
+		values = append(values, f.MaxCountLte)
+	}
+
+	if f.MaxCountIn != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("maxCount")+" IN (?)")
+		values = append(values, f.MaxCountIn)
+	}
+
+	if f.MaxCountNull != nil {
+		if *f.MaxCountNull {
+			conditions = append(conditions, aliasPrefix+dialect.Quote("maxCount")+" IS NULL")
+		} else {
+			conditions = append(conditions, aliasPrefix+dialect.Quote("maxCount")+" IS NOT NULL")
+		}
+	}
+
 	if f.DefinitionID != nil {
 		conditions = append(conditions, aliasPrefix+dialect.Quote("definitionId")+" = ?")
 		values = append(values, f.DefinitionID)

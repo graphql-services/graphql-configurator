@@ -257,6 +257,30 @@ func (qf *ConfiguratorSlotDefinitionQueryFilter) applyQueryWithFields(dialect go
 		*values = append(*values, query+"%", "% "+query+"%")
 	}
 
+	if _, ok := fieldsMap["minCount"]; ok {
+
+		cast := "TEXT"
+		if dialect.GetName() == "mysql" {
+			cast = "CHAR"
+		}
+		column := fmt.Sprintf("CAST(%s"+dialect.Quote("minCount")+" AS %s)", dialect.Quote(alias)+".", cast)
+
+		*ors = append(*ors, fmt.Sprintf("%[1]s LIKE ? OR %[1]s LIKE ?", column))
+		*values = append(*values, query+"%", "% "+query+"%")
+	}
+
+	if _, ok := fieldsMap["maxCount"]; ok {
+
+		cast := "TEXT"
+		if dialect.GetName() == "mysql" {
+			cast = "CHAR"
+		}
+		column := fmt.Sprintf("CAST(%s"+dialect.Quote("maxCount")+" AS %s)", dialect.Quote(alias)+".", cast)
+
+		*ors = append(*ors, fmt.Sprintf("%[1]s LIKE ? OR %[1]s LIKE ?", column))
+		*values = append(*values, query+"%", "% "+query+"%")
+	}
+
 	if fs, ok := fieldsMap["definition"]; ok {
 		_fields := []*ast.Field{}
 		_alias := alias + "_definition"

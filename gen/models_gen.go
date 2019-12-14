@@ -463,6 +463,22 @@ type ConfiguratorSlotDefinitionFilterType struct {
 	NamePrefix       *string                                 `json:"name_prefix"`
 	NameSuffix       *string                                 `json:"name_suffix"`
 	NameNull         *bool                                   `json:"name_null"`
+	MinCount         *int                                    `json:"minCount"`
+	MinCountNe       *int                                    `json:"minCount_ne"`
+	MinCountGt       *int                                    `json:"minCount_gt"`
+	MinCountLt       *int                                    `json:"minCount_lt"`
+	MinCountGte      *int                                    `json:"minCount_gte"`
+	MinCountLte      *int                                    `json:"minCount_lte"`
+	MinCountIn       []int                                   `json:"minCount_in"`
+	MinCountNull     *bool                                   `json:"minCount_null"`
+	MaxCount         *int                                    `json:"maxCount"`
+	MaxCountNe       *int                                    `json:"maxCount_ne"`
+	MaxCountGt       *int                                    `json:"maxCount_gt"`
+	MaxCountLt       *int                                    `json:"maxCount_lt"`
+	MaxCountGte      *int                                    `json:"maxCount_gte"`
+	MaxCountLte      *int                                    `json:"maxCount_lte"`
+	MaxCountIn       []int                                   `json:"maxCount_in"`
+	MaxCountNull     *bool                                   `json:"maxCount_null"`
 	DefinitionID     *string                                 `json:"definitionId"`
 	DefinitionIDNe   *string                                 `json:"definitionId_ne"`
 	DefinitionIDGt   *string                                 `json:"definitionId_gt"`
@@ -510,6 +526,8 @@ type ConfiguratorSlotDefinitionFilterType struct {
 type ConfiguratorSlotDefinitionSortType struct {
 	ID           *ObjectSortType                     `json:"id"`
 	Name         *ObjectSortType                     `json:"name"`
+	MinCount     *ObjectSortType                     `json:"minCount"`
+	MaxCount     *ObjectSortType                     `json:"maxCount"`
 	DefinitionID *ObjectSortType                     `json:"definitionId"`
 	UpdatedAt    *ObjectSortType                     `json:"updatedAt"`
 	CreatedAt    *ObjectSortType                     `json:"createdAt"`

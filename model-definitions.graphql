@@ -22,6 +22,8 @@ type ConfiguratorAttributeDefinition @entity {
 
 type ConfiguratorSlotDefinition @entity {
   name: String @column
+  minCount: Int @column
+  maxCount: Int @column
 
   definition: ConfiguratorItemDefinition @relationship(inverse: slots)
   slots: [ConfiguratorSlot!]! @relationship(inverse: definition)

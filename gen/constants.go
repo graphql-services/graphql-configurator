@@ -172,6 +172,8 @@ type ConfiguratorAttributeDefinition {
 type ConfiguratorSlotDefinition {
   id: ID!
   name: String
+  minCount: Int
+  maxCount: Int
   definition: ConfiguratorItemDefinition
   slots: [ConfiguratorSlot!]!
   definitionId: ID
@@ -427,12 +429,16 @@ type ConfiguratorAttributeDefinitionResultType {
 input ConfiguratorSlotDefinitionCreateInput {
   id: ID
   name: String
+  minCount: Int
+  maxCount: Int
   definitionId: ID
   slotsIds: [ID!]
 }
 
 input ConfiguratorSlotDefinitionUpdateInput {
   name: String
+  minCount: Int
+  maxCount: Int
   definitionId: ID
   slotsIds: [ID!]
 }
@@ -440,6 +446,8 @@ input ConfiguratorSlotDefinitionUpdateInput {
 input ConfiguratorSlotDefinitionSortType {
   id: ObjectSortType
   name: ObjectSortType
+  minCount: ObjectSortType
+  maxCount: ObjectSortType
   definitionId: ObjectSortType
   updatedAt: ObjectSortType
   createdAt: ObjectSortType
@@ -472,6 +480,22 @@ input ConfiguratorSlotDefinitionFilterType {
   name_prefix: String
   name_suffix: String
   name_null: Boolean
+  minCount: Int
+  minCount_ne: Int
+  minCount_gt: Int
+  minCount_lt: Int
+  minCount_gte: Int
+  minCount_lte: Int
+  minCount_in: [Int!]
+  minCount_null: Boolean
+  maxCount: Int
+  maxCount_ne: Int
+  maxCount_gt: Int
+  maxCount_lt: Int
+  maxCount_gte: Int
+  maxCount_lte: Int
+  maxCount_in: [Int!]
+  maxCount_null: Boolean
   definitionId: ID
   definitionId_ne: ID
   definitionId_gt: ID

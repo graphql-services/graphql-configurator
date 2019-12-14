@@ -512,6 +512,18 @@ func CreateConfiguratorSlotDefinitionHandler(ctx context.Context, r *GeneratedRe
 		event.AddNewValue("name", changes.Name)
 	}
 
+	if _, ok := input["minCount"]; ok && (item.MinCount != changes.MinCount) && (item.MinCount == nil || changes.MinCount == nil || *item.MinCount != *changes.MinCount) {
+		item.MinCount = changes.MinCount
+
+		event.AddNewValue("minCount", changes.MinCount)
+	}
+
+	if _, ok := input["maxCount"]; ok && (item.MaxCount != changes.MaxCount) && (item.MaxCount == nil || changes.MaxCount == nil || *item.MaxCount != *changes.MaxCount) {
+		item.MaxCount = changes.MaxCount
+
+		event.AddNewValue("maxCount", changes.MaxCount)
+	}
+
 	if _, ok := input["definitionId"]; ok && (item.DefinitionID != changes.DefinitionID) && (item.DefinitionID == nil || changes.DefinitionID == nil || *item.DefinitionID != *changes.DefinitionID) {
 		item.DefinitionID = changes.DefinitionID
 
@@ -579,6 +591,18 @@ func UpdateConfiguratorSlotDefinitionHandler(ctx context.Context, r *GeneratedRe
 		event.AddOldValue("name", item.Name)
 		event.AddNewValue("name", changes.Name)
 		item.Name = changes.Name
+	}
+
+	if _, ok := input["minCount"]; ok && (item.MinCount != changes.MinCount) && (item.MinCount == nil || changes.MinCount == nil || *item.MinCount != *changes.MinCount) {
+		event.AddOldValue("minCount", item.MinCount)
+		event.AddNewValue("minCount", changes.MinCount)
+		item.MinCount = changes.MinCount
+	}
+
+	if _, ok := input["maxCount"]; ok && (item.MaxCount != changes.MaxCount) && (item.MaxCount == nil || changes.MaxCount == nil || *item.MaxCount != *changes.MaxCount) {
+		event.AddOldValue("maxCount", item.MaxCount)
+		event.AddNewValue("maxCount", changes.MaxCount)
+		item.MaxCount = changes.MaxCount
 	}
 
 	if _, ok := input["definitionId"]; ok && (item.DefinitionID != changes.DefinitionID) && (item.DefinitionID == nil || changes.DefinitionID == nil || *item.DefinitionID != *changes.DefinitionID) {

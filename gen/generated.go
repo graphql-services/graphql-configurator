@@ -190,6 +190,8 @@ type ComplexityRoot struct {
 		Definition   func(childComplexity int) int
 		DefinitionID func(childComplexity int) int
 		ID           func(childComplexity int) int
+		MaxCount     func(childComplexity int) int
+		MinCount     func(childComplexity int) int
 		Name         func(childComplexity int) int
 		Slots        func(childComplexity int) int
 		SlotsIds     func(childComplexity int) int
@@ -1029,6 +1031,20 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.ConfiguratorSlotDefinition.ID(childComplexity), true
 
+	case "ConfiguratorSlotDefinition.maxCount":
+		if e.complexity.ConfiguratorSlotDefinition.MaxCount == nil {
+			break
+		}
+
+		return e.complexity.ConfiguratorSlotDefinition.MaxCount(childComplexity), true
+
+	case "ConfiguratorSlotDefinition.minCount":
+		if e.complexity.ConfiguratorSlotDefinition.MinCount == nil {
+			break
+		}
+
+		return e.complexity.ConfiguratorSlotDefinition.MinCount(childComplexity), true
+
 	case "ConfiguratorSlotDefinition.name":
 		if e.complexity.ConfiguratorSlotDefinition.Name == nil {
 			break
@@ -1779,6 +1795,8 @@ type ConfiguratorAttributeDefinition {
 type ConfiguratorSlotDefinition {
   id: ID!
   name: String
+  minCount: Int
+  maxCount: Int
   definition: ConfiguratorItemDefinition
   slots: [ConfiguratorSlot!]!
   definitionId: ID
@@ -2034,12 +2052,16 @@ type ConfiguratorAttributeDefinitionResultType {
 input ConfiguratorSlotDefinitionCreateInput {
   id: ID
   name: String
+  minCount: Int
+  maxCount: Int
   definitionId: ID
   slotsIds: [ID!]
 }
 
 input ConfiguratorSlotDefinitionUpdateInput {
   name: String
+  minCount: Int
+  maxCount: Int
   definitionId: ID
   slotsIds: [ID!]
 }
@@ -2047,6 +2069,8 @@ input ConfiguratorSlotDefinitionUpdateInput {
 input ConfiguratorSlotDefinitionSortType {
   id: ObjectSortType
   name: ObjectSortType
+  minCount: ObjectSortType
+  maxCount: ObjectSortType
   definitionId: ObjectSortType
   updatedAt: ObjectSortType
   createdAt: ObjectSortType
@@ -2079,6 +2103,22 @@ input ConfiguratorSlotDefinitionFilterType {
   name_prefix: String
   name_suffix: String
   name_null: Boolean
+  minCount: Int
+  minCount_ne: Int
+  minCount_gt: Int
+  minCount_lt: Int
+  minCount_gte: Int
+  minCount_lte: Int
+  minCount_in: [Int!]
+  minCount_null: Boolean
+  maxCount: Int
+  maxCount_ne: Int
+  maxCount_gt: Int
+  maxCount_lt: Int
+  maxCount_gte: Int
+  maxCount_lte: Int
+  maxCount_in: [Int!]
+  maxCount_null: Boolean
   definitionId: ID
   definitionId_ne: ID
   definitionId_gt: ID
@@ -6514,6 +6554,74 @@ func (ec *executionContext) _ConfiguratorSlotDefinition_name(ctx context.Context
 	rctx.Result = res
 	ctx = ec.Tracer.StartFieldChildExecution(ctx)
 	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) _ConfiguratorSlotDefinition_minCount(ctx context.Context, field graphql.CollectedField, obj *ConfiguratorSlotDefinition) (ret graphql.Marshaler) {
+	ctx = ec.Tracer.StartFieldExecution(ctx, field)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+		ec.Tracer.EndFieldExecution(ctx)
+	}()
+	rctx := &graphql.ResolverContext{
+		Object:   "ConfiguratorSlotDefinition",
+		Field:    field,
+		Args:     nil,
+		IsMethod: false,
+	}
+	ctx = graphql.WithResolverContext(ctx, rctx)
+	ctx = ec.Tracer.StartFieldResolverExecution(ctx, rctx)
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.MinCount, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*int)
+	rctx.Result = res
+	ctx = ec.Tracer.StartFieldChildExecution(ctx)
+	return ec.marshalOInt2ᚖint(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) _ConfiguratorSlotDefinition_maxCount(ctx context.Context, field graphql.CollectedField, obj *ConfiguratorSlotDefinition) (ret graphql.Marshaler) {
+	ctx = ec.Tracer.StartFieldExecution(ctx, field)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+		ec.Tracer.EndFieldExecution(ctx)
+	}()
+	rctx := &graphql.ResolverContext{
+		Object:   "ConfiguratorSlotDefinition",
+		Field:    field,
+		Args:     nil,
+		IsMethod: false,
+	}
+	ctx = graphql.WithResolverContext(ctx, rctx)
+	ctx = ec.Tracer.StartFieldResolverExecution(ctx, rctx)
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.MaxCount, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*int)
+	rctx.Result = res
+	ctx = ec.Tracer.StartFieldChildExecution(ctx)
+	return ec.marshalOInt2ᚖint(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) _ConfiguratorSlotDefinition_definition(ctx context.Context, field graphql.CollectedField, obj *ConfiguratorSlotDefinition) (ret graphql.Marshaler) {
@@ -12319,6 +12427,102 @@ func (ec *executionContext) unmarshalInputConfiguratorSlotDefinitionFilterType(c
 			if err != nil {
 				return it, err
 			}
+		case "minCount":
+			var err error
+			it.MinCount, err = ec.unmarshalOInt2ᚖint(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "minCount_ne":
+			var err error
+			it.MinCountNe, err = ec.unmarshalOInt2ᚖint(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "minCount_gt":
+			var err error
+			it.MinCountGt, err = ec.unmarshalOInt2ᚖint(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "minCount_lt":
+			var err error
+			it.MinCountLt, err = ec.unmarshalOInt2ᚖint(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "minCount_gte":
+			var err error
+			it.MinCountGte, err = ec.unmarshalOInt2ᚖint(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "minCount_lte":
+			var err error
+			it.MinCountLte, err = ec.unmarshalOInt2ᚖint(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "minCount_in":
+			var err error
+			it.MinCountIn, err = ec.unmarshalOInt2ᚕintᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "minCount_null":
+			var err error
+			it.MinCountNull, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "maxCount":
+			var err error
+			it.MaxCount, err = ec.unmarshalOInt2ᚖint(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "maxCount_ne":
+			var err error
+			it.MaxCountNe, err = ec.unmarshalOInt2ᚖint(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "maxCount_gt":
+			var err error
+			it.MaxCountGt, err = ec.unmarshalOInt2ᚖint(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "maxCount_lt":
+			var err error
+			it.MaxCountLt, err = ec.unmarshalOInt2ᚖint(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "maxCount_gte":
+			var err error
+			it.MaxCountGte, err = ec.unmarshalOInt2ᚖint(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "maxCount_lte":
+			var err error
+			it.MaxCountLte, err = ec.unmarshalOInt2ᚖint(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "maxCount_in":
+			var err error
+			it.MaxCountIn, err = ec.unmarshalOInt2ᚕintᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "maxCount_null":
+			var err error
+			it.MaxCountNull, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "definitionId":
 			var err error
 			it.DefinitionID, err = ec.unmarshalOID2ᚖstring(ctx, v)
@@ -12592,6 +12796,18 @@ func (ec *executionContext) unmarshalInputConfiguratorSlotDefinitionSortType(ctx
 		case "name":
 			var err error
 			it.Name, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "minCount":
+			var err error
+			it.MinCount, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "maxCount":
+			var err error
+			it.MaxCount, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -14030,6 +14246,10 @@ func (ec *executionContext) _ConfiguratorSlotDefinition(ctx context.Context, sel
 			}
 		case "name":
 			out.Values[i] = ec._ConfiguratorSlotDefinition_name(ctx, field, obj)
+		case "minCount":
+			out.Values[i] = ec._ConfiguratorSlotDefinition_minCount(ctx, field, obj)
+		case "maxCount":
+			out.Values[i] = ec._ConfiguratorSlotDefinition_maxCount(ctx, field, obj)
 		case "definition":
 			field := field
 			out.Concurrently(i, func() (res graphql.Marshaler) {
