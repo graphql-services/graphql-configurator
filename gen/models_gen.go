@@ -53,23 +53,15 @@ type ConfiguratorAssemblyItemInput struct {
 }
 
 type ConfiguratorAssemblySlot struct {
-	ID           string                        `json:"id"`
-	DefinitionID string                        `json:"definitionId"`
-	Item         *ConfiguratorAssemblySlotItem `json:"item"`
+	ID           string                    `json:"id"`
+	DefinitionID string                    `json:"definitionId"`
+	Item         *ConfiguratorAssemblyItem `json:"item"`
 }
 
 type ConfiguratorAssemblySlotInput struct {
-	ID           *string                            `json:"id"`
-	DefinitionID string                             `json:"definitionId"`
-	Item         *ConfiguratorAssemblySlotItemInput `json:"item"`
-}
-
-type ConfiguratorAssemblySlotItem struct {
-	ID *string `json:"id"`
-}
-
-type ConfiguratorAssemblySlotItemInput struct {
-	ID *string `json:"id"`
+	ID           *string                        `json:"id"`
+	DefinitionID string                         `json:"definitionId"`
+	Item         *ConfiguratorAssemblyItemInput `json:"item"`
 }
 
 type ConfiguratorAssemblyUpdateInput struct {

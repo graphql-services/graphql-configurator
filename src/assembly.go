@@ -45,7 +45,7 @@ func (as *AssemblyHelper) LoadItem(ctx context.Context, ID string) (*gen.Configu
 	}
 	slots := []*gen.ConfiguratorAssemblySlot{}
 	for _, slot := range _slots {
-		slotItem, err := as.r.Handlers.ConfiguratorSlotItem(ctx, as.r, slot)
+		slotItem, err := as.LoadItem(ctx, *slot.ItemID)
 		if err != nil {
 			return nil, err
 		}
@@ -53,9 +53,7 @@ func (as *AssemblyHelper) LoadItem(ctx context.Context, ID string) (*gen.Configu
 		slots = append(slots, &gen.ConfiguratorAssemblySlot{
 			ID:           slot.ID,
 			DefinitionID: *slot.DefinitionID,
-			Item: &gen.ConfiguratorAssemblySlotItem{
-				ID: &slotItem.ID,
-			},
+			Item:         slotItem,
 		})
 	}
 

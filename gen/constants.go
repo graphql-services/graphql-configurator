@@ -83,11 +83,7 @@ type ConfiguratorAssemblyAttribute {
 type ConfiguratorAssemblySlot {
   id: ID!
   definitionId: ID!
-  item: ConfiguratorAssemblySlotItem
-}
-
-type ConfiguratorAssemblySlotItem {
-  id: ID
+  item: ConfiguratorAssemblyItem
 }
 
 input ConfiguratorAssemblyCreateInput {
@@ -118,11 +114,7 @@ input ConfiguratorAssemblyAttributeInput {
 input ConfiguratorAssemblySlotInput {
   id: ID
   definitionId: ID!
-  item: ConfiguratorAssemblySlotItemInput
-}
-
-input ConfiguratorAssemblySlotItemInput {
-  id: ID
+  item: ConfiguratorAssemblyItemInput
 }
 
 extend type Query {

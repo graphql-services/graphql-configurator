@@ -83,10 +83,6 @@ type ComplexityRoot struct {
 		Item         func(childComplexity int) int
 	}
 
-	ConfiguratorAssemblySlotItem struct {
-		ID func(childComplexity int) int
-	}
-
 	ConfiguratorAttribute struct {
 		CreatedAt    func(childComplexity int) int
 		CreatedBy    func(childComplexity int) int
@@ -496,13 +492,6 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.ConfiguratorAssemblySlot.Item(childComplexity), true
-
-	case "ConfiguratorAssemblySlotItem.id":
-		if e.complexity.ConfiguratorAssemblySlotItem.ID == nil {
-			break
-		}
-
-		return e.complexity.ConfiguratorAssemblySlotItem.ID(childComplexity), true
 
 	case "ConfiguratorAttribute.createdAt":
 		if e.complexity.ConfiguratorAttribute.CreatedAt == nil {
@@ -1704,11 +1693,7 @@ type ConfiguratorAssemblyAttribute {
 type ConfiguratorAssemblySlot {
   id: ID!
   definitionId: ID!
-  item: ConfiguratorAssemblySlotItem
-}
-
-type ConfiguratorAssemblySlotItem {
-  id: ID
+  item: ConfiguratorAssemblyItem
 }
 
 input ConfiguratorAssemblyCreateInput {
@@ -1739,11 +1724,7 @@ input ConfiguratorAssemblyAttributeInput {
 input ConfiguratorAssemblySlotInput {
   id: ID
   definitionId: ID!
-  item: ConfiguratorAssemblySlotItemInput
-}
-
-input ConfiguratorAssemblySlotItemInput {
-  id: ID
+  item: ConfiguratorAssemblyItemInput
 }
 
 extend type Query {
@@ -3960,44 +3941,10 @@ func (ec *executionContext) _ConfiguratorAssemblySlot_item(ctx context.Context, 
 	if resTmp == nil {
 		return graphql.Null
 	}
-	res := resTmp.(*ConfiguratorAssemblySlotItem)
+	res := resTmp.(*ConfiguratorAssemblyItem)
 	rctx.Result = res
 	ctx = ec.Tracer.StartFieldChildExecution(ctx)
-	return ec.marshalOConfiguratorAssemblySlotItem2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorAssemblySlotItem(ctx, field.Selections, res)
-}
-
-func (ec *executionContext) _ConfiguratorAssemblySlotItem_id(ctx context.Context, field graphql.CollectedField, obj *ConfiguratorAssemblySlotItem) (ret graphql.Marshaler) {
-	ctx = ec.Tracer.StartFieldExecution(ctx, field)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-		ec.Tracer.EndFieldExecution(ctx)
-	}()
-	rctx := &graphql.ResolverContext{
-		Object:   "ConfiguratorAssemblySlotItem",
-		Field:    field,
-		Args:     nil,
-		IsMethod: false,
-	}
-	ctx = graphql.WithResolverContext(ctx, rctx)
-	ctx = ec.Tracer.StartFieldResolverExecution(ctx, rctx)
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.ID, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*string)
-	rctx.Result = res
-	ctx = ec.Tracer.StartFieldChildExecution(ctx)
-	return ec.marshalOID2ᚖstring(ctx, field.Selections, res)
+	return ec.marshalOConfiguratorAssemblyItem2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorAssemblyItem(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) _ConfiguratorAttribute_id(ctx context.Context, field graphql.CollectedField, obj *ConfiguratorAttribute) (ret graphql.Marshaler) {
@@ -10104,25 +10051,7 @@ func (ec *executionContext) unmarshalInputConfiguratorAssemblySlotInput(ctx cont
 			}
 		case "item":
 			var err error
-			it.Item, err = ec.unmarshalOConfiguratorAssemblySlotItemInput2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorAssemblySlotItemInput(ctx, v)
-			if err != nil {
-				return it, err
-			}
-		}
-	}
-
-	return it, nil
-}
-
-func (ec *executionContext) unmarshalInputConfiguratorAssemblySlotItemInput(ctx context.Context, obj interface{}) (ConfiguratorAssemblySlotItemInput, error) {
-	var it ConfiguratorAssemblySlotItemInput
-	var asMap = obj.(map[string]interface{})
-
-	for k, v := range asMap {
-		switch k {
-		case "id":
-			var err error
-			it.ID, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			it.Item, err = ec.unmarshalOConfiguratorAssemblyItemInput2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorAssemblyItemInput(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -13521,30 +13450,6 @@ func (ec *executionContext) _ConfiguratorAssemblySlot(ctx context.Context, sel a
 	return out
 }
 
-var configuratorAssemblySlotItemImplementors = []string{"ConfiguratorAssemblySlotItem"}
-
-func (ec *executionContext) _ConfiguratorAssemblySlotItem(ctx context.Context, sel ast.SelectionSet, obj *ConfiguratorAssemblySlotItem) graphql.Marshaler {
-	fields := graphql.CollectFields(ec.RequestContext, sel, configuratorAssemblySlotItemImplementors)
-
-	out := graphql.NewFieldSet(fields)
-	var invalids uint32
-	for i, field := range fields {
-		switch field.Name {
-		case "__typename":
-			out.Values[i] = graphql.MarshalString("ConfiguratorAssemblySlotItem")
-		case "id":
-			out.Values[i] = ec._ConfiguratorAssemblySlotItem_id(ctx, field, obj)
-		default:
-			panic("unknown field " + strconv.Quote(field.Name))
-		}
-	}
-	out.Dispatch()
-	if invalids > 0 {
-		return graphql.Null
-	}
-	return out
-}
-
 var configuratorAttributeImplementors = []string{"ConfiguratorAttribute"}
 
 func (ec *executionContext) _ConfiguratorAttribute(ctx context.Context, sel ast.SelectionSet, obj *ConfiguratorAttribute) graphql.Marshaler {
@@ -16189,29 +16094,6 @@ func (ec *executionContext) unmarshalOConfiguratorAssemblySlotInput2ᚕᚖgithub
 		}
 	}
 	return res, nil
-}
-
-func (ec *executionContext) marshalOConfiguratorAssemblySlotItem2githubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorAssemblySlotItem(ctx context.Context, sel ast.SelectionSet, v ConfiguratorAssemblySlotItem) graphql.Marshaler {
-	return ec._ConfiguratorAssemblySlotItem(ctx, sel, &v)
-}
-
-func (ec *executionContext) marshalOConfiguratorAssemblySlotItem2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorAssemblySlotItem(ctx context.Context, sel ast.SelectionSet, v *ConfiguratorAssemblySlotItem) graphql.Marshaler {
-	if v == nil {
-		return graphql.Null
-	}
-	return ec._ConfiguratorAssemblySlotItem(ctx, sel, v)
-}
-
-func (ec *executionContext) unmarshalOConfiguratorAssemblySlotItemInput2githubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorAssemblySlotItemInput(ctx context.Context, v interface{}) (ConfiguratorAssemblySlotItemInput, error) {
-	return ec.unmarshalInputConfiguratorAssemblySlotItemInput(ctx, v)
-}
-
-func (ec *executionContext) unmarshalOConfiguratorAssemblySlotItemInput2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorAssemblySlotItemInput(ctx context.Context, v interface{}) (*ConfiguratorAssemblySlotItemInput, error) {
-	if v == nil {
-		return nil, nil
-	}
-	res, err := ec.unmarshalOConfiguratorAssemblySlotItemInput2githubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorAssemblySlotItemInput(ctx, v)
-	return &res, err
 }
 
 func (ec *executionContext) marshalOConfiguratorAttribute2githubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorAttribute(ctx context.Context, sel ast.SelectionSet, v ConfiguratorAttribute) graphql.Marshaler {

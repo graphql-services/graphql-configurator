@@ -53,6 +53,9 @@ func createOrUpdateItem(ctx context.Context, r *gen.GeneratedResolver, inputItem
 		}
 	}
 
+	// !!! mazani neexistujicich slotu
+	// !!! zakladani subitem!!!
+
 	id = item.ID
 
 	return
@@ -104,12 +107,12 @@ func createOrUpdateSlot(ctx context.Context, r *gen.GeneratedResolver, itemID st
 	}
 
 	if input.Item != nil {
-		subItem, _err := r.Handlers.QueryConfiguratorItem(ctx, r, gen.QueryConfiguratorItemHandlerOptions{ID: input.Item.ID})
+		subItemID, _err := createOrUpdateItem(ctx, r, input.Item)
 		if _err != nil {
 			err = _err
 			return
 		}
-		slotValues["itemId"] = subItem.ID
+		slotValues["itemId"] = subItemID
 	}
 
 	if input.ID != nil {
