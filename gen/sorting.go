@@ -198,10 +198,6 @@ func (s ConfiguratorItemSortType) ApplyWithAlias(ctx context.Context, dialect go
 		*sorts = append(*sorts, aliasPrefix+dialect.Quote("definitionId")+" "+s.DefinitionID.String())
 	}
 
-	if s.ParentSlotID != nil {
-		*sorts = append(*sorts, aliasPrefix+dialect.Quote("parentSlotId")+" "+s.ParentSlotID.String())
-	}
-
 	if s.UpdatedAt != nil {
 		*sorts = append(*sorts, aliasPrefix+dialect.Quote("updatedAt")+" "+s.UpdatedAt.String())
 	}
@@ -245,10 +241,10 @@ func (s ConfiguratorItemSortType) ApplyWithAlias(ctx context.Context, dialect go
 		}
 	}
 
-	if s.ParentSlot != nil {
-		_alias := alias + "_parentSlot"
-		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configurator_slots"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias)+".id = "+alias+"."+dialect.Quote("parentSlotId"))
-		err := s.ParentSlot.ApplyWithAlias(ctx, dialect, _alias, sorts, joins)
+	if s.ParentSlots != nil {
+		_alias := alias + "_parentSlots"
+		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configuratorItem_parentSlots"))+" "+dialect.Quote(_alias+"_jointable")+" ON "+dialect.Quote(alias)+".id = "+dialect.Quote(_alias+"_jointable")+"."+dialect.Quote("item_id")+" LEFT JOIN "+dialect.Quote(TableName("configurator_slots"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias+"_jointable")+"."+dialect.Quote("parentSlot_id")+" = "+dialect.Quote(_alias)+".id")
+		err := s.ParentSlots.ApplyWithAlias(ctx, dialect, _alias, sorts, joins)
 		if err != nil {
 			return err
 		}
@@ -360,7 +356,7 @@ func (s ConfiguratorSlotSortType) ApplyWithAlias(ctx context.Context, dialect go
 
 	if s.Items != nil {
 		_alias := alias + "_items"
-		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configurator_items"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias)+"."+dialect.Quote("parentSlotId")+" = "+dialect.Quote(alias)+".id")
+		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configuratorItem_parentSlots"))+" "+dialect.Quote(_alias+"_jointable")+" ON "+dialect.Quote(alias)+".id = "+dialect.Quote(_alias+"_jointable")+"."+dialect.Quote("parentSlot_id")+" LEFT JOIN "+dialect.Quote(TableName("configurator_items"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias+"_jointable")+"."+dialect.Quote("item_id")+" = "+dialect.Quote(_alias)+".id")
 		err := s.Items.ApplyWithAlias(ctx, dialect, _alias, sorts, joins)
 		if err != nil {
 			return err

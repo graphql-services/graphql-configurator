@@ -190,15 +190,15 @@ type ConfiguratorItem {
   definition: ConfiguratorItemDefinition
   attributes: [ConfiguratorAttribute!]!
   slots: [ConfiguratorSlot!]!
-  parentSlot: ConfiguratorSlot
+  parentSlots: [ConfiguratorSlot!]!
   definitionId: ID
-  parentSlotId: ID
   updatedAt: Time
   createdAt: Time!
   updatedBy: ID
   createdBy: ID
   attributesIds: [ID!]!
   slotsIds: [ID!]!
+  parentSlotsIds: [ID!]!
 }
 
 type ConfiguratorAttribute {
@@ -527,9 +527,9 @@ input ConfiguratorItemCreateInput {
   name: String
   stockItemID: ID
   definitionId: ID
-  parentSlotId: ID
   attributesIds: [ID!]
   slotsIds: [ID!]
+  parentSlotsIds: [ID!]
 }
 
 input ConfiguratorItemUpdateInput {
@@ -537,9 +537,9 @@ input ConfiguratorItemUpdateInput {
   name: String
   stockItemID: ID
   definitionId: ID
-  parentSlotId: ID
   attributesIds: [ID!]
   slotsIds: [ID!]
+  parentSlotsIds: [ID!]
 }
 
 input ConfiguratorItemSortType {
@@ -548,17 +548,17 @@ input ConfiguratorItemSortType {
   name: ObjectSortType
   stockItemID: ObjectSortType
   definitionId: ObjectSortType
-  parentSlotId: ObjectSortType
   updatedAt: ObjectSortType
   createdAt: ObjectSortType
   updatedBy: ObjectSortType
   createdBy: ObjectSortType
   attributesIds: ObjectSortType
   slotsIds: ObjectSortType
+  parentSlotsIds: ObjectSortType
   definition: ConfiguratorItemDefinitionSortType
   attributes: ConfiguratorAttributeSortType
   slots: ConfiguratorSlotSortType
-  parentSlot: ConfiguratorSlotSortType
+  parentSlots: ConfiguratorSlotSortType
 }
 
 input ConfiguratorItemFilterType {
@@ -610,14 +610,6 @@ input ConfiguratorItemFilterType {
   definitionId_lte: ID
   definitionId_in: [ID!]
   definitionId_null: Boolean
-  parentSlotId: ID
-  parentSlotId_ne: ID
-  parentSlotId_gt: ID
-  parentSlotId_lt: ID
-  parentSlotId_gte: ID
-  parentSlotId_lte: ID
-  parentSlotId_in: [ID!]
-  parentSlotId_null: Boolean
   updatedAt: Time
   updatedAt_ne: Time
   updatedAt_gt: Time
@@ -653,7 +645,7 @@ input ConfiguratorItemFilterType {
   definition: ConfiguratorItemDefinitionFilterType
   attributes: ConfiguratorAttributeFilterType
   slots: ConfiguratorSlotFilterType
-  parentSlot: ConfiguratorSlotFilterType
+  parentSlots: ConfiguratorSlotFilterType
 }
 
 type ConfiguratorItemResultType {

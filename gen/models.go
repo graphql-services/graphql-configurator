@@ -126,7 +126,6 @@ type ConfiguratorItem struct {
 	Name         *string    `json:"name" gorm:"column:name"`
 	StockItemID  *string    `json:"stockItemID" gorm:"column:stockItemID"`
 	DefinitionID *string    `json:"definitionId" gorm:"column:definitionId"`
-	ParentSlotID *string    `json:"parentSlotId" gorm:"column:parentSlotId"`
 	UpdatedAt    *time.Time `json:"updatedAt" gorm:"column:updatedAt"`
 	CreatedAt    time.Time  `json:"createdAt" gorm:"column:createdAt"`
 	UpdatedBy    *string    `json:"updatedBy" gorm:"column:updatedBy"`
@@ -138,7 +137,7 @@ type ConfiguratorItem struct {
 
 	Slots []*ConfiguratorSlot `json:"slots" gorm:"foreignkey:ParentItemID"`
 
-	ParentSlot *ConfiguratorSlot `json:"parentSlot"`
+	ParentSlots []*ConfiguratorSlot `json:"parentSlots" gorm:"many2many:configuratorItem_parentSlots;jointable_foreignkey:item_id;association_jointable_foreignkey:parentSlot_id"`
 }
 
 func (m *ConfiguratorItem) Is_Entity() {}
@@ -149,14 +148,14 @@ type ConfiguratorItemChanges struct {
 	Name         *string
 	StockItemID  *string
 	DefinitionID *string
-	ParentSlotID *string
 	UpdatedAt    *time.Time
 	CreatedAt    time.Time
 	UpdatedBy    *string
 	CreatedBy    *string
 
-	AttributesIDs []*string
-	SlotsIDs      []*string
+	AttributesIDs  []*string
+	SlotsIDs       []*string
+	ParentSlotsIDs []*string
 }
 
 type ConfiguratorAttributeResultType struct {
@@ -208,7 +207,7 @@ type ConfiguratorSlot struct {
 	UpdatedBy    *string    `json:"updatedBy" gorm:"column:updatedBy"`
 	CreatedBy    *string    `json:"createdBy" gorm:"column:createdBy"`
 
-	Items []*ConfiguratorItem `json:"items" gorm:"foreignkey:ParentSlotID"`
+	Items []*ConfiguratorItem `json:"items" gorm:"many2many:configuratorItem_parentSlots;jointable_foreignkey:parentSlot_id;association_jointable_foreignkey:item_id"`
 
 	Definition *ConfiguratorSlotDefinition `json:"definition"`
 

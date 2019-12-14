@@ -83,7 +83,7 @@ models:
         resolver: true
       slots:
         resolver: true
-      parentSlot:
+      parentSlots:
         resolver: true
   ConfiguratorItemResultType:
     model: github.com/graphql-services/graphql-configurator/gen.ConfiguratorItemResultType

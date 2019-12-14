@@ -384,14 +384,6 @@ type ConfiguratorItemFilterType struct {
 	DefinitionIDLte  *string                               `json:"definitionId_lte"`
 	DefinitionIDIn   []string                              `json:"definitionId_in"`
 	DefinitionIDNull *bool                                 `json:"definitionId_null"`
-	ParentSlotID     *string                               `json:"parentSlotId"`
-	ParentSlotIDNe   *string                               `json:"parentSlotId_ne"`
-	ParentSlotIDGt   *string                               `json:"parentSlotId_gt"`
-	ParentSlotIDLt   *string                               `json:"parentSlotId_lt"`
-	ParentSlotIDGte  *string                               `json:"parentSlotId_gte"`
-	ParentSlotIDLte  *string                               `json:"parentSlotId_lte"`
-	ParentSlotIDIn   []string                              `json:"parentSlotId_in"`
-	ParentSlotIDNull *bool                                 `json:"parentSlotId_null"`
 	UpdatedAt        *time.Time                            `json:"updatedAt"`
 	UpdatedAtNe      *time.Time                            `json:"updatedAt_ne"`
 	UpdatedAtGt      *time.Time                            `json:"updatedAt_gt"`
@@ -427,26 +419,26 @@ type ConfiguratorItemFilterType struct {
 	Definition       *ConfiguratorItemDefinitionFilterType `json:"definition"`
 	Attributes       *ConfiguratorAttributeFilterType      `json:"attributes"`
 	Slots            *ConfiguratorSlotFilterType           `json:"slots"`
-	ParentSlot       *ConfiguratorSlotFilterType           `json:"parentSlot"`
+	ParentSlots      *ConfiguratorSlotFilterType           `json:"parentSlots"`
 }
 
 type ConfiguratorItemSortType struct {
-	ID            *ObjectSortType                     `json:"id"`
-	Code          *ObjectSortType                     `json:"code"`
-	Name          *ObjectSortType                     `json:"name"`
-	StockItemID   *ObjectSortType                     `json:"stockItemID"`
-	DefinitionID  *ObjectSortType                     `json:"definitionId"`
-	ParentSlotID  *ObjectSortType                     `json:"parentSlotId"`
-	UpdatedAt     *ObjectSortType                     `json:"updatedAt"`
-	CreatedAt     *ObjectSortType                     `json:"createdAt"`
-	UpdatedBy     *ObjectSortType                     `json:"updatedBy"`
-	CreatedBy     *ObjectSortType                     `json:"createdBy"`
-	AttributesIds *ObjectSortType                     `json:"attributesIds"`
-	SlotsIds      *ObjectSortType                     `json:"slotsIds"`
-	Definition    *ConfiguratorItemDefinitionSortType `json:"definition"`
-	Attributes    *ConfiguratorAttributeSortType      `json:"attributes"`
-	Slots         *ConfiguratorSlotSortType           `json:"slots"`
-	ParentSlot    *ConfiguratorSlotSortType           `json:"parentSlot"`
+	ID             *ObjectSortType                     `json:"id"`
+	Code           *ObjectSortType                     `json:"code"`
+	Name           *ObjectSortType                     `json:"name"`
+	StockItemID    *ObjectSortType                     `json:"stockItemID"`
+	DefinitionID   *ObjectSortType                     `json:"definitionId"`
+	UpdatedAt      *ObjectSortType                     `json:"updatedAt"`
+	CreatedAt      *ObjectSortType                     `json:"createdAt"`
+	UpdatedBy      *ObjectSortType                     `json:"updatedBy"`
+	CreatedBy      *ObjectSortType                     `json:"createdBy"`
+	AttributesIds  *ObjectSortType                     `json:"attributesIds"`
+	SlotsIds       *ObjectSortType                     `json:"slotsIds"`
+	ParentSlotsIds *ObjectSortType                     `json:"parentSlotsIds"`
+	Definition     *ConfiguratorItemDefinitionSortType `json:"definition"`
+	Attributes     *ConfiguratorAttributeSortType      `json:"attributes"`
+	Slots          *ConfiguratorSlotSortType           `json:"slots"`
+	ParentSlots    *ConfiguratorSlotSortType           `json:"parentSlots"`
 }
 
 type ConfiguratorSlotDefinitionFilterType struct {

@@ -723,12 +723,6 @@ func CreateConfiguratorItemHandler(ctx context.Context, r *GeneratedResolver, in
 		event.AddNewValue("definitionId", changes.DefinitionID)
 	}
 
-	if _, ok := input["parentSlotId"]; ok && (item.ParentSlotID != changes.ParentSlotID) && (item.ParentSlotID == nil || changes.ParentSlotID == nil || *item.ParentSlotID != *changes.ParentSlotID) {
-		item.ParentSlotID = changes.ParentSlotID
-
-		event.AddNewValue("parentSlotId", changes.ParentSlotID)
-	}
-
 	err = tx.Create(item).Error
 	if err != nil {
 		tx.Rollback()
@@ -746,6 +740,13 @@ func CreateConfiguratorItemHandler(ctx context.Context, r *GeneratedResolver, in
 		items := []ConfiguratorSlot{}
 		tx.Find(&items, "id IN (?)", ids)
 		association := tx.Model(&item).Association("Slots")
+		association.Replace(items)
+	}
+
+	if ids, exists := input["parentSlotsIds"]; exists {
+		items := []ConfiguratorSlot{}
+		tx.Find(&items, "id IN (?)", ids)
+		association := tx.Model(&item).Association("ParentSlots")
 		association.Replace(items)
 	}
 
@@ -817,12 +818,6 @@ func UpdateConfiguratorItemHandler(ctx context.Context, r *GeneratedResolver, id
 		item.DefinitionID = changes.DefinitionID
 	}
 
-	if _, ok := input["parentSlotId"]; ok && (item.ParentSlotID != changes.ParentSlotID) && (item.ParentSlotID == nil || changes.ParentSlotID == nil || *item.ParentSlotID != *changes.ParentSlotID) {
-		event.AddOldValue("parentSlotId", item.ParentSlotID)
-		event.AddNewValue("parentSlotId", changes.ParentSlotID)
-		item.ParentSlotID = changes.ParentSlotID
-	}
-
 	err = tx.Save(item).Error
 	if err != nil {
 		tx.Rollback()
@@ -840,6 +835,13 @@ func UpdateConfiguratorItemHandler(ctx context.Context, r *GeneratedResolver, id
 		items := []ConfiguratorSlot{}
 		tx.Find(&items, "id IN (?)", ids)
 		association := tx.Model(&item).Association("Slots")
+		association.Replace(items)
+	}
+
+	if ids, exists := input["parentSlotsIds"]; exists {
+		items := []ConfiguratorSlot{}
+		tx.Find(&items, "id IN (?)", ids)
+		association := tx.Model(&item).Association("ParentSlots")
 		association.Replace(items)
 	}
 

@@ -714,17 +714,26 @@ func (r *GeneratedConfiguratorItemResolver) SlotsIds(ctx context.Context, obj *C
 	return
 }
 
-func (r *GeneratedConfiguratorItemResolver) ParentSlot(ctx context.Context, obj *ConfiguratorItem) (res *ConfiguratorSlot, err error) {
-	return r.Handlers.ConfiguratorItemParentSlot(ctx, r.GeneratedResolver, obj)
+func (r *GeneratedConfiguratorItemResolver) ParentSlots(ctx context.Context, obj *ConfiguratorItem) (res []*ConfiguratorSlot, err error) {
+	return r.Handlers.ConfiguratorItemParentSlots(ctx, r.GeneratedResolver, obj)
 }
-func ConfiguratorItemParentSlotHandler(ctx context.Context, r *GeneratedResolver, obj *ConfiguratorItem) (res *ConfiguratorSlot, err error) {
+func ConfiguratorItemParentSlotsHandler(ctx context.Context, r *GeneratedResolver, obj *ConfiguratorItem) (res []*ConfiguratorSlot, err error) {
 
-	loaders := ctx.Value(KeyLoaders).(map[string]*dataloader.Loader)
-	if obj.ParentSlotID != nil {
-		item, _err := loaders["ConfiguratorSlot"].Load(ctx, dataloader.StringKey(*obj.ParentSlotID))()
-		res, _ = item.(*ConfiguratorSlot)
+	items := []*ConfiguratorSlot{}
+	err = r.DB.Query().Model(obj).Related(&items, "ParentSlots").Error
+	res = items
 
-		err = _err
+	return
+}
+
+func (r *GeneratedConfiguratorItemResolver) ParentSlotsIds(ctx context.Context, obj *ConfiguratorItem) (ids []string, err error) {
+	ids = []string{}
+
+	items := []*ConfiguratorSlot{}
+	err = r.DB.Query().Model(obj).Select(TableName("configurator_slots")+".id").Related(&items, "ParentSlots").Error
+
+	for _, item := range items {
+		ids = append(ids, item.ID)
 	}
 
 	return

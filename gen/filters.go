@@ -1361,10 +1361,10 @@ func (f *ConfiguratorItemFilterType) ApplyWithAlias(ctx context.Context, dialect
 		}
 	}
 
-	if f.ParentSlot != nil {
-		_alias := alias + "_parentSlot"
-		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configurator_slots"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias)+".id = "+alias+"."+dialect.Quote("parentSlotId"))
-		err := f.ParentSlot.ApplyWithAlias(ctx, dialect, _alias, wheres, values, joins)
+	if f.ParentSlots != nil {
+		_alias := alias + "_parentSlots"
+		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configuratorItem_parentSlots"))+" "+dialect.Quote(_alias+"_jointable")+" ON "+dialect.Quote(alias)+".id = "+dialect.Quote(_alias+"_jointable")+"."+dialect.Quote("item_id")+" LEFT JOIN "+dialect.Quote(TableName("configurator_slots"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias+"_jointable")+"."+dialect.Quote("parentSlot_id")+" = "+dialect.Quote(_alias)+".id")
+		err := f.ParentSlots.ApplyWithAlias(ctx, dialect, _alias, wheres, values, joins)
 		if err != nil {
 			return err
 		}
@@ -1619,49 +1619,6 @@ func (f *ConfiguratorItemFilterType) WhereContent(dialect gorm.Dialect, aliasPre
 			conditions = append(conditions, aliasPrefix+dialect.Quote("definitionId")+" IS NULL")
 		} else {
 			conditions = append(conditions, aliasPrefix+dialect.Quote("definitionId")+" IS NOT NULL")
-		}
-	}
-
-	if f.ParentSlotID != nil {
-		conditions = append(conditions, aliasPrefix+dialect.Quote("parentSlotId")+" = ?")
-		values = append(values, f.ParentSlotID)
-	}
-
-	if f.ParentSlotIDNe != nil {
-		conditions = append(conditions, aliasPrefix+dialect.Quote("parentSlotId")+" != ?")
-		values = append(values, f.ParentSlotIDNe)
-	}
-
-	if f.ParentSlotIDGt != nil {
-		conditions = append(conditions, aliasPrefix+dialect.Quote("parentSlotId")+" > ?")
-		values = append(values, f.ParentSlotIDGt)
-	}
-
-	if f.ParentSlotIDLt != nil {
-		conditions = append(conditions, aliasPrefix+dialect.Quote("parentSlotId")+" < ?")
-		values = append(values, f.ParentSlotIDLt)
-	}
-
-	if f.ParentSlotIDGte != nil {
-		conditions = append(conditions, aliasPrefix+dialect.Quote("parentSlotId")+" >= ?")
-		values = append(values, f.ParentSlotIDGte)
-	}
-
-	if f.ParentSlotIDLte != nil {
-		conditions = append(conditions, aliasPrefix+dialect.Quote("parentSlotId")+" <= ?")
-		values = append(values, f.ParentSlotIDLte)
-	}
-
-	if f.ParentSlotIDIn != nil {
-		conditions = append(conditions, aliasPrefix+dialect.Quote("parentSlotId")+" IN (?)")
-		values = append(values, f.ParentSlotIDIn)
-	}
-
-	if f.ParentSlotIDNull != nil {
-		if *f.ParentSlotIDNull {
-			conditions = append(conditions, aliasPrefix+dialect.Quote("parentSlotId")+" IS NULL")
-		} else {
-			conditions = append(conditions, aliasPrefix+dialect.Quote("parentSlotId")+" IS NOT NULL")
 		}
 	}
 
@@ -2495,7 +2452,7 @@ func (f *ConfiguratorSlotFilterType) ApplyWithAlias(ctx context.Context, dialect
 
 	if f.Items != nil {
 		_alias := alias + "_items"
-		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configurator_items"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias)+"."+dialect.Quote("parentSlotId")+" = "+dialect.Quote(alias)+".id")
+		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configuratorItem_parentSlots"))+" "+dialect.Quote(_alias+"_jointable")+" ON "+dialect.Quote(alias)+".id = "+dialect.Quote(_alias+"_jointable")+"."+dialect.Quote("parentSlot_id")+" LEFT JOIN "+dialect.Quote(TableName("configurator_items"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias+"_jointable")+"."+dialect.Quote("item_id")+" = "+dialect.Quote(_alias)+".id")
 		err := f.Items.ApplyWithAlias(ctx, dialect, _alias, wheres, values, joins)
 		if err != nil {
 			return err

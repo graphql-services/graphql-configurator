@@ -57,7 +57,7 @@ type ResolutionHandlers struct {
 
 	ConfiguratorItemSlots func(ctx context.Context, r *GeneratedResolver, obj *ConfiguratorItem) (res []*ConfiguratorSlot, err error)
 
-	ConfiguratorItemParentSlot func(ctx context.Context, r *GeneratedResolver, obj *ConfiguratorItem) (res *ConfiguratorSlot, err error)
+	ConfiguratorItemParentSlots func(ctx context.Context, r *GeneratedResolver, obj *ConfiguratorItem) (res []*ConfiguratorSlot, err error)
 
 	CreateConfiguratorAttribute     func(ctx context.Context, r *GeneratedResolver, input map[string]interface{}) (item *ConfiguratorAttribute, err error)
 	UpdateConfiguratorAttribute     func(ctx context.Context, r *GeneratedResolver, id string, input map[string]interface{}) (item *ConfiguratorAttribute, err error)
@@ -136,7 +136,7 @@ func DefaultResolutionHandlers() ResolutionHandlers {
 
 		ConfiguratorItemSlots: ConfiguratorItemSlotsHandler,
 
-		ConfiguratorItemParentSlot: ConfiguratorItemParentSlotHandler,
+		ConfiguratorItemParentSlots: ConfiguratorItemParentSlotsHandler,
 
 		CreateConfiguratorAttribute:     CreateConfiguratorAttributeHandler,
 		UpdateConfiguratorAttribute:     UpdateConfiguratorAttributeHandler,
