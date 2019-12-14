@@ -106,12 +106,12 @@ func createOrUpdateSlot(ctx context.Context, r *gen.GeneratedResolver, itemID st
 	if input.Items != nil {
 		itemIds := []string{}
 		for _, item := range input.Items {
-			subItemID, _err := createOrUpdateItem(ctx, r, item)
+			subItem, _err := r.Handlers.QueryConfiguratorItem(ctx, r, gen.QueryConfiguratorItemHandlerOptions{ID: item.ID})
 			if _err != nil {
 				err = _err
 				return
 			}
-			itemIds = append(itemIds, subItemID)
+			itemIds = append(itemIds, subItem.ID)
 		}
 		slotValues["itemsIds"] = itemIds
 	}
