@@ -83,7 +83,7 @@ type ConfiguratorAssemblyAttribute {
 type ConfiguratorAssemblySlot {
   id: ID!
   definitionId: ID!
-  items: [ConfiguratorAssemblySlotItem!]!
+  item: ConfiguratorAssemblySlotItem
 }
 
 type ConfiguratorAssemblySlotItem {
@@ -118,7 +118,7 @@ input ConfiguratorAssemblyAttributeInput {
 input ConfiguratorAssemblySlotInput {
   id: ID
   definitionId: ID!
-  items: [ConfiguratorAssemblySlotItemInput!]!
+  item: ConfiguratorAssemblySlotItemInput
 }
 
 input ConfiguratorAssemblySlotItemInput {
@@ -220,16 +220,16 @@ type ConfiguratorAttribute {
 
 type ConfiguratorSlot {
   id: ID!
-  items: [ConfiguratorItem!]!
+  item: ConfiguratorItem
   definition: ConfiguratorSlotDefinition
   parentItem: ConfiguratorItem
+  itemId: ID
   definitionId: ID
   parentItemId: ID
   updatedAt: Time
   createdAt: Time!
   updatedBy: ID
   createdBy: ID
-  itemsIds: [ID!]!
 }
 
 input ConfiguratorItemDefinitionCreateInput {
@@ -806,27 +806,27 @@ type ConfiguratorAttributeResultType {
 
 input ConfiguratorSlotCreateInput {
   id: ID
+  itemId: ID
   definitionId: ID
   parentItemId: ID
-  itemsIds: [ID!]
 }
 
 input ConfiguratorSlotUpdateInput {
+  itemId: ID
   definitionId: ID
   parentItemId: ID
-  itemsIds: [ID!]
 }
 
 input ConfiguratorSlotSortType {
   id: ObjectSortType
+  itemId: ObjectSortType
   definitionId: ObjectSortType
   parentItemId: ObjectSortType
   updatedAt: ObjectSortType
   createdAt: ObjectSortType
   updatedBy: ObjectSortType
   createdBy: ObjectSortType
-  itemsIds: ObjectSortType
-  items: ConfiguratorItemSortType
+  item: ConfiguratorItemSortType
   definition: ConfiguratorSlotDefinitionSortType
   parentItem: ConfiguratorItemSortType
 }
@@ -842,6 +842,14 @@ input ConfiguratorSlotFilterType {
   id_lte: ID
   id_in: [ID!]
   id_null: Boolean
+  itemId: ID
+  itemId_ne: ID
+  itemId_gt: ID
+  itemId_lt: ID
+  itemId_gte: ID
+  itemId_lte: ID
+  itemId_in: [ID!]
+  itemId_null: Boolean
   definitionId: ID
   definitionId_ne: ID
   definitionId_gt: ID
@@ -890,7 +898,7 @@ input ConfiguratorSlotFilterType {
   createdBy_lte: ID
   createdBy_in: [ID!]
   createdBy_null: Boolean
-  items: ConfiguratorItemFilterType
+  item: ConfiguratorItemFilterType
   definition: ConfiguratorSlotDefinitionFilterType
   parentItem: ConfiguratorItemFilterType
 }

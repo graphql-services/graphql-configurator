@@ -1449,7 +1449,7 @@ func (f *ConfiguratorItemFilterType) ApplyWithAlias(ctx context.Context, dialect
 
 	if f.ParentSlots != nil {
 		_alias := alias + "_parentSlots"
-		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configuratorItem_parentSlots"))+" "+dialect.Quote(_alias+"_jointable")+" ON "+dialect.Quote(alias)+".id = "+dialect.Quote(_alias+"_jointable")+"."+dialect.Quote("item_id")+" LEFT JOIN "+dialect.Quote(TableName("configurator_slots"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias+"_jointable")+"."+dialect.Quote("parentSlot_id")+" = "+dialect.Quote(_alias)+".id")
+		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configurator_slots"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias)+"."+dialect.Quote("itemId")+" = "+dialect.Quote(alias)+".id")
 		err := f.ParentSlots.ApplyWithAlias(ctx, dialect, _alias, wheres, values, joins)
 		if err != nil {
 			return err
@@ -2536,10 +2536,10 @@ func (f *ConfiguratorSlotFilterType) ApplyWithAlias(ctx context.Context, dialect
 		*joins = append(*joins, js...)
 	}
 
-	if f.Items != nil {
-		_alias := alias + "_items"
-		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configuratorItem_parentSlots"))+" "+dialect.Quote(_alias+"_jointable")+" ON "+dialect.Quote(alias)+".id = "+dialect.Quote(_alias+"_jointable")+"."+dialect.Quote("parentSlot_id")+" LEFT JOIN "+dialect.Quote(TableName("configurator_items"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias+"_jointable")+"."+dialect.Quote("item_id")+" = "+dialect.Quote(_alias)+".id")
-		err := f.Items.ApplyWithAlias(ctx, dialect, _alias, wheres, values, joins)
+	if f.Item != nil {
+		_alias := alias + "_item"
+		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configurator_items"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias)+".id = "+alias+"."+dialect.Quote("itemId"))
+		err := f.Item.ApplyWithAlias(ctx, dialect, _alias, wheres, values, joins)
 		if err != nil {
 			return err
 		}
@@ -2610,6 +2610,49 @@ func (f *ConfiguratorSlotFilterType) WhereContent(dialect gorm.Dialect, aliasPre
 			conditions = append(conditions, aliasPrefix+dialect.Quote("id")+" IS NULL")
 		} else {
 			conditions = append(conditions, aliasPrefix+dialect.Quote("id")+" IS NOT NULL")
+		}
+	}
+
+	if f.ItemID != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("itemId")+" = ?")
+		values = append(values, f.ItemID)
+	}
+
+	if f.ItemIDNe != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("itemId")+" != ?")
+		values = append(values, f.ItemIDNe)
+	}
+
+	if f.ItemIDGt != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("itemId")+" > ?")
+		values = append(values, f.ItemIDGt)
+	}
+
+	if f.ItemIDLt != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("itemId")+" < ?")
+		values = append(values, f.ItemIDLt)
+	}
+
+	if f.ItemIDGte != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("itemId")+" >= ?")
+		values = append(values, f.ItemIDGte)
+	}
+
+	if f.ItemIDLte != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("itemId")+" <= ?")
+		values = append(values, f.ItemIDLte)
+	}
+
+	if f.ItemIDIn != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("itemId")+" IN (?)")
+		values = append(values, f.ItemIDIn)
+	}
+
+	if f.ItemIDNull != nil {
+		if *f.ItemIDNull {
+			conditions = append(conditions, aliasPrefix+dialect.Quote("itemId")+" IS NULL")
+		} else {
+			conditions = append(conditions, aliasPrefix+dialect.Quote("itemId")+" IS NOT NULL")
 		}
 	}
 

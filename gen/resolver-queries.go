@@ -1007,26 +1007,17 @@ func (r *GeneratedConfiguratorSlotResultTypeResolver) Count(ctx context.Context,
 
 type GeneratedConfiguratorSlotResolver struct{ *GeneratedResolver }
 
-func (r *GeneratedConfiguratorSlotResolver) Items(ctx context.Context, obj *ConfiguratorSlot) (res []*ConfiguratorItem, err error) {
-	return r.Handlers.ConfiguratorSlotItems(ctx, r.GeneratedResolver, obj)
+func (r *GeneratedConfiguratorSlotResolver) Item(ctx context.Context, obj *ConfiguratorSlot) (res *ConfiguratorItem, err error) {
+	return r.Handlers.ConfiguratorSlotItem(ctx, r.GeneratedResolver, obj)
 }
-func ConfiguratorSlotItemsHandler(ctx context.Context, r *GeneratedResolver, obj *ConfiguratorSlot) (res []*ConfiguratorItem, err error) {
+func ConfiguratorSlotItemHandler(ctx context.Context, r *GeneratedResolver, obj *ConfiguratorSlot) (res *ConfiguratorItem, err error) {
 
-	items := []*ConfiguratorItem{}
-	err = r.DB.Query().Model(obj).Related(&items, "Items").Error
-	res = items
+	loaders := ctx.Value(KeyLoaders).(map[string]*dataloader.Loader)
+	if obj.ItemID != nil {
+		item, _err := loaders["ConfiguratorItem"].Load(ctx, dataloader.StringKey(*obj.ItemID))()
+		res, _ = item.(*ConfiguratorItem)
 
-	return
-}
-
-func (r *GeneratedConfiguratorSlotResolver) ItemsIds(ctx context.Context, obj *ConfiguratorSlot) (ids []string, err error) {
-	ids = []string{}
-
-	items := []*ConfiguratorItem{}
-	err = r.DB.Query().Model(obj).Select(TableName("configurator_items")+".id").Related(&items, "Items").Error
-
-	for _, item := range items {
-		ids = append(ids, item.ID)
+		err = _err
 	}
 
 	return

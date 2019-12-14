@@ -53,15 +53,15 @@ type ConfiguratorAssemblyItemInput struct {
 }
 
 type ConfiguratorAssemblySlot struct {
-	ID           string                          `json:"id"`
-	DefinitionID string                          `json:"definitionId"`
-	Items        []*ConfiguratorAssemblySlotItem `json:"items"`
+	ID           string                        `json:"id"`
+	DefinitionID string                        `json:"definitionId"`
+	Item         *ConfiguratorAssemblySlotItem `json:"item"`
 }
 
 type ConfiguratorAssemblySlotInput struct {
-	ID           *string                              `json:"id"`
-	DefinitionID string                               `json:"definitionId"`
-	Items        []*ConfiguratorAssemblySlotItemInput `json:"items"`
+	ID           *string                            `json:"id"`
+	DefinitionID string                             `json:"definitionId"`
+	Item         *ConfiguratorAssemblySlotItemInput `json:"item"`
 }
 
 type ConfiguratorAssemblySlotItem struct {
@@ -549,6 +549,14 @@ type ConfiguratorSlotFilterType struct {
 	IDLte            *string                               `json:"id_lte"`
 	IDIn             []string                              `json:"id_in"`
 	IDNull           *bool                                 `json:"id_null"`
+	ItemID           *string                               `json:"itemId"`
+	ItemIDNe         *string                               `json:"itemId_ne"`
+	ItemIDGt         *string                               `json:"itemId_gt"`
+	ItemIDLt         *string                               `json:"itemId_lt"`
+	ItemIDGte        *string                               `json:"itemId_gte"`
+	ItemIDLte        *string                               `json:"itemId_lte"`
+	ItemIDIn         []string                              `json:"itemId_in"`
+	ItemIDNull       *bool                                 `json:"itemId_null"`
 	DefinitionID     *string                               `json:"definitionId"`
 	DefinitionIDNe   *string                               `json:"definitionId_ne"`
 	DefinitionIDGt   *string                               `json:"definitionId_gt"`
@@ -597,21 +605,21 @@ type ConfiguratorSlotFilterType struct {
 	CreatedByLte     *string                               `json:"createdBy_lte"`
 	CreatedByIn      []string                              `json:"createdBy_in"`
 	CreatedByNull    *bool                                 `json:"createdBy_null"`
-	Items            *ConfiguratorItemFilterType           `json:"items"`
+	Item             *ConfiguratorItemFilterType           `json:"item"`
 	Definition       *ConfiguratorSlotDefinitionFilterType `json:"definition"`
 	ParentItem       *ConfiguratorItemFilterType           `json:"parentItem"`
 }
 
 type ConfiguratorSlotSortType struct {
 	ID           *ObjectSortType                     `json:"id"`
+	ItemID       *ObjectSortType                     `json:"itemId"`
 	DefinitionID *ObjectSortType                     `json:"definitionId"`
 	ParentItemID *ObjectSortType                     `json:"parentItemId"`
 	UpdatedAt    *ObjectSortType                     `json:"updatedAt"`
 	CreatedAt    *ObjectSortType                     `json:"createdAt"`
 	UpdatedBy    *ObjectSortType                     `json:"updatedBy"`
 	CreatedBy    *ObjectSortType                     `json:"createdBy"`
-	ItemsIds     *ObjectSortType                     `json:"itemsIds"`
-	Items        *ConfiguratorItemSortType           `json:"items"`
+	Item         *ConfiguratorItemSortType           `json:"item"`
 	Definition   *ConfiguratorSlotDefinitionSortType `json:"definition"`
 	ParentItem   *ConfiguratorItemSortType           `json:"parentItem"`
 }

@@ -6,7 +6,7 @@ type ConfiguratorItem @entity {
   definition: ConfiguratorItemDefinition @relationship(inverse: items)
   attributes: [ConfiguratorAttribute!]! @relationship(inverse: item)
   slots: [ConfiguratorSlot!]! @relationship(inverse: parentItem)
-  parentSlots: [ConfiguratorSlot!]! @relationship(inverse: items)
+  parentSlots: [ConfiguratorSlot!]! @relationship(inverse: item)
 }
 
 type ConfiguratorAttribute @entity {
@@ -19,7 +19,7 @@ type ConfiguratorAttribute @entity {
 }
 
 type ConfiguratorSlot @entity {
-  items: [ConfiguratorItem!]! @relationship(inverse: parentSlots)
+  item: ConfiguratorItem @relationship(inverse: parentSlots)
 
   definition: ConfiguratorSlotDefinition @relationship(inverse: slots)
   parentItem: ConfiguratorItem @relationship(inverse: slots)

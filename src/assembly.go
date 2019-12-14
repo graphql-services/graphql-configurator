@@ -45,25 +45,17 @@ func (as *AssemblyHelper) LoadItem(ctx context.Context, ID string) (*gen.Configu
 	}
 	slots := []*gen.ConfiguratorAssemblySlot{}
 	for _, slot := range _slots {
-		_slotItems, err := as.r.Handlers.ConfiguratorSlotItems(ctx, as.r, slot)
+		slotItem, err := as.r.Handlers.ConfiguratorSlotItem(ctx, as.r, slot)
 		if err != nil {
 			return nil, err
 		}
 
-		slotItems := []*gen.ConfiguratorAssemblySlotItem{}
-		for _, slotItem := range _slotItems {
-			// si, err := as.LoadItem(ctx, slotItem.ID)
-			// if err != nil {
-			// 	return nil, err
-			// }
-			slotItems = append(slotItems, &gen.ConfiguratorAssemblySlotItem{
-				ID: &slotItem.ID,
-			})
-		}
 		slots = append(slots, &gen.ConfiguratorAssemblySlot{
 			ID:           slot.ID,
 			DefinitionID: *slot.DefinitionID,
-			Items:        slotItems,
+			Item: &gen.ConfiguratorAssemblySlotItem{
+				ID: &slotItem.ID,
+			},
 		})
 	}
 

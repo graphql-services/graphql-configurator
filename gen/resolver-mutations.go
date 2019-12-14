@@ -1183,6 +1183,12 @@ func CreateConfiguratorSlotHandler(ctx context.Context, r *GeneratedResolver, in
 		event.AddNewValue("id", changes.ID)
 	}
 
+	if _, ok := input["itemId"]; ok && (item.ItemID != changes.ItemID) && (item.ItemID == nil || changes.ItemID == nil || *item.ItemID != *changes.ItemID) {
+		item.ItemID = changes.ItemID
+
+		event.AddNewValue("itemId", changes.ItemID)
+	}
+
 	if _, ok := input["definitionId"]; ok && (item.DefinitionID != changes.DefinitionID) && (item.DefinitionID == nil || changes.DefinitionID == nil || *item.DefinitionID != *changes.DefinitionID) {
 		item.DefinitionID = changes.DefinitionID
 
@@ -1199,13 +1205,6 @@ func CreateConfiguratorSlotHandler(ctx context.Context, r *GeneratedResolver, in
 	if err != nil {
 		tx.Rollback()
 		return
-	}
-
-	if ids, exists := input["itemsIds"]; exists {
-		items := []ConfiguratorItem{}
-		tx.Find(&items, "id IN (?)", ids)
-		association := tx.Model(&item).Association("Items")
-		association.Replace(items)
 	}
 
 	if len(event.Changes) > 0 {
@@ -1252,6 +1251,12 @@ func UpdateConfiguratorSlotHandler(ctx context.Context, r *GeneratedResolver, id
 
 	item.UpdatedBy = principalID
 
+	if _, ok := input["itemId"]; ok && (item.ItemID != changes.ItemID) && (item.ItemID == nil || changes.ItemID == nil || *item.ItemID != *changes.ItemID) {
+		event.AddOldValue("itemId", item.ItemID)
+		event.AddNewValue("itemId", changes.ItemID)
+		item.ItemID = changes.ItemID
+	}
+
 	if _, ok := input["definitionId"]; ok && (item.DefinitionID != changes.DefinitionID) && (item.DefinitionID == nil || changes.DefinitionID == nil || *item.DefinitionID != *changes.DefinitionID) {
 		event.AddOldValue("definitionId", item.DefinitionID)
 		event.AddNewValue("definitionId", changes.DefinitionID)
@@ -1268,13 +1273,6 @@ func UpdateConfiguratorSlotHandler(ctx context.Context, r *GeneratedResolver, id
 	if err != nil {
 		tx.Rollback()
 		return
-	}
-
-	if ids, exists := input["itemsIds"]; exists {
-		items := []ConfiguratorItem{}
-		tx.Find(&items, "id IN (?)", ids)
-		association := tx.Model(&item).Association("Items")
-		association.Replace(items)
 	}
 
 	if len(event.Changes) > 0 {

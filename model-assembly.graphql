@@ -21,7 +21,7 @@ type ConfiguratorAssemblyAttribute {
 type ConfiguratorAssemblySlot {
   id: ID!
   definitionId: ID!
-  items: [ConfiguratorAssemblySlotItem!]!
+  item: ConfiguratorAssemblySlotItem
 }
 type ConfiguratorAssemblySlotItem {
   id: ID
@@ -51,7 +51,7 @@ input ConfiguratorAssemblyAttributeInput {
 input ConfiguratorAssemblySlotInput {
   id: ID
   definitionId: ID!
-  items: [ConfiguratorAssemblySlotItemInput!]!
+  item: ConfiguratorAssemblySlotItemInput
 }
 input ConfiguratorAssemblySlotItemInput {
   id: ID

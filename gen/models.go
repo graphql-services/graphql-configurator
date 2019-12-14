@@ -141,7 +141,7 @@ type ConfiguratorItem struct {
 
 	Slots []*ConfiguratorSlot `json:"slots" gorm:"foreignkey:ParentItemID"`
 
-	ParentSlots []*ConfiguratorSlot `json:"parentSlots" gorm:"many2many:configuratorItem_parentSlots;jointable_foreignkey:item_id;association_jointable_foreignkey:parentSlot_id"`
+	ParentSlots []*ConfiguratorSlot `json:"parentSlots" gorm:"foreignkey:ItemID"`
 }
 
 func (m *ConfiguratorItem) Is_Entity() {}
@@ -204,6 +204,7 @@ type ConfiguratorSlotResultType struct {
 
 type ConfiguratorSlot struct {
 	ID           string     `json:"id" gorm:"column:id;primary_key"`
+	ItemID       *string    `json:"itemId" gorm:"column:itemId"`
 	DefinitionID *string    `json:"definitionId" gorm:"column:definitionId"`
 	ParentItemID *string    `json:"parentItemId" gorm:"column:parentItemId"`
 	UpdatedAt    *time.Time `json:"updatedAt" gorm:"column:updatedAt"`
@@ -211,7 +212,7 @@ type ConfiguratorSlot struct {
 	UpdatedBy    *string    `json:"updatedBy" gorm:"column:updatedBy"`
 	CreatedBy    *string    `json:"createdBy" gorm:"column:createdBy"`
 
-	Items []*ConfiguratorItem `json:"items" gorm:"many2many:configuratorItem_parentSlots;jointable_foreignkey:parentSlot_id;association_jointable_foreignkey:item_id"`
+	Item *ConfiguratorItem `json:"item"`
 
 	Definition *ConfiguratorSlotDefinition `json:"definition"`
 
@@ -222,14 +223,13 @@ func (m *ConfiguratorSlot) Is_Entity() {}
 
 type ConfiguratorSlotChanges struct {
 	ID           string
+	ItemID       *string
 	DefinitionID *string
 	ParentItemID *string
 	UpdatedAt    *time.Time
 	CreatedAt    time.Time
 	UpdatedBy    *string
 	CreatedBy    *string
-
-	ItemsIDs []*string
 }
 
 // used to convert map[string]interface{} to EntityChanges struct
