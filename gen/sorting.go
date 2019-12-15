@@ -202,6 +202,10 @@ func (s ConfiguratorItemSortType) ApplyWithAlias(ctx context.Context, dialect go
 		*sorts = append(*sorts, aliasPrefix+dialect.Quote("stockItemID")+" "+s.StockItemID.String())
 	}
 
+	if s.TemplateID != nil {
+		*sorts = append(*sorts, aliasPrefix+dialect.Quote("templateId")+" "+s.TemplateID.String())
+	}
+
 	if s.DefinitionID != nil {
 		*sorts = append(*sorts, aliasPrefix+dialect.Quote("definitionId")+" "+s.DefinitionID.String())
 	}
@@ -220,6 +224,24 @@ func (s ConfiguratorItemSortType) ApplyWithAlias(ctx context.Context, dialect go
 
 	if s.CreatedBy != nil {
 		*sorts = append(*sorts, aliasPrefix+dialect.Quote("createdBy")+" "+s.CreatedBy.String())
+	}
+
+	if s.Template != nil {
+		_alias := alias + "_template"
+		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configurator_items"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias)+".id = "+alias+"."+dialect.Quote("templateId"))
+		err := s.Template.ApplyWithAlias(ctx, dialect, _alias, sorts, joins)
+		if err != nil {
+			return err
+		}
+	}
+
+	if s.TemplatedChilds != nil {
+		_alias := alias + "_templatedChilds"
+		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configurator_items"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias)+"."+dialect.Quote("templateId")+" = "+dialect.Quote(alias)+".id")
+		err := s.TemplatedChilds.ApplyWithAlias(ctx, dialect, _alias, sorts, joins)
+		if err != nil {
+			return err
+		}
 	}
 
 	if s.Definition != nil {

@@ -379,6 +379,44 @@ func (qf *ConfiguratorItemQueryFilter) applyQueryWithFields(dialect gorm.Dialect
 		*values = append(*values, query+"%", "% "+query+"%")
 	}
 
+	if fs, ok := fieldsMap["template"]; ok {
+		_fields := []*ast.Field{}
+		_alias := alias + "_template"
+		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configurator_items"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias)+".id = "+alias+"."+dialect.Quote("templateId"))
+
+		for _, f := range fs {
+			for _, s := range f.SelectionSet {
+				if f, ok := s.(*ast.Field); ok {
+					_fields = append(_fields, f)
+				}
+			}
+		}
+		q := ConfiguratorItemQueryFilter{qf.Query}
+		err := q.applyQueryWithFields(dialect, _fields, query, _alias, ors, values, joins)
+		if err != nil {
+			return err
+		}
+	}
+
+	if fs, ok := fieldsMap["templatedChilds"]; ok {
+		_fields := []*ast.Field{}
+		_alias := alias + "_templatedChilds"
+		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configurator_items"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias)+"."+dialect.Quote("templateId")+" = "+dialect.Quote(alias)+".id")
+
+		for _, f := range fs {
+			for _, s := range f.SelectionSet {
+				if f, ok := s.(*ast.Field); ok {
+					_fields = append(_fields, f)
+				}
+			}
+		}
+		q := ConfiguratorItemQueryFilter{qf.Query}
+		err := q.applyQueryWithFields(dialect, _fields, query, _alias, ors, values, joins)
+		if err != nil {
+			return err
+		}
+	}
+
 	if fs, ok := fieldsMap["definition"]; ok {
 		_fields := []*ast.Field{}
 		_alias := alias + "_definition"

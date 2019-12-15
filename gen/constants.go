@@ -64,10 +64,12 @@ type ConfiguratorAssembly {
 }
 
 type ConfiguratorAssemblyItem {
-  id: ID!
+  templateId: ID
+  isTemplate: Boolean!
+  id: ID
+  definitionId: ID
   code: String
   name: String
-  definitionId: ID!
   slots: [ConfiguratorAssemblySlot!]!
   attributes: [ConfiguratorAssemblyAttribute!]!
 }
@@ -95,10 +97,11 @@ input ConfiguratorAssemblyUpdateInput {
 }
 
 input ConfiguratorAssemblyItemInput {
+  templateId: ID
   id: ID
+  definitionId: ID
   code: String
   name: String
-  definitionId: ID!
   slots: [ConfiguratorAssemblySlotInput!]
   attributes: [ConfiguratorAssemblyAttributeInput!]
 }
@@ -181,15 +184,19 @@ type ConfiguratorItem {
   code: String
   name: String
   stockItemID: ID
+  template: ConfiguratorItem
+  templatedChilds: [ConfiguratorItem!]!
   definition: ConfiguratorItemDefinition
   attributes: [ConfiguratorAttribute!]!
   slots: [ConfiguratorSlot!]!
   parentSlots: [ConfiguratorSlot!]!
+  templateId: ID
   definitionId: ID
   updatedAt: Time
   createdAt: Time!
   updatedBy: ID
   createdBy: ID
+  templatedChildsIds: [ID!]!
   attributesIds: [ID!]!
   slotsIds: [ID!]!
   parentSlotsIds: [ID!]!
@@ -542,7 +549,9 @@ input ConfiguratorItemCreateInput {
   code: String
   name: String
   stockItemID: ID
+  templateId: ID
   definitionId: ID
+  templatedChildsIds: [ID!]
   attributesIds: [ID!]
   slotsIds: [ID!]
   parentSlotsIds: [ID!]
@@ -552,7 +561,9 @@ input ConfiguratorItemUpdateInput {
   code: String
   name: String
   stockItemID: ID
+  templateId: ID
   definitionId: ID
+  templatedChildsIds: [ID!]
   attributesIds: [ID!]
   slotsIds: [ID!]
   parentSlotsIds: [ID!]
@@ -563,14 +574,18 @@ input ConfiguratorItemSortType {
   code: ObjectSortType
   name: ObjectSortType
   stockItemID: ObjectSortType
+  templateId: ObjectSortType
   definitionId: ObjectSortType
   updatedAt: ObjectSortType
   createdAt: ObjectSortType
   updatedBy: ObjectSortType
   createdBy: ObjectSortType
+  templatedChildsIds: ObjectSortType
   attributesIds: ObjectSortType
   slotsIds: ObjectSortType
   parentSlotsIds: ObjectSortType
+  template: ConfiguratorItemSortType
+  templatedChilds: ConfiguratorItemSortType
   definition: ConfiguratorItemDefinitionSortType
   attributes: ConfiguratorAttributeSortType
   slots: ConfiguratorSlotSortType
@@ -618,6 +633,14 @@ input ConfiguratorItemFilterType {
   stockItemID_lte: ID
   stockItemID_in: [ID!]
   stockItemID_null: Boolean
+  templateId: ID
+  templateId_ne: ID
+  templateId_gt: ID
+  templateId_lt: ID
+  templateId_gte: ID
+  templateId_lte: ID
+  templateId_in: [ID!]
+  templateId_null: Boolean
   definitionId: ID
   definitionId_ne: ID
   definitionId_gt: ID
@@ -658,6 +681,8 @@ input ConfiguratorItemFilterType {
   createdBy_lte: ID
   createdBy_in: [ID!]
   createdBy_null: Boolean
+  template: ConfiguratorItemFilterType
+  templatedChilds: ConfiguratorItemFilterType
   definition: ConfiguratorItemDefinitionFilterType
   attributes: ConfiguratorAttributeFilterType
   slots: ConfiguratorSlotFilterType

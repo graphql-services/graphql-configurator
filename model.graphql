@@ -3,6 +3,9 @@ type ConfiguratorItem @entity {
   name: String @column
   stockItemID: ID @column
 
+  template: ConfiguratorItem @relationship(inverse: templatedChilds)
+  templatedChilds: [ConfiguratorItem!]! @relationship(inverse: template)
+
   definition: ConfiguratorItemDefinition @relationship(inverse: items)
   attributes: [ConfiguratorAttribute!]! @relationship(inverse: item)
   slots: [ConfiguratorSlot!]! @relationship(inverse: parentItem)

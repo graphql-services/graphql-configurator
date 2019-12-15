@@ -21,7 +21,7 @@ func (r *MutationResolver) CreateConfiguratorAssembly(ctx context.Context, input
 	var itemID string
 	err = r.BeginTransaction(ctx, func(ctx context.Context) error {
 		inputHelper := AssemblyInputHelper{}
-		itemID, err = inputHelper.Assemble(ctx, r.GeneratedResolver, input.Item)
+		itemID, err = inputHelper.CreateItem(ctx, r.GeneratedResolver, input.Item)
 		return err
 	})
 
@@ -34,7 +34,7 @@ func (r *MutationResolver) UpdateConfiguratorAssembly(ctx context.Context, id st
 	var itemID string
 	err = r.BeginTransaction(ctx, func(ctx context.Context) error {
 		inputHelper := AssemblyInputHelper{}
-		itemID, err = inputHelper.Assemble(ctx, r.GeneratedResolver, input.Item)
+		itemID, err = inputHelper.UpdateItem(ctx, r.GeneratedResolver, input.Item)
 		return err
 	})
 

@@ -77,6 +77,10 @@ models:
   ConfiguratorItem:
     model: github.com/graphql-services/graphql-configurator/gen.ConfiguratorItem
     fields:
+      template:
+        resolver: true
+      templatedChilds:
+        resolver: true
       definition:
         resolver: true
       attributes:

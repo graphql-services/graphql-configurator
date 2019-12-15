@@ -741,6 +741,12 @@ func CreateConfiguratorItemHandler(ctx context.Context, r *GeneratedResolver, in
 		event.AddNewValue("stockItemID", changes.StockItemID)
 	}
 
+	if _, ok := input["templateId"]; ok && (item.TemplateID != changes.TemplateID) && (item.TemplateID == nil || changes.TemplateID == nil || *item.TemplateID != *changes.TemplateID) {
+		item.TemplateID = changes.TemplateID
+
+		event.AddNewValue("templateId", changes.TemplateID)
+	}
+
 	if _, ok := input["definitionId"]; ok && (item.DefinitionID != changes.DefinitionID) && (item.DefinitionID == nil || changes.DefinitionID == nil || *item.DefinitionID != *changes.DefinitionID) {
 		item.DefinitionID = changes.DefinitionID
 
@@ -751,6 +757,13 @@ func CreateConfiguratorItemHandler(ctx context.Context, r *GeneratedResolver, in
 	if err != nil {
 		tx.Rollback()
 		return
+	}
+
+	if ids, exists := input["templatedChildsIds"]; exists {
+		items := []ConfiguratorItem{}
+		tx.Find(&items, "id IN (?)", ids)
+		association := tx.Model(&item).Association("TemplatedChilds")
+		association.Replace(items)
 	}
 
 	if ids, exists := input["attributesIds"]; exists {
@@ -836,6 +849,12 @@ func UpdateConfiguratorItemHandler(ctx context.Context, r *GeneratedResolver, id
 		item.StockItemID = changes.StockItemID
 	}
 
+	if _, ok := input["templateId"]; ok && (item.TemplateID != changes.TemplateID) && (item.TemplateID == nil || changes.TemplateID == nil || *item.TemplateID != *changes.TemplateID) {
+		event.AddOldValue("templateId", item.TemplateID)
+		event.AddNewValue("templateId", changes.TemplateID)
+		item.TemplateID = changes.TemplateID
+	}
+
 	if _, ok := input["definitionId"]; ok && (item.DefinitionID != changes.DefinitionID) && (item.DefinitionID == nil || changes.DefinitionID == nil || *item.DefinitionID != *changes.DefinitionID) {
 		event.AddOldValue("definitionId", item.DefinitionID)
 		event.AddNewValue("definitionId", changes.DefinitionID)
@@ -846,6 +865,13 @@ func UpdateConfiguratorItemHandler(ctx context.Context, r *GeneratedResolver, id
 	if err != nil {
 		tx.Rollback()
 		return
+	}
+
+	if ids, exists := input["templatedChildsIds"]; exists {
+		items := []ConfiguratorItem{}
+		tx.Find(&items, "id IN (?)", ids)
+		association := tx.Model(&item).Association("TemplatedChilds")
+		association.Replace(items)
 	}
 
 	if ids, exists := input["attributesIds"]; exists {

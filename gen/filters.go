@@ -1420,6 +1420,24 @@ func (f *ConfiguratorItemFilterType) ApplyWithAlias(ctx context.Context, dialect
 		*joins = append(*joins, js...)
 	}
 
+	if f.Template != nil {
+		_alias := alias + "_template"
+		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configurator_items"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias)+".id = "+alias+"."+dialect.Quote("templateId"))
+		err := f.Template.ApplyWithAlias(ctx, dialect, _alias, wheres, values, joins)
+		if err != nil {
+			return err
+		}
+	}
+
+	if f.TemplatedChilds != nil {
+		_alias := alias + "_templatedChilds"
+		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configurator_items"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias)+"."+dialect.Quote("templateId")+" = "+dialect.Quote(alias)+".id")
+		err := f.TemplatedChilds.ApplyWithAlias(ctx, dialect, _alias, wheres, values, joins)
+		if err != nil {
+			return err
+		}
+	}
+
 	if f.Definition != nil {
 		_alias := alias + "_definition"
 		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configurator_item_definitions"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias)+".id = "+alias+"."+dialect.Quote("definitionId"))
@@ -1662,6 +1680,49 @@ func (f *ConfiguratorItemFilterType) WhereContent(dialect gorm.Dialect, aliasPre
 			conditions = append(conditions, aliasPrefix+dialect.Quote("stockItemID")+" IS NULL")
 		} else {
 			conditions = append(conditions, aliasPrefix+dialect.Quote("stockItemID")+" IS NOT NULL")
+		}
+	}
+
+	if f.TemplateID != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("templateId")+" = ?")
+		values = append(values, f.TemplateID)
+	}
+
+	if f.TemplateIDNe != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("templateId")+" != ?")
+		values = append(values, f.TemplateIDNe)
+	}
+
+	if f.TemplateIDGt != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("templateId")+" > ?")
+		values = append(values, f.TemplateIDGt)
+	}
+
+	if f.TemplateIDLt != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("templateId")+" < ?")
+		values = append(values, f.TemplateIDLt)
+	}
+
+	if f.TemplateIDGte != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("templateId")+" >= ?")
+		values = append(values, f.TemplateIDGte)
+	}
+
+	if f.TemplateIDLte != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("templateId")+" <= ?")
+		values = append(values, f.TemplateIDLte)
+	}
+
+	if f.TemplateIDIn != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("templateId")+" IN (?)")
+		values = append(values, f.TemplateIDIn)
+	}
+
+	if f.TemplateIDNull != nil {
+		if *f.TemplateIDNull {
+			conditions = append(conditions, aliasPrefix+dialect.Quote("templateId")+" IS NULL")
+		} else {
+			conditions = append(conditions, aliasPrefix+dialect.Quote("templateId")+" IS NOT NULL")
 		}
 	}
 

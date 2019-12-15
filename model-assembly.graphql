@@ -4,8 +4,11 @@ type ConfiguratorAssembly {
   item: ConfiguratorAssemblyItem
 }
 type ConfiguratorAssemblyItem {
-  id: ID!
-  definitionId: ID!
+  templateId: ID
+  isTemplate: Boolean!
+
+  id: ID
+  definitionId: ID
   code: String
   name: String
   slots: [ConfiguratorAssemblySlot!]!
@@ -31,10 +34,13 @@ input ConfiguratorAssemblyUpdateInput {
   item: ConfiguratorAssemblyItemInput
 }
 input ConfiguratorAssemblyItemInput {
+  templateId: ID
+
   id: ID
+  definitionId: ID
+
   code: String
   name: String
-  definitionId: ID!
   slots: [ConfiguratorAssemblySlotInput!]
   attributes: [ConfiguratorAssemblyAttributeInput!]
 }

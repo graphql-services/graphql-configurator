@@ -23,6 +23,15 @@ func (as *AssemblyHelper) LoadItem(ctx context.Context, ID string) (*gen.Configu
 		return nil, err
 	}
 
+	var template *gen.ConfiguratorItem
+	if item.TemplateID != nil {
+		template, err = as.r.Handlers.QueryConfiguratorItem(ctx, as.r, gen.QueryConfiguratorItemHandlerOptions{ID: item.TemplateID})
+		if err != nil {
+			return nil, err
+		}
+		item = template
+	}
+
 	_attributes, err := as.r.Handlers.ConfiguratorItemAttributes(ctx, as.r, item)
 	if err != nil {
 		return nil, err
@@ -57,11 +66,18 @@ func (as *AssemblyHelper) LoadItem(ctx context.Context, ID string) (*gen.Configu
 		})
 	}
 
+	var templateId *string
+	if template != nil {
+		templateId = &template.ID
+	}
+
 	return &gen.ConfiguratorAssemblyItem{
-		ID:           item.ID,
+		ID:           &item.ID,
+		DefinitionID: item.DefinitionID,
+		TemplateID:   templateId,
+		IsTemplate:   template != nil,
 		Code:         item.Code,
 		Name:         item.Name,
-		DefinitionID: *item.DefinitionID,
 		Attributes:   attributes,
 		Slots:        slots,
 	}, err

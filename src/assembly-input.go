@@ -10,28 +10,46 @@ import (
 type AssemblyInputHelper struct {
 }
 
-func (h *AssemblyInputHelper) Assemble(ctx context.Context, r *gen.GeneratedResolver, rootItem *gen.ConfiguratorAssemblyItemInput) (id string, err error) {
-	return h.CreateItem(ctx, r, rootItem)
-}
+// func (h *AssemblyInputHelper) Assemble(ctx context.Context, r *gen.GeneratedResolver, rootItem *gen.ConfiguratorAssemblyItemInput) (id string, err error) {
+// 	return h.CreateItem(ctx, r, rootItem)
+// }
 func (h *AssemblyInputHelper) CreateItem(ctx context.Context, r *gen.GeneratedResolver, inputItem *gen.ConfiguratorAssemblyItemInput) (string, error) {
+	return createItem(ctx, r, inputItem)
+}
+func (h *AssemblyInputHelper) UpdateItem(ctx context.Context, r *gen.GeneratedResolver, inputItem *gen.ConfiguratorAssemblyItemInput) (string, error) {
 	return createOrUpdateItem(ctx, r, inputItem)
 }
 
-func createOrUpdateItem(ctx context.Context, r *gen.GeneratedResolver, inputItem *gen.ConfiguratorAssemblyItemInput) (id string, err error) {
-	_, err = r.Handlers.QueryConfiguratorItemDefinition(ctx, r, gen.QueryConfiguratorItemDefinitionHandlerOptions{
-		ID: &inputItem.DefinitionID,
-	})
+func createItem(ctx context.Context, r *gen.GeneratedResolver, inputItem *gen.ConfiguratorAssemblyItemInput) (id string, err error) {
+	values := map[string]interface{}{
+		"id":           inputItem.ID,
+		"code":         inputItem.Code,
+		"name":         inputItem.Name,
+		"definitionId": inputItem.DefinitionID,
+		"templateId":   inputItem.TemplateID,
+	}
+
+	_, err = r.Handlers.CreateConfiguratorItem(ctx, r, values)
 	if err != nil {
 		return
 	}
+	return createOrUpdateItem(ctx, r, inputItem)
+}
+func createOrUpdateItem(ctx context.Context, r *gen.GeneratedResolver, inputItem *gen.ConfiguratorAssemblyItemInput) (id string, err error) {
+	// _, err = r.Handlers.QueryConfiguratorItemDefinition(ctx, r, gen.QueryConfiguratorItemDefinitionHandlerOptions{
+	// 	ID: inputItem.DefinitionID,
+	// })
+	// if err != nil {
+	// 	return
+	// }
 
 	values := map[string]interface{}{
 		"code":         inputItem.Code,
 		"name":         inputItem.Name,
 		"definitionId": inputItem.DefinitionID,
+		"templateId":   inputItem.TemplateID,
 	}
 	var item *gen.ConfiguratorItem
-
 	if inputItem.ID != nil {
 		item, err = r.Handlers.UpdateConfiguratorItem(ctx, r, *inputItem.ID, values)
 	} else {
