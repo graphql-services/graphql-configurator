@@ -115,12 +115,13 @@ Feature: Creating configuration items using assemblies
             """
             mutation {
                 car1: createConfiguratorAssembly(
-                input: { item: { id: "tesla", code: "tesla", name: "Tesla" } }
+                input: { item: { id: "tesla", code: "tesla", name: "Tesla",definitionId:"car" } }
             ) {
                 item {
                 id
                 code
                 name
+                definitionId
                 }
             }
             car2: createConfiguratorAssembly(
@@ -155,7 +156,8 @@ Feature: Creating configuration items using assemblies
                     "item": {
                         "id": "tesla",
                         "code": "tesla",
-                        "name": "Tesla"
+                        "name": "Tesla",
+                        "definitionId": "car"
                     }
                 },
                 "car2": {
@@ -163,7 +165,7 @@ Feature: Creating configuration items using assemblies
                         "id": "tesla",
                         "code": "tesla",
                         "name": "Tesla",
-                        "definitionId": null,
+                        "definitionId": "car",
                         "templateId": "tesla",
                         "isTemplate": true,
                         "attributes": [],
