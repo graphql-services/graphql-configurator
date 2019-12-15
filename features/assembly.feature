@@ -48,6 +48,7 @@ Feature: Creating configuration items using assemblies
                 createConfiguratorAssembly(
                     input: {
                     item: {
+                        id: "tesla",
                         code: "tesla"
                         name: "Tesla"
                         definitionId: "car"
@@ -57,9 +58,12 @@ Feature: Creating configuration items using assemblies
                     }
                 ) {
                     item {
+                    id
                     code
                     name
                     definitionId
+                    templateId
+                    isTemplate
                     attributes {
                         definitionId
                         intValue
@@ -80,9 +84,12 @@ Feature: Creating configuration items using assemblies
             {
                 "createConfiguratorAssembly": {
                     "item": {
+                        "id": "tesla",
                         "code": "tesla",
                         "name": "Tesla",
                         "definitionId": "car",
+                        "templateId": null,
+                        "isTemplate": false,
                         "attributes": [
                             {
                                 "definitionId": "weight",
@@ -98,6 +105,69 @@ Feature: Creating configuration items using assemblies
                                 }
                             }
                         ]
+                    }
+                }
+            }
+            """
+
+    Scenario: Create configuration assembly from template
+        When I send query:
+            """
+            mutation {
+                car1: createConfiguratorAssembly(
+                input: { item: { id: "tesla", code: "tesla", name: "Tesla" } }
+            ) {
+                item {
+                id
+                code
+                name
+                }
+            }
+            car2: createConfiguratorAssembly(
+                input: { item: { id: "new_car", templateId: "tesla" } }
+            ) {
+                item {
+                id
+                code
+                name
+                definitionId
+                templateId
+                isTemplate
+                attributes {
+                    definitionId
+                    intValue
+                }
+                slots {
+                    definitionId
+                    item {
+                    code
+                    name
+                    }
+                }
+                }
+            }
+            }
+            """
+        Then the response should be:
+            """
+            {
+                "car1": {
+                    "item": {
+                        "id": "tesla",
+                        "code": "tesla",
+                        "name": "Tesla"
+                    }
+                },
+                "car2": {
+                    "item": {
+                        "id": "tesla",
+                        "code": "tesla",
+                        "name": "Tesla",
+                        "definitionId": null,
+                        "templateId": "tesla",
+                        "isTemplate": true,
+                        "attributes": [],
+                        "slots": []
                     }
                 }
             }
