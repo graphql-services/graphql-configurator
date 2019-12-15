@@ -2,6 +2,7 @@ package src
 
 import (
 	"context"
+	"fmt"
 
 	"github.com/graphql-services/graphql-configurator/gen"
 )
@@ -46,15 +47,26 @@ func createOrUpdateItem(ctx context.Context, r *gen.GeneratedResolver, inputItem
 			return
 		}
 	}
+	slotIDs := map[string]bool{}
 	for _, slotInput := range inputItem.Slots {
-		err = createOrUpdateSlot(ctx, r, item.ID, slotInput)
+		var slotID string
+		slotID, err = createOrUpdateSlot(ctx, r, item.ID, slotInput)
 		if err != nil {
 			return
 		}
+		slotIDs[slotID] = true
 	}
 
-	// !!! mazani neexistujicich slotu
-	// !!! zakladani subitem!!!
+	slots, err := r.Handlers.ConfiguratorItemSlots(ctx, r, item)
+	for _, slot := range slots {
+		if _, ok := slotIDs[slot.ID]; !ok {
+			fmt.Println("deleting slot", slot.ID)
+			_, err = r.Handlers.DeleteConfiguratorSlot(ctx, r, slot.ID)
+			if err != nil {
+				return
+			}
+		}
+	}
 
 	id = item.ID
 
@@ -92,7 +104,7 @@ func createOrUpdateAttribute(ctx context.Context, r *gen.GeneratedResolver, item
 	return
 }
 
-func createOrUpdateSlot(ctx context.Context, r *gen.GeneratedResolver, itemID string, input *gen.ConfiguratorAssemblySlotInput) (err error) {
+func createOrUpdateSlot(ctx context.Context, r *gen.GeneratedResolver, itemID string, input *gen.ConfiguratorAssemblySlotInput) (slotID string, err error) {
 	_, _err := r.Handlers.QueryConfiguratorSlotDefinition(ctx, r, gen.QueryConfiguratorSlotDefinitionHandlerOptions{
 		ID: &input.DefinitionID,
 	})
@@ -115,10 +127,14 @@ func createOrUpdateSlot(ctx context.Context, r *gen.GeneratedResolver, itemID st
 		slotValues["itemId"] = subItemID
 	}
 
+	var slot *gen.ConfiguratorSlot
 	if input.ID != nil {
-		_, err = r.Handlers.UpdateConfiguratorSlot(ctx, r, *input.ID, slotValues)
+		slot, err = r.Handlers.UpdateConfiguratorSlot(ctx, r, *input.ID, slotValues)
 	} else {
-		_, err = r.Handlers.CreateConfiguratorSlot(ctx, r, slotValues)
+		slot, err = r.Handlers.CreateConfiguratorSlot(ctx, r, slotValues)
+	}
+	if err == nil {
+		slotID = slot.ID
 	}
 	// fmt.Println("!!!", err)
 
