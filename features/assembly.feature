@@ -1,9 +1,12 @@
-Feature: Field xxxId should be automatically used for filling object for xxx field
+Feature: Creating configuration items using assemblies
 
     Background: We have basic definitions
         Given I send query:
             """
             mutation {
+                deleteAllConfiguratorItems
+                deleteAllConfiguratorSlots
+                deleteAllConfiguratorAttributes
                 deleteAllConfiguratorItemDefinitions
                 deleteAllConfiguratorAttributeDefinitions
                 deleteAllConfiguratorSlotDefinitions
@@ -31,8 +34,6 @@ Feature: Field xxxId should be automatically used for filling object for xxx fie
                     input: {
                     id: "wheel"
                     name: "Wheel"
-                    attributesIds: ["weight"]
-                    slotsIds: ["wheel"]
                     }
                 ) {
                     id
@@ -40,7 +41,7 @@ Feature: Field xxxId should be automatically used for filling object for xxx fie
             }
             """
 
-    Scenario: Fetching country should use the countryId field as id
+    Scenario: Create configuration assembly
         When I send query:
             """
             mutation {
@@ -51,18 +52,24 @@ Feature: Field xxxId should be automatically used for filling object for xxx fie
                         name: "Tesla"
                         definitionId: "car"
                         attributes: [{ definitionId: "weight", intValue: 1234 }]
+                        slots: [{ definitionId: "wheel", item: { definitionId:"wheel", code: "lf" } }]
                     }
                     }
                 ) {
-                    id
                     item {
                     code
                     name
                     definitionId
                     attributes {
-                        id
                         definitionId
                         intValue
+                    }
+                    slots {
+                        definitionId
+                        item {
+                        code
+                        name
+                        }
                     }
                     }
                 }
@@ -71,11 +78,26 @@ Feature: Field xxxId should be automatically used for filling object for xxx fie
         Then the response should be:
             """
             {
-                "company": {
-                    "id": "test",
-                    "countryId": "xxx",
-                    "country": {
-                        "id": "xxx"
+                "createConfiguratorAssembly": {
+                    "item": {
+                        "code": "tesla",
+                        "name": "Tesla",
+                        "definitionId": "car",
+                        "attributes": [
+                            {
+                                "definitionId": "weight",
+                                "intValue": 1234
+                            }
+                        ],
+                        "slots": [
+                            {
+                                "definitionId": "wheel",
+                                "item": {
+                                    "code": "lf",
+                                    "name": null
+                                }
+                            }
+                        ]
                     }
                 }
             }
