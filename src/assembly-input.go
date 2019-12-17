@@ -2,6 +2,7 @@ package src
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 
 	"github.com/graphql-services/graphql-configurator/gen"
@@ -10,9 +11,6 @@ import (
 type AssemblyInputHelper struct {
 }
 
-// func (h *AssemblyInputHelper) Assemble(ctx context.Context, r *gen.GeneratedResolver, rootItem *gen.ConfiguratorAssemblyItemInput) (id string, err error) {
-// 	return h.CreateItem(ctx, r, rootItem)
-// }
 func (h *AssemblyInputHelper) CreateItem(ctx context.Context, r *gen.GeneratedResolver, inputItem *gen.ConfiguratorAssemblyItemInput) (string, error) {
 	return createItem(ctx, r, inputItem)
 }
@@ -22,17 +20,21 @@ func (h *AssemblyInputHelper) UpdateItem(ctx context.Context, r *gen.GeneratedRe
 
 func createItem(ctx context.Context, r *gen.GeneratedResolver, inputItem *gen.ConfiguratorAssemblyItemInput) (id string, err error) {
 	values := map[string]interface{}{
-		"id":           inputItem.ID,
 		"code":         inputItem.Code,
 		"name":         inputItem.Name,
 		"definitionId": inputItem.DefinitionID,
-		"templateId":   inputItem.TemplateID,
+		"referenceID":  inputItem.ReferenceID,
+	}
+	if inputItem.ID != nil {
+		values["id"] = inputItem.ID
 	}
 
-	_, err = r.Handlers.CreateConfiguratorItem(ctx, r, values)
+	var item *gen.ConfiguratorItem
+	item, err = r.Handlers.CreateConfiguratorItem(ctx, r, values)
 	if err != nil {
 		return
 	}
+	inputItem.ID = &item.ID
 	return createOrUpdateItem(ctx, r, inputItem)
 }
 func createOrUpdateItem(ctx context.Context, r *gen.GeneratedResolver, inputItem *gen.ConfiguratorAssemblyItemInput) (id string, err error) {
@@ -47,8 +49,22 @@ func createOrUpdateItem(ctx context.Context, r *gen.GeneratedResolver, inputItem
 		"code":         inputItem.Code,
 		"name":         inputItem.Name,
 		"definitionId": inputItem.DefinitionID,
-		"templateId":   inputItem.TemplateID,
+		"referenceID":  inputItem.ReferenceID,
 	}
+
+	isTemplate := inputItem.ReferenceID == nil
+	if !isTemplate {
+		var data []byte
+
+		data, err = json.Marshal(inputItem)
+		if err != nil {
+			return
+		}
+		values["rawData"] = string(data)
+	} else {
+		values["rawData"] = nil
+	}
+
 	var item *gen.ConfiguratorItem
 	if inputItem.ID != nil {
 		item, err = r.Handlers.UpdateConfiguratorItem(ctx, r, *inputItem.ID, values)
@@ -59,29 +75,35 @@ func createOrUpdateItem(ctx context.Context, r *gen.GeneratedResolver, inputItem
 		return
 	}
 
-	for _, attrInput := range inputItem.Attributes {
-		err = createOrUpdateAttribute(ctx, r, item.ID, attrInput)
-		if err != nil {
-			return
-		}
-	}
-	slotIDs := map[string]bool{}
-	for _, slotInput := range inputItem.Slots {
-		var slotID string
-		slotID, err = createOrUpdateSlot(ctx, r, item.ID, slotInput)
-		if err != nil {
-			return
-		}
-		slotIDs[slotID] = true
-	}
-
-	slots, err := r.Handlers.ConfiguratorItemSlots(ctx, r, item)
-	for _, slot := range slots {
-		if _, ok := slotIDs[slot.ID]; !ok {
-			fmt.Println("deleting slot", slot.ID)
-			_, err = r.Handlers.DeleteConfiguratorSlot(ctx, r, slot.ID)
+	if isTemplate {
+		for _, attrInput := range inputItem.Attributes {
+			err = createOrUpdateAttribute(ctx, r, item.ID, attrInput)
 			if err != nil {
 				return
+			}
+		}
+		slotIDs := map[string]bool{}
+		for _, slotInput := range inputItem.Slots {
+			var slotID string
+			slotID, err = createOrUpdateSlot(ctx, r, item.ID, slotInput)
+			if err != nil {
+				return
+			}
+			slotIDs[slotID] = true
+		}
+
+		slots, _err := r.Handlers.ConfiguratorItemSlots(ctx, r, item)
+		if _err != nil {
+			err = _err
+			return
+		}
+		for _, slot := range slots {
+			if _, ok := slotIDs[slot.ID]; !ok {
+				fmt.Println("deleting slot", slot.ID)
+				_, err = r.Handlers.DeleteConfiguratorSlot(ctx, r, slot.ID)
+				if err != nil {
+					return
+				}
 			}
 		}
 	}
@@ -157,4 +179,25 @@ func createOrUpdateSlot(ctx context.Context, r *gen.GeneratedResolver, itemID st
 	// fmt.Println("!!!", err)
 
 	return
+}
+
+func removeIDs(item *gen.ConfiguratorAssemblyItem) *gen.ConfiguratorAssemblyItem {
+	item.ID = nil
+
+	attrs := []*gen.ConfiguratorAssemblyAttribute{}
+	for _, attr := range item.Attributes {
+		attr.ID = nil
+		attrs = append(attrs, attr)
+	}
+	item.Attributes = attrs
+
+	slots := []*gen.ConfiguratorAssemblySlot{}
+	for _, slot := range item.Slots {
+		slot.ID = nil
+		slot.Item = removeIDs(slot.Item)
+		slots = append(slots, slot)
+	}
+	item.Slots = slots
+
+	return item
 }

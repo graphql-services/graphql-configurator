@@ -1420,24 +1420,6 @@ func (f *ConfiguratorItemFilterType) ApplyWithAlias(ctx context.Context, dialect
 		*joins = append(*joins, js...)
 	}
 
-	if f.Template != nil {
-		_alias := alias + "_template"
-		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configurator_items"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias)+".id = "+alias+"."+dialect.Quote("templateId"))
-		err := f.Template.ApplyWithAlias(ctx, dialect, _alias, wheres, values, joins)
-		if err != nil {
-			return err
-		}
-	}
-
-	if f.TemplatedChilds != nil {
-		_alias := alias + "_templatedChilds"
-		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configurator_items"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias)+"."+dialect.Quote("templateId")+" = "+dialect.Quote(alias)+".id")
-		err := f.TemplatedChilds.ApplyWithAlias(ctx, dialect, _alias, wheres, values, joins)
-		if err != nil {
-			return err
-		}
-	}
-
 	if f.Definition != nil {
 		_alias := alias + "_definition"
 		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configurator_item_definitions"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias)+".id = "+alias+"."+dialect.Quote("definitionId"))
@@ -1683,46 +1665,119 @@ func (f *ConfiguratorItemFilterType) WhereContent(dialect gorm.Dialect, aliasPre
 		}
 	}
 
-	if f.TemplateID != nil {
-		conditions = append(conditions, aliasPrefix+dialect.Quote("templateId")+" = ?")
-		values = append(values, f.TemplateID)
+	if f.ReferenceID != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("referenceID")+" = ?")
+		values = append(values, f.ReferenceID)
 	}
 
-	if f.TemplateIDNe != nil {
-		conditions = append(conditions, aliasPrefix+dialect.Quote("templateId")+" != ?")
-		values = append(values, f.TemplateIDNe)
+	if f.ReferenceIDNe != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("referenceID")+" != ?")
+		values = append(values, f.ReferenceIDNe)
 	}
 
-	if f.TemplateIDGt != nil {
-		conditions = append(conditions, aliasPrefix+dialect.Quote("templateId")+" > ?")
-		values = append(values, f.TemplateIDGt)
+	if f.ReferenceIDGt != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("referenceID")+" > ?")
+		values = append(values, f.ReferenceIDGt)
 	}
 
-	if f.TemplateIDLt != nil {
-		conditions = append(conditions, aliasPrefix+dialect.Quote("templateId")+" < ?")
-		values = append(values, f.TemplateIDLt)
+	if f.ReferenceIDLt != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("referenceID")+" < ?")
+		values = append(values, f.ReferenceIDLt)
 	}
 
-	if f.TemplateIDGte != nil {
-		conditions = append(conditions, aliasPrefix+dialect.Quote("templateId")+" >= ?")
-		values = append(values, f.TemplateIDGte)
+	if f.ReferenceIDGte != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("referenceID")+" >= ?")
+		values = append(values, f.ReferenceIDGte)
 	}
 
-	if f.TemplateIDLte != nil {
-		conditions = append(conditions, aliasPrefix+dialect.Quote("templateId")+" <= ?")
-		values = append(values, f.TemplateIDLte)
+	if f.ReferenceIDLte != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("referenceID")+" <= ?")
+		values = append(values, f.ReferenceIDLte)
 	}
 
-	if f.TemplateIDIn != nil {
-		conditions = append(conditions, aliasPrefix+dialect.Quote("templateId")+" IN (?)")
-		values = append(values, f.TemplateIDIn)
+	if f.ReferenceIDIn != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("referenceID")+" IN (?)")
+		values = append(values, f.ReferenceIDIn)
 	}
 
-	if f.TemplateIDNull != nil {
-		if *f.TemplateIDNull {
-			conditions = append(conditions, aliasPrefix+dialect.Quote("templateId")+" IS NULL")
+	if f.ReferenceIDLike != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("referenceID")+" LIKE ?")
+		values = append(values, strings.Replace(strings.Replace(*f.ReferenceIDLike, "?", "_", -1), "*", "%", -1))
+	}
+
+	if f.ReferenceIDPrefix != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("referenceID")+" LIKE ?")
+		values = append(values, fmt.Sprintf("%s%%", *f.ReferenceIDPrefix))
+	}
+
+	if f.ReferenceIDSuffix != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("referenceID")+" LIKE ?")
+		values = append(values, fmt.Sprintf("%%%s", *f.ReferenceIDSuffix))
+	}
+
+	if f.ReferenceIDNull != nil {
+		if *f.ReferenceIDNull {
+			conditions = append(conditions, aliasPrefix+dialect.Quote("referenceID")+" IS NULL")
 		} else {
-			conditions = append(conditions, aliasPrefix+dialect.Quote("templateId")+" IS NOT NULL")
+			conditions = append(conditions, aliasPrefix+dialect.Quote("referenceID")+" IS NOT NULL")
+		}
+	}
+
+	if f.RawData != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("rawData")+" = ?")
+		values = append(values, f.RawData)
+	}
+
+	if f.RawDataNe != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("rawData")+" != ?")
+		values = append(values, f.RawDataNe)
+	}
+
+	if f.RawDataGt != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("rawData")+" > ?")
+		values = append(values, f.RawDataGt)
+	}
+
+	if f.RawDataLt != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("rawData")+" < ?")
+		values = append(values, f.RawDataLt)
+	}
+
+	if f.RawDataGte != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("rawData")+" >= ?")
+		values = append(values, f.RawDataGte)
+	}
+
+	if f.RawDataLte != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("rawData")+" <= ?")
+		values = append(values, f.RawDataLte)
+	}
+
+	if f.RawDataIn != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("rawData")+" IN (?)")
+		values = append(values, f.RawDataIn)
+	}
+
+	if f.RawDataLike != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("rawData")+" LIKE ?")
+		values = append(values, strings.Replace(strings.Replace(*f.RawDataLike, "?", "_", -1), "*", "%", -1))
+	}
+
+	if f.RawDataPrefix != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("rawData")+" LIKE ?")
+		values = append(values, fmt.Sprintf("%s%%", *f.RawDataPrefix))
+	}
+
+	if f.RawDataSuffix != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("rawData")+" LIKE ?")
+		values = append(values, fmt.Sprintf("%%%s", *f.RawDataSuffix))
+	}
+
+	if f.RawDataNull != nil {
+		if *f.RawDataNull {
+			conditions = append(conditions, aliasPrefix+dialect.Quote("rawData")+" IS NULL")
+		} else {
+			conditions = append(conditions, aliasPrefix+dialect.Quote("rawData")+" IS NOT NULL")
 		}
 	}
 

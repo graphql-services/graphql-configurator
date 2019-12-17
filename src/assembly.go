@@ -2,6 +2,7 @@ package src
 
 import (
 	"context"
+	"encoding/json"
 
 	"github.com/graphql-services/graphql-configurator/gen"
 )
@@ -11,28 +12,27 @@ type AssemblyHelper struct {
 }
 
 func (as *AssemblyHelper) Load(ctx context.Context, ID string) (*gen.ConfiguratorAssembly, error) {
-	item, err := as.LoadItem(ctx, ID)
+	item, err := LoadItem(ctx, as.r, ID)
 	return &gen.ConfiguratorAssembly{
 		ID:   ID,
 		Item: item,
 	}, err
 }
-func (as *AssemblyHelper) LoadItem(ctx context.Context, ID string) (*gen.ConfiguratorAssemblyItem, error) {
-	item, err := as.r.Handlers.QueryConfiguratorItem(ctx, as.r, gen.QueryConfiguratorItemHandlerOptions{ID: &ID})
+func LoadItem(ctx context.Context, r *gen.GeneratedResolver, ID string) (*gen.ConfiguratorAssemblyItem, error) {
+	item, err := r.Handlers.QueryConfiguratorItem(ctx, r, gen.QueryConfiguratorItemHandlerOptions{ID: &ID})
 	if err != nil {
 		return nil, err
 	}
 
-	var template *gen.ConfiguratorItem
-	if item.TemplateID != nil {
-		template, err = as.r.Handlers.QueryConfiguratorItem(ctx, as.r, gen.QueryConfiguratorItemHandlerOptions{ID: item.TemplateID})
-		if err != nil {
-			return nil, err
-		}
-		item = template
+	isNotTemplate := item.ReferenceID == nil
+	if !isNotTemplate {
+		rawData := *item.RawData
+		var item *gen.ConfiguratorAssemblyItem
+		err := json.Unmarshal([]byte(rawData), &item)
+		return item, err
 	}
 
-	_attributes, err := as.r.Handlers.ConfiguratorItemAttributes(ctx, as.r, item)
+	_attributes, err := r.Handlers.ConfiguratorItemAttributes(ctx, r, item)
 	if err != nil {
 		return nil, err
 	}
@@ -40,7 +40,7 @@ func (as *AssemblyHelper) LoadItem(ctx context.Context, ID string) (*gen.Configu
 	attributes := []*gen.ConfiguratorAssemblyAttribute{}
 	for _, attr := range _attributes {
 		attributes = append(attributes, &gen.ConfiguratorAssemblyAttribute{
-			ID:           attr.ID,
+			ID:           &attr.ID,
 			DefinitionID: *attr.DefinitionID,
 			StringValue:  attr.StringValue,
 			IntValue:     attr.IntValue,
@@ -48,34 +48,28 @@ func (as *AssemblyHelper) LoadItem(ctx context.Context, ID string) (*gen.Configu
 		})
 	}
 
-	_slots, err := as.r.Handlers.ConfiguratorItemSlots(ctx, as.r, item)
+	_slots, err := r.Handlers.ConfiguratorItemSlots(ctx, r, item)
 	if err != nil {
 		return nil, err
 	}
 	slots := []*gen.ConfiguratorAssemblySlot{}
 	for _, slot := range _slots {
-		slotItem, err := as.LoadItem(ctx, *slot.ItemID)
+		slotItem, err := LoadItem(ctx, r, *slot.ItemID)
 		if err != nil {
 			return nil, err
 		}
 
 		slots = append(slots, &gen.ConfiguratorAssemblySlot{
-			ID:           slot.ID,
+			ID:           &slot.ID,
 			DefinitionID: *slot.DefinitionID,
 			Item:         slotItem,
 		})
 	}
 
-	var templateId *string
-	if template != nil {
-		templateId = &template.ID
-	}
-
 	return &gen.ConfiguratorAssemblyItem{
 		ID:           &item.ID,
 		DefinitionID: item.DefinitionID,
-		TemplateID:   templateId,
-		IsTemplate:   template != nil,
+		ReferenceID:  item.ReferenceID,
 		Code:         item.Code,
 		Name:         item.Name,
 		Attributes:   attributes,

@@ -741,10 +741,16 @@ func CreateConfiguratorItemHandler(ctx context.Context, r *GeneratedResolver, in
 		event.AddNewValue("stockItemID", changes.StockItemID)
 	}
 
-	if _, ok := input["templateId"]; ok && (item.TemplateID != changes.TemplateID) && (item.TemplateID == nil || changes.TemplateID == nil || *item.TemplateID != *changes.TemplateID) {
-		item.TemplateID = changes.TemplateID
+	if _, ok := input["referenceID"]; ok && (item.ReferenceID != changes.ReferenceID) && (item.ReferenceID == nil || changes.ReferenceID == nil || *item.ReferenceID != *changes.ReferenceID) {
+		item.ReferenceID = changes.ReferenceID
 
-		event.AddNewValue("templateId", changes.TemplateID)
+		event.AddNewValue("referenceID", changes.ReferenceID)
+	}
+
+	if _, ok := input["rawData"]; ok && (item.RawData != changes.RawData) && (item.RawData == nil || changes.RawData == nil || *item.RawData != *changes.RawData) {
+		item.RawData = changes.RawData
+
+		event.AddNewValue("rawData", changes.RawData)
 	}
 
 	if _, ok := input["definitionId"]; ok && (item.DefinitionID != changes.DefinitionID) && (item.DefinitionID == nil || changes.DefinitionID == nil || *item.DefinitionID != *changes.DefinitionID) {
@@ -757,13 +763,6 @@ func CreateConfiguratorItemHandler(ctx context.Context, r *GeneratedResolver, in
 	if err != nil {
 		tx.Rollback()
 		return
-	}
-
-	if ids, exists := input["templatedChildsIds"]; exists {
-		items := []ConfiguratorItem{}
-		tx.Find(&items, "id IN (?)", ids)
-		association := tx.Model(&item).Association("TemplatedChilds")
-		association.Replace(items)
 	}
 
 	if ids, exists := input["attributesIds"]; exists {
@@ -849,10 +848,16 @@ func UpdateConfiguratorItemHandler(ctx context.Context, r *GeneratedResolver, id
 		item.StockItemID = changes.StockItemID
 	}
 
-	if _, ok := input["templateId"]; ok && (item.TemplateID != changes.TemplateID) && (item.TemplateID == nil || changes.TemplateID == nil || *item.TemplateID != *changes.TemplateID) {
-		event.AddOldValue("templateId", item.TemplateID)
-		event.AddNewValue("templateId", changes.TemplateID)
-		item.TemplateID = changes.TemplateID
+	if _, ok := input["referenceID"]; ok && (item.ReferenceID != changes.ReferenceID) && (item.ReferenceID == nil || changes.ReferenceID == nil || *item.ReferenceID != *changes.ReferenceID) {
+		event.AddOldValue("referenceID", item.ReferenceID)
+		event.AddNewValue("referenceID", changes.ReferenceID)
+		item.ReferenceID = changes.ReferenceID
+	}
+
+	if _, ok := input["rawData"]; ok && (item.RawData != changes.RawData) && (item.RawData == nil || changes.RawData == nil || *item.RawData != *changes.RawData) {
+		event.AddOldValue("rawData", item.RawData)
+		event.AddNewValue("rawData", changes.RawData)
+		item.RawData = changes.RawData
 	}
 
 	if _, ok := input["definitionId"]; ok && (item.DefinitionID != changes.DefinitionID) && (item.DefinitionID == nil || changes.DefinitionID == nil || *item.DefinitionID != *changes.DefinitionID) {
@@ -865,13 +870,6 @@ func UpdateConfiguratorItemHandler(ctx context.Context, r *GeneratedResolver, id
 	if err != nil {
 		tx.Rollback()
 		return
-	}
-
-	if ids, exists := input["templatedChildsIds"]; exists {
-		items := []ConfiguratorItem{}
-		tx.Find(&items, "id IN (?)", ids)
-		association := tx.Model(&item).Association("TemplatedChilds")
-		association.Replace(items)
 	}
 
 	if ids, exists := input["attributesIds"]; exists {

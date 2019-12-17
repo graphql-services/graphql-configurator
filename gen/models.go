@@ -129,16 +129,13 @@ type ConfiguratorItem struct {
 	Code         *string    `json:"code" gorm:"column:code"`
 	Name         *string    `json:"name" gorm:"column:name"`
 	StockItemID  *string    `json:"stockItemID" gorm:"column:stockItemID"`
-	TemplateID   *string    `json:"templateId" gorm:"column:templateId"`
+	ReferenceID  *string    `json:"referenceID" gorm:"column:referenceID"`
+	RawData      *string    `json:"rawData" gorm:"column:rawData;type:text"`
 	DefinitionID *string    `json:"definitionId" gorm:"column:definitionId"`
 	UpdatedAt    *time.Time `json:"updatedAt" gorm:"column:updatedAt"`
 	CreatedAt    time.Time  `json:"createdAt" gorm:"column:createdAt"`
 	UpdatedBy    *string    `json:"updatedBy" gorm:"column:updatedBy"`
 	CreatedBy    *string    `json:"createdBy" gorm:"column:createdBy"`
-
-	Template *ConfiguratorItem `json:"template"`
-
-	TemplatedChilds []*ConfiguratorItem `json:"templatedChilds" gorm:"foreignkey:TemplateID"`
 
 	Definition *ConfiguratorItemDefinition `json:"definition"`
 
@@ -156,17 +153,17 @@ type ConfiguratorItemChanges struct {
 	Code         *string
 	Name         *string
 	StockItemID  *string
-	TemplateID   *string
+	ReferenceID  *string
+	RawData      *string
 	DefinitionID *string
 	UpdatedAt    *time.Time
 	CreatedAt    time.Time
 	UpdatedBy    *string
 	CreatedBy    *string
 
-	TemplatedChildsIDs []*string
-	AttributesIDs      []*string
-	SlotsIDs           []*string
-	ParentSlotsIDs     []*string
+	AttributesIDs  []*string
+	SlotsIDs       []*string
+	ParentSlotsIDs []*string
 }
 
 type ConfiguratorAttributeResultType struct {

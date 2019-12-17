@@ -648,47 +648,6 @@ func (r *GeneratedConfiguratorItemResultTypeResolver) Count(ctx context.Context,
 
 type GeneratedConfiguratorItemResolver struct{ *GeneratedResolver }
 
-func (r *GeneratedConfiguratorItemResolver) Template(ctx context.Context, obj *ConfiguratorItem) (res *ConfiguratorItem, err error) {
-	return r.Handlers.ConfiguratorItemTemplate(ctx, r.GeneratedResolver, obj)
-}
-func ConfiguratorItemTemplateHandler(ctx context.Context, r *GeneratedResolver, obj *ConfiguratorItem) (res *ConfiguratorItem, err error) {
-
-	loaders := ctx.Value(KeyLoaders).(map[string]*dataloader.Loader)
-	if obj.TemplateID != nil {
-		item, _err := loaders["ConfiguratorItem"].Load(ctx, dataloader.StringKey(*obj.TemplateID))()
-		res, _ = item.(*ConfiguratorItem)
-
-		err = _err
-	}
-
-	return
-}
-
-func (r *GeneratedConfiguratorItemResolver) TemplatedChilds(ctx context.Context, obj *ConfiguratorItem) (res []*ConfiguratorItem, err error) {
-	return r.Handlers.ConfiguratorItemTemplatedChilds(ctx, r.GeneratedResolver, obj)
-}
-func ConfiguratorItemTemplatedChildsHandler(ctx context.Context, r *GeneratedResolver, obj *ConfiguratorItem) (res []*ConfiguratorItem, err error) {
-
-	items := []*ConfiguratorItem{}
-	err = r.DB.Query().Model(obj).Related(&items, "TemplatedChilds").Error
-	res = items
-
-	return
-}
-
-func (r *GeneratedConfiguratorItemResolver) TemplatedChildsIds(ctx context.Context, obj *ConfiguratorItem) (ids []string, err error) {
-	ids = []string{}
-
-	items := []*ConfiguratorItem{}
-	err = r.DB.Query().Model(obj).Select(TableName("configurator_items")+".id").Related(&items, "TemplatedChilds").Error
-
-	for _, item := range items {
-		ids = append(ids, item.ID)
-	}
-
-	return
-}
-
 func (r *GeneratedConfiguratorItemResolver) Definition(ctx context.Context, obj *ConfiguratorItem) (res *ConfiguratorItemDefinition, err error) {
 	return r.Handlers.ConfiguratorItemDefinition(ctx, r.GeneratedResolver, obj)
 }

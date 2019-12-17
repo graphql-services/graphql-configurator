@@ -48,12 +48,20 @@ Feature: Creating configuration items using assemblies
                 createConfiguratorAssembly(
                     input: {
                     item: {
-                        id: "tesla",
+                        id: "tesla"
                         code: "tesla"
                         name: "Tesla"
                         definitionId: "car"
-                        attributes: [{ definitionId: "weight", intValue: 1234 }]
-                        slots: [{ definitionId: "wheel", item: { definitionId:"wheel", code: "lf" } }]
+                        attributes:[
+                        {definitionId:"weight",stringValue:"aaa"}
+                        ],
+                        slots:[
+                        {definitionId:"wheel",item:{
+                            definitionId:"wheel",
+                            code:"wheel",
+                            name:"Right front"
+                        }}
+                        ]
                     }
                     }
                 ) {
@@ -62,18 +70,9 @@ Feature: Creating configuration items using assemblies
                     code
                     name
                     definitionId
-                    templateId
-                    isTemplate
                     attributes {
                         definitionId
-                        intValue
-                    }
-                    slots {
-                        definitionId
-                        item {
-                        code
-                        name
-                        }
+                        stringValue
                     }
                     }
                 }
@@ -88,21 +87,10 @@ Feature: Creating configuration items using assemblies
                         "code": "tesla",
                         "name": "Tesla",
                         "definitionId": "car",
-                        "templateId": null,
-                        "isTemplate": false,
                         "attributes": [
                             {
                                 "definitionId": "weight",
-                                "intValue": 1234
-                            }
-                        ],
-                        "slots": [
-                            {
-                                "definitionId": "wheel",
-                                "item": {
-                                    "code": "lf",
-                                    "name": null
-                                }
+                                "stringValue": "aaa"
                             }
                         ]
                     }
@@ -110,67 +98,63 @@ Feature: Creating configuration items using assemblies
             }
             """
 
-    Scenario: Create configuration assembly from template
-        When I send query:
-            """
-            mutation {
-                car1: createConfiguratorAssembly(
-                input: { item: { id: "tesla", code: "tesla", name: "Tesla",definitionId:"car" } }
-            ) {
-                item {
-                id
-                code
-                name
-                definitionId
-                }
-            }
-            car2: createConfiguratorAssembly(
-                input: { item: { id: "new_car", templateId: "tesla" } }
-            ) {
-                item {
-                id
-                code
-                name
-                definitionId
-                templateId
-                isTemplate
-                attributes {
-                    definitionId
-                    intValue
-                }
-                slots {
-                    definitionId
-                    item {
-                    code
-                    name
-                    }
-                }
-                }
-            }
-            }
-            """
-        Then the response should be:
-            """
-            {
-                "car1": {
-                    "item": {
-                        "id": "tesla",
-                        "code": "tesla",
-                        "name": "Tesla",
-                        "definitionId": "car"
-                    }
-                },
-                "car2": {
-                    "item": {
-                        "id": "tesla",
-                        "code": "tesla",
-                        "name": "Tesla",
-                        "definitionId": "car",
-                        "templateId": "tesla",
-                        "isTemplate": true,
-                        "attributes": [],
-                        "slots": []
-                    }
-                }
-            }
-            """
+# Scenario: Create configuration assembly from template
+#     When I send query:
+#         """
+#         mutation {
+#             car1: createConfiguratorAssembly(
+#             input: { item: { id: "tesla", code: "tesla", name: "Tesla",definitionId:"car" } }
+#         ) {
+#             item {
+#             id
+#             code
+#             name
+#             definitionId
+#             }
+#         }
+#         car2: createConfiguratorAssembly(
+#             input: { item: { id: "new_car", templateId: "tesla" } }
+#         ) {
+#             item {
+#             id
+#             code
+#             name
+#             definitionId
+#             attributes {
+#                 definitionId
+#                 intValue
+#             }
+#             slots {
+#                 definitionId
+#                 item {
+#                 code
+#                 name
+#                 }
+#             }
+#             }
+#         }
+#         }
+#         """
+#     Then the response should be:
+#         """
+#         {
+#             "car1": {
+#                 "item": {
+#                     "id": "tesla",
+#                     "code": "tesla",
+#                     "name": "Tesla",
+#                     "definitionId": "car"
+#                 }
+#             },
+#             "car2": {
+#                 "item": {
+#                     "id": "tesla",
+#                     "code": "tesla",
+#                     "name": "Tesla",
+#                     "definitionId": "car",
+#                     "attributes": [],
+#                     "slots": []
+#                 }
+#             }
+#         }
+#         """

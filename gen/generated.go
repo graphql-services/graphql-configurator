@@ -73,10 +73,9 @@ type ComplexityRoot struct {
 		Code         func(childComplexity int) int
 		DefinitionID func(childComplexity int) int
 		ID           func(childComplexity int) int
-		IsTemplate   func(childComplexity int) int
 		Name         func(childComplexity int) int
+		ReferenceID  func(childComplexity int) int
 		Slots        func(childComplexity int) int
-		TemplateID   func(childComplexity int) int
 	}
 
 	ConfiguratorAssemblySlot struct {
@@ -125,26 +124,24 @@ type ComplexityRoot struct {
 	}
 
 	ConfiguratorItem struct {
-		Attributes         func(childComplexity int) int
-		AttributesIds      func(childComplexity int) int
-		Code               func(childComplexity int) int
-		CreatedAt          func(childComplexity int) int
-		CreatedBy          func(childComplexity int) int
-		Definition         func(childComplexity int) int
-		DefinitionID       func(childComplexity int) int
-		ID                 func(childComplexity int) int
-		Name               func(childComplexity int) int
-		ParentSlots        func(childComplexity int) int
-		ParentSlotsIds     func(childComplexity int) int
-		Slots              func(childComplexity int) int
-		SlotsIds           func(childComplexity int) int
-		StockItemID        func(childComplexity int) int
-		Template           func(childComplexity int) int
-		TemplateID         func(childComplexity int) int
-		TemplatedChilds    func(childComplexity int) int
-		TemplatedChildsIds func(childComplexity int) int
-		UpdatedAt          func(childComplexity int) int
-		UpdatedBy          func(childComplexity int) int
+		Attributes     func(childComplexity int) int
+		AttributesIds  func(childComplexity int) int
+		Code           func(childComplexity int) int
+		CreatedAt      func(childComplexity int) int
+		CreatedBy      func(childComplexity int) int
+		Definition     func(childComplexity int) int
+		DefinitionID   func(childComplexity int) int
+		ID             func(childComplexity int) int
+		Name           func(childComplexity int) int
+		ParentSlots    func(childComplexity int) int
+		ParentSlotsIds func(childComplexity int) int
+		RawData        func(childComplexity int) int
+		ReferenceID    func(childComplexity int) int
+		Slots          func(childComplexity int) int
+		SlotsIds       func(childComplexity int) int
+		StockItemID    func(childComplexity int) int
+		UpdatedAt      func(childComplexity int) int
+		UpdatedBy      func(childComplexity int) int
 	}
 
 	ConfiguratorItemDefinition struct {
@@ -282,14 +279,11 @@ type ConfiguratorAttributeResultTypeResolver interface {
 	Count(ctx context.Context, obj *ConfiguratorAttributeResultType) (int, error)
 }
 type ConfiguratorItemResolver interface {
-	Template(ctx context.Context, obj *ConfiguratorItem) (*ConfiguratorItem, error)
-	TemplatedChilds(ctx context.Context, obj *ConfiguratorItem) ([]*ConfiguratorItem, error)
 	Definition(ctx context.Context, obj *ConfiguratorItem) (*ConfiguratorItemDefinition, error)
 	Attributes(ctx context.Context, obj *ConfiguratorItem) ([]*ConfiguratorAttribute, error)
 	Slots(ctx context.Context, obj *ConfiguratorItem) ([]*ConfiguratorSlot, error)
 	ParentSlots(ctx context.Context, obj *ConfiguratorItem) ([]*ConfiguratorSlot, error)
 
-	TemplatedChildsIds(ctx context.Context, obj *ConfiguratorItem) ([]string, error)
 	AttributesIds(ctx context.Context, obj *ConfiguratorItem) ([]string, error)
 	SlotsIds(ctx context.Context, obj *ConfiguratorItem) ([]string, error)
 	ParentSlotsIds(ctx context.Context, obj *ConfiguratorItem) ([]string, error)
@@ -467,13 +461,6 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.ConfiguratorAssemblyItem.ID(childComplexity), true
 
-	case "ConfiguratorAssemblyItem.isTemplate":
-		if e.complexity.ConfiguratorAssemblyItem.IsTemplate == nil {
-			break
-		}
-
-		return e.complexity.ConfiguratorAssemblyItem.IsTemplate(childComplexity), true
-
 	case "ConfiguratorAssemblyItem.name":
 		if e.complexity.ConfiguratorAssemblyItem.Name == nil {
 			break
@@ -481,19 +468,19 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.ConfiguratorAssemblyItem.Name(childComplexity), true
 
+	case "ConfiguratorAssemblyItem.referenceID":
+		if e.complexity.ConfiguratorAssemblyItem.ReferenceID == nil {
+			break
+		}
+
+		return e.complexity.ConfiguratorAssemblyItem.ReferenceID(childComplexity), true
+
 	case "ConfiguratorAssemblyItem.slots":
 		if e.complexity.ConfiguratorAssemblyItem.Slots == nil {
 			break
 		}
 
 		return e.complexity.ConfiguratorAssemblyItem.Slots(childComplexity), true
-
-	case "ConfiguratorAssemblyItem.templateId":
-		if e.complexity.ConfiguratorAssemblyItem.TemplateID == nil {
-			break
-		}
-
-		return e.complexity.ConfiguratorAssemblyItem.TemplateID(childComplexity), true
 
 	case "ConfiguratorAssemblySlot.definitionId":
 		if e.complexity.ConfiguratorAssemblySlot.DefinitionID == nil {
@@ -782,6 +769,20 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.ConfiguratorItem.ParentSlotsIds(childComplexity), true
 
+	case "ConfiguratorItem.rawData":
+		if e.complexity.ConfiguratorItem.RawData == nil {
+			break
+		}
+
+		return e.complexity.ConfiguratorItem.RawData(childComplexity), true
+
+	case "ConfiguratorItem.referenceID":
+		if e.complexity.ConfiguratorItem.ReferenceID == nil {
+			break
+		}
+
+		return e.complexity.ConfiguratorItem.ReferenceID(childComplexity), true
+
 	case "ConfiguratorItem.slots":
 		if e.complexity.ConfiguratorItem.Slots == nil {
 			break
@@ -802,34 +803,6 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.ConfiguratorItem.StockItemID(childComplexity), true
-
-	case "ConfiguratorItem.template":
-		if e.complexity.ConfiguratorItem.Template == nil {
-			break
-		}
-
-		return e.complexity.ConfiguratorItem.Template(childComplexity), true
-
-	case "ConfiguratorItem.templateId":
-		if e.complexity.ConfiguratorItem.TemplateID == nil {
-			break
-		}
-
-		return e.complexity.ConfiguratorItem.TemplateID(childComplexity), true
-
-	case "ConfiguratorItem.templatedChilds":
-		if e.complexity.ConfiguratorItem.TemplatedChilds == nil {
-			break
-		}
-
-		return e.complexity.ConfiguratorItem.TemplatedChilds(childComplexity), true
-
-	case "ConfiguratorItem.templatedChildsIds":
-		if e.complexity.ConfiguratorItem.TemplatedChildsIds == nil {
-			break
-		}
-
-		return e.complexity.ConfiguratorItem.TemplatedChildsIds(childComplexity), true
 
 	case "ConfiguratorItem.updatedAt":
 		if e.complexity.ConfiguratorItem.UpdatedAt == nil {
@@ -1725,10 +1698,9 @@ type ConfiguratorAssembly {
 }
 
 type ConfiguratorAssemblyItem {
-  templateId: ID
-  isTemplate: Boolean!
   id: ID
   definitionId: ID
+  referenceID: ID
   code: String
   name: String
   slots: [ConfiguratorAssemblySlot!]!
@@ -1736,7 +1708,7 @@ type ConfiguratorAssemblyItem {
 }
 
 type ConfiguratorAssemblyAttribute {
-  id: ID!
+  id: ID
   definitionId: ID!
   stringValue: String
   intValue: Int
@@ -1744,7 +1716,7 @@ type ConfiguratorAssemblyAttribute {
 }
 
 type ConfiguratorAssemblySlot {
-  id: ID!
+  id: ID
   definitionId: ID!
   item: ConfiguratorAssemblyItem
 }
@@ -1758,9 +1730,9 @@ input ConfiguratorAssemblyUpdateInput {
 }
 
 input ConfiguratorAssemblyItemInput {
-  templateId: ID
   id: ID
   definitionId: ID
+  referenceID: ID
   code: String
   name: String
   slots: [ConfiguratorAssemblySlotInput!]
@@ -1845,19 +1817,17 @@ type ConfiguratorItem {
   code: String
   name: String
   stockItemID: ID
-  template: ConfiguratorItem
-  templatedChilds: [ConfiguratorItem!]!
+  referenceID: String
+  rawData: String
   definition: ConfiguratorItemDefinition
   attributes: [ConfiguratorAttribute!]!
   slots: [ConfiguratorSlot!]!
   parentSlots: [ConfiguratorSlot!]!
-  templateId: ID
   definitionId: ID
   updatedAt: Time
   createdAt: Time!
   updatedBy: ID
   createdBy: ID
-  templatedChildsIds: [ID!]!
   attributesIds: [ID!]!
   slotsIds: [ID!]!
   parentSlotsIds: [ID!]!
@@ -2210,9 +2180,9 @@ input ConfiguratorItemCreateInput {
   code: String
   name: String
   stockItemID: ID
-  templateId: ID
+  referenceID: String
+  rawData: String
   definitionId: ID
-  templatedChildsIds: [ID!]
   attributesIds: [ID!]
   slotsIds: [ID!]
   parentSlotsIds: [ID!]
@@ -2222,9 +2192,9 @@ input ConfiguratorItemUpdateInput {
   code: String
   name: String
   stockItemID: ID
-  templateId: ID
+  referenceID: String
+  rawData: String
   definitionId: ID
-  templatedChildsIds: [ID!]
   attributesIds: [ID!]
   slotsIds: [ID!]
   parentSlotsIds: [ID!]
@@ -2235,18 +2205,16 @@ input ConfiguratorItemSortType {
   code: ObjectSortType
   name: ObjectSortType
   stockItemID: ObjectSortType
-  templateId: ObjectSortType
+  referenceID: ObjectSortType
+  rawData: ObjectSortType
   definitionId: ObjectSortType
   updatedAt: ObjectSortType
   createdAt: ObjectSortType
   updatedBy: ObjectSortType
   createdBy: ObjectSortType
-  templatedChildsIds: ObjectSortType
   attributesIds: ObjectSortType
   slotsIds: ObjectSortType
   parentSlotsIds: ObjectSortType
-  template: ConfiguratorItemSortType
-  templatedChilds: ConfiguratorItemSortType
   definition: ConfiguratorItemDefinitionSortType
   attributes: ConfiguratorAttributeSortType
   slots: ConfiguratorSlotSortType
@@ -2294,14 +2262,28 @@ input ConfiguratorItemFilterType {
   stockItemID_lte: ID
   stockItemID_in: [ID!]
   stockItemID_null: Boolean
-  templateId: ID
-  templateId_ne: ID
-  templateId_gt: ID
-  templateId_lt: ID
-  templateId_gte: ID
-  templateId_lte: ID
-  templateId_in: [ID!]
-  templateId_null: Boolean
+  referenceID: String
+  referenceID_ne: String
+  referenceID_gt: String
+  referenceID_lt: String
+  referenceID_gte: String
+  referenceID_lte: String
+  referenceID_in: [String!]
+  referenceID_like: String
+  referenceID_prefix: String
+  referenceID_suffix: String
+  referenceID_null: Boolean
+  rawData: String
+  rawData_ne: String
+  rawData_gt: String
+  rawData_lt: String
+  rawData_gte: String
+  rawData_lte: String
+  rawData_in: [String!]
+  rawData_like: String
+  rawData_prefix: String
+  rawData_suffix: String
+  rawData_null: Boolean
   definitionId: ID
   definitionId_ne: ID
   definitionId_gt: ID
@@ -2342,8 +2324,6 @@ input ConfiguratorItemFilterType {
   createdBy_lte: ID
   createdBy_in: [ID!]
   createdBy_null: Boolean
-  template: ConfiguratorItemFilterType
-  templatedChilds: ConfiguratorItemFilterType
   definition: ConfiguratorItemDefinitionFilterType
   attributes: ConfiguratorAttributeFilterType
   slots: ConfiguratorSlotFilterType
@@ -3549,15 +3529,12 @@ func (ec *executionContext) _ConfiguratorAssemblyAttribute_id(ctx context.Contex
 		return graphql.Null
 	}
 	if resTmp == nil {
-		if !ec.HasError(rctx) {
-			ec.Errorf(ctx, "must not be null")
-		}
 		return graphql.Null
 	}
-	res := resTmp.(string)
+	res := resTmp.(*string)
 	rctx.Result = res
 	ctx = ec.Tracer.StartFieldChildExecution(ctx)
-	return ec.marshalNID2string(ctx, field.Selections, res)
+	return ec.marshalOID2ᚖstring(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) _ConfiguratorAssemblyAttribute_definitionId(ctx context.Context, field graphql.CollectedField, obj *ConfiguratorAssemblyAttribute) (ret graphql.Marshaler) {
@@ -3699,77 +3676,6 @@ func (ec *executionContext) _ConfiguratorAssemblyAttribute_floatValue(ctx contex
 	return ec.marshalOFloat2ᚖfloat64(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) _ConfiguratorAssemblyItem_templateId(ctx context.Context, field graphql.CollectedField, obj *ConfiguratorAssemblyItem) (ret graphql.Marshaler) {
-	ctx = ec.Tracer.StartFieldExecution(ctx, field)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-		ec.Tracer.EndFieldExecution(ctx)
-	}()
-	rctx := &graphql.ResolverContext{
-		Object:   "ConfiguratorAssemblyItem",
-		Field:    field,
-		Args:     nil,
-		IsMethod: false,
-	}
-	ctx = graphql.WithResolverContext(ctx, rctx)
-	ctx = ec.Tracer.StartFieldResolverExecution(ctx, rctx)
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.TemplateID, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*string)
-	rctx.Result = res
-	ctx = ec.Tracer.StartFieldChildExecution(ctx)
-	return ec.marshalOID2ᚖstring(ctx, field.Selections, res)
-}
-
-func (ec *executionContext) _ConfiguratorAssemblyItem_isTemplate(ctx context.Context, field graphql.CollectedField, obj *ConfiguratorAssemblyItem) (ret graphql.Marshaler) {
-	ctx = ec.Tracer.StartFieldExecution(ctx, field)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-		ec.Tracer.EndFieldExecution(ctx)
-	}()
-	rctx := &graphql.ResolverContext{
-		Object:   "ConfiguratorAssemblyItem",
-		Field:    field,
-		Args:     nil,
-		IsMethod: false,
-	}
-	ctx = graphql.WithResolverContext(ctx, rctx)
-	ctx = ec.Tracer.StartFieldResolverExecution(ctx, rctx)
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.IsTemplate, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		if !ec.HasError(rctx) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.(bool)
-	rctx.Result = res
-	ctx = ec.Tracer.StartFieldChildExecution(ctx)
-	return ec.marshalNBoolean2bool(ctx, field.Selections, res)
-}
-
 func (ec *executionContext) _ConfiguratorAssemblyItem_id(ctx context.Context, field graphql.CollectedField, obj *ConfiguratorAssemblyItem) (ret graphql.Marshaler) {
 	ctx = ec.Tracer.StartFieldExecution(ctx, field)
 	defer func() {
@@ -3824,6 +3730,40 @@ func (ec *executionContext) _ConfiguratorAssemblyItem_definitionId(ctx context.C
 	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
 		ctx = rctx // use context from middleware stack in children
 		return obj.DefinitionID, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*string)
+	rctx.Result = res
+	ctx = ec.Tracer.StartFieldChildExecution(ctx)
+	return ec.marshalOID2ᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) _ConfiguratorAssemblyItem_referenceID(ctx context.Context, field graphql.CollectedField, obj *ConfiguratorAssemblyItem) (ret graphql.Marshaler) {
+	ctx = ec.Tracer.StartFieldExecution(ctx, field)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+		ec.Tracer.EndFieldExecution(ctx)
+	}()
+	rctx := &graphql.ResolverContext{
+		Object:   "ConfiguratorAssemblyItem",
+		Field:    field,
+		Args:     nil,
+		IsMethod: false,
+	}
+	ctx = graphql.WithResolverContext(ctx, rctx)
+	ctx = ec.Tracer.StartFieldResolverExecution(ctx, rctx)
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.ReferenceID, nil
 	})
 	if err != nil {
 		ec.Error(ctx, err)
@@ -4006,15 +3946,12 @@ func (ec *executionContext) _ConfiguratorAssemblySlot_id(ctx context.Context, fi
 		return graphql.Null
 	}
 	if resTmp == nil {
-		if !ec.HasError(rctx) {
-			ec.Errorf(ctx, "must not be null")
-		}
 		return graphql.Null
 	}
-	res := resTmp.(string)
+	res := resTmp.(*string)
 	rctx.Result = res
 	ctx = ec.Tracer.StartFieldChildExecution(ctx)
-	return ec.marshalNID2string(ctx, field.Selections, res)
+	return ec.marshalOID2ᚖstring(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) _ConfiguratorAssemblySlot_definitionId(ctx context.Context, field graphql.CollectedField, obj *ConfiguratorAssemblySlot) (ret graphql.Marshaler) {
@@ -5181,7 +5118,7 @@ func (ec *executionContext) _ConfiguratorItem_stockItemID(ctx context.Context, f
 	return ec.marshalOID2ᚖstring(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) _ConfiguratorItem_template(ctx context.Context, field graphql.CollectedField, obj *ConfiguratorItem) (ret graphql.Marshaler) {
+func (ec *executionContext) _ConfiguratorItem_referenceID(ctx context.Context, field graphql.CollectedField, obj *ConfiguratorItem) (ret graphql.Marshaler) {
 	ctx = ec.Tracer.StartFieldExecution(ctx, field)
 	defer func() {
 		if r := recover(); r != nil {
@@ -5194,13 +5131,13 @@ func (ec *executionContext) _ConfiguratorItem_template(ctx context.Context, fiel
 		Object:   "ConfiguratorItem",
 		Field:    field,
 		Args:     nil,
-		IsMethod: true,
+		IsMethod: false,
 	}
 	ctx = graphql.WithResolverContext(ctx, rctx)
 	ctx = ec.Tracer.StartFieldResolverExecution(ctx, rctx)
 	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
 		ctx = rctx // use context from middleware stack in children
-		return ec.resolvers.ConfiguratorItem().Template(rctx, obj)
+		return obj.ReferenceID, nil
 	})
 	if err != nil {
 		ec.Error(ctx, err)
@@ -5209,13 +5146,13 @@ func (ec *executionContext) _ConfiguratorItem_template(ctx context.Context, fiel
 	if resTmp == nil {
 		return graphql.Null
 	}
-	res := resTmp.(*ConfiguratorItem)
+	res := resTmp.(*string)
 	rctx.Result = res
 	ctx = ec.Tracer.StartFieldChildExecution(ctx)
-	return ec.marshalOConfiguratorItem2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItem(ctx, field.Selections, res)
+	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) _ConfiguratorItem_templatedChilds(ctx context.Context, field graphql.CollectedField, obj *ConfiguratorItem) (ret graphql.Marshaler) {
+func (ec *executionContext) _ConfiguratorItem_rawData(ctx context.Context, field graphql.CollectedField, obj *ConfiguratorItem) (ret graphql.Marshaler) {
 	ctx = ec.Tracer.StartFieldExecution(ctx, field)
 	defer func() {
 		if r := recover(); r != nil {
@@ -5228,28 +5165,25 @@ func (ec *executionContext) _ConfiguratorItem_templatedChilds(ctx context.Contex
 		Object:   "ConfiguratorItem",
 		Field:    field,
 		Args:     nil,
-		IsMethod: true,
+		IsMethod: false,
 	}
 	ctx = graphql.WithResolverContext(ctx, rctx)
 	ctx = ec.Tracer.StartFieldResolverExecution(ctx, rctx)
 	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
 		ctx = rctx // use context from middleware stack in children
-		return ec.resolvers.ConfiguratorItem().TemplatedChilds(rctx, obj)
+		return obj.RawData, nil
 	})
 	if err != nil {
 		ec.Error(ctx, err)
 		return graphql.Null
 	}
 	if resTmp == nil {
-		if !ec.HasError(rctx) {
-			ec.Errorf(ctx, "must not be null")
-		}
 		return graphql.Null
 	}
-	res := resTmp.([]*ConfiguratorItem)
+	res := resTmp.(*string)
 	rctx.Result = res
 	ctx = ec.Tracer.StartFieldChildExecution(ctx)
-	return ec.marshalNConfiguratorItem2ᚕᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemᚄ(ctx, field.Selections, res)
+	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) _ConfiguratorItem_definition(ctx context.Context, field graphql.CollectedField, obj *ConfiguratorItem) (ret graphql.Marshaler) {
@@ -5395,40 +5329,6 @@ func (ec *executionContext) _ConfiguratorItem_parentSlots(ctx context.Context, f
 	rctx.Result = res
 	ctx = ec.Tracer.StartFieldChildExecution(ctx)
 	return ec.marshalNConfiguratorSlot2ᚕᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorSlotᚄ(ctx, field.Selections, res)
-}
-
-func (ec *executionContext) _ConfiguratorItem_templateId(ctx context.Context, field graphql.CollectedField, obj *ConfiguratorItem) (ret graphql.Marshaler) {
-	ctx = ec.Tracer.StartFieldExecution(ctx, field)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-		ec.Tracer.EndFieldExecution(ctx)
-	}()
-	rctx := &graphql.ResolverContext{
-		Object:   "ConfiguratorItem",
-		Field:    field,
-		Args:     nil,
-		IsMethod: false,
-	}
-	ctx = graphql.WithResolverContext(ctx, rctx)
-	ctx = ec.Tracer.StartFieldResolverExecution(ctx, rctx)
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.TemplateID, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*string)
-	rctx.Result = res
-	ctx = ec.Tracer.StartFieldChildExecution(ctx)
-	return ec.marshalOID2ᚖstring(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) _ConfiguratorItem_definitionId(ctx context.Context, field graphql.CollectedField, obj *ConfiguratorItem) (ret graphql.Marshaler) {
@@ -5602,43 +5502,6 @@ func (ec *executionContext) _ConfiguratorItem_createdBy(ctx context.Context, fie
 	rctx.Result = res
 	ctx = ec.Tracer.StartFieldChildExecution(ctx)
 	return ec.marshalOID2ᚖstring(ctx, field.Selections, res)
-}
-
-func (ec *executionContext) _ConfiguratorItem_templatedChildsIds(ctx context.Context, field graphql.CollectedField, obj *ConfiguratorItem) (ret graphql.Marshaler) {
-	ctx = ec.Tracer.StartFieldExecution(ctx, field)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-		ec.Tracer.EndFieldExecution(ctx)
-	}()
-	rctx := &graphql.ResolverContext{
-		Object:   "ConfiguratorItem",
-		Field:    field,
-		Args:     nil,
-		IsMethod: true,
-	}
-	ctx = graphql.WithResolverContext(ctx, rctx)
-	ctx = ec.Tracer.StartFieldResolverExecution(ctx, rctx)
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return ec.resolvers.ConfiguratorItem().TemplatedChildsIds(rctx, obj)
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		if !ec.HasError(rctx) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.([]string)
-	rctx.Result = res
-	ctx = ec.Tracer.StartFieldChildExecution(ctx)
-	return ec.marshalNID2ᚕstringᚄ(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) _ConfiguratorItem_attributesIds(ctx context.Context, field graphql.CollectedField, obj *ConfiguratorItem) (ret graphql.Marshaler) {
@@ -10272,12 +10135,6 @@ func (ec *executionContext) unmarshalInputConfiguratorAssemblyItemInput(ctx cont
 
 	for k, v := range asMap {
 		switch k {
-		case "templateId":
-			var err error
-			it.TemplateID, err = ec.unmarshalOID2ᚖstring(ctx, v)
-			if err != nil {
-				return it, err
-			}
 		case "id":
 			var err error
 			it.ID, err = ec.unmarshalOID2ᚖstring(ctx, v)
@@ -10287,6 +10144,12 @@ func (ec *executionContext) unmarshalInputConfiguratorAssemblyItemInput(ctx cont
 		case "definitionId":
 			var err error
 			it.DefinitionID, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "referenceID":
+			var err error
+			it.ReferenceID, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -12132,51 +11995,135 @@ func (ec *executionContext) unmarshalInputConfiguratorItemFilterType(ctx context
 			if err != nil {
 				return it, err
 			}
-		case "templateId":
+		case "referenceID":
 			var err error
-			it.TemplateID, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			it.ReferenceID, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
-		case "templateId_ne":
+		case "referenceID_ne":
 			var err error
-			it.TemplateIDNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			it.ReferenceIDNe, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
-		case "templateId_gt":
+		case "referenceID_gt":
 			var err error
-			it.TemplateIDGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			it.ReferenceIDGt, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
-		case "templateId_lt":
+		case "referenceID_lt":
 			var err error
-			it.TemplateIDLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			it.ReferenceIDLt, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
-		case "templateId_gte":
+		case "referenceID_gte":
 			var err error
-			it.TemplateIDGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			it.ReferenceIDGte, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
-		case "templateId_lte":
+		case "referenceID_lte":
 			var err error
-			it.TemplateIDLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			it.ReferenceIDLte, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
-		case "templateId_in":
+		case "referenceID_in":
 			var err error
-			it.TemplateIDIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
+			it.ReferenceIDIn, err = ec.unmarshalOString2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
-		case "templateId_null":
+		case "referenceID_like":
 			var err error
-			it.TemplateIDNull, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
+			it.ReferenceIDLike, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "referenceID_prefix":
+			var err error
+			it.ReferenceIDPrefix, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "referenceID_suffix":
+			var err error
+			it.ReferenceIDSuffix, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "referenceID_null":
+			var err error
+			it.ReferenceIDNull, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "rawData":
+			var err error
+			it.RawData, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "rawData_ne":
+			var err error
+			it.RawDataNe, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "rawData_gt":
+			var err error
+			it.RawDataGt, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "rawData_lt":
+			var err error
+			it.RawDataLt, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "rawData_gte":
+			var err error
+			it.RawDataGte, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "rawData_lte":
+			var err error
+			it.RawDataLte, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "rawData_in":
+			var err error
+			it.RawDataIn, err = ec.unmarshalOString2ᚕstringᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "rawData_like":
+			var err error
+			it.RawDataLike, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "rawData_prefix":
+			var err error
+			it.RawDataPrefix, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "rawData_suffix":
+			var err error
+			it.RawDataSuffix, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "rawData_null":
+			var err error
+			it.RawDataNull, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -12420,18 +12367,6 @@ func (ec *executionContext) unmarshalInputConfiguratorItemFilterType(ctx context
 			if err != nil {
 				return it, err
 			}
-		case "template":
-			var err error
-			it.Template, err = ec.unmarshalOConfiguratorItemFilterType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemFilterType(ctx, v)
-			if err != nil {
-				return it, err
-			}
-		case "templatedChilds":
-			var err error
-			it.TemplatedChilds, err = ec.unmarshalOConfiguratorItemFilterType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemFilterType(ctx, v)
-			if err != nil {
-				return it, err
-			}
 		case "definition":
 			var err error
 			it.Definition, err = ec.unmarshalOConfiguratorItemDefinitionFilterType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemDefinitionFilterType(ctx, v)
@@ -12492,9 +12427,15 @@ func (ec *executionContext) unmarshalInputConfiguratorItemSortType(ctx context.C
 			if err != nil {
 				return it, err
 			}
-		case "templateId":
+		case "referenceID":
 			var err error
-			it.TemplateID, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			it.ReferenceID, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "rawData":
+			var err error
+			it.RawData, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -12528,12 +12469,6 @@ func (ec *executionContext) unmarshalInputConfiguratorItemSortType(ctx context.C
 			if err != nil {
 				return it, err
 			}
-		case "templatedChildsIds":
-			var err error
-			it.TemplatedChildsIds, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
-			if err != nil {
-				return it, err
-			}
 		case "attributesIds":
 			var err error
 			it.AttributesIds, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
@@ -12549,18 +12484,6 @@ func (ec *executionContext) unmarshalInputConfiguratorItemSortType(ctx context.C
 		case "parentSlotsIds":
 			var err error
 			it.ParentSlotsIds, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
-			if err != nil {
-				return it, err
-			}
-		case "template":
-			var err error
-			it.Template, err = ec.unmarshalOConfiguratorItemSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemSortType(ctx, v)
-			if err != nil {
-				return it, err
-			}
-		case "templatedChilds":
-			var err error
-			it.TemplatedChilds, err = ec.unmarshalOConfiguratorItemSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -13718,9 +13641,6 @@ func (ec *executionContext) _ConfiguratorAssemblyAttribute(ctx context.Context, 
 			out.Values[i] = graphql.MarshalString("ConfiguratorAssemblyAttribute")
 		case "id":
 			out.Values[i] = ec._ConfiguratorAssemblyAttribute_id(ctx, field, obj)
-			if out.Values[i] == graphql.Null {
-				invalids++
-			}
 		case "definitionId":
 			out.Values[i] = ec._ConfiguratorAssemblyAttribute_definitionId(ctx, field, obj)
 			if out.Values[i] == graphql.Null {
@@ -13754,17 +13674,12 @@ func (ec *executionContext) _ConfiguratorAssemblyItem(ctx context.Context, sel a
 		switch field.Name {
 		case "__typename":
 			out.Values[i] = graphql.MarshalString("ConfiguratorAssemblyItem")
-		case "templateId":
-			out.Values[i] = ec._ConfiguratorAssemblyItem_templateId(ctx, field, obj)
-		case "isTemplate":
-			out.Values[i] = ec._ConfiguratorAssemblyItem_isTemplate(ctx, field, obj)
-			if out.Values[i] == graphql.Null {
-				invalids++
-			}
 		case "id":
 			out.Values[i] = ec._ConfiguratorAssemblyItem_id(ctx, field, obj)
 		case "definitionId":
 			out.Values[i] = ec._ConfiguratorAssemblyItem_definitionId(ctx, field, obj)
+		case "referenceID":
+			out.Values[i] = ec._ConfiguratorAssemblyItem_referenceID(ctx, field, obj)
 		case "code":
 			out.Values[i] = ec._ConfiguratorAssemblyItem_code(ctx, field, obj)
 		case "name":
@@ -13803,9 +13718,6 @@ func (ec *executionContext) _ConfiguratorAssemblySlot(ctx context.Context, sel a
 			out.Values[i] = graphql.MarshalString("ConfiguratorAssemblySlot")
 		case "id":
 			out.Values[i] = ec._ConfiguratorAssemblySlot_id(ctx, field, obj)
-			if out.Values[i] == graphql.Null {
-				invalids++
-			}
 		case "definitionId":
 			out.Values[i] = ec._ConfiguratorAssemblySlot_definitionId(ctx, field, obj)
 			if out.Values[i] == graphql.Null {
@@ -14114,31 +14026,10 @@ func (ec *executionContext) _ConfiguratorItem(ctx context.Context, sel ast.Selec
 			out.Values[i] = ec._ConfiguratorItem_name(ctx, field, obj)
 		case "stockItemID":
 			out.Values[i] = ec._ConfiguratorItem_stockItemID(ctx, field, obj)
-		case "template":
-			field := field
-			out.Concurrently(i, func() (res graphql.Marshaler) {
-				defer func() {
-					if r := recover(); r != nil {
-						ec.Error(ctx, ec.Recover(ctx, r))
-					}
-				}()
-				res = ec._ConfiguratorItem_template(ctx, field, obj)
-				return res
-			})
-		case "templatedChilds":
-			field := field
-			out.Concurrently(i, func() (res graphql.Marshaler) {
-				defer func() {
-					if r := recover(); r != nil {
-						ec.Error(ctx, ec.Recover(ctx, r))
-					}
-				}()
-				res = ec._ConfiguratorItem_templatedChilds(ctx, field, obj)
-				if res == graphql.Null {
-					atomic.AddUint32(&invalids, 1)
-				}
-				return res
-			})
+		case "referenceID":
+			out.Values[i] = ec._ConfiguratorItem_referenceID(ctx, field, obj)
+		case "rawData":
+			out.Values[i] = ec._ConfiguratorItem_rawData(ctx, field, obj)
 		case "definition":
 			field := field
 			out.Concurrently(i, func() (res graphql.Marshaler) {
@@ -14192,8 +14083,6 @@ func (ec *executionContext) _ConfiguratorItem(ctx context.Context, sel ast.Selec
 				}
 				return res
 			})
-		case "templateId":
-			out.Values[i] = ec._ConfiguratorItem_templateId(ctx, field, obj)
 		case "definitionId":
 			out.Values[i] = ec._ConfiguratorItem_definitionId(ctx, field, obj)
 		case "updatedAt":
@@ -14207,20 +14096,6 @@ func (ec *executionContext) _ConfiguratorItem(ctx context.Context, sel ast.Selec
 			out.Values[i] = ec._ConfiguratorItem_updatedBy(ctx, field, obj)
 		case "createdBy":
 			out.Values[i] = ec._ConfiguratorItem_createdBy(ctx, field, obj)
-		case "templatedChildsIds":
-			field := field
-			out.Concurrently(i, func() (res graphql.Marshaler) {
-				defer func() {
-					if r := recover(); r != nil {
-						ec.Error(ctx, ec.Recover(ctx, r))
-					}
-				}()
-				res = ec._ConfiguratorItem_templatedChildsIds(ctx, field, obj)
-				if res == graphql.Null {
-					atomic.AddUint32(&invalids, 1)
-				}
-				return res
-			})
 		case "attributesIds":
 			field := field
 			out.Concurrently(i, func() (res graphql.Marshaler) {
