@@ -152,6 +152,64 @@ func (f *ConfiguratorItemDefinitionFilterType) WhereContent(dialect gorm.Dialect
 		}
 	}
 
+	if f.Code != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("code")+" = ?")
+		values = append(values, f.Code)
+	}
+
+	if f.CodeNe != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("code")+" != ?")
+		values = append(values, f.CodeNe)
+	}
+
+	if f.CodeGt != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("code")+" > ?")
+		values = append(values, f.CodeGt)
+	}
+
+	if f.CodeLt != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("code")+" < ?")
+		values = append(values, f.CodeLt)
+	}
+
+	if f.CodeGte != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("code")+" >= ?")
+		values = append(values, f.CodeGte)
+	}
+
+	if f.CodeLte != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("code")+" <= ?")
+		values = append(values, f.CodeLte)
+	}
+
+	if f.CodeIn != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("code")+" IN (?)")
+		values = append(values, f.CodeIn)
+	}
+
+	if f.CodeLike != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("code")+" LIKE ?")
+		values = append(values, strings.Replace(strings.Replace(*f.CodeLike, "?", "_", -1), "*", "%", -1))
+	}
+
+	if f.CodePrefix != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("code")+" LIKE ?")
+		values = append(values, fmt.Sprintf("%s%%", *f.CodePrefix))
+	}
+
+	if f.CodeSuffix != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("code")+" LIKE ?")
+		values = append(values, fmt.Sprintf("%%%s", *f.CodeSuffix))
+	}
+
+	if f.CodeNull != nil {
+		if *f.CodeNull {
+			conditions = append(conditions, aliasPrefix+dialect.Quote("code")+" IS NULL")
+		} else {
+			conditions = append(conditions, aliasPrefix+dialect.Quote("code")+" IS NOT NULL")
+		}
+	}
+
 	if f.Name != nil {
 		conditions = append(conditions, aliasPrefix+dialect.Quote("name")+" = ?")
 		values = append(values, f.Name)

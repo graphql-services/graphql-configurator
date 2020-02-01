@@ -130,6 +130,7 @@ extend type Mutation {
 
 type ConfiguratorItemDefinition {
   id: ID!
+  code: String
   name: String
   attributes: [ConfiguratorAttributeDefinition!]!
   slots: [ConfiguratorSlotDefinition!]!
@@ -234,6 +235,7 @@ type ConfiguratorSlot {
 
 input ConfiguratorItemDefinitionCreateInput {
   id: ID
+  code: String
   name: String
   attributesIds: [ID!]
   slotsIds: [ID!]
@@ -242,6 +244,7 @@ input ConfiguratorItemDefinitionCreateInput {
 }
 
 input ConfiguratorItemDefinitionUpdateInput {
+  code: String
   name: String
   attributesIds: [ID!]
   slotsIds: [ID!]
@@ -251,6 +254,7 @@ input ConfiguratorItemDefinitionUpdateInput {
 
 input ConfiguratorItemDefinitionSortType {
   id: ObjectSortType
+  code: ObjectSortType
   name: ObjectSortType
   updatedAt: ObjectSortType
   createdAt: ObjectSortType
@@ -277,6 +281,17 @@ input ConfiguratorItemDefinitionFilterType {
   id_lte: ID
   id_in: [ID!]
   id_null: Boolean
+  code: String
+  code_ne: String
+  code_gt: String
+  code_lt: String
+  code_gte: String
+  code_lte: String
+  code_in: [String!]
+  code_like: String
+  code_prefix: String
+  code_suffix: String
+  code_null: Boolean
   name: String
   name_ne: String
   name_gt: String

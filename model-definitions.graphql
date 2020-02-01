@@ -1,4 +1,5 @@
 type ConfiguratorItemDefinition @entity {
+  code: String @column(unique: true)
   name: String @column
 
   attributes: [ConfiguratorAttributeDefinition!]!

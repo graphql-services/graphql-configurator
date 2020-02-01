@@ -149,6 +149,7 @@ type ComplexityRoot struct {
 		AllowedInSlotsIds func(childComplexity int) int
 		Attributes        func(childComplexity int) int
 		AttributesIds     func(childComplexity int) int
+		Code              func(childComplexity int) int
 		CreatedAt         func(childComplexity int) int
 		CreatedBy         func(childComplexity int) int
 		ID                func(childComplexity int) int
@@ -853,6 +854,13 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.ConfiguratorItemDefinition.AttributesIds(childComplexity), true
+
+	case "ConfiguratorItemDefinition.code":
+		if e.complexity.ConfiguratorItemDefinition.Code == nil {
+			break
+		}
+
+		return e.complexity.ConfiguratorItemDefinition.Code(childComplexity), true
 
 	case "ConfiguratorItemDefinition.createdAt":
 		if e.complexity.ConfiguratorItemDefinition.CreatedAt == nil {
@@ -1800,6 +1808,7 @@ extend type Mutation {
 
 type ConfiguratorItemDefinition {
   id: ID!
+  code: String
   name: String
   attributes: [ConfiguratorAttributeDefinition!]!
   slots: [ConfiguratorSlotDefinition!]!
@@ -1904,6 +1913,7 @@ type ConfiguratorSlot {
 
 input ConfiguratorItemDefinitionCreateInput {
   id: ID
+  code: String
   name: String
   attributesIds: [ID!]
   slotsIds: [ID!]
@@ -1912,6 +1922,7 @@ input ConfiguratorItemDefinitionCreateInput {
 }
 
 input ConfiguratorItemDefinitionUpdateInput {
+  code: String
   name: String
   attributesIds: [ID!]
   slotsIds: [ID!]
@@ -1921,6 +1932,7 @@ input ConfiguratorItemDefinitionUpdateInput {
 
 input ConfiguratorItemDefinitionSortType {
   id: ObjectSortType
+  code: ObjectSortType
   name: ObjectSortType
   updatedAt: ObjectSortType
   createdAt: ObjectSortType
@@ -1947,6 +1959,17 @@ input ConfiguratorItemDefinitionFilterType {
   id_lte: ID
   id_in: [ID!]
   id_null: Boolean
+  code: String
+  code_ne: String
+  code_gt: String
+  code_lt: String
+  code_gte: String
+  code_lte: String
+  code_in: [String!]
+  code_like: String
+  code_prefix: String
+  code_suffix: String
+  code_null: Boolean
   name: String
   name_ne: String
   name_gt: String
@@ -5700,6 +5723,40 @@ func (ec *executionContext) _ConfiguratorItemDefinition_id(ctx context.Context, 
 	rctx.Result = res
 	ctx = ec.Tracer.StartFieldChildExecution(ctx)
 	return ec.marshalNID2string(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) _ConfiguratorItemDefinition_code(ctx context.Context, field graphql.CollectedField, obj *ConfiguratorItemDefinition) (ret graphql.Marshaler) {
+	ctx = ec.Tracer.StartFieldExecution(ctx, field)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+		ec.Tracer.EndFieldExecution(ctx)
+	}()
+	rctx := &graphql.ResolverContext{
+		Object:   "ConfiguratorItemDefinition",
+		Field:    field,
+		Args:     nil,
+		IsMethod: false,
+	}
+	ctx = graphql.WithResolverContext(ctx, rctx)
+	ctx = ec.Tracer.StartFieldResolverExecution(ctx, rctx)
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Code, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*string)
+	rctx.Result = res
+	ctx = ec.Tracer.StartFieldChildExecution(ctx)
+	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) _ConfiguratorItemDefinition_name(ctx context.Context, field graphql.CollectedField, obj *ConfiguratorItemDefinition) (ret graphql.Marshaler) {
@@ -11581,6 +11638,72 @@ func (ec *executionContext) unmarshalInputConfiguratorItemDefinitionFilterType(c
 			if err != nil {
 				return it, err
 			}
+		case "code":
+			var err error
+			it.Code, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "code_ne":
+			var err error
+			it.CodeNe, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "code_gt":
+			var err error
+			it.CodeGt, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "code_lt":
+			var err error
+			it.CodeLt, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "code_gte":
+			var err error
+			it.CodeGte, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "code_lte":
+			var err error
+			it.CodeLte, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "code_in":
+			var err error
+			it.CodeIn, err = ec.unmarshalOString2ᚕstringᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "code_like":
+			var err error
+			it.CodeLike, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "code_prefix":
+			var err error
+			it.CodePrefix, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "code_suffix":
+			var err error
+			it.CodeSuffix, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "code_null":
+			var err error
+			it.CodeNull, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "name":
 			var err error
 			it.Name, err = ec.unmarshalOString2ᚖstring(ctx, v)
@@ -11878,6 +12001,12 @@ func (ec *executionContext) unmarshalInputConfiguratorItemDefinitionSortType(ctx
 		case "id":
 			var err error
 			it.ID, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "code":
+			var err error
+			it.Code, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -14399,6 +14528,8 @@ func (ec *executionContext) _ConfiguratorItemDefinition(ctx context.Context, sel
 			if out.Values[i] == graphql.Null {
 				atomic.AddUint32(&invalids, 1)
 			}
+		case "code":
+			out.Values[i] = ec._ConfiguratorItemDefinition_code(ctx, field, obj)
 		case "name":
 			out.Values[i] = ec._ConfiguratorItemDefinition_name(ctx, field, obj)
 		case "attributes":

@@ -23,6 +23,7 @@ type ConfiguratorItemDefinitionResultType struct {
 
 type ConfiguratorItemDefinition struct {
 	ID        string     `json:"id" gorm:"column:id;primary_key"`
+	Code      *string    `json:"code" gorm:"column:code;unique"`
 	Name      *string    `json:"name" gorm:"column:name"`
 	UpdatedAt *time.Time `json:"updatedAt" gorm:"column:updatedAt"`
 	CreatedAt time.Time  `json:"createdAt" gorm:"column:createdAt"`
@@ -42,6 +43,7 @@ func (m *ConfiguratorItemDefinition) Is_Entity() {}
 
 type ConfiguratorItemDefinitionChanges struct {
 	ID        string
+	Code      *string
 	Name      *string
 	UpdatedAt *time.Time
 	CreatedAt time.Time

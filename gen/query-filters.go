@@ -50,6 +50,14 @@ func (qf *ConfiguratorItemDefinitionQueryFilter) applyQueryWithFields(dialect go
 		fieldsMap[f.Name] = append(fieldsMap[f.Name], f)
 	}
 
+	if _, ok := fieldsMap["code"]; ok {
+
+		column := dialect.Quote(alias) + "." + dialect.Quote("code")
+
+		*ors = append(*ors, fmt.Sprintf("%[1]s LIKE ? OR %[1]s LIKE ?", column))
+		*values = append(*values, query+"%", "% "+query+"%")
+	}
+
 	if _, ok := fieldsMap["name"]; ok {
 
 		column := dialect.Quote(alias) + "." + dialect.Quote("name")

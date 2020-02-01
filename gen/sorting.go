@@ -16,6 +16,10 @@ func (s ConfiguratorItemDefinitionSortType) ApplyWithAlias(ctx context.Context, 
 		*sorts = append(*sorts, aliasPrefix+dialect.Quote("id")+" "+s.ID.String())
 	}
 
+	if s.Code != nil {
+		*sorts = append(*sorts, aliasPrefix+dialect.Quote("code")+" "+s.Code.String())
+	}
+
 	if s.Name != nil {
 		*sorts = append(*sorts, aliasPrefix+dialect.Quote("name")+" "+s.Name.String())
 	}

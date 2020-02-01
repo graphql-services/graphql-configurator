@@ -86,6 +86,12 @@ func CreateConfiguratorItemDefinitionHandler(ctx context.Context, r *GeneratedRe
 		event.AddNewValue("id", changes.ID)
 	}
 
+	if _, ok := input["code"]; ok && (item.Code != changes.Code) && (item.Code == nil || changes.Code == nil || *item.Code != *changes.Code) {
+		item.Code = changes.Code
+
+		event.AddNewValue("code", changes.Code)
+	}
+
 	if _, ok := input["name"]; ok && (item.Name != changes.Name) && (item.Name == nil || changes.Name == nil || *item.Name != *changes.Name) {
 		item.Name = changes.Name
 
@@ -169,6 +175,12 @@ func UpdateConfiguratorItemDefinitionHandler(ctx context.Context, r *GeneratedRe
 	}
 
 	item.UpdatedBy = principalID
+
+	if _, ok := input["code"]; ok && (item.Code != changes.Code) && (item.Code == nil || changes.Code == nil || *item.Code != *changes.Code) {
+		event.AddOldValue("code", item.Code)
+		event.AddNewValue("code", changes.Code)
+		item.Code = changes.Code
+	}
 
 	if _, ok := input["name"]; ok && (item.Name != changes.Name) && (item.Name == nil || changes.Name == nil || *item.Name != *changes.Name) {
 		event.AddOldValue("name", item.Name)

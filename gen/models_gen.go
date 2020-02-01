@@ -266,6 +266,17 @@ type ConfiguratorItemDefinitionFilterType struct {
 	IDLte          *string                                    `json:"id_lte"`
 	IDIn           []string                                   `json:"id_in"`
 	IDNull         *bool                                      `json:"id_null"`
+	Code           *string                                    `json:"code"`
+	CodeNe         *string                                    `json:"code_ne"`
+	CodeGt         *string                                    `json:"code_gt"`
+	CodeLt         *string                                    `json:"code_lt"`
+	CodeGte        *string                                    `json:"code_gte"`
+	CodeLte        *string                                    `json:"code_lte"`
+	CodeIn         []string                                   `json:"code_in"`
+	CodeLike       *string                                    `json:"code_like"`
+	CodePrefix     *string                                    `json:"code_prefix"`
+	CodeSuffix     *string                                    `json:"code_suffix"`
+	CodeNull       *bool                                      `json:"code_null"`
 	Name           *string                                    `json:"name"`
 	NameNe         *string                                    `json:"name_ne"`
 	NameGt         *string                                    `json:"name_gt"`
@@ -317,6 +328,7 @@ type ConfiguratorItemDefinitionFilterType struct {
 
 type ConfiguratorItemDefinitionSortType struct {
 	ID                *ObjectSortType                          `json:"id"`
+	Code              *ObjectSortType                          `json:"code"`
 	Name              *ObjectSortType                          `json:"name"`
 	UpdatedAt         *ObjectSortType                          `json:"updatedAt"`
 	CreatedAt         *ObjectSortType                          `json:"createdAt"`
