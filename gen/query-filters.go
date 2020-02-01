@@ -115,6 +115,25 @@ func (qf *ConfiguratorItemDefinitionQueryFilter) applyQueryWithFields(dialect go
 		}
 	}
 
+	if fs, ok := fieldsMap["allowedInSlots"]; ok {
+		_fields := []*ast.Field{}
+		_alias := alias + "_allowedInSlots"
+		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configuratorSlotDefinition_allowedItemDefinitions"))+" "+dialect.Quote(_alias+"_jointable")+" ON "+dialect.Quote(alias)+".id = "+dialect.Quote(_alias+"_jointable")+"."+dialect.Quote("allowedItemDefinition_id")+" LEFT JOIN "+dialect.Quote(TableName("configurator_slot_definitions"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias+"_jointable")+"."+dialect.Quote("allowedInSlot_id")+" = "+dialect.Quote(_alias)+".id")
+
+		for _, f := range fs {
+			for _, s := range f.SelectionSet {
+				if f, ok := s.(*ast.Field); ok {
+					_fields = append(_fields, f)
+				}
+			}
+		}
+		q := ConfiguratorSlotDefinitionQueryFilter{qf.Query}
+		err := q.applyQueryWithFields(dialect, _fields, query, _alias, ors, values, joins)
+		if err != nil {
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -313,6 +332,25 @@ func (qf *ConfiguratorSlotDefinitionQueryFilter) applyQueryWithFields(dialect go
 			}
 		}
 		q := ConfiguratorSlotQueryFilter{qf.Query}
+		err := q.applyQueryWithFields(dialect, _fields, query, _alias, ors, values, joins)
+		if err != nil {
+			return err
+		}
+	}
+
+	if fs, ok := fieldsMap["allowedItemDefinitions"]; ok {
+		_fields := []*ast.Field{}
+		_alias := alias + "_allowedItemDefinitions"
+		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configuratorSlotDefinition_allowedItemDefinitions"))+" "+dialect.Quote(_alias+"_jointable")+" ON "+dialect.Quote(alias)+".id = "+dialect.Quote(_alias+"_jointable")+"."+dialect.Quote("allowedInSlot_id")+" LEFT JOIN "+dialect.Quote(TableName("configurator_item_definitions"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias+"_jointable")+"."+dialect.Quote("allowedItemDefinition_id")+" = "+dialect.Quote(_alias)+".id")
+
+		for _, f := range fs {
+			for _, s := range f.SelectionSet {
+				if f, ok := s.(*ast.Field); ok {
+					_fields = append(_fields, f)
+				}
+			}
+		}
+		q := ConfiguratorItemDefinitionQueryFilter{qf.Query}
 		err := q.applyQueryWithFields(dialect, _fields, query, _alias, ors, values, joins)
 		if err != nil {
 			return err

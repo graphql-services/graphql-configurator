@@ -5,6 +5,8 @@ type ConfiguratorItemDefinition @entity {
     @relationship(inverse: definitions)
   slots: [ConfiguratorSlotDefinition!]! @relationship(inverse: definition)
   items: [ConfiguratorItem!]! @relationship(inverse: definition)
+  allowedInSlots: [ConfiguratorSlotDefinition!]!
+    @relationship(inverse: allowedItemDefinitions)
 }
 
 enum ConfiguratorAttributeType {
@@ -27,4 +29,6 @@ type ConfiguratorSlotDefinition @entity {
 
   definition: ConfiguratorItemDefinition @relationship(inverse: slots)
   slots: [ConfiguratorSlot!]! @relationship(inverse: definition)
+  allowedItemDefinitions: [ConfiguratorItemDefinition!]!
+    @relationship(inverse: allowedInSlots)
 }

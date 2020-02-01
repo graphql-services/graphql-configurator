@@ -134,6 +134,7 @@ type ConfiguratorItemDefinition {
   attributes: [ConfiguratorAttributeDefinition!]!
   slots: [ConfiguratorSlotDefinition!]!
   items: [ConfiguratorItem!]!
+  allowedInSlots: [ConfiguratorSlotDefinition!]!
   updatedAt: Time
   createdAt: Time!
   updatedBy: ID
@@ -141,6 +142,7 @@ type ConfiguratorItemDefinition {
   attributesIds: [ID!]!
   slotsIds: [ID!]!
   itemsIds: [ID!]!
+  allowedInSlotsIds: [ID!]!
 }
 
 enum ConfiguratorAttributeType {
@@ -170,19 +172,21 @@ type ConfiguratorSlotDefinition {
   maxCount: Int
   definition: ConfiguratorItemDefinition
   slots: [ConfiguratorSlot!]!
+  allowedItemDefinitions: [ConfiguratorItemDefinition!]!
   definitionId: ID
   updatedAt: Time
   createdAt: Time!
   updatedBy: ID
   createdBy: ID
   slotsIds: [ID!]!
+  allowedItemDefinitionsIds: [ID!]!
 }
 
 type ConfiguratorItem {
   id: ID!
   code: String
   name: String
-  stockItemID: ID
+  stockItemId: ID
   referenceID: String
   rawData: String
   definition: ConfiguratorItemDefinition
@@ -234,6 +238,7 @@ input ConfiguratorItemDefinitionCreateInput {
   attributesIds: [ID!]
   slotsIds: [ID!]
   itemsIds: [ID!]
+  allowedInSlotsIds: [ID!]
 }
 
 input ConfiguratorItemDefinitionUpdateInput {
@@ -241,6 +246,7 @@ input ConfiguratorItemDefinitionUpdateInput {
   attributesIds: [ID!]
   slotsIds: [ID!]
   itemsIds: [ID!]
+  allowedInSlotsIds: [ID!]
 }
 
 input ConfiguratorItemDefinitionSortType {
@@ -253,9 +259,11 @@ input ConfiguratorItemDefinitionSortType {
   attributesIds: ObjectSortType
   slotsIds: ObjectSortType
   itemsIds: ObjectSortType
+  allowedInSlotsIds: ObjectSortType
   attributes: ConfiguratorAttributeDefinitionSortType
   slots: ConfiguratorSlotDefinitionSortType
   items: ConfiguratorItemSortType
+  allowedInSlots: ConfiguratorSlotDefinitionSortType
 }
 
 input ConfiguratorItemDefinitionFilterType {
@@ -315,6 +323,7 @@ input ConfiguratorItemDefinitionFilterType {
   attributes: ConfiguratorAttributeDefinitionFilterType
   slots: ConfiguratorSlotDefinitionFilterType
   items: ConfiguratorItemFilterType
+  allowedInSlots: ConfiguratorSlotDefinitionFilterType
 }
 
 type ConfiguratorItemDefinitionResultType {
@@ -429,6 +438,7 @@ input ConfiguratorSlotDefinitionCreateInput {
   maxCount: Int
   definitionId: ID
   slotsIds: [ID!]
+  allowedItemDefinitionsIds: [ID!]
 }
 
 input ConfiguratorSlotDefinitionUpdateInput {
@@ -437,6 +447,7 @@ input ConfiguratorSlotDefinitionUpdateInput {
   maxCount: Int
   definitionId: ID
   slotsIds: [ID!]
+  allowedItemDefinitionsIds: [ID!]
 }
 
 input ConfiguratorSlotDefinitionSortType {
@@ -450,8 +461,10 @@ input ConfiguratorSlotDefinitionSortType {
   updatedBy: ObjectSortType
   createdBy: ObjectSortType
   slotsIds: ObjectSortType
+  allowedItemDefinitionsIds: ObjectSortType
   definition: ConfiguratorItemDefinitionSortType
   slots: ConfiguratorSlotSortType
+  allowedItemDefinitions: ConfiguratorItemDefinitionSortType
 }
 
 input ConfiguratorSlotDefinitionFilterType {
@@ -534,6 +547,7 @@ input ConfiguratorSlotDefinitionFilterType {
   createdBy_null: Boolean
   definition: ConfiguratorItemDefinitionFilterType
   slots: ConfiguratorSlotFilterType
+  allowedItemDefinitions: ConfiguratorItemDefinitionFilterType
 }
 
 type ConfiguratorSlotDefinitionResultType {
@@ -545,7 +559,7 @@ input ConfiguratorItemCreateInput {
   id: ID
   code: String
   name: String
-  stockItemID: ID
+  stockItemId: ID
   referenceID: String
   rawData: String
   definitionId: ID
@@ -557,7 +571,7 @@ input ConfiguratorItemCreateInput {
 input ConfiguratorItemUpdateInput {
   code: String
   name: String
-  stockItemID: ID
+  stockItemId: ID
   referenceID: String
   rawData: String
   definitionId: ID
@@ -570,7 +584,7 @@ input ConfiguratorItemSortType {
   id: ObjectSortType
   code: ObjectSortType
   name: ObjectSortType
-  stockItemID: ObjectSortType
+  stockItemId: ObjectSortType
   referenceID: ObjectSortType
   rawData: ObjectSortType
   definitionId: ObjectSortType
@@ -620,14 +634,14 @@ input ConfiguratorItemFilterType {
   name_prefix: String
   name_suffix: String
   name_null: Boolean
-  stockItemID: ID
-  stockItemID_ne: ID
-  stockItemID_gt: ID
-  stockItemID_lt: ID
-  stockItemID_gte: ID
-  stockItemID_lte: ID
-  stockItemID_in: [ID!]
-  stockItemID_null: Boolean
+  stockItemId: ID
+  stockItemId_ne: ID
+  stockItemId_gt: ID
+  stockItemId_lt: ID
+  stockItemId_gte: ID
+  stockItemId_lte: ID
+  stockItemId_in: [ID!]
+  stockItemId_null: Boolean
   referenceID: String
   referenceID_ne: String
   referenceID_gt: String

@@ -5,7 +5,6 @@ import (
 	"time"
 
 	"github.com/gofrs/uuid"
-	"github.com/jinzhu/gorm"
 	"github.com/novacloudcz/graphql-orm/events"
 )
 
@@ -30,7 +29,7 @@ func FinishMutationContext(ctx context.Context, r *GeneratedResolver) (err error
 		}
 	}
 
-	tx := GetTransaction(ctx)
+	tx := r.GetDB(ctx)
 	err = tx.Commit().Error
 	if err != nil {
 		tx.Rollback()
@@ -42,9 +41,6 @@ func FinishMutationContext(ctx context.Context, r *GeneratedResolver) (err error
 	}
 
 	return
-}
-func GetTransaction(ctx context.Context) *gorm.DB {
-	return ctx.Value(KeyMutationTransaction).(*gorm.DB)
 }
 func GetMutationEventStore(ctx context.Context) *MutationEvents {
 	return ctx.Value(KeyMutationEvents).(*MutationEvents)
@@ -67,7 +63,7 @@ func CreateConfiguratorItemDefinitionHandler(ctx context.Context, r *GeneratedRe
 	principalID := GetPrincipalIDFromContext(ctx)
 	now := time.Now()
 	item = &ConfiguratorItemDefinition{ID: uuid.Must(uuid.NewV4()).String(), CreatedAt: now, CreatedBy: principalID}
-	tx := GetTransaction(ctx)
+	tx := r.GetDB(ctx)
 
 	event := events.NewEvent(events.EventMetadata{
 		Type:        events.EventTypeCreated,
@@ -123,6 +119,13 @@ func CreateConfiguratorItemDefinitionHandler(ctx context.Context, r *GeneratedRe
 		association.Replace(items)
 	}
 
+	if ids, exists := input["allowedInSlotsIds"]; exists {
+		items := []ConfiguratorSlotDefinition{}
+		tx.Find(&items, "id IN (?)", ids)
+		association := tx.Model(&item).Association("AllowedInSlots")
+		association.Replace(items)
+	}
+
 	if len(event.Changes) > 0 {
 		AddMutationEvent(ctx, event)
 	}
@@ -142,7 +145,7 @@ func UpdateConfiguratorItemDefinitionHandler(ctx context.Context, r *GeneratedRe
 	principalID := GetPrincipalIDFromContext(ctx)
 	item = &ConfiguratorItemDefinition{}
 	now := time.Now()
-	tx := GetTransaction(ctx)
+	tx := r.GetDB(ctx)
 
 	event := events.NewEvent(events.EventMetadata{
 		Type:        events.EventTypeUpdated,
@@ -200,6 +203,13 @@ func UpdateConfiguratorItemDefinitionHandler(ctx context.Context, r *GeneratedRe
 		association.Replace(items)
 	}
 
+	if ids, exists := input["allowedInSlotsIds"]; exists {
+		items := []ConfiguratorSlotDefinition{}
+		tx.Find(&items, "id IN (?)", ids)
+		association := tx.Model(&item).Association("AllowedInSlots")
+		association.Replace(items)
+	}
+
 	if len(event.Changes) > 0 {
 		AddMutationEvent(ctx, event)
 	}
@@ -219,7 +229,7 @@ func DeleteConfiguratorItemDefinitionHandler(ctx context.Context, r *GeneratedRe
 	principalID := GetPrincipalIDFromContext(ctx)
 	item = &ConfiguratorItemDefinition{}
 	now := time.Now()
-	tx := GetTransaction(ctx)
+	tx := r.GetDB(ctx)
 
 	err = GetItem(ctx, tx, item, &id)
 	if err != nil {
@@ -254,7 +264,7 @@ func (r *GeneratedMutationResolver) DeleteAllConfiguratorItemDefinitions(ctx con
 	return done, err
 }
 func DeleteAllConfiguratorItemDefinitionsHandler(ctx context.Context, r *GeneratedResolver) (bool, error) {
-	tx := GetTransaction(ctx)
+	tx := r.GetDB(ctx)
 	err := tx.Delete(&ConfiguratorItemDefinition{}).Error
 	if err != nil {
 		tx.Rollback()
@@ -276,7 +286,7 @@ func CreateConfiguratorAttributeDefinitionHandler(ctx context.Context, r *Genera
 	principalID := GetPrincipalIDFromContext(ctx)
 	now := time.Now()
 	item = &ConfiguratorAttributeDefinition{ID: uuid.Must(uuid.NewV4()).String(), CreatedAt: now, CreatedBy: principalID}
-	tx := GetTransaction(ctx)
+	tx := r.GetDB(ctx)
 
 	event := events.NewEvent(events.EventMetadata{
 		Type:        events.EventTypeCreated,
@@ -350,7 +360,7 @@ func UpdateConfiguratorAttributeDefinitionHandler(ctx context.Context, r *Genera
 	principalID := GetPrincipalIDFromContext(ctx)
 	item = &ConfiguratorAttributeDefinition{}
 	now := time.Now()
-	tx := GetTransaction(ctx)
+	tx := r.GetDB(ctx)
 
 	event := events.NewEvent(events.EventMetadata{
 		Type:        events.EventTypeUpdated,
@@ -426,7 +436,7 @@ func DeleteConfiguratorAttributeDefinitionHandler(ctx context.Context, r *Genera
 	principalID := GetPrincipalIDFromContext(ctx)
 	item = &ConfiguratorAttributeDefinition{}
 	now := time.Now()
-	tx := GetTransaction(ctx)
+	tx := r.GetDB(ctx)
 
 	err = GetItem(ctx, tx, item, &id)
 	if err != nil {
@@ -461,7 +471,7 @@ func (r *GeneratedMutationResolver) DeleteAllConfiguratorAttributeDefinitions(ct
 	return done, err
 }
 func DeleteAllConfiguratorAttributeDefinitionsHandler(ctx context.Context, r *GeneratedResolver) (bool, error) {
-	tx := GetTransaction(ctx)
+	tx := r.GetDB(ctx)
 	err := tx.Delete(&ConfiguratorAttributeDefinition{}).Error
 	if err != nil {
 		tx.Rollback()
@@ -483,7 +493,7 @@ func CreateConfiguratorSlotDefinitionHandler(ctx context.Context, r *GeneratedRe
 	principalID := GetPrincipalIDFromContext(ctx)
 	now := time.Now()
 	item = &ConfiguratorSlotDefinition{ID: uuid.Must(uuid.NewV4()).String(), CreatedAt: now, CreatedBy: principalID}
-	tx := GetTransaction(ctx)
+	tx := r.GetDB(ctx)
 
 	event := events.NewEvent(events.EventMetadata{
 		Type:        events.EventTypeCreated,
@@ -543,6 +553,13 @@ func CreateConfiguratorSlotDefinitionHandler(ctx context.Context, r *GeneratedRe
 		association.Replace(items)
 	}
 
+	if ids, exists := input["allowedItemDefinitionsIds"]; exists {
+		items := []ConfiguratorItemDefinition{}
+		tx.Find(&items, "id IN (?)", ids)
+		association := tx.Model(&item).Association("AllowedItemDefinitions")
+		association.Replace(items)
+	}
+
 	if len(event.Changes) > 0 {
 		AddMutationEvent(ctx, event)
 	}
@@ -562,7 +579,7 @@ func UpdateConfiguratorSlotDefinitionHandler(ctx context.Context, r *GeneratedRe
 	principalID := GetPrincipalIDFromContext(ctx)
 	item = &ConfiguratorSlotDefinition{}
 	now := time.Now()
-	tx := GetTransaction(ctx)
+	tx := r.GetDB(ctx)
 
 	event := events.NewEvent(events.EventMetadata{
 		Type:        events.EventTypeUpdated,
@@ -624,6 +641,13 @@ func UpdateConfiguratorSlotDefinitionHandler(ctx context.Context, r *GeneratedRe
 		association.Replace(items)
 	}
 
+	if ids, exists := input["allowedItemDefinitionsIds"]; exists {
+		items := []ConfiguratorItemDefinition{}
+		tx.Find(&items, "id IN (?)", ids)
+		association := tx.Model(&item).Association("AllowedItemDefinitions")
+		association.Replace(items)
+	}
+
 	if len(event.Changes) > 0 {
 		AddMutationEvent(ctx, event)
 	}
@@ -643,7 +667,7 @@ func DeleteConfiguratorSlotDefinitionHandler(ctx context.Context, r *GeneratedRe
 	principalID := GetPrincipalIDFromContext(ctx)
 	item = &ConfiguratorSlotDefinition{}
 	now := time.Now()
-	tx := GetTransaction(ctx)
+	tx := r.GetDB(ctx)
 
 	err = GetItem(ctx, tx, item, &id)
 	if err != nil {
@@ -678,7 +702,7 @@ func (r *GeneratedMutationResolver) DeleteAllConfiguratorSlotDefinitions(ctx con
 	return done, err
 }
 func DeleteAllConfiguratorSlotDefinitionsHandler(ctx context.Context, r *GeneratedResolver) (bool, error) {
-	tx := GetTransaction(ctx)
+	tx := r.GetDB(ctx)
 	err := tx.Delete(&ConfiguratorSlotDefinition{}).Error
 	if err != nil {
 		tx.Rollback()
@@ -700,7 +724,7 @@ func CreateConfiguratorItemHandler(ctx context.Context, r *GeneratedResolver, in
 	principalID := GetPrincipalIDFromContext(ctx)
 	now := time.Now()
 	item = &ConfiguratorItem{ID: uuid.Must(uuid.NewV4()).String(), CreatedAt: now, CreatedBy: principalID}
-	tx := GetTransaction(ctx)
+	tx := r.GetDB(ctx)
 
 	event := events.NewEvent(events.EventMetadata{
 		Type:        events.EventTypeCreated,
@@ -735,10 +759,10 @@ func CreateConfiguratorItemHandler(ctx context.Context, r *GeneratedResolver, in
 		event.AddNewValue("name", changes.Name)
 	}
 
-	if _, ok := input["stockItemID"]; ok && (item.StockItemID != changes.StockItemID) && (item.StockItemID == nil || changes.StockItemID == nil || *item.StockItemID != *changes.StockItemID) {
+	if _, ok := input["stockItemId"]; ok && (item.StockItemID != changes.StockItemID) && (item.StockItemID == nil || changes.StockItemID == nil || *item.StockItemID != *changes.StockItemID) {
 		item.StockItemID = changes.StockItemID
 
-		event.AddNewValue("stockItemID", changes.StockItemID)
+		event.AddNewValue("stockItemId", changes.StockItemID)
 	}
 
 	if _, ok := input["referenceID"]; ok && (item.ReferenceID != changes.ReferenceID) && (item.ReferenceID == nil || changes.ReferenceID == nil || *item.ReferenceID != *changes.ReferenceID) {
@@ -805,7 +829,7 @@ func UpdateConfiguratorItemHandler(ctx context.Context, r *GeneratedResolver, id
 	principalID := GetPrincipalIDFromContext(ctx)
 	item = &ConfiguratorItem{}
 	now := time.Now()
-	tx := GetTransaction(ctx)
+	tx := r.GetDB(ctx)
 
 	event := events.NewEvent(events.EventMetadata{
 		Type:        events.EventTypeUpdated,
@@ -842,9 +866,9 @@ func UpdateConfiguratorItemHandler(ctx context.Context, r *GeneratedResolver, id
 		item.Name = changes.Name
 	}
 
-	if _, ok := input["stockItemID"]; ok && (item.StockItemID != changes.StockItemID) && (item.StockItemID == nil || changes.StockItemID == nil || *item.StockItemID != *changes.StockItemID) {
-		event.AddOldValue("stockItemID", item.StockItemID)
-		event.AddNewValue("stockItemID", changes.StockItemID)
+	if _, ok := input["stockItemId"]; ok && (item.StockItemID != changes.StockItemID) && (item.StockItemID == nil || changes.StockItemID == nil || *item.StockItemID != *changes.StockItemID) {
+		event.AddOldValue("stockItemId", item.StockItemID)
+		event.AddNewValue("stockItemId", changes.StockItemID)
 		item.StockItemID = changes.StockItemID
 	}
 
@@ -912,7 +936,7 @@ func DeleteConfiguratorItemHandler(ctx context.Context, r *GeneratedResolver, id
 	principalID := GetPrincipalIDFromContext(ctx)
 	item = &ConfiguratorItem{}
 	now := time.Now()
-	tx := GetTransaction(ctx)
+	tx := r.GetDB(ctx)
 
 	err = GetItem(ctx, tx, item, &id)
 	if err != nil {
@@ -947,7 +971,7 @@ func (r *GeneratedMutationResolver) DeleteAllConfiguratorItems(ctx context.Conte
 	return done, err
 }
 func DeleteAllConfiguratorItemsHandler(ctx context.Context, r *GeneratedResolver) (bool, error) {
-	tx := GetTransaction(ctx)
+	tx := r.GetDB(ctx)
 	err := tx.Delete(&ConfiguratorItem{}).Error
 	if err != nil {
 		tx.Rollback()
@@ -969,7 +993,7 @@ func CreateConfiguratorAttributeHandler(ctx context.Context, r *GeneratedResolve
 	principalID := GetPrincipalIDFromContext(ctx)
 	now := time.Now()
 	item = &ConfiguratorAttribute{ID: uuid.Must(uuid.NewV4()).String(), CreatedAt: now, CreatedBy: principalID}
-	tx := GetTransaction(ctx)
+	tx := r.GetDB(ctx)
 
 	event := events.NewEvent(events.EventMetadata{
 		Type:        events.EventTypeCreated,
@@ -1047,7 +1071,7 @@ func UpdateConfiguratorAttributeHandler(ctx context.Context, r *GeneratedResolve
 	principalID := GetPrincipalIDFromContext(ctx)
 	item = &ConfiguratorAttribute{}
 	now := time.Now()
-	tx := GetTransaction(ctx)
+	tx := r.GetDB(ctx)
 
 	event := events.NewEvent(events.EventMetadata{
 		Type:        events.EventTypeUpdated,
@@ -1127,7 +1151,7 @@ func DeleteConfiguratorAttributeHandler(ctx context.Context, r *GeneratedResolve
 	principalID := GetPrincipalIDFromContext(ctx)
 	item = &ConfiguratorAttribute{}
 	now := time.Now()
-	tx := GetTransaction(ctx)
+	tx := r.GetDB(ctx)
 
 	err = GetItem(ctx, tx, item, &id)
 	if err != nil {
@@ -1162,7 +1186,7 @@ func (r *GeneratedMutationResolver) DeleteAllConfiguratorAttributes(ctx context.
 	return done, err
 }
 func DeleteAllConfiguratorAttributesHandler(ctx context.Context, r *GeneratedResolver) (bool, error) {
-	tx := GetTransaction(ctx)
+	tx := r.GetDB(ctx)
 	err := tx.Delete(&ConfiguratorAttribute{}).Error
 	if err != nil {
 		tx.Rollback()
@@ -1184,7 +1208,7 @@ func CreateConfiguratorSlotHandler(ctx context.Context, r *GeneratedResolver, in
 	principalID := GetPrincipalIDFromContext(ctx)
 	now := time.Now()
 	item = &ConfiguratorSlot{ID: uuid.Must(uuid.NewV4()).String(), CreatedAt: now, CreatedBy: principalID}
-	tx := GetTransaction(ctx)
+	tx := r.GetDB(ctx)
 
 	event := events.NewEvent(events.EventMetadata{
 		Type:        events.EventTypeCreated,
@@ -1250,7 +1274,7 @@ func UpdateConfiguratorSlotHandler(ctx context.Context, r *GeneratedResolver, id
 	principalID := GetPrincipalIDFromContext(ctx)
 	item = &ConfiguratorSlot{}
 	now := time.Now()
-	tx := GetTransaction(ctx)
+	tx := r.GetDB(ctx)
 
 	event := events.NewEvent(events.EventMetadata{
 		Type:        events.EventTypeUpdated,
@@ -1318,7 +1342,7 @@ func DeleteConfiguratorSlotHandler(ctx context.Context, r *GeneratedResolver, id
 	principalID := GetPrincipalIDFromContext(ctx)
 	item = &ConfiguratorSlot{}
 	now := time.Now()
-	tx := GetTransaction(ctx)
+	tx := r.GetDB(ctx)
 
 	err = GetItem(ctx, tx, item, &id)
 	if err != nil {
@@ -1353,7 +1377,7 @@ func (r *GeneratedMutationResolver) DeleteAllConfiguratorSlots(ctx context.Conte
 	return done, err
 }
 func DeleteAllConfiguratorSlotsHandler(ctx context.Context, r *GeneratedResolver) (bool, error) {
-	tx := GetTransaction(ctx)
+	tx := r.GetDB(ctx)
 	err := tx.Delete(&ConfiguratorSlot{}).Error
 	if err != nil {
 		tx.Rollback()

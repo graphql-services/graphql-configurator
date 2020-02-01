@@ -3,6 +3,7 @@ package gen
 import (
 	"context"
 
+	"github.com/jinzhu/gorm"
 	"github.com/novacloudcz/graphql-orm/events"
 )
 
@@ -21,6 +22,8 @@ type ResolutionHandlers struct {
 	ConfiguratorItemDefinitionSlots func(ctx context.Context, r *GeneratedResolver, obj *ConfiguratorItemDefinition) (res []*ConfiguratorSlotDefinition, err error)
 
 	ConfiguratorItemDefinitionItems func(ctx context.Context, r *GeneratedResolver, obj *ConfiguratorItemDefinition) (res []*ConfiguratorItem, err error)
+
+	ConfiguratorItemDefinitionAllowedInSlots func(ctx context.Context, r *GeneratedResolver, obj *ConfiguratorItemDefinition) (res []*ConfiguratorSlotDefinition, err error)
 
 	CreateConfiguratorAttributeDefinition     func(ctx context.Context, r *GeneratedResolver, input map[string]interface{}) (item *ConfiguratorAttributeDefinition, err error)
 	UpdateConfiguratorAttributeDefinition     func(ctx context.Context, r *GeneratedResolver, id string, input map[string]interface{}) (item *ConfiguratorAttributeDefinition, err error)
@@ -43,6 +46,8 @@ type ResolutionHandlers struct {
 	ConfiguratorSlotDefinitionDefinition func(ctx context.Context, r *GeneratedResolver, obj *ConfiguratorSlotDefinition) (res *ConfiguratorItemDefinition, err error)
 
 	ConfiguratorSlotDefinitionSlots func(ctx context.Context, r *GeneratedResolver, obj *ConfiguratorSlotDefinition) (res []*ConfiguratorSlot, err error)
+
+	ConfiguratorSlotDefinitionAllowedItemDefinitions func(ctx context.Context, r *GeneratedResolver, obj *ConfiguratorSlotDefinition) (res []*ConfiguratorItemDefinition, err error)
 
 	CreateConfiguratorItem     func(ctx context.Context, r *GeneratedResolver, input map[string]interface{}) (item *ConfiguratorItem, err error)
 	UpdateConfiguratorItem     func(ctx context.Context, r *GeneratedResolver, id string, input map[string]interface{}) (item *ConfiguratorItem, err error)
@@ -101,6 +106,8 @@ func DefaultResolutionHandlers() ResolutionHandlers {
 
 		ConfiguratorItemDefinitionItems: ConfiguratorItemDefinitionItemsHandler,
 
+		ConfiguratorItemDefinitionAllowedInSlots: ConfiguratorItemDefinitionAllowedInSlotsHandler,
+
 		CreateConfiguratorAttributeDefinition:     CreateConfiguratorAttributeDefinitionHandler,
 		UpdateConfiguratorAttributeDefinition:     UpdateConfiguratorAttributeDefinitionHandler,
 		DeleteConfiguratorAttributeDefinition:     DeleteConfiguratorAttributeDefinitionHandler,
@@ -122,6 +129,8 @@ func DefaultResolutionHandlers() ResolutionHandlers {
 		ConfiguratorSlotDefinitionDefinition: ConfiguratorSlotDefinitionDefinitionHandler,
 
 		ConfiguratorSlotDefinitionSlots: ConfiguratorSlotDefinitionSlotsHandler,
+
+		ConfiguratorSlotDefinitionAllowedItemDefinitions: ConfiguratorSlotDefinitionAllowedItemDefinitionsHandler,
 
 		CreateConfiguratorItem:     CreateConfiguratorItemHandler,
 		UpdateConfiguratorItem:     UpdateConfiguratorItemHandler,
@@ -169,4 +178,13 @@ type GeneratedResolver struct {
 	Handlers        ResolutionHandlers
 	DB              *DB
 	EventController *events.EventController
+}
+
+// GetDB returns database connection or transaction for given context (if exists)
+func (r *GeneratedResolver) GetDB(ctx context.Context) *gorm.DB {
+	db, _ := ctx.Value(KeyMutationTransaction).(*gorm.DB)
+	if db == nil {
+		db = r.DB.Query()
+	}
+	return db
 }

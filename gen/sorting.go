@@ -63,6 +63,15 @@ func (s ConfiguratorItemDefinitionSortType) ApplyWithAlias(ctx context.Context, 
 		}
 	}
 
+	if s.AllowedInSlots != nil {
+		_alias := alias + "_allowedInSlots"
+		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configuratorSlotDefinition_allowedItemDefinitions"))+" "+dialect.Quote(_alias+"_jointable")+" ON "+dialect.Quote(alias)+".id = "+dialect.Quote(_alias+"_jointable")+"."+dialect.Quote("allowedItemDefinition_id")+" LEFT JOIN "+dialect.Quote(TableName("configurator_slot_definitions"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias+"_jointable")+"."+dialect.Quote("allowedInSlot_id")+" = "+dialect.Quote(_alias)+".id")
+		err := s.AllowedInSlots.ApplyWithAlias(ctx, dialect, _alias, sorts, joins)
+		if err != nil {
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -177,6 +186,15 @@ func (s ConfiguratorSlotDefinitionSortType) ApplyWithAlias(ctx context.Context, 
 		}
 	}
 
+	if s.AllowedItemDefinitions != nil {
+		_alias := alias + "_allowedItemDefinitions"
+		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configuratorSlotDefinition_allowedItemDefinitions"))+" "+dialect.Quote(_alias+"_jointable")+" ON "+dialect.Quote(alias)+".id = "+dialect.Quote(_alias+"_jointable")+"."+dialect.Quote("allowedInSlot_id")+" LEFT JOIN "+dialect.Quote(TableName("configurator_item_definitions"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias+"_jointable")+"."+dialect.Quote("allowedItemDefinition_id")+" = "+dialect.Quote(_alias)+".id")
+		err := s.AllowedItemDefinitions.ApplyWithAlias(ctx, dialect, _alias, sorts, joins)
+		if err != nil {
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -199,7 +217,7 @@ func (s ConfiguratorItemSortType) ApplyWithAlias(ctx context.Context, dialect go
 	}
 
 	if s.StockItemID != nil {
-		*sorts = append(*sorts, aliasPrefix+dialect.Quote("stockItemID")+" "+s.StockItemID.String())
+		*sorts = append(*sorts, aliasPrefix+dialect.Quote("stockItemId")+" "+s.StockItemID.String())
 	}
 
 	if s.ReferenceID != nil {

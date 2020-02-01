@@ -34,6 +34,8 @@ type ConfiguratorItemDefinition struct {
 	Slots []*ConfiguratorSlotDefinition `json:"slots" gorm:"foreignkey:DefinitionID"`
 
 	Items []*ConfiguratorItem `json:"items" gorm:"foreignkey:DefinitionID"`
+
+	AllowedInSlots []*ConfiguratorSlotDefinition `json:"allowedInSlots" gorm:"many2many:configuratorSlotDefinition_allowedItemDefinitions;jointable_foreignkey:allowedItemDefinition_id;association_jointable_foreignkey:allowedInSlot_id"`
 }
 
 func (m *ConfiguratorItemDefinition) Is_Entity() {}
@@ -46,9 +48,10 @@ type ConfiguratorItemDefinitionChanges struct {
 	UpdatedBy *string
 	CreatedBy *string
 
-	AttributesIDs []*string
-	SlotsIDs      []*string
-	ItemsIDs      []*string
+	AttributesIDs     []*string
+	SlotsIDs          []*string
+	ItemsIDs          []*string
+	AllowedInSlotsIDs []*string
 }
 
 type ConfiguratorAttributeDefinitionResultType struct {
@@ -102,6 +105,8 @@ type ConfiguratorSlotDefinition struct {
 	Definition *ConfiguratorItemDefinition `json:"definition"`
 
 	Slots []*ConfiguratorSlot `json:"slots" gorm:"foreignkey:DefinitionID"`
+
+	AllowedItemDefinitions []*ConfiguratorItemDefinition `json:"allowedItemDefinitions" gorm:"many2many:configuratorSlotDefinition_allowedItemDefinitions;jointable_foreignkey:allowedInSlot_id;association_jointable_foreignkey:allowedItemDefinition_id"`
 }
 
 func (m *ConfiguratorSlotDefinition) Is_Entity() {}
@@ -117,7 +122,8 @@ type ConfiguratorSlotDefinitionChanges struct {
 	UpdatedBy    *string
 	CreatedBy    *string
 
-	SlotsIDs []*string
+	SlotsIDs                  []*string
+	AllowedItemDefinitionsIDs []*string
 }
 
 type ConfiguratorItemResultType struct {
@@ -128,7 +134,7 @@ type ConfiguratorItem struct {
 	ID           string     `json:"id" gorm:"column:id;primary_key"`
 	Code         *string    `json:"code" gorm:"column:code"`
 	Name         *string    `json:"name" gorm:"column:name"`
-	StockItemID  *string    `json:"stockItemID" gorm:"column:stockItemID"`
+	StockItemID  *string    `json:"stockItemId" gorm:"column:stockItemId"`
 	ReferenceID  *string    `json:"referenceID" gorm:"column:referenceID"`
 	RawData      *string    `json:"rawData" gorm:"column:rawData;type:text"`
 	DefinitionID *string    `json:"definitionId" gorm:"column:definitionId"`

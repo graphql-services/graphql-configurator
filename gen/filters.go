@@ -93,6 +93,15 @@ func (f *ConfiguratorItemDefinitionFilterType) ApplyWithAlias(ctx context.Contex
 		}
 	}
 
+	if f.AllowedInSlots != nil {
+		_alias := alias + "_allowedInSlots"
+		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configuratorSlotDefinition_allowedItemDefinitions"))+" "+dialect.Quote(_alias+"_jointable")+" ON "+dialect.Quote(alias)+".id = "+dialect.Quote(_alias+"_jointable")+"."+dialect.Quote("allowedItemDefinition_id")+" LEFT JOIN "+dialect.Quote(TableName("configurator_slot_definitions"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias+"_jointable")+"."+dialect.Quote("allowedInSlot_id")+" = "+dialect.Quote(_alias)+".id")
+		err := f.AllowedInSlots.ApplyWithAlias(ctx, dialect, _alias, wheres, values, joins)
+		if err != nil {
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -918,6 +927,15 @@ func (f *ConfiguratorSlotDefinitionFilterType) ApplyWithAlias(ctx context.Contex
 		}
 	}
 
+	if f.AllowedItemDefinitions != nil {
+		_alias := alias + "_allowedItemDefinitions"
+		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configuratorSlotDefinition_allowedItemDefinitions"))+" "+dialect.Quote(_alias+"_jointable")+" ON "+dialect.Quote(alias)+".id = "+dialect.Quote(_alias+"_jointable")+"."+dialect.Quote("allowedInSlot_id")+" LEFT JOIN "+dialect.Quote(TableName("configurator_item_definitions"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias+"_jointable")+"."+dialect.Quote("allowedItemDefinition_id")+" = "+dialect.Quote(_alias)+".id")
+		err := f.AllowedItemDefinitions.ApplyWithAlias(ctx, dialect, _alias, wheres, values, joins)
+		if err != nil {
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -1623,45 +1641,45 @@ func (f *ConfiguratorItemFilterType) WhereContent(dialect gorm.Dialect, aliasPre
 	}
 
 	if f.StockItemID != nil {
-		conditions = append(conditions, aliasPrefix+dialect.Quote("stockItemID")+" = ?")
+		conditions = append(conditions, aliasPrefix+dialect.Quote("stockItemId")+" = ?")
 		values = append(values, f.StockItemID)
 	}
 
 	if f.StockItemIDNe != nil {
-		conditions = append(conditions, aliasPrefix+dialect.Quote("stockItemID")+" != ?")
+		conditions = append(conditions, aliasPrefix+dialect.Quote("stockItemId")+" != ?")
 		values = append(values, f.StockItemIDNe)
 	}
 
 	if f.StockItemIDGt != nil {
-		conditions = append(conditions, aliasPrefix+dialect.Quote("stockItemID")+" > ?")
+		conditions = append(conditions, aliasPrefix+dialect.Quote("stockItemId")+" > ?")
 		values = append(values, f.StockItemIDGt)
 	}
 
 	if f.StockItemIDLt != nil {
-		conditions = append(conditions, aliasPrefix+dialect.Quote("stockItemID")+" < ?")
+		conditions = append(conditions, aliasPrefix+dialect.Quote("stockItemId")+" < ?")
 		values = append(values, f.StockItemIDLt)
 	}
 
 	if f.StockItemIDGte != nil {
-		conditions = append(conditions, aliasPrefix+dialect.Quote("stockItemID")+" >= ?")
+		conditions = append(conditions, aliasPrefix+dialect.Quote("stockItemId")+" >= ?")
 		values = append(values, f.StockItemIDGte)
 	}
 
 	if f.StockItemIDLte != nil {
-		conditions = append(conditions, aliasPrefix+dialect.Quote("stockItemID")+" <= ?")
+		conditions = append(conditions, aliasPrefix+dialect.Quote("stockItemId")+" <= ?")
 		values = append(values, f.StockItemIDLte)
 	}
 
 	if f.StockItemIDIn != nil {
-		conditions = append(conditions, aliasPrefix+dialect.Quote("stockItemID")+" IN (?)")
+		conditions = append(conditions, aliasPrefix+dialect.Quote("stockItemId")+" IN (?)")
 		values = append(values, f.StockItemIDIn)
 	}
 
 	if f.StockItemIDNull != nil {
 		if *f.StockItemIDNull {
-			conditions = append(conditions, aliasPrefix+dialect.Quote("stockItemID")+" IS NULL")
+			conditions = append(conditions, aliasPrefix+dialect.Quote("stockItemId")+" IS NULL")
 		} else {
-			conditions = append(conditions, aliasPrefix+dialect.Quote("stockItemID")+" IS NOT NULL")
+			conditions = append(conditions, aliasPrefix+dialect.Quote("stockItemId")+" IS NOT NULL")
 		}
 	}
 

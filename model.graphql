@@ -1,7 +1,7 @@
 type ConfiguratorItem @entity {
   code: String @column
   name: String @column
-  stockItemID: ID @column
+  stockItemId: ID @column
   referenceID: String @column
 
   rawData: String @column(type: text)

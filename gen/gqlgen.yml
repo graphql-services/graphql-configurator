@@ -24,6 +24,8 @@ models:
         resolver: true
       items:
         resolver: true
+      allowedInSlots:
+        resolver: true
   ConfiguratorItemDefinitionResultType:
     model: github.com/graphql-services/graphql-configurator/gen.ConfiguratorItemDefinitionResultType
     fields:
@@ -61,6 +63,8 @@ models:
       definition:
         resolver: true
       slots:
+        resolver: true
+      allowedItemDefinitions:
         resolver: true
   ConfiguratorSlotDefinitionResultType:
     model: github.com/graphql-services/graphql-configurator/gen.ConfiguratorSlotDefinitionResultType

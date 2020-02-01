@@ -145,18 +145,20 @@ type ComplexityRoot struct {
 	}
 
 	ConfiguratorItemDefinition struct {
-		Attributes    func(childComplexity int) int
-		AttributesIds func(childComplexity int) int
-		CreatedAt     func(childComplexity int) int
-		CreatedBy     func(childComplexity int) int
-		ID            func(childComplexity int) int
-		Items         func(childComplexity int) int
-		ItemsIds      func(childComplexity int) int
-		Name          func(childComplexity int) int
-		Slots         func(childComplexity int) int
-		SlotsIds      func(childComplexity int) int
-		UpdatedAt     func(childComplexity int) int
-		UpdatedBy     func(childComplexity int) int
+		AllowedInSlots    func(childComplexity int) int
+		AllowedInSlotsIds func(childComplexity int) int
+		Attributes        func(childComplexity int) int
+		AttributesIds     func(childComplexity int) int
+		CreatedAt         func(childComplexity int) int
+		CreatedBy         func(childComplexity int) int
+		ID                func(childComplexity int) int
+		Items             func(childComplexity int) int
+		ItemsIds          func(childComplexity int) int
+		Name              func(childComplexity int) int
+		Slots             func(childComplexity int) int
+		SlotsIds          func(childComplexity int) int
+		UpdatedAt         func(childComplexity int) int
+		UpdatedBy         func(childComplexity int) int
 	}
 
 	ConfiguratorItemDefinitionResultType struct {
@@ -184,18 +186,20 @@ type ComplexityRoot struct {
 	}
 
 	ConfiguratorSlotDefinition struct {
-		CreatedAt    func(childComplexity int) int
-		CreatedBy    func(childComplexity int) int
-		Definition   func(childComplexity int) int
-		DefinitionID func(childComplexity int) int
-		ID           func(childComplexity int) int
-		MaxCount     func(childComplexity int) int
-		MinCount     func(childComplexity int) int
-		Name         func(childComplexity int) int
-		Slots        func(childComplexity int) int
-		SlotsIds     func(childComplexity int) int
-		UpdatedAt    func(childComplexity int) int
-		UpdatedBy    func(childComplexity int) int
+		AllowedItemDefinitions    func(childComplexity int) int
+		AllowedItemDefinitionsIds func(childComplexity int) int
+		CreatedAt                 func(childComplexity int) int
+		CreatedBy                 func(childComplexity int) int
+		Definition                func(childComplexity int) int
+		DefinitionID              func(childComplexity int) int
+		ID                        func(childComplexity int) int
+		MaxCount                  func(childComplexity int) int
+		MinCount                  func(childComplexity int) int
+		Name                      func(childComplexity int) int
+		Slots                     func(childComplexity int) int
+		SlotsIds                  func(childComplexity int) int
+		UpdatedAt                 func(childComplexity int) int
+		UpdatedBy                 func(childComplexity int) int
 	}
 
 	ConfiguratorSlotDefinitionResultType struct {
@@ -292,10 +296,12 @@ type ConfiguratorItemDefinitionResolver interface {
 	Attributes(ctx context.Context, obj *ConfiguratorItemDefinition) ([]*ConfiguratorAttributeDefinition, error)
 	Slots(ctx context.Context, obj *ConfiguratorItemDefinition) ([]*ConfiguratorSlotDefinition, error)
 	Items(ctx context.Context, obj *ConfiguratorItemDefinition) ([]*ConfiguratorItem, error)
+	AllowedInSlots(ctx context.Context, obj *ConfiguratorItemDefinition) ([]*ConfiguratorSlotDefinition, error)
 
 	AttributesIds(ctx context.Context, obj *ConfiguratorItemDefinition) ([]string, error)
 	SlotsIds(ctx context.Context, obj *ConfiguratorItemDefinition) ([]string, error)
 	ItemsIds(ctx context.Context, obj *ConfiguratorItemDefinition) ([]string, error)
+	AllowedInSlotsIds(ctx context.Context, obj *ConfiguratorItemDefinition) ([]string, error)
 }
 type ConfiguratorItemDefinitionResultTypeResolver interface {
 	Items(ctx context.Context, obj *ConfiguratorItemDefinitionResultType) ([]*ConfiguratorItemDefinition, error)
@@ -313,8 +319,10 @@ type ConfiguratorSlotResolver interface {
 type ConfiguratorSlotDefinitionResolver interface {
 	Definition(ctx context.Context, obj *ConfiguratorSlotDefinition) (*ConfiguratorItemDefinition, error)
 	Slots(ctx context.Context, obj *ConfiguratorSlotDefinition) ([]*ConfiguratorSlot, error)
+	AllowedItemDefinitions(ctx context.Context, obj *ConfiguratorSlotDefinition) ([]*ConfiguratorItemDefinition, error)
 
 	SlotsIds(ctx context.Context, obj *ConfiguratorSlotDefinition) ([]string, error)
+	AllowedItemDefinitionsIds(ctx context.Context, obj *ConfiguratorSlotDefinition) ([]string, error)
 }
 type ConfiguratorSlotDefinitionResultTypeResolver interface {
 	Items(ctx context.Context, obj *ConfiguratorSlotDefinitionResultType) ([]*ConfiguratorSlotDefinition, error)
@@ -797,7 +805,7 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.ConfiguratorItem.SlotsIds(childComplexity), true
 
-	case "ConfiguratorItem.stockItemID":
+	case "ConfiguratorItem.stockItemId":
 		if e.complexity.ConfiguratorItem.StockItemID == nil {
 			break
 		}
@@ -817,6 +825,20 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.ConfiguratorItem.UpdatedBy(childComplexity), true
+
+	case "ConfiguratorItemDefinition.allowedInSlots":
+		if e.complexity.ConfiguratorItemDefinition.AllowedInSlots == nil {
+			break
+		}
+
+		return e.complexity.ConfiguratorItemDefinition.AllowedInSlots(childComplexity), true
+
+	case "ConfiguratorItemDefinition.allowedInSlotsIds":
+		if e.complexity.ConfiguratorItemDefinition.AllowedInSlotsIds == nil {
+			break
+		}
+
+		return e.complexity.ConfiguratorItemDefinition.AllowedInSlotsIds(childComplexity), true
 
 	case "ConfiguratorItemDefinition.attributes":
 		if e.complexity.ConfiguratorItemDefinition.Attributes == nil {
@@ -1006,6 +1028,20 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.ConfiguratorSlot.UpdatedBy(childComplexity), true
+
+	case "ConfiguratorSlotDefinition.allowedItemDefinitions":
+		if e.complexity.ConfiguratorSlotDefinition.AllowedItemDefinitions == nil {
+			break
+		}
+
+		return e.complexity.ConfiguratorSlotDefinition.AllowedItemDefinitions(childComplexity), true
+
+	case "ConfiguratorSlotDefinition.allowedItemDefinitionsIds":
+		if e.complexity.ConfiguratorSlotDefinition.AllowedItemDefinitionsIds == nil {
+			break
+		}
+
+		return e.complexity.ConfiguratorSlotDefinition.AllowedItemDefinitionsIds(childComplexity), true
 
 	case "ConfiguratorSlotDefinition.createdAt":
 		if e.complexity.ConfiguratorSlotDefinition.CreatedAt == nil {
@@ -1768,6 +1804,7 @@ type ConfiguratorItemDefinition {
   attributes: [ConfiguratorAttributeDefinition!]!
   slots: [ConfiguratorSlotDefinition!]!
   items: [ConfiguratorItem!]!
+  allowedInSlots: [ConfiguratorSlotDefinition!]!
   updatedAt: Time
   createdAt: Time!
   updatedBy: ID
@@ -1775,6 +1812,7 @@ type ConfiguratorItemDefinition {
   attributesIds: [ID!]!
   slotsIds: [ID!]!
   itemsIds: [ID!]!
+  allowedInSlotsIds: [ID!]!
 }
 
 enum ConfiguratorAttributeType {
@@ -1804,19 +1842,21 @@ type ConfiguratorSlotDefinition {
   maxCount: Int
   definition: ConfiguratorItemDefinition
   slots: [ConfiguratorSlot!]!
+  allowedItemDefinitions: [ConfiguratorItemDefinition!]!
   definitionId: ID
   updatedAt: Time
   createdAt: Time!
   updatedBy: ID
   createdBy: ID
   slotsIds: [ID!]!
+  allowedItemDefinitionsIds: [ID!]!
 }
 
 type ConfiguratorItem {
   id: ID!
   code: String
   name: String
-  stockItemID: ID
+  stockItemId: ID
   referenceID: String
   rawData: String
   definition: ConfiguratorItemDefinition
@@ -1868,6 +1908,7 @@ input ConfiguratorItemDefinitionCreateInput {
   attributesIds: [ID!]
   slotsIds: [ID!]
   itemsIds: [ID!]
+  allowedInSlotsIds: [ID!]
 }
 
 input ConfiguratorItemDefinitionUpdateInput {
@@ -1875,6 +1916,7 @@ input ConfiguratorItemDefinitionUpdateInput {
   attributesIds: [ID!]
   slotsIds: [ID!]
   itemsIds: [ID!]
+  allowedInSlotsIds: [ID!]
 }
 
 input ConfiguratorItemDefinitionSortType {
@@ -1887,9 +1929,11 @@ input ConfiguratorItemDefinitionSortType {
   attributesIds: ObjectSortType
   slotsIds: ObjectSortType
   itemsIds: ObjectSortType
+  allowedInSlotsIds: ObjectSortType
   attributes: ConfiguratorAttributeDefinitionSortType
   slots: ConfiguratorSlotDefinitionSortType
   items: ConfiguratorItemSortType
+  allowedInSlots: ConfiguratorSlotDefinitionSortType
 }
 
 input ConfiguratorItemDefinitionFilterType {
@@ -1949,6 +1993,7 @@ input ConfiguratorItemDefinitionFilterType {
   attributes: ConfiguratorAttributeDefinitionFilterType
   slots: ConfiguratorSlotDefinitionFilterType
   items: ConfiguratorItemFilterType
+  allowedInSlots: ConfiguratorSlotDefinitionFilterType
 }
 
 type ConfiguratorItemDefinitionResultType {
@@ -2063,6 +2108,7 @@ input ConfiguratorSlotDefinitionCreateInput {
   maxCount: Int
   definitionId: ID
   slotsIds: [ID!]
+  allowedItemDefinitionsIds: [ID!]
 }
 
 input ConfiguratorSlotDefinitionUpdateInput {
@@ -2071,6 +2117,7 @@ input ConfiguratorSlotDefinitionUpdateInput {
   maxCount: Int
   definitionId: ID
   slotsIds: [ID!]
+  allowedItemDefinitionsIds: [ID!]
 }
 
 input ConfiguratorSlotDefinitionSortType {
@@ -2084,8 +2131,10 @@ input ConfiguratorSlotDefinitionSortType {
   updatedBy: ObjectSortType
   createdBy: ObjectSortType
   slotsIds: ObjectSortType
+  allowedItemDefinitionsIds: ObjectSortType
   definition: ConfiguratorItemDefinitionSortType
   slots: ConfiguratorSlotSortType
+  allowedItemDefinitions: ConfiguratorItemDefinitionSortType
 }
 
 input ConfiguratorSlotDefinitionFilterType {
@@ -2168,6 +2217,7 @@ input ConfiguratorSlotDefinitionFilterType {
   createdBy_null: Boolean
   definition: ConfiguratorItemDefinitionFilterType
   slots: ConfiguratorSlotFilterType
+  allowedItemDefinitions: ConfiguratorItemDefinitionFilterType
 }
 
 type ConfiguratorSlotDefinitionResultType {
@@ -2179,7 +2229,7 @@ input ConfiguratorItemCreateInput {
   id: ID
   code: String
   name: String
-  stockItemID: ID
+  stockItemId: ID
   referenceID: String
   rawData: String
   definitionId: ID
@@ -2191,7 +2241,7 @@ input ConfiguratorItemCreateInput {
 input ConfiguratorItemUpdateInput {
   code: String
   name: String
-  stockItemID: ID
+  stockItemId: ID
   referenceID: String
   rawData: String
   definitionId: ID
@@ -2204,7 +2254,7 @@ input ConfiguratorItemSortType {
   id: ObjectSortType
   code: ObjectSortType
   name: ObjectSortType
-  stockItemID: ObjectSortType
+  stockItemId: ObjectSortType
   referenceID: ObjectSortType
   rawData: ObjectSortType
   definitionId: ObjectSortType
@@ -2254,14 +2304,14 @@ input ConfiguratorItemFilterType {
   name_prefix: String
   name_suffix: String
   name_null: Boolean
-  stockItemID: ID
-  stockItemID_ne: ID
-  stockItemID_gt: ID
-  stockItemID_lt: ID
-  stockItemID_gte: ID
-  stockItemID_lte: ID
-  stockItemID_in: [ID!]
-  stockItemID_null: Boolean
+  stockItemId: ID
+  stockItemId_ne: ID
+  stockItemId_gt: ID
+  stockItemId_lt: ID
+  stockItemId_gte: ID
+  stockItemId_lte: ID
+  stockItemId_in: [ID!]
+  stockItemId_null: Boolean
   referenceID: String
   referenceID_ne: String
   referenceID_gt: String
@@ -5084,7 +5134,7 @@ func (ec *executionContext) _ConfiguratorItem_name(ctx context.Context, field gr
 	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) _ConfiguratorItem_stockItemID(ctx context.Context, field graphql.CollectedField, obj *ConfiguratorItem) (ret graphql.Marshaler) {
+func (ec *executionContext) _ConfiguratorItem_stockItemId(ctx context.Context, field graphql.CollectedField, obj *ConfiguratorItem) (ret graphql.Marshaler) {
 	ctx = ec.Tracer.StartFieldExecution(ctx, field)
 	defer func() {
 		if r := recover(); r != nil {
@@ -5797,6 +5847,43 @@ func (ec *executionContext) _ConfiguratorItemDefinition_items(ctx context.Contex
 	return ec.marshalNConfiguratorItem2ᚕᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemᚄ(ctx, field.Selections, res)
 }
 
+func (ec *executionContext) _ConfiguratorItemDefinition_allowedInSlots(ctx context.Context, field graphql.CollectedField, obj *ConfiguratorItemDefinition) (ret graphql.Marshaler) {
+	ctx = ec.Tracer.StartFieldExecution(ctx, field)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+		ec.Tracer.EndFieldExecution(ctx)
+	}()
+	rctx := &graphql.ResolverContext{
+		Object:   "ConfiguratorItemDefinition",
+		Field:    field,
+		Args:     nil,
+		IsMethod: true,
+	}
+	ctx = graphql.WithResolverContext(ctx, rctx)
+	ctx = ec.Tracer.StartFieldResolverExecution(ctx, rctx)
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
+		ctx = rctx // use context from middleware stack in children
+		return ec.resolvers.ConfiguratorItemDefinition().AllowedInSlots(rctx, obj)
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		if !ec.HasError(rctx) {
+			ec.Errorf(ctx, "must not be null")
+		}
+		return graphql.Null
+	}
+	res := resTmp.([]*ConfiguratorSlotDefinition)
+	rctx.Result = res
+	ctx = ec.Tracer.StartFieldChildExecution(ctx)
+	return ec.marshalNConfiguratorSlotDefinition2ᚕᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorSlotDefinitionᚄ(ctx, field.Selections, res)
+}
+
 func (ec *executionContext) _ConfiguratorItemDefinition_updatedAt(ctx context.Context, field graphql.CollectedField, obj *ConfiguratorItemDefinition) (ret graphql.Marshaler) {
 	ctx = ec.Tracer.StartFieldExecution(ctx, field)
 	defer func() {
@@ -6030,6 +6117,43 @@ func (ec *executionContext) _ConfiguratorItemDefinition_itemsIds(ctx context.Con
 	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
 		ctx = rctx // use context from middleware stack in children
 		return ec.resolvers.ConfiguratorItemDefinition().ItemsIds(rctx, obj)
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		if !ec.HasError(rctx) {
+			ec.Errorf(ctx, "must not be null")
+		}
+		return graphql.Null
+	}
+	res := resTmp.([]string)
+	rctx.Result = res
+	ctx = ec.Tracer.StartFieldChildExecution(ctx)
+	return ec.marshalNID2ᚕstringᚄ(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) _ConfiguratorItemDefinition_allowedInSlotsIds(ctx context.Context, field graphql.CollectedField, obj *ConfiguratorItemDefinition) (ret graphql.Marshaler) {
+	ctx = ec.Tracer.StartFieldExecution(ctx, field)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+		ec.Tracer.EndFieldExecution(ctx)
+	}()
+	rctx := &graphql.ResolverContext{
+		Object:   "ConfiguratorItemDefinition",
+		Field:    field,
+		Args:     nil,
+		IsMethod: true,
+	}
+	ctx = graphql.WithResolverContext(ctx, rctx)
+	ctx = ec.Tracer.StartFieldResolverExecution(ctx, rctx)
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
+		ctx = rctx // use context from middleware stack in children
+		return ec.resolvers.ConfiguratorItemDefinition().AllowedInSlotsIds(rctx, obj)
 	})
 	if err != nil {
 		ec.Error(ctx, err)
@@ -6785,6 +6909,43 @@ func (ec *executionContext) _ConfiguratorSlotDefinition_slots(ctx context.Contex
 	return ec.marshalNConfiguratorSlot2ᚕᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorSlotᚄ(ctx, field.Selections, res)
 }
 
+func (ec *executionContext) _ConfiguratorSlotDefinition_allowedItemDefinitions(ctx context.Context, field graphql.CollectedField, obj *ConfiguratorSlotDefinition) (ret graphql.Marshaler) {
+	ctx = ec.Tracer.StartFieldExecution(ctx, field)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+		ec.Tracer.EndFieldExecution(ctx)
+	}()
+	rctx := &graphql.ResolverContext{
+		Object:   "ConfiguratorSlotDefinition",
+		Field:    field,
+		Args:     nil,
+		IsMethod: true,
+	}
+	ctx = graphql.WithResolverContext(ctx, rctx)
+	ctx = ec.Tracer.StartFieldResolverExecution(ctx, rctx)
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
+		ctx = rctx // use context from middleware stack in children
+		return ec.resolvers.ConfiguratorSlotDefinition().AllowedItemDefinitions(rctx, obj)
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		if !ec.HasError(rctx) {
+			ec.Errorf(ctx, "must not be null")
+		}
+		return graphql.Null
+	}
+	res := resTmp.([]*ConfiguratorItemDefinition)
+	rctx.Result = res
+	ctx = ec.Tracer.StartFieldChildExecution(ctx)
+	return ec.marshalNConfiguratorItemDefinition2ᚕᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemDefinitionᚄ(ctx, field.Selections, res)
+}
+
 func (ec *executionContext) _ConfiguratorSlotDefinition_definitionId(ctx context.Context, field graphql.CollectedField, obj *ConfiguratorSlotDefinition) (ret graphql.Marshaler) {
 	ctx = ec.Tracer.StartFieldExecution(ctx, field)
 	defer func() {
@@ -6978,6 +7139,43 @@ func (ec *executionContext) _ConfiguratorSlotDefinition_slotsIds(ctx context.Con
 	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
 		ctx = rctx // use context from middleware stack in children
 		return ec.resolvers.ConfiguratorSlotDefinition().SlotsIds(rctx, obj)
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		if !ec.HasError(rctx) {
+			ec.Errorf(ctx, "must not be null")
+		}
+		return graphql.Null
+	}
+	res := resTmp.([]string)
+	rctx.Result = res
+	ctx = ec.Tracer.StartFieldChildExecution(ctx)
+	return ec.marshalNID2ᚕstringᚄ(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) _ConfiguratorSlotDefinition_allowedItemDefinitionsIds(ctx context.Context, field graphql.CollectedField, obj *ConfiguratorSlotDefinition) (ret graphql.Marshaler) {
+	ctx = ec.Tracer.StartFieldExecution(ctx, field)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+		ec.Tracer.EndFieldExecution(ctx)
+	}()
+	rctx := &graphql.ResolverContext{
+		Object:   "ConfiguratorSlotDefinition",
+		Field:    field,
+		Args:     nil,
+		IsMethod: true,
+	}
+	ctx = graphql.WithResolverContext(ctx, rctx)
+	ctx = ec.Tracer.StartFieldResolverExecution(ctx, rctx)
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
+		ctx = rctx // use context from middleware stack in children
+		return ec.resolvers.ConfiguratorSlotDefinition().AllowedItemDefinitionsIds(rctx, obj)
 	})
 	if err != nil {
 		ec.Error(ctx, err)
@@ -11659,6 +11857,12 @@ func (ec *executionContext) unmarshalInputConfiguratorItemDefinitionFilterType(c
 			if err != nil {
 				return it, err
 			}
+		case "allowedInSlots":
+			var err error
+			it.AllowedInSlots, err = ec.unmarshalOConfiguratorSlotDefinitionFilterType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorSlotDefinitionFilterType(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		}
 	}
 
@@ -11725,6 +11929,12 @@ func (ec *executionContext) unmarshalInputConfiguratorItemDefinitionSortType(ctx
 			if err != nil {
 				return it, err
 			}
+		case "allowedInSlotsIds":
+			var err error
+			it.AllowedInSlotsIds, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "attributes":
 			var err error
 			it.Attributes, err = ec.unmarshalOConfiguratorAttributeDefinitionSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorAttributeDefinitionSortType(ctx, v)
@@ -11740,6 +11950,12 @@ func (ec *executionContext) unmarshalInputConfiguratorItemDefinitionSortType(ctx
 		case "items":
 			var err error
 			it.Items, err = ec.unmarshalOConfiguratorItemSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "allowedInSlots":
+			var err error
+			it.AllowedInSlots, err = ec.unmarshalOConfiguratorSlotDefinitionSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorSlotDefinitionSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -11947,49 +12163,49 @@ func (ec *executionContext) unmarshalInputConfiguratorItemFilterType(ctx context
 			if err != nil {
 				return it, err
 			}
-		case "stockItemID":
+		case "stockItemId":
 			var err error
 			it.StockItemID, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
-		case "stockItemID_ne":
+		case "stockItemId_ne":
 			var err error
 			it.StockItemIDNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
-		case "stockItemID_gt":
+		case "stockItemId_gt":
 			var err error
 			it.StockItemIDGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
-		case "stockItemID_lt":
+		case "stockItemId_lt":
 			var err error
 			it.StockItemIDLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
-		case "stockItemID_gte":
+		case "stockItemId_gte":
 			var err error
 			it.StockItemIDGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
-		case "stockItemID_lte":
+		case "stockItemId_lte":
 			var err error
 			it.StockItemIDLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
-		case "stockItemID_in":
+		case "stockItemId_in":
 			var err error
 			it.StockItemIDIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
-		case "stockItemID_null":
+		case "stockItemId_null":
 			var err error
 			it.StockItemIDNull, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
 			if err != nil {
@@ -12421,7 +12637,7 @@ func (ec *executionContext) unmarshalInputConfiguratorItemSortType(ctx context.C
 			if err != nil {
 				return it, err
 			}
-		case "stockItemID":
+		case "stockItemId":
 			var err error
 			it.StockItemID, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
@@ -12997,6 +13213,12 @@ func (ec *executionContext) unmarshalInputConfiguratorSlotDefinitionFilterType(c
 			if err != nil {
 				return it, err
 			}
+		case "allowedItemDefinitions":
+			var err error
+			it.AllowedItemDefinitions, err = ec.unmarshalOConfiguratorItemDefinitionFilterType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemDefinitionFilterType(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		}
 	}
 
@@ -13069,6 +13291,12 @@ func (ec *executionContext) unmarshalInputConfiguratorSlotDefinitionSortType(ctx
 			if err != nil {
 				return it, err
 			}
+		case "allowedItemDefinitionsIds":
+			var err error
+			it.AllowedItemDefinitionsIds, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "definition":
 			var err error
 			it.Definition, err = ec.unmarshalOConfiguratorItemDefinitionSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemDefinitionSortType(ctx, v)
@@ -13078,6 +13306,12 @@ func (ec *executionContext) unmarshalInputConfiguratorSlotDefinitionSortType(ctx
 		case "slots":
 			var err error
 			it.Slots, err = ec.unmarshalOConfiguratorSlotSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorSlotSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "allowedItemDefinitions":
+			var err error
+			it.AllowedItemDefinitions, err = ec.unmarshalOConfiguratorItemDefinitionSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemDefinitionSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -14024,8 +14258,8 @@ func (ec *executionContext) _ConfiguratorItem(ctx context.Context, sel ast.Selec
 			out.Values[i] = ec._ConfiguratorItem_code(ctx, field, obj)
 		case "name":
 			out.Values[i] = ec._ConfiguratorItem_name(ctx, field, obj)
-		case "stockItemID":
-			out.Values[i] = ec._ConfiguratorItem_stockItemID(ctx, field, obj)
+		case "stockItemId":
+			out.Values[i] = ec._ConfiguratorItem_stockItemId(ctx, field, obj)
 		case "referenceID":
 			out.Values[i] = ec._ConfiguratorItem_referenceID(ctx, field, obj)
 		case "rawData":
@@ -14209,6 +14443,20 @@ func (ec *executionContext) _ConfiguratorItemDefinition(ctx context.Context, sel
 				}
 				return res
 			})
+		case "allowedInSlots":
+			field := field
+			out.Concurrently(i, func() (res graphql.Marshaler) {
+				defer func() {
+					if r := recover(); r != nil {
+						ec.Error(ctx, ec.Recover(ctx, r))
+					}
+				}()
+				res = ec._ConfiguratorItemDefinition_allowedInSlots(ctx, field, obj)
+				if res == graphql.Null {
+					atomic.AddUint32(&invalids, 1)
+				}
+				return res
+			})
 		case "updatedAt":
 			out.Values[i] = ec._ConfiguratorItemDefinition_updatedAt(ctx, field, obj)
 		case "createdAt":
@@ -14257,6 +14505,20 @@ func (ec *executionContext) _ConfiguratorItemDefinition(ctx context.Context, sel
 					}
 				}()
 				res = ec._ConfiguratorItemDefinition_itemsIds(ctx, field, obj)
+				if res == graphql.Null {
+					atomic.AddUint32(&invalids, 1)
+				}
+				return res
+			})
+		case "allowedInSlotsIds":
+			field := field
+			out.Concurrently(i, func() (res graphql.Marshaler) {
+				defer func() {
+					if r := recover(); r != nil {
+						ec.Error(ctx, ec.Recover(ctx, r))
+					}
+				}()
+				res = ec._ConfiguratorItemDefinition_allowedInSlotsIds(ctx, field, obj)
 				if res == graphql.Null {
 					atomic.AddUint32(&invalids, 1)
 				}
@@ -14497,6 +14759,20 @@ func (ec *executionContext) _ConfiguratorSlotDefinition(ctx context.Context, sel
 				}
 				return res
 			})
+		case "allowedItemDefinitions":
+			field := field
+			out.Concurrently(i, func() (res graphql.Marshaler) {
+				defer func() {
+					if r := recover(); r != nil {
+						ec.Error(ctx, ec.Recover(ctx, r))
+					}
+				}()
+				res = ec._ConfiguratorSlotDefinition_allowedItemDefinitions(ctx, field, obj)
+				if res == graphql.Null {
+					atomic.AddUint32(&invalids, 1)
+				}
+				return res
+			})
 		case "definitionId":
 			out.Values[i] = ec._ConfiguratorSlotDefinition_definitionId(ctx, field, obj)
 		case "updatedAt":
@@ -14519,6 +14795,20 @@ func (ec *executionContext) _ConfiguratorSlotDefinition(ctx context.Context, sel
 					}
 				}()
 				res = ec._ConfiguratorSlotDefinition_slotsIds(ctx, field, obj)
+				if res == graphql.Null {
+					atomic.AddUint32(&invalids, 1)
+				}
+				return res
+			})
+		case "allowedItemDefinitionsIds":
+			field := field
+			out.Concurrently(i, func() (res graphql.Marshaler) {
+				defer func() {
+					if r := recover(); r != nil {
+						ec.Error(ctx, ec.Recover(ctx, r))
+					}
+				}()
+				res = ec._ConfiguratorSlotDefinition_allowedItemDefinitionsIds(ctx, field, obj)
 				if res == graphql.Null {
 					atomic.AddUint32(&invalids, 1)
 				}
