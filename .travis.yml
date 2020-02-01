@@ -9,14 +9,27 @@ jobs:
       script: make build tag push
     - stage: lambda
       if: tag IS present
-      script: make build-lambda-function
+      script: make build-lambda && mkdir release && mv lambda.zip release/lambda.zip
 deploy:
-  provider: releases
-  api_key:
-    secure: ilZPr1WJ8KJV3iNrQv13tXdA9A7m+YIcPgf+i1BwO7n/X81ijwbN17Xd4/8vioI4yX3ON9zdMyaAxu6Y2qdrLlZJv8f9YP6r7BIo1vHda2opF3nrkF20w4MpsfGSrgmMB0azFT8zdAT5GCDZOYWSOlKnOW4gzRZ7SGkYo0O3nqRS+Qm3mdSr5By+aKsI/kOcC5BV896y1sWlcWSszAa7EmrW4N1t9HoSta7HyvcqhGw5IC4/l3pxQ8sADlhX9NgDfVPImWcbmkyRQxMVvVu7TxPWmwSVBmSPpGunDAqcl+w/Ieg7ZuGy0OQWsFjxNF6xmbVZaMkoBHbvJ1NU9W2ozw78cy/cmx/YNxrlEiOPk0xwQAeScmmzf4KXPoRo3iCDcWvZQrPAVgNaGpLCd2cN26S2U7WrTPV5lVaeD+kTk0xG/lu25bcuD1GkvT4wiIAxEfrOcdT77gp/mZtRm0PpsUhCevjcXGrd88aWGPH+/kuIWvtI3Xl4zPidEtfUfLMnqJINMCFadM0wbkLAjQPd644XRq77YrgBQ/cmFC1xUy07OwJA6nH0Cwx9tryt896uChRu+/9plmH4C1m9NM/wKeicSn31MD0PlPZ52sZgwMjNYJGZTHQ0SKAQG3TviBlnFUFNhK5SfYBBBOzdrnhnRAunFQ8mvkZFRLm2ficR0GQ=
-  file: lambda.zip
-  skip_cleanup: true
-  on:
-    tags: true
-    repo: $TRAVIS_REPO_SLUG
-    condition: $TRAVIS_BUILD_STAGE_NAME = Lambda
+  - provider: releases
+    api_key:
+      secure: ilZPr1WJ8KJV3iNrQv13tXdA9A7m+YIcPgf+i1BwO7n/X81ijwbN17Xd4/8vioI4yX3ON9zdMyaAxu6Y2qdrLlZJv8f9YP6r7BIo1vHda2opF3nrkF20w4MpsfGSrgmMB0azFT8zdAT5GCDZOYWSOlKnOW4gzRZ7SGkYo0O3nqRS+Qm3mdSr5By+aKsI/kOcC5BV896y1sWlcWSszAa7EmrW4N1t9HoSta7HyvcqhGw5IC4/l3pxQ8sADlhX9NgDfVPImWcbmkyRQxMVvVu7TxPWmwSVBmSPpGunDAqcl+w/Ieg7ZuGy0OQWsFjxNF6xmbVZaMkoBHbvJ1NU9W2ozw78cy/cmx/YNxrlEiOPk0xwQAeScmmzf4KXPoRo3iCDcWvZQrPAVgNaGpLCd2cN26S2U7WrTPV5lVaeD+kTk0xG/lu25bcuD1GkvT4wiIAxEfrOcdT77gp/mZtRm0PpsUhCevjcXGrd88aWGPH+/kuIWvtI3Xl4zPidEtfUfLMnqJINMCFadM0wbkLAjQPd644XRq77YrgBQ/cmFC1xUy07OwJA6nH0Cwx9tryt896uChRu+/9plmH4C1m9NM/wKeicSn31MD0PlPZ52sZgwMjNYJGZTHQ0SKAQG3TviBlnFUFNhK5SfYBBBOzdrnhnRAunFQ8mvkZFRLm2ficR0GQ=
+      file: release/lambda.zip
+    skip_cleanup: true
+    on:
+      tags: true
+      repo: $TRAVIS_REPO_SLUG
+      condition: $TRAVIS_BUILD_STAGE_NAME = Lambda
+  - provider: s3
+    access_key_id: $AWS_ACCESS_KEY_ID
+    secret_access_key: $AWS_SECRET_ACCESS_KEY
+    file: lambda.zip
+    bucket: "novacloud-lambda-functions"
+    skip_cleanup: true
+    region: eu-central-1
+    upload-dir: github.com/$TRAVIS_REPO_SLUG/$TRAVIS_BRANCH
+    local_dir: release
+    on:
+      tags: true
+      repo: $TRAVIS_REPO_SLUG
+      condition: $TRAVIS_BUILD_STAGE_NAME = Lambda
