@@ -9,7 +9,7 @@ jobs:
       script: make build tag push
     - stage: lambda
       if: tag IS present
-      script: make build-lambda && mkdir release && mv lambda.zip release/lambda.zip
+      script: make build-lambda-function && mkdir release && mv lambda.zip release/lambda.zip
 deploy:
   - provider: releases
     api_key:
