@@ -25,6 +25,7 @@ type ConfiguratorItemDefinitionCategory struct {
 	ID        string     `json:"id" gorm:"column:id;primary_key"`
 	Code      *string    `json:"code" gorm:"column:code;unique"`
 	Name      *string    `json:"name" gorm:"column:name"`
+	Type      *string    `json:"type" gorm:"column:type"`
 	UpdatedAt *time.Time `json:"updatedAt" gorm:"column:updatedAt"`
 	CreatedAt time.Time  `json:"createdAt" gorm:"column:createdAt"`
 	UpdatedBy *string    `json:"updatedBy" gorm:"column:updatedBy"`
@@ -39,6 +40,7 @@ type ConfiguratorItemDefinitionCategoryChanges struct {
 	ID        string
 	Code      *string
 	Name      *string
+	Type      *string
 	UpdatedAt *time.Time
 	CreatedAt time.Time
 	UpdatedBy *string

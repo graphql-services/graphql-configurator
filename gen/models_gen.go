@@ -288,6 +288,17 @@ type ConfiguratorItemDefinitionCategoryFilterType struct {
 	NamePrefix    *string                                         `json:"name_prefix"`
 	NameSuffix    *string                                         `json:"name_suffix"`
 	NameNull      *bool                                           `json:"name_null"`
+	Type          *string                                         `json:"type"`
+	TypeNe        *string                                         `json:"type_ne"`
+	TypeGt        *string                                         `json:"type_gt"`
+	TypeLt        *string                                         `json:"type_lt"`
+	TypeGte       *string                                         `json:"type_gte"`
+	TypeLte       *string                                         `json:"type_lte"`
+	TypeIn        []string                                        `json:"type_in"`
+	TypeLike      *string                                         `json:"type_like"`
+	TypePrefix    *string                                         `json:"type_prefix"`
+	TypeSuffix    *string                                         `json:"type_suffix"`
+	TypeNull      *bool                                           `json:"type_null"`
 	UpdatedAt     *time.Time                                      `json:"updatedAt"`
 	UpdatedAtNe   *time.Time                                      `json:"updatedAt_ne"`
 	UpdatedAtGt   *time.Time                                      `json:"updatedAt_gt"`
@@ -327,6 +338,7 @@ type ConfiguratorItemDefinitionCategorySortType struct {
 	ID             *ObjectSortType                     `json:"id"`
 	Code           *ObjectSortType                     `json:"code"`
 	Name           *ObjectSortType                     `json:"name"`
+	Type           *ObjectSortType                     `json:"type"`
 	UpdatedAt      *ObjectSortType                     `json:"updatedAt"`
 	CreatedAt      *ObjectSortType                     `json:"createdAt"`
 	UpdatedBy      *ObjectSortType                     `json:"updatedBy"`

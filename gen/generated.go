@@ -174,6 +174,7 @@ type ComplexityRoot struct {
 		DefinitionsIds func(childComplexity int) int
 		ID             func(childComplexity int) int
 		Name           func(childComplexity int) int
+		Type           func(childComplexity int) int
 		UpdatedAt      func(childComplexity int) int
 		UpdatedBy      func(childComplexity int) int
 	}
@@ -1037,6 +1038,13 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.ConfiguratorItemDefinitionCategory.Name(childComplexity), true
+
+	case "ConfiguratorItemDefinitionCategory.type":
+		if e.complexity.ConfiguratorItemDefinitionCategory.Type == nil {
+			break
+		}
+
+		return e.complexity.ConfiguratorItemDefinitionCategory.Type(childComplexity), true
 
 	case "ConfiguratorItemDefinitionCategory.updatedAt":
 		if e.complexity.ConfiguratorItemDefinitionCategory.UpdatedAt == nil {
@@ -2017,6 +2025,7 @@ type ConfiguratorItemDefinitionCategory {
   id: ID!
   code: String
   name: String
+  type: String
   definitions: [ConfiguratorItemDefinition!]!
   updatedAt: Time
   createdAt: Time!
@@ -2136,12 +2145,14 @@ input ConfiguratorItemDefinitionCategoryCreateInput {
   id: ID
   code: String
   name: String
+  type: String
   definitionsIds: [ID!]
 }
 
 input ConfiguratorItemDefinitionCategoryUpdateInput {
   code: String
   name: String
+  type: String
   definitionsIds: [ID!]
 }
 
@@ -2149,6 +2160,7 @@ input ConfiguratorItemDefinitionCategorySortType {
   id: ObjectSortType
   code: ObjectSortType
   name: ObjectSortType
+  type: ObjectSortType
   updatedAt: ObjectSortType
   createdAt: ObjectSortType
   updatedBy: ObjectSortType
@@ -2190,6 +2202,17 @@ input ConfiguratorItemDefinitionCategoryFilterType {
   name_prefix: String
   name_suffix: String
   name_null: Boolean
+  type: String
+  type_ne: String
+  type_gt: String
+  type_lt: String
+  type_gte: String
+  type_lte: String
+  type_in: [String!]
+  type_like: String
+  type_prefix: String
+  type_suffix: String
+  type_null: Boolean
   updatedAt: Time
   updatedAt_ne: Time
   updatedAt_gt: Time
@@ -6845,6 +6868,40 @@ func (ec *executionContext) _ConfiguratorItemDefinitionCategory_name(ctx context
 	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
 		ctx = rctx // use context from middleware stack in children
 		return obj.Name, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*string)
+	rctx.Result = res
+	ctx = ec.Tracer.StartFieldChildExecution(ctx)
+	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) _ConfiguratorItemDefinitionCategory_type(ctx context.Context, field graphql.CollectedField, obj *ConfiguratorItemDefinitionCategory) (ret graphql.Marshaler) {
+	ctx = ec.Tracer.StartFieldExecution(ctx, field)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+		ec.Tracer.EndFieldExecution(ctx)
+	}()
+	rctx := &graphql.ResolverContext{
+		Object:   "ConfiguratorItemDefinitionCategory",
+		Field:    field,
+		Args:     nil,
+		IsMethod: false,
+	}
+	ctx = graphql.WithResolverContext(ctx, rctx)
+	ctx = ec.Tracer.StartFieldResolverExecution(ctx, rctx)
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Type, nil
 	})
 	if err != nil {
 		ec.Error(ctx, err)
@@ -12939,6 +12996,72 @@ func (ec *executionContext) unmarshalInputConfiguratorItemDefinitionCategoryFilt
 			if err != nil {
 				return it, err
 			}
+		case "type":
+			var err error
+			it.Type, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "type_ne":
+			var err error
+			it.TypeNe, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "type_gt":
+			var err error
+			it.TypeGt, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "type_lt":
+			var err error
+			it.TypeLt, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "type_gte":
+			var err error
+			it.TypeGte, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "type_lte":
+			var err error
+			it.TypeLte, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "type_in":
+			var err error
+			it.TypeIn, err = ec.unmarshalOString2ᚕstringᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "type_like":
+			var err error
+			it.TypeLike, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "type_prefix":
+			var err error
+			it.TypePrefix, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "type_suffix":
+			var err error
+			it.TypeSuffix, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "type_null":
+			var err error
+			it.TypeNull, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "updatedAt":
 			var err error
 			it.UpdatedAt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
@@ -13164,6 +13287,12 @@ func (ec *executionContext) unmarshalInputConfiguratorItemDefinitionCategorySort
 		case "name":
 			var err error
 			it.Name, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "type":
+			var err error
+			it.Type, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -16402,6 +16531,8 @@ func (ec *executionContext) _ConfiguratorItemDefinitionCategory(ctx context.Cont
 			out.Values[i] = ec._ConfiguratorItemDefinitionCategory_code(ctx, field, obj)
 		case "name":
 			out.Values[i] = ec._ConfiguratorItemDefinitionCategory_name(ctx, field, obj)
+		case "type":
+			out.Values[i] = ec._ConfiguratorItemDefinitionCategory_type(ctx, field, obj)
 		case "definitions":
 			field := field
 			out.Concurrently(i, func() (res graphql.Marshaler) {

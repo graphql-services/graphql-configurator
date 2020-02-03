@@ -24,6 +24,10 @@ func (s ConfiguratorItemDefinitionCategorySortType) ApplyWithAlias(ctx context.C
 		*sorts = append(*sorts, aliasPrefix+dialect.Quote("name")+" "+s.Name.String())
 	}
 
+	if s.Type != nil {
+		*sorts = append(*sorts, aliasPrefix+dialect.Quote("type")+" "+s.Type.String())
+	}
+
 	if s.UpdatedAt != nil {
 		*sorts = append(*sorts, aliasPrefix+dialect.Quote("updatedAt")+" "+s.UpdatedAt.String())
 	}

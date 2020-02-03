@@ -98,6 +98,12 @@ func CreateConfiguratorItemDefinitionCategoryHandler(ctx context.Context, r *Gen
 		event.AddNewValue("name", changes.Name)
 	}
 
+	if _, ok := input["type"]; ok && (item.Type != changes.Type) && (item.Type == nil || changes.Type == nil || *item.Type != *changes.Type) {
+		item.Type = changes.Type
+
+		event.AddNewValue("type", changes.Type)
+	}
+
 	err = tx.Create(item).Error
 	if err != nil {
 		tx.Rollback()
@@ -165,6 +171,12 @@ func UpdateConfiguratorItemDefinitionCategoryHandler(ctx context.Context, r *Gen
 		event.AddOldValue("name", item.Name)
 		event.AddNewValue("name", changes.Name)
 		item.Name = changes.Name
+	}
+
+	if _, ok := input["type"]; ok && (item.Type != changes.Type) && (item.Type == nil || changes.Type == nil || *item.Type != *changes.Type) {
+		event.AddOldValue("type", item.Type)
+		event.AddNewValue("type", changes.Type)
+		item.Type = changes.Type
 	}
 
 	err = tx.Save(item).Error

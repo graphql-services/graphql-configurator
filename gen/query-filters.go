@@ -66,6 +66,14 @@ func (qf *ConfiguratorItemDefinitionCategoryQueryFilter) applyQueryWithFields(di
 		*values = append(*values, query+"%", "% "+query+"%")
 	}
 
+	if _, ok := fieldsMap["type"]; ok {
+
+		column := dialect.Quote(alias) + "." + dialect.Quote("type")
+
+		*ors = append(*ors, fmt.Sprintf("%[1]s LIKE ? OR %[1]s LIKE ?", column))
+		*values = append(*values, query+"%", "% "+query+"%")
+	}
+
 	if fs, ok := fieldsMap["definitions"]; ok {
 		_fields := []*ast.Field{}
 		_alias := alias + "_definitions"

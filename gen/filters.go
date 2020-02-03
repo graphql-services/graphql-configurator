@@ -241,6 +241,64 @@ func (f *ConfiguratorItemDefinitionCategoryFilterType) WhereContent(dialect gorm
 		}
 	}
 
+	if f.Type != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("type")+" = ?")
+		values = append(values, f.Type)
+	}
+
+	if f.TypeNe != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("type")+" != ?")
+		values = append(values, f.TypeNe)
+	}
+
+	if f.TypeGt != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("type")+" > ?")
+		values = append(values, f.TypeGt)
+	}
+
+	if f.TypeLt != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("type")+" < ?")
+		values = append(values, f.TypeLt)
+	}
+
+	if f.TypeGte != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("type")+" >= ?")
+		values = append(values, f.TypeGte)
+	}
+
+	if f.TypeLte != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("type")+" <= ?")
+		values = append(values, f.TypeLte)
+	}
+
+	if f.TypeIn != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("type")+" IN (?)")
+		values = append(values, f.TypeIn)
+	}
+
+	if f.TypeLike != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("type")+" LIKE ?")
+		values = append(values, strings.Replace(strings.Replace(*f.TypeLike, "?", "_", -1), "*", "%", -1))
+	}
+
+	if f.TypePrefix != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("type")+" LIKE ?")
+		values = append(values, fmt.Sprintf("%s%%", *f.TypePrefix))
+	}
+
+	if f.TypeSuffix != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("type")+" LIKE ?")
+		values = append(values, fmt.Sprintf("%%%s", *f.TypeSuffix))
+	}
+
+	if f.TypeNull != nil {
+		if *f.TypeNull {
+			conditions = append(conditions, aliasPrefix+dialect.Quote("type")+" IS NULL")
+		} else {
+			conditions = append(conditions, aliasPrefix+dialect.Quote("type")+" IS NOT NULL")
+		}
+	}
+
 	if f.UpdatedAt != nil {
 		conditions = append(conditions, aliasPrefix+dialect.Quote("updatedAt")+" = ?")
 		values = append(values, f.UpdatedAt)

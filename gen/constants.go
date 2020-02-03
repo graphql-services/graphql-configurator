@@ -138,6 +138,7 @@ type ConfiguratorItemDefinitionCategory {
   id: ID!
   code: String
   name: String
+  type: String
   definitions: [ConfiguratorItemDefinition!]!
   updatedAt: Time
   createdAt: Time!
@@ -257,12 +258,14 @@ input ConfiguratorItemDefinitionCategoryCreateInput {
   id: ID
   code: String
   name: String
+  type: String
   definitionsIds: [ID!]
 }
 
 input ConfiguratorItemDefinitionCategoryUpdateInput {
   code: String
   name: String
+  type: String
   definitionsIds: [ID!]
 }
 
@@ -270,6 +273,7 @@ input ConfiguratorItemDefinitionCategorySortType {
   id: ObjectSortType
   code: ObjectSortType
   name: ObjectSortType
+  type: ObjectSortType
   updatedAt: ObjectSortType
   createdAt: ObjectSortType
   updatedBy: ObjectSortType
@@ -311,6 +315,17 @@ input ConfiguratorItemDefinitionCategoryFilterType {
   name_prefix: String
   name_suffix: String
   name_null: Boolean
+  type: String
+  type_ne: String
+  type_gt: String
+  type_lt: String
+  type_gte: String
+  type_lte: String
+  type_in: [String!]
+  type_like: String
+  type_prefix: String
+  type_suffix: String
+  type_null: Boolean
   updatedAt: Time
   updatedAt_ne: Time
   updatedAt_gt: Time
