@@ -10,6 +10,15 @@ import (
 type ResolutionHandlers struct {
 	OnEvent func(ctx context.Context, r *GeneratedResolver, e *events.Event) error
 
+	CreateConfiguratorItemDefinitionCategory      func(ctx context.Context, r *GeneratedResolver, input map[string]interface{}) (item *ConfiguratorItemDefinitionCategory, err error)
+	UpdateConfiguratorItemDefinitionCategory      func(ctx context.Context, r *GeneratedResolver, id string, input map[string]interface{}) (item *ConfiguratorItemDefinitionCategory, err error)
+	DeleteConfiguratorItemDefinitionCategory      func(ctx context.Context, r *GeneratedResolver, id string) (item *ConfiguratorItemDefinitionCategory, err error)
+	DeleteAllConfiguratorItemDefinitionCategories func(ctx context.Context, r *GeneratedResolver) (bool, error)
+	QueryConfiguratorItemDefinitionCategory       func(ctx context.Context, r *GeneratedResolver, opts QueryConfiguratorItemDefinitionCategoryHandlerOptions) (*ConfiguratorItemDefinitionCategory, error)
+	QueryConfiguratorItemDefinitionCategories     func(ctx context.Context, r *GeneratedResolver, opts QueryConfiguratorItemDefinitionCategoriesHandlerOptions) (*ConfiguratorItemDefinitionCategoryResultType, error)
+
+	ConfiguratorItemDefinitionCategoryDefinitions func(ctx context.Context, r *GeneratedResolver, obj *ConfiguratorItemDefinitionCategory) (res []*ConfiguratorItemDefinition, err error)
+
 	CreateConfiguratorItemDefinition     func(ctx context.Context, r *GeneratedResolver, input map[string]interface{}) (item *ConfiguratorItemDefinition, err error)
 	UpdateConfiguratorItemDefinition     func(ctx context.Context, r *GeneratedResolver, id string, input map[string]interface{}) (item *ConfiguratorItemDefinition, err error)
 	DeleteConfiguratorItemDefinition     func(ctx context.Context, r *GeneratedResolver, id string) (item *ConfiguratorItemDefinition, err error)
@@ -24,6 +33,8 @@ type ResolutionHandlers struct {
 	ConfiguratorItemDefinitionItems func(ctx context.Context, r *GeneratedResolver, obj *ConfiguratorItemDefinition) (res []*ConfiguratorItem, err error)
 
 	ConfiguratorItemDefinitionAllowedInSlots func(ctx context.Context, r *GeneratedResolver, obj *ConfiguratorItemDefinition) (res []*ConfiguratorSlotDefinition, err error)
+
+	ConfiguratorItemDefinitionCategory func(ctx context.Context, r *GeneratedResolver, obj *ConfiguratorItemDefinition) (res *ConfiguratorItemDefinitionCategory, err error)
 
 	CreateConfiguratorAttributeDefinition     func(ctx context.Context, r *GeneratedResolver, input map[string]interface{}) (item *ConfiguratorAttributeDefinition, err error)
 	UpdateConfiguratorAttributeDefinition     func(ctx context.Context, r *GeneratedResolver, id string, input map[string]interface{}) (item *ConfiguratorAttributeDefinition, err error)
@@ -93,6 +104,15 @@ func DefaultResolutionHandlers() ResolutionHandlers {
 	handlers := ResolutionHandlers{
 		OnEvent: func(ctx context.Context, r *GeneratedResolver, e *events.Event) error { return nil },
 
+		CreateConfiguratorItemDefinitionCategory:      CreateConfiguratorItemDefinitionCategoryHandler,
+		UpdateConfiguratorItemDefinitionCategory:      UpdateConfiguratorItemDefinitionCategoryHandler,
+		DeleteConfiguratorItemDefinitionCategory:      DeleteConfiguratorItemDefinitionCategoryHandler,
+		DeleteAllConfiguratorItemDefinitionCategories: DeleteAllConfiguratorItemDefinitionCategoriesHandler,
+		QueryConfiguratorItemDefinitionCategory:       QueryConfiguratorItemDefinitionCategoryHandler,
+		QueryConfiguratorItemDefinitionCategories:     QueryConfiguratorItemDefinitionCategoriesHandler,
+
+		ConfiguratorItemDefinitionCategoryDefinitions: ConfiguratorItemDefinitionCategoryDefinitionsHandler,
+
 		CreateConfiguratorItemDefinition:     CreateConfiguratorItemDefinitionHandler,
 		UpdateConfiguratorItemDefinition:     UpdateConfiguratorItemDefinitionHandler,
 		DeleteConfiguratorItemDefinition:     DeleteConfiguratorItemDefinitionHandler,
@@ -107,6 +127,8 @@ func DefaultResolutionHandlers() ResolutionHandlers {
 		ConfiguratorItemDefinitionItems: ConfiguratorItemDefinitionItemsHandler,
 
 		ConfiguratorItemDefinitionAllowedInSlots: ConfiguratorItemDefinitionAllowedInSlotsHandler,
+
+		ConfiguratorItemDefinitionCategory: ConfiguratorItemDefinitionCategoryHandler,
 
 		CreateConfiguratorAttributeDefinition:     CreateConfiguratorAttributeDefinitionHandler,
 		UpdateConfiguratorAttributeDefinition:     UpdateConfiguratorAttributeDefinitionHandler,

@@ -17,11 +17,11 @@ func (e *NotFoundError) Error() string {
 	return fmt.Sprintf("%s not found", e.Entity)
 }
 
-type ConfiguratorItemDefinitionResultType struct {
+type ConfiguratorItemDefinitionCategoryResultType struct {
 	EntityResultType
 }
 
-type ConfiguratorItemDefinition struct {
+type ConfiguratorItemDefinitionCategory struct {
 	ID        string     `json:"id" gorm:"column:id;primary_key"`
 	Code      *string    `json:"code" gorm:"column:code;unique"`
 	Name      *string    `json:"name" gorm:"column:name"`
@@ -30,18 +30,12 @@ type ConfiguratorItemDefinition struct {
 	UpdatedBy *string    `json:"updatedBy" gorm:"column:updatedBy"`
 	CreatedBy *string    `json:"createdBy" gorm:"column:createdBy"`
 
-	Attributes []*ConfiguratorAttributeDefinition `json:"attributes" gorm:"many2many:configuratorAttributeDefinition_definitions;jointable_foreignkey:definition_id;association_jointable_foreignkey:attribute_id"`
-
-	Slots []*ConfiguratorSlotDefinition `json:"slots" gorm:"foreignkey:DefinitionID"`
-
-	Items []*ConfiguratorItem `json:"items" gorm:"foreignkey:DefinitionID"`
-
-	AllowedInSlots []*ConfiguratorSlotDefinition `json:"allowedInSlots" gorm:"many2many:configuratorSlotDefinition_allowedItemDefinitions;jointable_foreignkey:allowedItemDefinition_id;association_jointable_foreignkey:allowedInSlot_id"`
+	Definitions []*ConfiguratorItemDefinition `json:"definitions" gorm:"foreignkey:CategoryID"`
 }
 
-func (m *ConfiguratorItemDefinition) Is_Entity() {}
+func (m *ConfiguratorItemDefinitionCategory) Is_Entity() {}
 
-type ConfiguratorItemDefinitionChanges struct {
+type ConfiguratorItemDefinitionCategoryChanges struct {
 	ID        string
 	Code      *string
 	Name      *string
@@ -49,6 +43,46 @@ type ConfiguratorItemDefinitionChanges struct {
 	CreatedAt time.Time
 	UpdatedBy *string
 	CreatedBy *string
+
+	DefinitionsIDs []*string
+}
+
+type ConfiguratorItemDefinitionResultType struct {
+	EntityResultType
+}
+
+type ConfiguratorItemDefinition struct {
+	ID         string     `json:"id" gorm:"column:id;primary_key"`
+	Code       *string    `json:"code" gorm:"column:code;unique"`
+	Name       *string    `json:"name" gorm:"column:name"`
+	CategoryID *string    `json:"categoryId" gorm:"column:categoryId"`
+	UpdatedAt  *time.Time `json:"updatedAt" gorm:"column:updatedAt"`
+	CreatedAt  time.Time  `json:"createdAt" gorm:"column:createdAt"`
+	UpdatedBy  *string    `json:"updatedBy" gorm:"column:updatedBy"`
+	CreatedBy  *string    `json:"createdBy" gorm:"column:createdBy"`
+
+	Attributes []*ConfiguratorAttributeDefinition `json:"attributes" gorm:"many2many:configuratorAttributeDefinition_definitions;jointable_foreignkey:definition_id;association_jointable_foreignkey:attribute_id"`
+
+	Slots []*ConfiguratorSlotDefinition `json:"slots" gorm:"foreignkey:DefinitionID"`
+
+	Items []*ConfiguratorItem `json:"items" gorm:"foreignkey:DefinitionID"`
+
+	AllowedInSlots []*ConfiguratorSlotDefinition `json:"allowedInSlots" gorm:"many2many:configuratorSlotDefinition_allowedItemDefinitions;jointable_foreignkey:allowedItemDefinition_id;association_jointable_foreignkey:allowedInSlot_id"`
+
+	Category *ConfiguratorItemDefinitionCategory `json:"category"`
+}
+
+func (m *ConfiguratorItemDefinition) Is_Entity() {}
+
+type ConfiguratorItemDefinitionChanges struct {
+	ID         string
+	Code       *string
+	Name       *string
+	CategoryID *string
+	UpdatedAt  *time.Time
+	CreatedAt  time.Time
+	UpdatedBy  *string
+	CreatedBy  *string
 
 	AttributesIDs     []*string
 	SlotsIDs          []*string

@@ -1,3 +1,10 @@
+type ConfiguratorItemDefinitionCategory @entity {
+  code: String @column(unique: true)
+  name: String @column
+
+  definitions: [ConfiguratorItemDefinition!]! @relationship(inverse: category)
+}
+
 type ConfiguratorItemDefinition @entity {
   code: String @column(unique: true)
   name: String @column
@@ -8,6 +15,8 @@ type ConfiguratorItemDefinition @entity {
   items: [ConfiguratorItem!]! @relationship(inverse: definition)
   allowedInSlots: [ConfiguratorSlotDefinition!]!
     @relationship(inverse: allowedItemDefinitions)
+  category: ConfiguratorItemDefinitionCategory
+    @relationship(inverse: definitions)
 }
 
 enum ConfiguratorAttributeType {

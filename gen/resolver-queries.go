@@ -10,6 +10,167 @@ import (
 
 type GeneratedQueryResolver struct{ *GeneratedResolver }
 
+type QueryConfiguratorItemDefinitionCategoryHandlerOptions struct {
+	ID     *string
+	Q      *string
+	Filter *ConfiguratorItemDefinitionCategoryFilterType
+}
+
+func (r *GeneratedQueryResolver) ConfiguratorItemDefinitionCategory(ctx context.Context, id *string, q *string, filter *ConfiguratorItemDefinitionCategoryFilterType) (*ConfiguratorItemDefinitionCategory, error) {
+	opts := QueryConfiguratorItemDefinitionCategoryHandlerOptions{
+		ID:     id,
+		Q:      q,
+		Filter: filter,
+	}
+	return r.Handlers.QueryConfiguratorItemDefinitionCategory(ctx, r.GeneratedResolver, opts)
+}
+func QueryConfiguratorItemDefinitionCategoryHandler(ctx context.Context, r *GeneratedResolver, opts QueryConfiguratorItemDefinitionCategoryHandlerOptions) (*ConfiguratorItemDefinitionCategory, error) {
+	selection := []ast.Selection{}
+	for _, f := range graphql.CollectFieldsCtx(ctx, nil) {
+		selection = append(selection, f.Field)
+	}
+	selectionSet := ast.SelectionSet(selection)
+
+	query := ConfiguratorItemDefinitionCategoryQueryFilter{opts.Q}
+	offset := 0
+	limit := 1
+	rt := &ConfiguratorItemDefinitionCategoryResultType{
+		EntityResultType: EntityResultType{
+			Offset:       &offset,
+			Limit:        &limit,
+			Query:        &query,
+			Filter:       opts.Filter,
+			SelectionSet: &selectionSet,
+		},
+	}
+	qb := r.GetDB(ctx)
+	if qb == nil {
+		qb = r.DB.Query()
+	}
+	if opts.ID != nil {
+		qb = qb.Where(TableName("configurator_item_definition_categories")+".id = ?", *opts.ID)
+	}
+
+	var items []*ConfiguratorItemDefinitionCategory
+	giOpts := GetItemsOptions{
+		Alias:      TableName("configurator_item_definition_categories"),
+		Preloaders: []string{},
+	}
+	err := rt.GetItems(ctx, qb, giOpts, &items)
+	if err != nil {
+		return nil, err
+	}
+	if len(items) == 0 {
+		return nil, &NotFoundError{Entity: "ConfiguratorItemDefinitionCategory"}
+	}
+	return items[0], err
+}
+
+type QueryConfiguratorItemDefinitionCategoriesHandlerOptions struct {
+	Offset *int
+	Limit  *int
+	Q      *string
+	Sort   []*ConfiguratorItemDefinitionCategorySortType
+	Filter *ConfiguratorItemDefinitionCategoryFilterType
+}
+
+func (r *GeneratedQueryResolver) ConfiguratorItemDefinitionCategories(ctx context.Context, offset *int, limit *int, q *string, sort []*ConfiguratorItemDefinitionCategorySortType, filter *ConfiguratorItemDefinitionCategoryFilterType) (*ConfiguratorItemDefinitionCategoryResultType, error) {
+	opts := QueryConfiguratorItemDefinitionCategoriesHandlerOptions{
+		Offset: offset,
+		Limit:  limit,
+		Q:      q,
+		Sort:   sort,
+		Filter: filter,
+	}
+	return r.Handlers.QueryConfiguratorItemDefinitionCategories(ctx, r.GeneratedResolver, opts)
+}
+func QueryConfiguratorItemDefinitionCategoriesHandler(ctx context.Context, r *GeneratedResolver, opts QueryConfiguratorItemDefinitionCategoriesHandlerOptions) (*ConfiguratorItemDefinitionCategoryResultType, error) {
+	query := ConfiguratorItemDefinitionCategoryQueryFilter{opts.Q}
+
+	var selectionSet *ast.SelectionSet
+	for _, f := range graphql.CollectFieldsCtx(ctx, nil) {
+		if f.Field.Name == "items" {
+			selectionSet = &f.Field.SelectionSet
+		}
+	}
+
+	_sort := []EntitySort{}
+	for _, sort := range opts.Sort {
+		_sort = append(_sort, sort)
+	}
+
+	return &ConfiguratorItemDefinitionCategoryResultType{
+		EntityResultType: EntityResultType{
+			Offset:       opts.Offset,
+			Limit:        opts.Limit,
+			Query:        &query,
+			Sort:         _sort,
+			Filter:       opts.Filter,
+			SelectionSet: selectionSet,
+		},
+	}, nil
+}
+
+type GeneratedConfiguratorItemDefinitionCategoryResultTypeResolver struct{ *GeneratedResolver }
+
+func (r *GeneratedConfiguratorItemDefinitionCategoryResultTypeResolver) Items(ctx context.Context, obj *ConfiguratorItemDefinitionCategoryResultType) (items []*ConfiguratorItemDefinitionCategory, err error) {
+	giOpts := GetItemsOptions{
+		Alias:      TableName("configurator_item_definition_categories"),
+		Preloaders: []string{},
+	}
+	err = obj.GetItems(ctx, r.DB.db, giOpts, &items)
+
+	uniqueItems := []*ConfiguratorItemDefinitionCategory{}
+	idMap := map[string]bool{}
+	for _, item := range items {
+		if _, ok := idMap[item.ID]; !ok {
+			idMap[item.ID] = true
+			uniqueItems = append(uniqueItems, item)
+		}
+	}
+	items = uniqueItems
+	return
+}
+
+func (r *GeneratedConfiguratorItemDefinitionCategoryResultTypeResolver) Count(ctx context.Context, obj *ConfiguratorItemDefinitionCategoryResultType) (count int, err error) {
+	return obj.GetCount(ctx, r.DB.db, &ConfiguratorItemDefinitionCategory{})
+}
+
+type GeneratedConfiguratorItemDefinitionCategoryResolver struct{ *GeneratedResolver }
+
+func (r *GeneratedConfiguratorItemDefinitionCategoryResolver) Definitions(ctx context.Context, obj *ConfiguratorItemDefinitionCategory) (res []*ConfiguratorItemDefinition, err error) {
+	return r.Handlers.ConfiguratorItemDefinitionCategoryDefinitions(ctx, r.GeneratedResolver, obj)
+}
+func ConfiguratorItemDefinitionCategoryDefinitionsHandler(ctx context.Context, r *GeneratedResolver, obj *ConfiguratorItemDefinitionCategory) (res []*ConfiguratorItemDefinition, err error) {
+
+	items := []*ConfiguratorItemDefinition{}
+	db := r.GetDB(ctx)
+	if db == nil {
+		db = r.DB.Query()
+	}
+	err = db.Model(obj).Related(&items, "Definitions").Error
+	res = items
+
+	return
+}
+
+func (r *GeneratedConfiguratorItemDefinitionCategoryResolver) DefinitionsIds(ctx context.Context, obj *ConfiguratorItemDefinitionCategory) (ids []string, err error) {
+	ids = []string{}
+
+	items := []*ConfiguratorItemDefinition{}
+	db := r.GetDB(ctx)
+	if db == nil {
+		db = r.DB.Query()
+	}
+	err = db.Model(obj).Select(TableName("configurator_item_definitions")+".id").Related(&items, "Definitions").Error
+
+	for _, item := range items {
+		ids = append(ids, item.ID)
+	}
+
+	return
+}
+
 type QueryConfiguratorItemDefinitionHandlerOptions struct {
 	ID     *string
 	Q      *string
@@ -265,6 +426,22 @@ func (r *GeneratedConfiguratorItemDefinitionResolver) AllowedInSlotsIds(ctx cont
 
 	for _, item := range items {
 		ids = append(ids, item.ID)
+	}
+
+	return
+}
+
+func (r *GeneratedConfiguratorItemDefinitionResolver) Category(ctx context.Context, obj *ConfiguratorItemDefinition) (res *ConfiguratorItemDefinitionCategory, err error) {
+	return r.Handlers.ConfiguratorItemDefinitionCategory(ctx, r.GeneratedResolver, obj)
+}
+func ConfiguratorItemDefinitionCategoryHandler(ctx context.Context, r *GeneratedResolver, obj *ConfiguratorItemDefinition) (res *ConfiguratorItemDefinitionCategory, err error) {
+
+	loaders := ctx.Value(KeyLoaders).(map[string]*dataloader.Loader)
+	if obj.CategoryID != nil {
+		item, _err := loaders["ConfiguratorItemDefinitionCategory"].Load(ctx, dataloader.StringKey(*obj.CategoryID))()
+		res, _ = item.(*ConfiguratorItemDefinitionCategory)
+
+		err = _err
 	}
 
 	return

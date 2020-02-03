@@ -11,6 +11,8 @@ schema {
 
 type Query {
   _service: _Service!
+  configuratorItemDefinitionCategory(id: ID, q: String, filter: ConfiguratorItemDefinitionCategoryFilterType): ConfiguratorItemDefinitionCategory
+  configuratorItemDefinitionCategories(offset: Int, limit: Int = 30, q: String, sort: [ConfiguratorItemDefinitionCategorySortType!], filter: ConfiguratorItemDefinitionCategoryFilterType): ConfiguratorItemDefinitionCategoryResultType
   configuratorItemDefinition(id: ID, q: String, filter: ConfiguratorItemDefinitionFilterType): ConfiguratorItemDefinition
   configuratorItemDefinitions(offset: Int, limit: Int = 30, q: String, sort: [ConfiguratorItemDefinitionSortType!], filter: ConfiguratorItemDefinitionFilterType): ConfiguratorItemDefinitionResultType
   configuratorAttributeDefinition(id: ID, q: String, filter: ConfiguratorAttributeDefinitionFilterType): ConfiguratorAttributeDefinition
@@ -26,6 +28,10 @@ type Query {
 }
 
 type Mutation {
+  createConfiguratorItemDefinitionCategory(input: ConfiguratorItemDefinitionCategoryCreateInput!): ConfiguratorItemDefinitionCategory!
+  updateConfiguratorItemDefinitionCategory(id: ID!, input: ConfiguratorItemDefinitionCategoryUpdateInput!): ConfiguratorItemDefinitionCategory!
+  deleteConfiguratorItemDefinitionCategory(id: ID!): ConfiguratorItemDefinitionCategory!
+  deleteAllConfiguratorItemDefinitionCategories: Boolean!
   createConfiguratorItemDefinition(input: ConfiguratorItemDefinitionCreateInput!): ConfiguratorItemDefinition!
   updateConfiguratorItemDefinition(id: ID!, input: ConfiguratorItemDefinitionUpdateInput!): ConfiguratorItemDefinition!
   deleteConfiguratorItemDefinition(id: ID!): ConfiguratorItemDefinition!
@@ -127,6 +133,18 @@ extend type Mutation {
   updateConfiguratorAssembly(id: ID!, input: ConfiguratorAssemblyUpdateInput!): ConfiguratorAssembly
 }
 
+type ConfiguratorItemDefinitionCategory {
+  id: ID!
+  code: String
+  name: String
+  definitions: [ConfiguratorItemDefinition!]!
+  updatedAt: Time
+  createdAt: Time!
+  updatedBy: ID
+  createdBy: ID
+  definitionsIds: [ID!]!
+}
+
 type ConfiguratorItemDefinition {
   id: ID!
   code: String
@@ -135,6 +153,8 @@ type ConfiguratorItemDefinition {
   slots: [ConfiguratorSlotDefinition!]!
   items: [ConfiguratorItem!]!
   allowedInSlots: [ConfiguratorSlotDefinition!]!
+  category: ConfiguratorItemDefinitionCategory
+  categoryId: ID
   updatedAt: Time
   createdAt: Time!
   updatedBy: ID
@@ -232,26 +252,20 @@ type ConfiguratorSlot {
   createdBy: ID
 }
 
-input ConfiguratorItemDefinitionCreateInput {
+input ConfiguratorItemDefinitionCategoryCreateInput {
   id: ID
   code: String
   name: String
-  attributesIds: [ID!]
-  slotsIds: [ID!]
-  itemsIds: [ID!]
-  allowedInSlotsIds: [ID!]
+  definitionsIds: [ID!]
 }
 
-input ConfiguratorItemDefinitionUpdateInput {
+input ConfiguratorItemDefinitionCategoryUpdateInput {
   code: String
   name: String
-  attributesIds: [ID!]
-  slotsIds: [ID!]
-  itemsIds: [ID!]
-  allowedInSlotsIds: [ID!]
+  definitionsIds: [ID!]
 }
 
-input ConfiguratorItemDefinitionSortType {
+input ConfiguratorItemDefinitionCategorySortType {
   id: ObjectSortType
   code: ObjectSortType
   name: ObjectSortType
@@ -259,19 +273,13 @@ input ConfiguratorItemDefinitionSortType {
   createdAt: ObjectSortType
   updatedBy: ObjectSortType
   createdBy: ObjectSortType
-  attributesIds: ObjectSortType
-  slotsIds: ObjectSortType
-  itemsIds: ObjectSortType
-  allowedInSlotsIds: ObjectSortType
-  attributes: ConfiguratorAttributeDefinitionSortType
-  slots: ConfiguratorSlotDefinitionSortType
-  items: ConfiguratorItemSortType
-  allowedInSlots: ConfiguratorSlotDefinitionSortType
+  definitionsIds: ObjectSortType
+  definitions: ConfiguratorItemDefinitionSortType
 }
 
-input ConfiguratorItemDefinitionFilterType {
-  AND: [ConfiguratorItemDefinitionFilterType!]
-  OR: [ConfiguratorItemDefinitionFilterType!]
+input ConfiguratorItemDefinitionCategoryFilterType {
+  AND: [ConfiguratorItemDefinitionCategoryFilterType!]
+  OR: [ConfiguratorItemDefinitionCategoryFilterType!]
   id: ID
   id_ne: ID
   id_gt: ID
@@ -334,10 +342,133 @@ input ConfiguratorItemDefinitionFilterType {
   createdBy_lte: ID
   createdBy_in: [ID!]
   createdBy_null: Boolean
+  definitions: ConfiguratorItemDefinitionFilterType
+}
+
+type ConfiguratorItemDefinitionCategoryResultType {
+  items: [ConfiguratorItemDefinitionCategory!]!
+  count: Int!
+}
+
+input ConfiguratorItemDefinitionCreateInput {
+  id: ID
+  code: String
+  name: String
+  categoryId: ID
+  attributesIds: [ID!]
+  slotsIds: [ID!]
+  itemsIds: [ID!]
+  allowedInSlotsIds: [ID!]
+}
+
+input ConfiguratorItemDefinitionUpdateInput {
+  code: String
+  name: String
+  categoryId: ID
+  attributesIds: [ID!]
+  slotsIds: [ID!]
+  itemsIds: [ID!]
+  allowedInSlotsIds: [ID!]
+}
+
+input ConfiguratorItemDefinitionSortType {
+  id: ObjectSortType
+  code: ObjectSortType
+  name: ObjectSortType
+  categoryId: ObjectSortType
+  updatedAt: ObjectSortType
+  createdAt: ObjectSortType
+  updatedBy: ObjectSortType
+  createdBy: ObjectSortType
+  attributesIds: ObjectSortType
+  slotsIds: ObjectSortType
+  itemsIds: ObjectSortType
+  allowedInSlotsIds: ObjectSortType
+  attributes: ConfiguratorAttributeDefinitionSortType
+  slots: ConfiguratorSlotDefinitionSortType
+  items: ConfiguratorItemSortType
+  allowedInSlots: ConfiguratorSlotDefinitionSortType
+  category: ConfiguratorItemDefinitionCategorySortType
+}
+
+input ConfiguratorItemDefinitionFilterType {
+  AND: [ConfiguratorItemDefinitionFilterType!]
+  OR: [ConfiguratorItemDefinitionFilterType!]
+  id: ID
+  id_ne: ID
+  id_gt: ID
+  id_lt: ID
+  id_gte: ID
+  id_lte: ID
+  id_in: [ID!]
+  id_null: Boolean
+  code: String
+  code_ne: String
+  code_gt: String
+  code_lt: String
+  code_gte: String
+  code_lte: String
+  code_in: [String!]
+  code_like: String
+  code_prefix: String
+  code_suffix: String
+  code_null: Boolean
+  name: String
+  name_ne: String
+  name_gt: String
+  name_lt: String
+  name_gte: String
+  name_lte: String
+  name_in: [String!]
+  name_like: String
+  name_prefix: String
+  name_suffix: String
+  name_null: Boolean
+  categoryId: ID
+  categoryId_ne: ID
+  categoryId_gt: ID
+  categoryId_lt: ID
+  categoryId_gte: ID
+  categoryId_lte: ID
+  categoryId_in: [ID!]
+  categoryId_null: Boolean
+  updatedAt: Time
+  updatedAt_ne: Time
+  updatedAt_gt: Time
+  updatedAt_lt: Time
+  updatedAt_gte: Time
+  updatedAt_lte: Time
+  updatedAt_in: [Time!]
+  updatedAt_null: Boolean
+  createdAt: Time
+  createdAt_ne: Time
+  createdAt_gt: Time
+  createdAt_lt: Time
+  createdAt_gte: Time
+  createdAt_lte: Time
+  createdAt_in: [Time!]
+  createdAt_null: Boolean
+  updatedBy: ID
+  updatedBy_ne: ID
+  updatedBy_gt: ID
+  updatedBy_lt: ID
+  updatedBy_gte: ID
+  updatedBy_lte: ID
+  updatedBy_in: [ID!]
+  updatedBy_null: Boolean
+  createdBy: ID
+  createdBy_ne: ID
+  createdBy_gt: ID
+  createdBy_lt: ID
+  createdBy_gte: ID
+  createdBy_lte: ID
+  createdBy_in: [ID!]
+  createdBy_null: Boolean
   attributes: ConfiguratorAttributeDefinitionFilterType
   slots: ConfiguratorSlotDefinitionFilterType
   items: ConfiguratorItemFilterType
   allowedInSlots: ConfiguratorSlotDefinitionFilterType
+  category: ConfiguratorItemDefinitionCategoryFilterType
 }
 
 type ConfiguratorItemDefinitionResultType {

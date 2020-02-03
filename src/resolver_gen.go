@@ -42,6 +42,22 @@ func (r *Resolver) Query() gen.QueryResolver {
 	return &QueryResolver{&gen.GeneratedQueryResolver{r.GeneratedResolver}}
 }
 
+type ConfiguratorItemDefinitionCategoryResultTypeResolver struct {
+	*gen.GeneratedConfiguratorItemDefinitionCategoryResultTypeResolver
+}
+
+func (r *Resolver) ConfiguratorItemDefinitionCategoryResultType() gen.ConfiguratorItemDefinitionCategoryResultTypeResolver {
+	return &ConfiguratorItemDefinitionCategoryResultTypeResolver{&gen.GeneratedConfiguratorItemDefinitionCategoryResultTypeResolver{r.GeneratedResolver}}
+}
+
+type ConfiguratorItemDefinitionCategoryResolver struct {
+	*gen.GeneratedConfiguratorItemDefinitionCategoryResolver
+}
+
+func (r *Resolver) ConfiguratorItemDefinitionCategory() gen.ConfiguratorItemDefinitionCategoryResolver {
+	return &ConfiguratorItemDefinitionCategoryResolver{&gen.GeneratedConfiguratorItemDefinitionCategoryResolver{r.GeneratedResolver}}
+}
+
 type ConfiguratorItemDefinitionResultTypeResolver struct {
 	*gen.GeneratedConfiguratorItemDefinitionResultTypeResolver
 }

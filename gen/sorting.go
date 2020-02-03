@@ -6,6 +6,52 @@ import (
 	"github.com/jinzhu/gorm"
 )
 
+func (s ConfiguratorItemDefinitionCategorySortType) Apply(ctx context.Context, dialect gorm.Dialect, sorts *[]string, joins *[]string) error {
+	return s.ApplyWithAlias(ctx, dialect, TableName("configurator_item_definition_categories"), sorts, joins)
+}
+func (s ConfiguratorItemDefinitionCategorySortType) ApplyWithAlias(ctx context.Context, dialect gorm.Dialect, alias string, sorts *[]string, joins *[]string) error {
+	aliasPrefix := dialect.Quote(alias) + "."
+
+	if s.ID != nil {
+		*sorts = append(*sorts, aliasPrefix+dialect.Quote("id")+" "+s.ID.String())
+	}
+
+	if s.Code != nil {
+		*sorts = append(*sorts, aliasPrefix+dialect.Quote("code")+" "+s.Code.String())
+	}
+
+	if s.Name != nil {
+		*sorts = append(*sorts, aliasPrefix+dialect.Quote("name")+" "+s.Name.String())
+	}
+
+	if s.UpdatedAt != nil {
+		*sorts = append(*sorts, aliasPrefix+dialect.Quote("updatedAt")+" "+s.UpdatedAt.String())
+	}
+
+	if s.CreatedAt != nil {
+		*sorts = append(*sorts, aliasPrefix+dialect.Quote("createdAt")+" "+s.CreatedAt.String())
+	}
+
+	if s.UpdatedBy != nil {
+		*sorts = append(*sorts, aliasPrefix+dialect.Quote("updatedBy")+" "+s.UpdatedBy.String())
+	}
+
+	if s.CreatedBy != nil {
+		*sorts = append(*sorts, aliasPrefix+dialect.Quote("createdBy")+" "+s.CreatedBy.String())
+	}
+
+	if s.Definitions != nil {
+		_alias := alias + "_definitions"
+		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configurator_item_definitions"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias)+"."+dialect.Quote("categoryId")+" = "+dialect.Quote(alias)+".id")
+		err := s.Definitions.ApplyWithAlias(ctx, dialect, _alias, sorts, joins)
+		if err != nil {
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (s ConfiguratorItemDefinitionSortType) Apply(ctx context.Context, dialect gorm.Dialect, sorts *[]string, joins *[]string) error {
 	return s.ApplyWithAlias(ctx, dialect, TableName("configurator_item_definitions"), sorts, joins)
 }
@@ -22,6 +68,10 @@ func (s ConfiguratorItemDefinitionSortType) ApplyWithAlias(ctx context.Context, 
 
 	if s.Name != nil {
 		*sorts = append(*sorts, aliasPrefix+dialect.Quote("name")+" "+s.Name.String())
+	}
+
+	if s.CategoryID != nil {
+		*sorts = append(*sorts, aliasPrefix+dialect.Quote("categoryId")+" "+s.CategoryID.String())
 	}
 
 	if s.UpdatedAt != nil {
@@ -71,6 +121,15 @@ func (s ConfiguratorItemDefinitionSortType) ApplyWithAlias(ctx context.Context, 
 		_alias := alias + "_allowedInSlots"
 		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configuratorSlotDefinition_allowedItemDefinitions"))+" "+dialect.Quote(_alias+"_jointable")+" ON "+dialect.Quote(alias)+".id = "+dialect.Quote(_alias+"_jointable")+"."+dialect.Quote("allowedItemDefinition_id")+" LEFT JOIN "+dialect.Quote(TableName("configurator_slot_definitions"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias+"_jointable")+"."+dialect.Quote("allowedInSlot_id")+" = "+dialect.Quote(_alias)+".id")
 		err := s.AllowedInSlots.ApplyWithAlias(ctx, dialect, _alias, sorts, joins)
+		if err != nil {
+			return err
+		}
+	}
+
+	if s.Category != nil {
+		_alias := alias + "_category"
+		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configurator_item_definition_categories"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias)+".id = "+alias+"."+dialect.Quote("categoryId"))
+		err := s.Category.ApplyWithAlias(ctx, dialect, _alias, sorts, joins)
 		if err != nil {
 			return err
 		}

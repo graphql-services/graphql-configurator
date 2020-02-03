@@ -50,6 +50,199 @@ func AddMutationEvent(ctx context.Context, e events.Event) {
 	s.Events = append(s.Events, e)
 }
 
+func (r *GeneratedMutationResolver) CreateConfiguratorItemDefinitionCategory(ctx context.Context, input map[string]interface{}) (item *ConfiguratorItemDefinitionCategory, err error) {
+	ctx = EnrichContextWithMutations(ctx, r.GeneratedResolver)
+	item, err = r.Handlers.CreateConfiguratorItemDefinitionCategory(ctx, r.GeneratedResolver, input)
+	if err != nil {
+		return
+	}
+	err = FinishMutationContext(ctx, r.GeneratedResolver)
+	return
+}
+func CreateConfiguratorItemDefinitionCategoryHandler(ctx context.Context, r *GeneratedResolver, input map[string]interface{}) (item *ConfiguratorItemDefinitionCategory, err error) {
+	principalID := GetPrincipalIDFromContext(ctx)
+	now := time.Now()
+	item = &ConfiguratorItemDefinitionCategory{ID: uuid.Must(uuid.NewV4()).String(), CreatedAt: now, CreatedBy: principalID}
+	tx := r.GetDB(ctx)
+
+	event := events.NewEvent(events.EventMetadata{
+		Type:        events.EventTypeCreated,
+		Entity:      "ConfiguratorItemDefinitionCategory",
+		EntityID:    item.ID,
+		Date:        now,
+		PrincipalID: principalID,
+	})
+
+	var changes ConfiguratorItemDefinitionCategoryChanges
+	err = ApplyChanges(input, &changes)
+	if err != nil {
+		tx.Rollback()
+		return
+	}
+
+	if _, ok := input["id"]; ok && (item.ID != changes.ID) {
+		item.ID = changes.ID
+		event.EntityID = item.ID
+		event.AddNewValue("id", changes.ID)
+	}
+
+	if _, ok := input["code"]; ok && (item.Code != changes.Code) && (item.Code == nil || changes.Code == nil || *item.Code != *changes.Code) {
+		item.Code = changes.Code
+
+		event.AddNewValue("code", changes.Code)
+	}
+
+	if _, ok := input["name"]; ok && (item.Name != changes.Name) && (item.Name == nil || changes.Name == nil || *item.Name != *changes.Name) {
+		item.Name = changes.Name
+
+		event.AddNewValue("name", changes.Name)
+	}
+
+	err = tx.Create(item).Error
+	if err != nil {
+		tx.Rollback()
+		return
+	}
+
+	if ids, exists := input["definitionsIds"]; exists {
+		items := []ConfiguratorItemDefinition{}
+		tx.Find(&items, "id IN (?)", ids)
+		association := tx.Model(&item).Association("Definitions")
+		association.Replace(items)
+	}
+
+	if len(event.Changes) > 0 {
+		AddMutationEvent(ctx, event)
+	}
+
+	return
+}
+func (r *GeneratedMutationResolver) UpdateConfiguratorItemDefinitionCategory(ctx context.Context, id string, input map[string]interface{}) (item *ConfiguratorItemDefinitionCategory, err error) {
+	ctx = EnrichContextWithMutations(ctx, r.GeneratedResolver)
+	item, err = r.Handlers.UpdateConfiguratorItemDefinitionCategory(ctx, r.GeneratedResolver, id, input)
+	if err != nil {
+		return
+	}
+	err = FinishMutationContext(ctx, r.GeneratedResolver)
+	return
+}
+func UpdateConfiguratorItemDefinitionCategoryHandler(ctx context.Context, r *GeneratedResolver, id string, input map[string]interface{}) (item *ConfiguratorItemDefinitionCategory, err error) {
+	principalID := GetPrincipalIDFromContext(ctx)
+	item = &ConfiguratorItemDefinitionCategory{}
+	now := time.Now()
+	tx := r.GetDB(ctx)
+
+	event := events.NewEvent(events.EventMetadata{
+		Type:        events.EventTypeUpdated,
+		Entity:      "ConfiguratorItemDefinitionCategory",
+		EntityID:    id,
+		Date:        now,
+		PrincipalID: principalID,
+	})
+
+	var changes ConfiguratorItemDefinitionCategoryChanges
+	err = ApplyChanges(input, &changes)
+	if err != nil {
+		tx.Rollback()
+		return
+	}
+
+	err = GetItem(ctx, tx, item, &id)
+	if err != nil {
+		tx.Rollback()
+		return
+	}
+
+	item.UpdatedBy = principalID
+
+	if _, ok := input["code"]; ok && (item.Code != changes.Code) && (item.Code == nil || changes.Code == nil || *item.Code != *changes.Code) {
+		event.AddOldValue("code", item.Code)
+		event.AddNewValue("code", changes.Code)
+		item.Code = changes.Code
+	}
+
+	if _, ok := input["name"]; ok && (item.Name != changes.Name) && (item.Name == nil || changes.Name == nil || *item.Name != *changes.Name) {
+		event.AddOldValue("name", item.Name)
+		event.AddNewValue("name", changes.Name)
+		item.Name = changes.Name
+	}
+
+	err = tx.Save(item).Error
+	if err != nil {
+		tx.Rollback()
+		return
+	}
+
+	if ids, exists := input["definitionsIds"]; exists {
+		items := []ConfiguratorItemDefinition{}
+		tx.Find(&items, "id IN (?)", ids)
+		association := tx.Model(&item).Association("Definitions")
+		association.Replace(items)
+	}
+
+	if len(event.Changes) > 0 {
+		AddMutationEvent(ctx, event)
+	}
+
+	return
+}
+func (r *GeneratedMutationResolver) DeleteConfiguratorItemDefinitionCategory(ctx context.Context, id string) (item *ConfiguratorItemDefinitionCategory, err error) {
+	ctx = EnrichContextWithMutations(ctx, r.GeneratedResolver)
+	item, err = r.Handlers.DeleteConfiguratorItemDefinitionCategory(ctx, r.GeneratedResolver, id)
+	if err != nil {
+		return
+	}
+	err = FinishMutationContext(ctx, r.GeneratedResolver)
+	return
+}
+func DeleteConfiguratorItemDefinitionCategoryHandler(ctx context.Context, r *GeneratedResolver, id string) (item *ConfiguratorItemDefinitionCategory, err error) {
+	principalID := GetPrincipalIDFromContext(ctx)
+	item = &ConfiguratorItemDefinitionCategory{}
+	now := time.Now()
+	tx := r.GetDB(ctx)
+
+	err = GetItem(ctx, tx, item, &id)
+	if err != nil {
+		tx.Rollback()
+		return
+	}
+
+	event := events.NewEvent(events.EventMetadata{
+		Type:        events.EventTypeDeleted,
+		Entity:      "ConfiguratorItemDefinitionCategory",
+		EntityID:    id,
+		Date:        now,
+		PrincipalID: principalID,
+	})
+
+	err = tx.Delete(item, TableName("configurator_item_definition_categories")+".id = ?", id).Error
+	if err != nil {
+		tx.Rollback()
+		return
+	}
+
+	if len(event.Changes) > 0 {
+		AddMutationEvent(ctx, event)
+	}
+
+	return
+}
+func (r *GeneratedMutationResolver) DeleteAllConfiguratorItemDefinitionCategories(ctx context.Context) (bool, error) {
+	ctx = EnrichContextWithMutations(ctx, r.GeneratedResolver)
+	done, err := r.Handlers.DeleteAllConfiguratorItemDefinitionCategories(ctx, r.GeneratedResolver)
+	err = FinishMutationContext(ctx, r.GeneratedResolver)
+	return done, err
+}
+func DeleteAllConfiguratorItemDefinitionCategoriesHandler(ctx context.Context, r *GeneratedResolver) (bool, error) {
+	tx := r.GetDB(ctx)
+	err := tx.Delete(&ConfiguratorItemDefinitionCategory{}).Error
+	if err != nil {
+		tx.Rollback()
+		return false, err
+	}
+	return true, err
+}
+
 func (r *GeneratedMutationResolver) CreateConfiguratorItemDefinition(ctx context.Context, input map[string]interface{}) (item *ConfiguratorItemDefinition, err error) {
 	ctx = EnrichContextWithMutations(ctx, r.GeneratedResolver)
 	item, err = r.Handlers.CreateConfiguratorItemDefinition(ctx, r.GeneratedResolver, input)
@@ -96,6 +289,12 @@ func CreateConfiguratorItemDefinitionHandler(ctx context.Context, r *GeneratedRe
 		item.Name = changes.Name
 
 		event.AddNewValue("name", changes.Name)
+	}
+
+	if _, ok := input["categoryId"]; ok && (item.CategoryID != changes.CategoryID) && (item.CategoryID == nil || changes.CategoryID == nil || *item.CategoryID != *changes.CategoryID) {
+		item.CategoryID = changes.CategoryID
+
+		event.AddNewValue("categoryId", changes.CategoryID)
 	}
 
 	err = tx.Create(item).Error
@@ -186,6 +385,12 @@ func UpdateConfiguratorItemDefinitionHandler(ctx context.Context, r *GeneratedRe
 		event.AddOldValue("name", item.Name)
 		event.AddNewValue("name", changes.Name)
 		item.Name = changes.Name
+	}
+
+	if _, ok := input["categoryId"]; ok && (item.CategoryID != changes.CategoryID) && (item.CategoryID == nil || changes.CategoryID == nil || *item.CategoryID != *changes.CategoryID) {
+		event.AddOldValue("categoryId", item.CategoryID)
+		event.AddNewValue("categoryId", changes.CategoryID)
+		item.CategoryID = changes.CategoryID
 	}
 
 	err = tx.Save(item).Error

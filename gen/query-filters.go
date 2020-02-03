@@ -9,6 +9,85 @@ import (
 	"github.com/vektah/gqlparser/ast"
 )
 
+type ConfiguratorItemDefinitionCategoryQueryFilter struct {
+	Query *string
+}
+
+func (qf *ConfiguratorItemDefinitionCategoryQueryFilter) Apply(ctx context.Context, dialect gorm.Dialect, selectionSet *ast.SelectionSet, wheres *[]string, values *[]interface{}, joins *[]string) error {
+	if qf.Query == nil {
+		return nil
+	}
+
+	fields := []*ast.Field{}
+	if selectionSet != nil {
+		for _, s := range *selectionSet {
+			if f, ok := s.(*ast.Field); ok {
+				fields = append(fields, f)
+			}
+		}
+	} else {
+		return fmt.Errorf("Cannot query with 'q' attribute without items field.")
+	}
+
+	queryParts := strings.Split(*qf.Query, " ")
+	for _, part := range queryParts {
+		ors := []string{}
+		if err := qf.applyQueryWithFields(dialect, fields, part, TableName("configurator_item_definition_categories"), &ors, values, joins); err != nil {
+			return err
+		}
+		*wheres = append(*wheres, "("+strings.Join(ors, " OR ")+")")
+	}
+	return nil
+}
+
+func (qf *ConfiguratorItemDefinitionCategoryQueryFilter) applyQueryWithFields(dialect gorm.Dialect, fields []*ast.Field, query, alias string, ors *[]string, values *[]interface{}, joins *[]string) error {
+	if len(fields) == 0 {
+		return nil
+	}
+
+	fieldsMap := map[string][]*ast.Field{}
+	for _, f := range fields {
+		fieldsMap[f.Name] = append(fieldsMap[f.Name], f)
+	}
+
+	if _, ok := fieldsMap["code"]; ok {
+
+		column := dialect.Quote(alias) + "." + dialect.Quote("code")
+
+		*ors = append(*ors, fmt.Sprintf("%[1]s LIKE ? OR %[1]s LIKE ?", column))
+		*values = append(*values, query+"%", "% "+query+"%")
+	}
+
+	if _, ok := fieldsMap["name"]; ok {
+
+		column := dialect.Quote(alias) + "." + dialect.Quote("name")
+
+		*ors = append(*ors, fmt.Sprintf("%[1]s LIKE ? OR %[1]s LIKE ?", column))
+		*values = append(*values, query+"%", "% "+query+"%")
+	}
+
+	if fs, ok := fieldsMap["definitions"]; ok {
+		_fields := []*ast.Field{}
+		_alias := alias + "_definitions"
+		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configurator_item_definitions"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias)+"."+dialect.Quote("categoryId")+" = "+dialect.Quote(alias)+".id")
+
+		for _, f := range fs {
+			for _, s := range f.SelectionSet {
+				if f, ok := s.(*ast.Field); ok {
+					_fields = append(_fields, f)
+				}
+			}
+		}
+		q := ConfiguratorItemDefinitionQueryFilter{qf.Query}
+		err := q.applyQueryWithFields(dialect, _fields, query, _alias, ors, values, joins)
+		if err != nil {
+			return err
+		}
+	}
+
+	return nil
+}
+
 type ConfiguratorItemDefinitionQueryFilter struct {
 	Query *string
 }
@@ -136,6 +215,25 @@ func (qf *ConfiguratorItemDefinitionQueryFilter) applyQueryWithFields(dialect go
 			}
 		}
 		q := ConfiguratorSlotDefinitionQueryFilter{qf.Query}
+		err := q.applyQueryWithFields(dialect, _fields, query, _alias, ors, values, joins)
+		if err != nil {
+			return err
+		}
+	}
+
+	if fs, ok := fieldsMap["category"]; ok {
+		_fields := []*ast.Field{}
+		_alias := alias + "_category"
+		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configurator_item_definition_categories"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias)+".id = "+alias+"."+dialect.Quote("categoryId"))
+
+		for _, f := range fs {
+			for _, s := range f.SelectionSet {
+				if f, ok := s.(*ast.Field); ok {
+					_fields = append(_fields, f)
+				}
+			}
+		}
+		q := ConfiguratorItemDefinitionCategoryQueryFilter{qf.Query}
 		err := q.applyQueryWithFields(dialect, _fields, query, _alias, ors, values, joins)
 		if err != nil {
 			return err

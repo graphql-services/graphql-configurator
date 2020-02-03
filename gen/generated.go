@@ -41,6 +41,8 @@ type ResolverRoot interface {
 	ConfiguratorAttributeResultType() ConfiguratorAttributeResultTypeResolver
 	ConfiguratorItem() ConfiguratorItemResolver
 	ConfiguratorItemDefinition() ConfiguratorItemDefinitionResolver
+	ConfiguratorItemDefinitionCategory() ConfiguratorItemDefinitionCategoryResolver
+	ConfiguratorItemDefinitionCategoryResultType() ConfiguratorItemDefinitionCategoryResultTypeResolver
 	ConfiguratorItemDefinitionResultType() ConfiguratorItemDefinitionResultTypeResolver
 	ConfiguratorItemResultType() ConfiguratorItemResultTypeResolver
 	ConfiguratorSlot() ConfiguratorSlotResolver
@@ -149,6 +151,8 @@ type ComplexityRoot struct {
 		AllowedInSlotsIds func(childComplexity int) int
 		Attributes        func(childComplexity int) int
 		AttributesIds     func(childComplexity int) int
+		Category          func(childComplexity int) int
+		CategoryID        func(childComplexity int) int
 		Code              func(childComplexity int) int
 		CreatedAt         func(childComplexity int) int
 		CreatedBy         func(childComplexity int) int
@@ -160,6 +164,23 @@ type ComplexityRoot struct {
 		SlotsIds          func(childComplexity int) int
 		UpdatedAt         func(childComplexity int) int
 		UpdatedBy         func(childComplexity int) int
+	}
+
+	ConfiguratorItemDefinitionCategory struct {
+		Code           func(childComplexity int) int
+		CreatedAt      func(childComplexity int) int
+		CreatedBy      func(childComplexity int) int
+		Definitions    func(childComplexity int) int
+		DefinitionsIds func(childComplexity int) int
+		ID             func(childComplexity int) int
+		Name           func(childComplexity int) int
+		UpdatedAt      func(childComplexity int) int
+		UpdatedBy      func(childComplexity int) int
+	}
+
+	ConfiguratorItemDefinitionCategoryResultType struct {
+		Count func(childComplexity int) int
+		Items func(childComplexity int) int
 	}
 
 	ConfiguratorItemDefinitionResultType struct {
@@ -214,49 +235,55 @@ type ComplexityRoot struct {
 	}
 
 	Mutation struct {
-		CreateConfiguratorAssembly                func(childComplexity int, input ConfiguratorAssemblyCreateInput) int
-		CreateConfiguratorAttribute               func(childComplexity int, input map[string]interface{}) int
-		CreateConfiguratorAttributeDefinition     func(childComplexity int, input map[string]interface{}) int
-		CreateConfiguratorItem                    func(childComplexity int, input map[string]interface{}) int
-		CreateConfiguratorItemDefinition          func(childComplexity int, input map[string]interface{}) int
-		CreateConfiguratorSlot                    func(childComplexity int, input map[string]interface{}) int
-		CreateConfiguratorSlotDefinition          func(childComplexity int, input map[string]interface{}) int
-		DeleteAllConfiguratorAttributeDefinitions func(childComplexity int) int
-		DeleteAllConfiguratorAttributes           func(childComplexity int) int
-		DeleteAllConfiguratorItemDefinitions      func(childComplexity int) int
-		DeleteAllConfiguratorItems                func(childComplexity int) int
-		DeleteAllConfiguratorSlotDefinitions      func(childComplexity int) int
-		DeleteAllConfiguratorSlots                func(childComplexity int) int
-		DeleteConfiguratorAttribute               func(childComplexity int, id string) int
-		DeleteConfiguratorAttributeDefinition     func(childComplexity int, id string) int
-		DeleteConfiguratorItem                    func(childComplexity int, id string) int
-		DeleteConfiguratorItemDefinition          func(childComplexity int, id string) int
-		DeleteConfiguratorSlot                    func(childComplexity int, id string) int
-		DeleteConfiguratorSlotDefinition          func(childComplexity int, id string) int
-		UpdateConfiguratorAssembly                func(childComplexity int, id string, input ConfiguratorAssemblyUpdateInput) int
-		UpdateConfiguratorAttribute               func(childComplexity int, id string, input map[string]interface{}) int
-		UpdateConfiguratorAttributeDefinition     func(childComplexity int, id string, input map[string]interface{}) int
-		UpdateConfiguratorItem                    func(childComplexity int, id string, input map[string]interface{}) int
-		UpdateConfiguratorItemDefinition          func(childComplexity int, id string, input map[string]interface{}) int
-		UpdateConfiguratorSlot                    func(childComplexity int, id string, input map[string]interface{}) int
-		UpdateConfiguratorSlotDefinition          func(childComplexity int, id string, input map[string]interface{}) int
+		CreateConfiguratorAssembly                    func(childComplexity int, input ConfiguratorAssemblyCreateInput) int
+		CreateConfiguratorAttribute                   func(childComplexity int, input map[string]interface{}) int
+		CreateConfiguratorAttributeDefinition         func(childComplexity int, input map[string]interface{}) int
+		CreateConfiguratorItem                        func(childComplexity int, input map[string]interface{}) int
+		CreateConfiguratorItemDefinition              func(childComplexity int, input map[string]interface{}) int
+		CreateConfiguratorItemDefinitionCategory      func(childComplexity int, input map[string]interface{}) int
+		CreateConfiguratorSlot                        func(childComplexity int, input map[string]interface{}) int
+		CreateConfiguratorSlotDefinition              func(childComplexity int, input map[string]interface{}) int
+		DeleteAllConfiguratorAttributeDefinitions     func(childComplexity int) int
+		DeleteAllConfiguratorAttributes               func(childComplexity int) int
+		DeleteAllConfiguratorItemDefinitionCategories func(childComplexity int) int
+		DeleteAllConfiguratorItemDefinitions          func(childComplexity int) int
+		DeleteAllConfiguratorItems                    func(childComplexity int) int
+		DeleteAllConfiguratorSlotDefinitions          func(childComplexity int) int
+		DeleteAllConfiguratorSlots                    func(childComplexity int) int
+		DeleteConfiguratorAttribute                   func(childComplexity int, id string) int
+		DeleteConfiguratorAttributeDefinition         func(childComplexity int, id string) int
+		DeleteConfiguratorItem                        func(childComplexity int, id string) int
+		DeleteConfiguratorItemDefinition              func(childComplexity int, id string) int
+		DeleteConfiguratorItemDefinitionCategory      func(childComplexity int, id string) int
+		DeleteConfiguratorSlot                        func(childComplexity int, id string) int
+		DeleteConfiguratorSlotDefinition              func(childComplexity int, id string) int
+		UpdateConfiguratorAssembly                    func(childComplexity int, id string, input ConfiguratorAssemblyUpdateInput) int
+		UpdateConfiguratorAttribute                   func(childComplexity int, id string, input map[string]interface{}) int
+		UpdateConfiguratorAttributeDefinition         func(childComplexity int, id string, input map[string]interface{}) int
+		UpdateConfiguratorItem                        func(childComplexity int, id string, input map[string]interface{}) int
+		UpdateConfiguratorItemDefinition              func(childComplexity int, id string, input map[string]interface{}) int
+		UpdateConfiguratorItemDefinitionCategory      func(childComplexity int, id string, input map[string]interface{}) int
+		UpdateConfiguratorSlot                        func(childComplexity int, id string, input map[string]interface{}) int
+		UpdateConfiguratorSlotDefinition              func(childComplexity int, id string, input map[string]interface{}) int
 	}
 
 	Query struct {
-		ConfiguratorAssembly             func(childComplexity int, id string) int
-		ConfiguratorAttribute            func(childComplexity int, id *string, q *string, filter *ConfiguratorAttributeFilterType) int
-		ConfiguratorAttributeDefinition  func(childComplexity int, id *string, q *string, filter *ConfiguratorAttributeDefinitionFilterType) int
-		ConfiguratorAttributeDefinitions func(childComplexity int, offset *int, limit *int, q *string, sort []*ConfiguratorAttributeDefinitionSortType, filter *ConfiguratorAttributeDefinitionFilterType) int
-		ConfiguratorAttributes           func(childComplexity int, offset *int, limit *int, q *string, sort []*ConfiguratorAttributeSortType, filter *ConfiguratorAttributeFilterType) int
-		ConfiguratorItem                 func(childComplexity int, id *string, q *string, filter *ConfiguratorItemFilterType) int
-		ConfiguratorItemDefinition       func(childComplexity int, id *string, q *string, filter *ConfiguratorItemDefinitionFilterType) int
-		ConfiguratorItemDefinitions      func(childComplexity int, offset *int, limit *int, q *string, sort []*ConfiguratorItemDefinitionSortType, filter *ConfiguratorItemDefinitionFilterType) int
-		ConfiguratorItems                func(childComplexity int, offset *int, limit *int, q *string, sort []*ConfiguratorItemSortType, filter *ConfiguratorItemFilterType) int
-		ConfiguratorSlot                 func(childComplexity int, id *string, q *string, filter *ConfiguratorSlotFilterType) int
-		ConfiguratorSlotDefinition       func(childComplexity int, id *string, q *string, filter *ConfiguratorSlotDefinitionFilterType) int
-		ConfiguratorSlotDefinitions      func(childComplexity int, offset *int, limit *int, q *string, sort []*ConfiguratorSlotDefinitionSortType, filter *ConfiguratorSlotDefinitionFilterType) int
-		ConfiguratorSlots                func(childComplexity int, offset *int, limit *int, q *string, sort []*ConfiguratorSlotSortType, filter *ConfiguratorSlotFilterType) int
-		_service                         func(childComplexity int) int
+		ConfiguratorAssembly                 func(childComplexity int, id string) int
+		ConfiguratorAttribute                func(childComplexity int, id *string, q *string, filter *ConfiguratorAttributeFilterType) int
+		ConfiguratorAttributeDefinition      func(childComplexity int, id *string, q *string, filter *ConfiguratorAttributeDefinitionFilterType) int
+		ConfiguratorAttributeDefinitions     func(childComplexity int, offset *int, limit *int, q *string, sort []*ConfiguratorAttributeDefinitionSortType, filter *ConfiguratorAttributeDefinitionFilterType) int
+		ConfiguratorAttributes               func(childComplexity int, offset *int, limit *int, q *string, sort []*ConfiguratorAttributeSortType, filter *ConfiguratorAttributeFilterType) int
+		ConfiguratorItem                     func(childComplexity int, id *string, q *string, filter *ConfiguratorItemFilterType) int
+		ConfiguratorItemDefinition           func(childComplexity int, id *string, q *string, filter *ConfiguratorItemDefinitionFilterType) int
+		ConfiguratorItemDefinitionCategories func(childComplexity int, offset *int, limit *int, q *string, sort []*ConfiguratorItemDefinitionCategorySortType, filter *ConfiguratorItemDefinitionCategoryFilterType) int
+		ConfiguratorItemDefinitionCategory   func(childComplexity int, id *string, q *string, filter *ConfiguratorItemDefinitionCategoryFilterType) int
+		ConfiguratorItemDefinitions          func(childComplexity int, offset *int, limit *int, q *string, sort []*ConfiguratorItemDefinitionSortType, filter *ConfiguratorItemDefinitionFilterType) int
+		ConfiguratorItems                    func(childComplexity int, offset *int, limit *int, q *string, sort []*ConfiguratorItemSortType, filter *ConfiguratorItemFilterType) int
+		ConfiguratorSlot                     func(childComplexity int, id *string, q *string, filter *ConfiguratorSlotFilterType) int
+		ConfiguratorSlotDefinition           func(childComplexity int, id *string, q *string, filter *ConfiguratorSlotDefinitionFilterType) int
+		ConfiguratorSlotDefinitions          func(childComplexity int, offset *int, limit *int, q *string, sort []*ConfiguratorSlotDefinitionSortType, filter *ConfiguratorSlotDefinitionFilterType) int
+		ConfiguratorSlots                    func(childComplexity int, offset *int, limit *int, q *string, sort []*ConfiguratorSlotSortType, filter *ConfiguratorSlotFilterType) int
+		_service                             func(childComplexity int) int
 	}
 
 	_Service struct {
@@ -298,11 +325,21 @@ type ConfiguratorItemDefinitionResolver interface {
 	Slots(ctx context.Context, obj *ConfiguratorItemDefinition) ([]*ConfiguratorSlotDefinition, error)
 	Items(ctx context.Context, obj *ConfiguratorItemDefinition) ([]*ConfiguratorItem, error)
 	AllowedInSlots(ctx context.Context, obj *ConfiguratorItemDefinition) ([]*ConfiguratorSlotDefinition, error)
+	Category(ctx context.Context, obj *ConfiguratorItemDefinition) (*ConfiguratorItemDefinitionCategory, error)
 
 	AttributesIds(ctx context.Context, obj *ConfiguratorItemDefinition) ([]string, error)
 	SlotsIds(ctx context.Context, obj *ConfiguratorItemDefinition) ([]string, error)
 	ItemsIds(ctx context.Context, obj *ConfiguratorItemDefinition) ([]string, error)
 	AllowedInSlotsIds(ctx context.Context, obj *ConfiguratorItemDefinition) ([]string, error)
+}
+type ConfiguratorItemDefinitionCategoryResolver interface {
+	Definitions(ctx context.Context, obj *ConfiguratorItemDefinitionCategory) ([]*ConfiguratorItemDefinition, error)
+
+	DefinitionsIds(ctx context.Context, obj *ConfiguratorItemDefinitionCategory) ([]string, error)
+}
+type ConfiguratorItemDefinitionCategoryResultTypeResolver interface {
+	Items(ctx context.Context, obj *ConfiguratorItemDefinitionCategoryResultType) ([]*ConfiguratorItemDefinitionCategory, error)
+	Count(ctx context.Context, obj *ConfiguratorItemDefinitionCategoryResultType) (int, error)
 }
 type ConfiguratorItemDefinitionResultTypeResolver interface {
 	Items(ctx context.Context, obj *ConfiguratorItemDefinitionResultType) ([]*ConfiguratorItemDefinition, error)
@@ -334,6 +371,10 @@ type ConfiguratorSlotResultTypeResolver interface {
 	Count(ctx context.Context, obj *ConfiguratorSlotResultType) (int, error)
 }
 type MutationResolver interface {
+	CreateConfiguratorItemDefinitionCategory(ctx context.Context, input map[string]interface{}) (*ConfiguratorItemDefinitionCategory, error)
+	UpdateConfiguratorItemDefinitionCategory(ctx context.Context, id string, input map[string]interface{}) (*ConfiguratorItemDefinitionCategory, error)
+	DeleteConfiguratorItemDefinitionCategory(ctx context.Context, id string) (*ConfiguratorItemDefinitionCategory, error)
+	DeleteAllConfiguratorItemDefinitionCategories(ctx context.Context) (bool, error)
 	CreateConfiguratorItemDefinition(ctx context.Context, input map[string]interface{}) (*ConfiguratorItemDefinition, error)
 	UpdateConfiguratorItemDefinition(ctx context.Context, id string, input map[string]interface{}) (*ConfiguratorItemDefinition, error)
 	DeleteConfiguratorItemDefinition(ctx context.Context, id string) (*ConfiguratorItemDefinition, error)
@@ -363,6 +404,8 @@ type MutationResolver interface {
 }
 type QueryResolver interface {
 	_service(ctx context.Context) (*_Service, error)
+	ConfiguratorItemDefinitionCategory(ctx context.Context, id *string, q *string, filter *ConfiguratorItemDefinitionCategoryFilterType) (*ConfiguratorItemDefinitionCategory, error)
+	ConfiguratorItemDefinitionCategories(ctx context.Context, offset *int, limit *int, q *string, sort []*ConfiguratorItemDefinitionCategorySortType, filter *ConfiguratorItemDefinitionCategoryFilterType) (*ConfiguratorItemDefinitionCategoryResultType, error)
 	ConfiguratorItemDefinition(ctx context.Context, id *string, q *string, filter *ConfiguratorItemDefinitionFilterType) (*ConfiguratorItemDefinition, error)
 	ConfiguratorItemDefinitions(ctx context.Context, offset *int, limit *int, q *string, sort []*ConfiguratorItemDefinitionSortType, filter *ConfiguratorItemDefinitionFilterType) (*ConfiguratorItemDefinitionResultType, error)
 	ConfiguratorAttributeDefinition(ctx context.Context, id *string, q *string, filter *ConfiguratorAttributeDefinitionFilterType) (*ConfiguratorAttributeDefinition, error)
@@ -855,6 +898,20 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.ConfiguratorItemDefinition.AttributesIds(childComplexity), true
 
+	case "ConfiguratorItemDefinition.category":
+		if e.complexity.ConfiguratorItemDefinition.Category == nil {
+			break
+		}
+
+		return e.complexity.ConfiguratorItemDefinition.Category(childComplexity), true
+
+	case "ConfiguratorItemDefinition.categoryId":
+		if e.complexity.ConfiguratorItemDefinition.CategoryID == nil {
+			break
+		}
+
+		return e.complexity.ConfiguratorItemDefinition.CategoryID(childComplexity), true
+
 	case "ConfiguratorItemDefinition.code":
 		if e.complexity.ConfiguratorItemDefinition.Code == nil {
 			break
@@ -931,6 +988,83 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.ConfiguratorItemDefinition.UpdatedBy(childComplexity), true
+
+	case "ConfiguratorItemDefinitionCategory.code":
+		if e.complexity.ConfiguratorItemDefinitionCategory.Code == nil {
+			break
+		}
+
+		return e.complexity.ConfiguratorItemDefinitionCategory.Code(childComplexity), true
+
+	case "ConfiguratorItemDefinitionCategory.createdAt":
+		if e.complexity.ConfiguratorItemDefinitionCategory.CreatedAt == nil {
+			break
+		}
+
+		return e.complexity.ConfiguratorItemDefinitionCategory.CreatedAt(childComplexity), true
+
+	case "ConfiguratorItemDefinitionCategory.createdBy":
+		if e.complexity.ConfiguratorItemDefinitionCategory.CreatedBy == nil {
+			break
+		}
+
+		return e.complexity.ConfiguratorItemDefinitionCategory.CreatedBy(childComplexity), true
+
+	case "ConfiguratorItemDefinitionCategory.definitions":
+		if e.complexity.ConfiguratorItemDefinitionCategory.Definitions == nil {
+			break
+		}
+
+		return e.complexity.ConfiguratorItemDefinitionCategory.Definitions(childComplexity), true
+
+	case "ConfiguratorItemDefinitionCategory.definitionsIds":
+		if e.complexity.ConfiguratorItemDefinitionCategory.DefinitionsIds == nil {
+			break
+		}
+
+		return e.complexity.ConfiguratorItemDefinitionCategory.DefinitionsIds(childComplexity), true
+
+	case "ConfiguratorItemDefinitionCategory.id":
+		if e.complexity.ConfiguratorItemDefinitionCategory.ID == nil {
+			break
+		}
+
+		return e.complexity.ConfiguratorItemDefinitionCategory.ID(childComplexity), true
+
+	case "ConfiguratorItemDefinitionCategory.name":
+		if e.complexity.ConfiguratorItemDefinitionCategory.Name == nil {
+			break
+		}
+
+		return e.complexity.ConfiguratorItemDefinitionCategory.Name(childComplexity), true
+
+	case "ConfiguratorItemDefinitionCategory.updatedAt":
+		if e.complexity.ConfiguratorItemDefinitionCategory.UpdatedAt == nil {
+			break
+		}
+
+		return e.complexity.ConfiguratorItemDefinitionCategory.UpdatedAt(childComplexity), true
+
+	case "ConfiguratorItemDefinitionCategory.updatedBy":
+		if e.complexity.ConfiguratorItemDefinitionCategory.UpdatedBy == nil {
+			break
+		}
+
+		return e.complexity.ConfiguratorItemDefinitionCategory.UpdatedBy(childComplexity), true
+
+	case "ConfiguratorItemDefinitionCategoryResultType.count":
+		if e.complexity.ConfiguratorItemDefinitionCategoryResultType.Count == nil {
+			break
+		}
+
+		return e.complexity.ConfiguratorItemDefinitionCategoryResultType.Count(childComplexity), true
+
+	case "ConfiguratorItemDefinitionCategoryResultType.items":
+		if e.complexity.ConfiguratorItemDefinitionCategoryResultType.Items == nil {
+			break
+		}
+
+		return e.complexity.ConfiguratorItemDefinitionCategoryResultType.Items(childComplexity), true
 
 	case "ConfiguratorItemDefinitionResultType.count":
 		if e.complexity.ConfiguratorItemDefinitionResultType.Count == nil {
@@ -1223,6 +1357,18 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.Mutation.CreateConfiguratorItemDefinition(childComplexity, args["input"].(map[string]interface{})), true
 
+	case "Mutation.createConfiguratorItemDefinitionCategory":
+		if e.complexity.Mutation.CreateConfiguratorItemDefinitionCategory == nil {
+			break
+		}
+
+		args, err := ec.field_Mutation_createConfiguratorItemDefinitionCategory_args(context.TODO(), rawArgs)
+		if err != nil {
+			return 0, false
+		}
+
+		return e.complexity.Mutation.CreateConfiguratorItemDefinitionCategory(childComplexity, args["input"].(map[string]interface{})), true
+
 	case "Mutation.createConfiguratorSlot":
 		if e.complexity.Mutation.CreateConfiguratorSlot == nil {
 			break
@@ -1260,6 +1406,13 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.Mutation.DeleteAllConfiguratorAttributes(childComplexity), true
+
+	case "Mutation.deleteAllConfiguratorItemDefinitionCategories":
+		if e.complexity.Mutation.DeleteAllConfiguratorItemDefinitionCategories == nil {
+			break
+		}
+
+		return e.complexity.Mutation.DeleteAllConfiguratorItemDefinitionCategories(childComplexity), true
 
 	case "Mutation.deleteAllConfiguratorItemDefinitions":
 		if e.complexity.Mutation.DeleteAllConfiguratorItemDefinitions == nil {
@@ -1336,6 +1489,18 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.Mutation.DeleteConfiguratorItemDefinition(childComplexity, args["id"].(string)), true
+
+	case "Mutation.deleteConfiguratorItemDefinitionCategory":
+		if e.complexity.Mutation.DeleteConfiguratorItemDefinitionCategory == nil {
+			break
+		}
+
+		args, err := ec.field_Mutation_deleteConfiguratorItemDefinitionCategory_args(context.TODO(), rawArgs)
+		if err != nil {
+			return 0, false
+		}
+
+		return e.complexity.Mutation.DeleteConfiguratorItemDefinitionCategory(childComplexity, args["id"].(string)), true
 
 	case "Mutation.deleteConfiguratorSlot":
 		if e.complexity.Mutation.DeleteConfiguratorSlot == nil {
@@ -1420,6 +1585,18 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.Mutation.UpdateConfiguratorItemDefinition(childComplexity, args["id"].(string), args["input"].(map[string]interface{})), true
+
+	case "Mutation.updateConfiguratorItemDefinitionCategory":
+		if e.complexity.Mutation.UpdateConfiguratorItemDefinitionCategory == nil {
+			break
+		}
+
+		args, err := ec.field_Mutation_updateConfiguratorItemDefinitionCategory_args(context.TODO(), rawArgs)
+		if err != nil {
+			return 0, false
+		}
+
+		return e.complexity.Mutation.UpdateConfiguratorItemDefinitionCategory(childComplexity, args["id"].(string), args["input"].(map[string]interface{})), true
 
 	case "Mutation.updateConfiguratorSlot":
 		if e.complexity.Mutation.UpdateConfiguratorSlot == nil {
@@ -1528,6 +1705,30 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.Query.ConfiguratorItemDefinition(childComplexity, args["id"].(*string), args["q"].(*string), args["filter"].(*ConfiguratorItemDefinitionFilterType)), true
+
+	case "Query.configuratorItemDefinitionCategories":
+		if e.complexity.Query.ConfiguratorItemDefinitionCategories == nil {
+			break
+		}
+
+		args, err := ec.field_Query_configuratorItemDefinitionCategories_args(context.TODO(), rawArgs)
+		if err != nil {
+			return 0, false
+		}
+
+		return e.complexity.Query.ConfiguratorItemDefinitionCategories(childComplexity, args["offset"].(*int), args["limit"].(*int), args["q"].(*string), args["sort"].([]*ConfiguratorItemDefinitionCategorySortType), args["filter"].(*ConfiguratorItemDefinitionCategoryFilterType)), true
+
+	case "Query.configuratorItemDefinitionCategory":
+		if e.complexity.Query.ConfiguratorItemDefinitionCategory == nil {
+			break
+		}
+
+		args, err := ec.field_Query_configuratorItemDefinitionCategory_args(context.TODO(), rawArgs)
+		if err != nil {
+			return 0, false
+		}
+
+		return e.complexity.Query.ConfiguratorItemDefinitionCategory(childComplexity, args["id"].(*string), args["q"].(*string), args["filter"].(*ConfiguratorItemDefinitionCategoryFilterType)), true
 
 	case "Query.configuratorItemDefinitions":
 		if e.complexity.Query.ConfiguratorItemDefinitions == nil {
@@ -1690,6 +1891,8 @@ schema {
 
 type Query {
   _service: _Service!
+  configuratorItemDefinitionCategory(id: ID, q: String, filter: ConfiguratorItemDefinitionCategoryFilterType): ConfiguratorItemDefinitionCategory
+  configuratorItemDefinitionCategories(offset: Int, limit: Int = 30, q: String, sort: [ConfiguratorItemDefinitionCategorySortType!], filter: ConfiguratorItemDefinitionCategoryFilterType): ConfiguratorItemDefinitionCategoryResultType
   configuratorItemDefinition(id: ID, q: String, filter: ConfiguratorItemDefinitionFilterType): ConfiguratorItemDefinition
   configuratorItemDefinitions(offset: Int, limit: Int = 30, q: String, sort: [ConfiguratorItemDefinitionSortType!], filter: ConfiguratorItemDefinitionFilterType): ConfiguratorItemDefinitionResultType
   configuratorAttributeDefinition(id: ID, q: String, filter: ConfiguratorAttributeDefinitionFilterType): ConfiguratorAttributeDefinition
@@ -1705,6 +1908,10 @@ type Query {
 }
 
 type Mutation {
+  createConfiguratorItemDefinitionCategory(input: ConfiguratorItemDefinitionCategoryCreateInput!): ConfiguratorItemDefinitionCategory!
+  updateConfiguratorItemDefinitionCategory(id: ID!, input: ConfiguratorItemDefinitionCategoryUpdateInput!): ConfiguratorItemDefinitionCategory!
+  deleteConfiguratorItemDefinitionCategory(id: ID!): ConfiguratorItemDefinitionCategory!
+  deleteAllConfiguratorItemDefinitionCategories: Boolean!
   createConfiguratorItemDefinition(input: ConfiguratorItemDefinitionCreateInput!): ConfiguratorItemDefinition!
   updateConfiguratorItemDefinition(id: ID!, input: ConfiguratorItemDefinitionUpdateInput!): ConfiguratorItemDefinition!
   deleteConfiguratorItemDefinition(id: ID!): ConfiguratorItemDefinition!
@@ -1806,6 +2013,18 @@ extend type Mutation {
   updateConfiguratorAssembly(id: ID!, input: ConfiguratorAssemblyUpdateInput!): ConfiguratorAssembly
 }
 
+type ConfiguratorItemDefinitionCategory {
+  id: ID!
+  code: String
+  name: String
+  definitions: [ConfiguratorItemDefinition!]!
+  updatedAt: Time
+  createdAt: Time!
+  updatedBy: ID
+  createdBy: ID
+  definitionsIds: [ID!]!
+}
+
 type ConfiguratorItemDefinition {
   id: ID!
   code: String
@@ -1814,6 +2033,8 @@ type ConfiguratorItemDefinition {
   slots: [ConfiguratorSlotDefinition!]!
   items: [ConfiguratorItem!]!
   allowedInSlots: [ConfiguratorSlotDefinition!]!
+  category: ConfiguratorItemDefinitionCategory
+  categoryId: ID
   updatedAt: Time
   createdAt: Time!
   updatedBy: ID
@@ -1911,26 +2132,20 @@ type ConfiguratorSlot {
   createdBy: ID
 }
 
-input ConfiguratorItemDefinitionCreateInput {
+input ConfiguratorItemDefinitionCategoryCreateInput {
   id: ID
   code: String
   name: String
-  attributesIds: [ID!]
-  slotsIds: [ID!]
-  itemsIds: [ID!]
-  allowedInSlotsIds: [ID!]
+  definitionsIds: [ID!]
 }
 
-input ConfiguratorItemDefinitionUpdateInput {
+input ConfiguratorItemDefinitionCategoryUpdateInput {
   code: String
   name: String
-  attributesIds: [ID!]
-  slotsIds: [ID!]
-  itemsIds: [ID!]
-  allowedInSlotsIds: [ID!]
+  definitionsIds: [ID!]
 }
 
-input ConfiguratorItemDefinitionSortType {
+input ConfiguratorItemDefinitionCategorySortType {
   id: ObjectSortType
   code: ObjectSortType
   name: ObjectSortType
@@ -1938,19 +2153,13 @@ input ConfiguratorItemDefinitionSortType {
   createdAt: ObjectSortType
   updatedBy: ObjectSortType
   createdBy: ObjectSortType
-  attributesIds: ObjectSortType
-  slotsIds: ObjectSortType
-  itemsIds: ObjectSortType
-  allowedInSlotsIds: ObjectSortType
-  attributes: ConfiguratorAttributeDefinitionSortType
-  slots: ConfiguratorSlotDefinitionSortType
-  items: ConfiguratorItemSortType
-  allowedInSlots: ConfiguratorSlotDefinitionSortType
+  definitionsIds: ObjectSortType
+  definitions: ConfiguratorItemDefinitionSortType
 }
 
-input ConfiguratorItemDefinitionFilterType {
-  AND: [ConfiguratorItemDefinitionFilterType!]
-  OR: [ConfiguratorItemDefinitionFilterType!]
+input ConfiguratorItemDefinitionCategoryFilterType {
+  AND: [ConfiguratorItemDefinitionCategoryFilterType!]
+  OR: [ConfiguratorItemDefinitionCategoryFilterType!]
   id: ID
   id_ne: ID
   id_gt: ID
@@ -2013,10 +2222,133 @@ input ConfiguratorItemDefinitionFilterType {
   createdBy_lte: ID
   createdBy_in: [ID!]
   createdBy_null: Boolean
+  definitions: ConfiguratorItemDefinitionFilterType
+}
+
+type ConfiguratorItemDefinitionCategoryResultType {
+  items: [ConfiguratorItemDefinitionCategory!]!
+  count: Int!
+}
+
+input ConfiguratorItemDefinitionCreateInput {
+  id: ID
+  code: String
+  name: String
+  categoryId: ID
+  attributesIds: [ID!]
+  slotsIds: [ID!]
+  itemsIds: [ID!]
+  allowedInSlotsIds: [ID!]
+}
+
+input ConfiguratorItemDefinitionUpdateInput {
+  code: String
+  name: String
+  categoryId: ID
+  attributesIds: [ID!]
+  slotsIds: [ID!]
+  itemsIds: [ID!]
+  allowedInSlotsIds: [ID!]
+}
+
+input ConfiguratorItemDefinitionSortType {
+  id: ObjectSortType
+  code: ObjectSortType
+  name: ObjectSortType
+  categoryId: ObjectSortType
+  updatedAt: ObjectSortType
+  createdAt: ObjectSortType
+  updatedBy: ObjectSortType
+  createdBy: ObjectSortType
+  attributesIds: ObjectSortType
+  slotsIds: ObjectSortType
+  itemsIds: ObjectSortType
+  allowedInSlotsIds: ObjectSortType
+  attributes: ConfiguratorAttributeDefinitionSortType
+  slots: ConfiguratorSlotDefinitionSortType
+  items: ConfiguratorItemSortType
+  allowedInSlots: ConfiguratorSlotDefinitionSortType
+  category: ConfiguratorItemDefinitionCategorySortType
+}
+
+input ConfiguratorItemDefinitionFilterType {
+  AND: [ConfiguratorItemDefinitionFilterType!]
+  OR: [ConfiguratorItemDefinitionFilterType!]
+  id: ID
+  id_ne: ID
+  id_gt: ID
+  id_lt: ID
+  id_gte: ID
+  id_lte: ID
+  id_in: [ID!]
+  id_null: Boolean
+  code: String
+  code_ne: String
+  code_gt: String
+  code_lt: String
+  code_gte: String
+  code_lte: String
+  code_in: [String!]
+  code_like: String
+  code_prefix: String
+  code_suffix: String
+  code_null: Boolean
+  name: String
+  name_ne: String
+  name_gt: String
+  name_lt: String
+  name_gte: String
+  name_lte: String
+  name_in: [String!]
+  name_like: String
+  name_prefix: String
+  name_suffix: String
+  name_null: Boolean
+  categoryId: ID
+  categoryId_ne: ID
+  categoryId_gt: ID
+  categoryId_lt: ID
+  categoryId_gte: ID
+  categoryId_lte: ID
+  categoryId_in: [ID!]
+  categoryId_null: Boolean
+  updatedAt: Time
+  updatedAt_ne: Time
+  updatedAt_gt: Time
+  updatedAt_lt: Time
+  updatedAt_gte: Time
+  updatedAt_lte: Time
+  updatedAt_in: [Time!]
+  updatedAt_null: Boolean
+  createdAt: Time
+  createdAt_ne: Time
+  createdAt_gt: Time
+  createdAt_lt: Time
+  createdAt_gte: Time
+  createdAt_lte: Time
+  createdAt_in: [Time!]
+  createdAt_null: Boolean
+  updatedBy: ID
+  updatedBy_ne: ID
+  updatedBy_gt: ID
+  updatedBy_lt: ID
+  updatedBy_gte: ID
+  updatedBy_lte: ID
+  updatedBy_in: [ID!]
+  updatedBy_null: Boolean
+  createdBy: ID
+  createdBy_ne: ID
+  createdBy_gt: ID
+  createdBy_lt: ID
+  createdBy_gte: ID
+  createdBy_lte: ID
+  createdBy_in: [ID!]
+  createdBy_null: Boolean
   attributes: ConfiguratorAttributeDefinitionFilterType
   slots: ConfiguratorSlotDefinitionFilterType
   items: ConfiguratorItemFilterType
   allowedInSlots: ConfiguratorSlotDefinitionFilterType
+  category: ConfiguratorItemDefinitionCategoryFilterType
 }
 
 type ConfiguratorItemDefinitionResultType {
@@ -2691,6 +3023,20 @@ func (ec *executionContext) field_Mutation_createConfiguratorAttribute_args(ctx 
 	return args, nil
 }
 
+func (ec *executionContext) field_Mutation_createConfiguratorItemDefinitionCategory_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
+	var err error
+	args := map[string]interface{}{}
+	var arg0 map[string]interface{}
+	if tmp, ok := rawArgs["input"]; ok {
+		arg0, err = ec.unmarshalNConfiguratorItemDefinitionCategoryCreateInput2map(ctx, tmp)
+		if err != nil {
+			return nil, err
+		}
+	}
+	args["input"] = arg0
+	return args, nil
+}
+
 func (ec *executionContext) field_Mutation_createConfiguratorItemDefinition_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
 	var err error
 	args := map[string]interface{}{}
@@ -2762,6 +3108,20 @@ func (ec *executionContext) field_Mutation_deleteConfiguratorAttributeDefinition
 }
 
 func (ec *executionContext) field_Mutation_deleteConfiguratorAttribute_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
+	var err error
+	args := map[string]interface{}{}
+	var arg0 string
+	if tmp, ok := rawArgs["id"]; ok {
+		arg0, err = ec.unmarshalNID2string(ctx, tmp)
+		if err != nil {
+			return nil, err
+		}
+	}
+	args["id"] = arg0
+	return args, nil
+}
+
+func (ec *executionContext) field_Mutation_deleteConfiguratorItemDefinitionCategory_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
 	var err error
 	args := map[string]interface{}{}
 	var arg0 string
@@ -2889,6 +3249,28 @@ func (ec *executionContext) field_Mutation_updateConfiguratorAttribute_args(ctx 
 	var arg1 map[string]interface{}
 	if tmp, ok := rawArgs["input"]; ok {
 		arg1, err = ec.unmarshalNConfiguratorAttributeUpdateInput2map(ctx, tmp)
+		if err != nil {
+			return nil, err
+		}
+	}
+	args["input"] = arg1
+	return args, nil
+}
+
+func (ec *executionContext) field_Mutation_updateConfiguratorItemDefinitionCategory_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
+	var err error
+	args := map[string]interface{}{}
+	var arg0 string
+	if tmp, ok := rawArgs["id"]; ok {
+		arg0, err = ec.unmarshalNID2string(ctx, tmp)
+		if err != nil {
+			return nil, err
+		}
+	}
+	args["id"] = arg0
+	var arg1 map[string]interface{}
+	if tmp, ok := rawArgs["input"]; ok {
+		arg1, err = ec.unmarshalNConfiguratorItemDefinitionCategoryUpdateInput2map(ctx, tmp)
 		if err != nil {
 			return nil, err
 		}
@@ -3162,6 +3544,82 @@ func (ec *executionContext) field_Query_configuratorAttributes_args(ctx context.
 		}
 	}
 	args["filter"] = arg4
+	return args, nil
+}
+
+func (ec *executionContext) field_Query_configuratorItemDefinitionCategories_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
+	var err error
+	args := map[string]interface{}{}
+	var arg0 *int
+	if tmp, ok := rawArgs["offset"]; ok {
+		arg0, err = ec.unmarshalOInt2ᚖint(ctx, tmp)
+		if err != nil {
+			return nil, err
+		}
+	}
+	args["offset"] = arg0
+	var arg1 *int
+	if tmp, ok := rawArgs["limit"]; ok {
+		arg1, err = ec.unmarshalOInt2ᚖint(ctx, tmp)
+		if err != nil {
+			return nil, err
+		}
+	}
+	args["limit"] = arg1
+	var arg2 *string
+	if tmp, ok := rawArgs["q"]; ok {
+		arg2, err = ec.unmarshalOString2ᚖstring(ctx, tmp)
+		if err != nil {
+			return nil, err
+		}
+	}
+	args["q"] = arg2
+	var arg3 []*ConfiguratorItemDefinitionCategorySortType
+	if tmp, ok := rawArgs["sort"]; ok {
+		arg3, err = ec.unmarshalOConfiguratorItemDefinitionCategorySortType2ᚕᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemDefinitionCategorySortTypeᚄ(ctx, tmp)
+		if err != nil {
+			return nil, err
+		}
+	}
+	args["sort"] = arg3
+	var arg4 *ConfiguratorItemDefinitionCategoryFilterType
+	if tmp, ok := rawArgs["filter"]; ok {
+		arg4, err = ec.unmarshalOConfiguratorItemDefinitionCategoryFilterType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemDefinitionCategoryFilterType(ctx, tmp)
+		if err != nil {
+			return nil, err
+		}
+	}
+	args["filter"] = arg4
+	return args, nil
+}
+
+func (ec *executionContext) field_Query_configuratorItemDefinitionCategory_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
+	var err error
+	args := map[string]interface{}{}
+	var arg0 *string
+	if tmp, ok := rawArgs["id"]; ok {
+		arg0, err = ec.unmarshalOID2ᚖstring(ctx, tmp)
+		if err != nil {
+			return nil, err
+		}
+	}
+	args["id"] = arg0
+	var arg1 *string
+	if tmp, ok := rawArgs["q"]; ok {
+		arg1, err = ec.unmarshalOString2ᚖstring(ctx, tmp)
+		if err != nil {
+			return nil, err
+		}
+	}
+	args["q"] = arg1
+	var arg2 *ConfiguratorItemDefinitionCategoryFilterType
+	if tmp, ok := rawArgs["filter"]; ok {
+		arg2, err = ec.unmarshalOConfiguratorItemDefinitionCategoryFilterType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemDefinitionCategoryFilterType(ctx, tmp)
+		if err != nil {
+			return nil, err
+		}
+	}
+	args["filter"] = arg2
 	return args, nil
 }
 
@@ -5941,6 +6399,74 @@ func (ec *executionContext) _ConfiguratorItemDefinition_allowedInSlots(ctx conte
 	return ec.marshalNConfiguratorSlotDefinition2ᚕᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorSlotDefinitionᚄ(ctx, field.Selections, res)
 }
 
+func (ec *executionContext) _ConfiguratorItemDefinition_category(ctx context.Context, field graphql.CollectedField, obj *ConfiguratorItemDefinition) (ret graphql.Marshaler) {
+	ctx = ec.Tracer.StartFieldExecution(ctx, field)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+		ec.Tracer.EndFieldExecution(ctx)
+	}()
+	rctx := &graphql.ResolverContext{
+		Object:   "ConfiguratorItemDefinition",
+		Field:    field,
+		Args:     nil,
+		IsMethod: true,
+	}
+	ctx = graphql.WithResolverContext(ctx, rctx)
+	ctx = ec.Tracer.StartFieldResolverExecution(ctx, rctx)
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
+		ctx = rctx // use context from middleware stack in children
+		return ec.resolvers.ConfiguratorItemDefinition().Category(rctx, obj)
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*ConfiguratorItemDefinitionCategory)
+	rctx.Result = res
+	ctx = ec.Tracer.StartFieldChildExecution(ctx)
+	return ec.marshalOConfiguratorItemDefinitionCategory2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemDefinitionCategory(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) _ConfiguratorItemDefinition_categoryId(ctx context.Context, field graphql.CollectedField, obj *ConfiguratorItemDefinition) (ret graphql.Marshaler) {
+	ctx = ec.Tracer.StartFieldExecution(ctx, field)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+		ec.Tracer.EndFieldExecution(ctx)
+	}()
+	rctx := &graphql.ResolverContext{
+		Object:   "ConfiguratorItemDefinition",
+		Field:    field,
+		Args:     nil,
+		IsMethod: false,
+	}
+	ctx = graphql.WithResolverContext(ctx, rctx)
+	ctx = ec.Tracer.StartFieldResolverExecution(ctx, rctx)
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.CategoryID, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*string)
+	rctx.Result = res
+	ctx = ec.Tracer.StartFieldChildExecution(ctx)
+	return ec.marshalOID2ᚖstring(ctx, field.Selections, res)
+}
+
 func (ec *executionContext) _ConfiguratorItemDefinition_updatedAt(ctx context.Context, field graphql.CollectedField, obj *ConfiguratorItemDefinition) (ret graphql.Marshaler) {
 	ctx = ec.Tracer.StartFieldExecution(ctx, field)
 	defer func() {
@@ -6226,6 +6752,398 @@ func (ec *executionContext) _ConfiguratorItemDefinition_allowedInSlotsIds(ctx co
 	rctx.Result = res
 	ctx = ec.Tracer.StartFieldChildExecution(ctx)
 	return ec.marshalNID2ᚕstringᚄ(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) _ConfiguratorItemDefinitionCategory_id(ctx context.Context, field graphql.CollectedField, obj *ConfiguratorItemDefinitionCategory) (ret graphql.Marshaler) {
+	ctx = ec.Tracer.StartFieldExecution(ctx, field)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+		ec.Tracer.EndFieldExecution(ctx)
+	}()
+	rctx := &graphql.ResolverContext{
+		Object:   "ConfiguratorItemDefinitionCategory",
+		Field:    field,
+		Args:     nil,
+		IsMethod: false,
+	}
+	ctx = graphql.WithResolverContext(ctx, rctx)
+	ctx = ec.Tracer.StartFieldResolverExecution(ctx, rctx)
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.ID, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		if !ec.HasError(rctx) {
+			ec.Errorf(ctx, "must not be null")
+		}
+		return graphql.Null
+	}
+	res := resTmp.(string)
+	rctx.Result = res
+	ctx = ec.Tracer.StartFieldChildExecution(ctx)
+	return ec.marshalNID2string(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) _ConfiguratorItemDefinitionCategory_code(ctx context.Context, field graphql.CollectedField, obj *ConfiguratorItemDefinitionCategory) (ret graphql.Marshaler) {
+	ctx = ec.Tracer.StartFieldExecution(ctx, field)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+		ec.Tracer.EndFieldExecution(ctx)
+	}()
+	rctx := &graphql.ResolverContext{
+		Object:   "ConfiguratorItemDefinitionCategory",
+		Field:    field,
+		Args:     nil,
+		IsMethod: false,
+	}
+	ctx = graphql.WithResolverContext(ctx, rctx)
+	ctx = ec.Tracer.StartFieldResolverExecution(ctx, rctx)
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Code, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*string)
+	rctx.Result = res
+	ctx = ec.Tracer.StartFieldChildExecution(ctx)
+	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) _ConfiguratorItemDefinitionCategory_name(ctx context.Context, field graphql.CollectedField, obj *ConfiguratorItemDefinitionCategory) (ret graphql.Marshaler) {
+	ctx = ec.Tracer.StartFieldExecution(ctx, field)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+		ec.Tracer.EndFieldExecution(ctx)
+	}()
+	rctx := &graphql.ResolverContext{
+		Object:   "ConfiguratorItemDefinitionCategory",
+		Field:    field,
+		Args:     nil,
+		IsMethod: false,
+	}
+	ctx = graphql.WithResolverContext(ctx, rctx)
+	ctx = ec.Tracer.StartFieldResolverExecution(ctx, rctx)
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Name, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*string)
+	rctx.Result = res
+	ctx = ec.Tracer.StartFieldChildExecution(ctx)
+	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) _ConfiguratorItemDefinitionCategory_definitions(ctx context.Context, field graphql.CollectedField, obj *ConfiguratorItemDefinitionCategory) (ret graphql.Marshaler) {
+	ctx = ec.Tracer.StartFieldExecution(ctx, field)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+		ec.Tracer.EndFieldExecution(ctx)
+	}()
+	rctx := &graphql.ResolverContext{
+		Object:   "ConfiguratorItemDefinitionCategory",
+		Field:    field,
+		Args:     nil,
+		IsMethod: true,
+	}
+	ctx = graphql.WithResolverContext(ctx, rctx)
+	ctx = ec.Tracer.StartFieldResolverExecution(ctx, rctx)
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
+		ctx = rctx // use context from middleware stack in children
+		return ec.resolvers.ConfiguratorItemDefinitionCategory().Definitions(rctx, obj)
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		if !ec.HasError(rctx) {
+			ec.Errorf(ctx, "must not be null")
+		}
+		return graphql.Null
+	}
+	res := resTmp.([]*ConfiguratorItemDefinition)
+	rctx.Result = res
+	ctx = ec.Tracer.StartFieldChildExecution(ctx)
+	return ec.marshalNConfiguratorItemDefinition2ᚕᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemDefinitionᚄ(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) _ConfiguratorItemDefinitionCategory_updatedAt(ctx context.Context, field graphql.CollectedField, obj *ConfiguratorItemDefinitionCategory) (ret graphql.Marshaler) {
+	ctx = ec.Tracer.StartFieldExecution(ctx, field)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+		ec.Tracer.EndFieldExecution(ctx)
+	}()
+	rctx := &graphql.ResolverContext{
+		Object:   "ConfiguratorItemDefinitionCategory",
+		Field:    field,
+		Args:     nil,
+		IsMethod: false,
+	}
+	ctx = graphql.WithResolverContext(ctx, rctx)
+	ctx = ec.Tracer.StartFieldResolverExecution(ctx, rctx)
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.UpdatedAt, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*time.Time)
+	rctx.Result = res
+	ctx = ec.Tracer.StartFieldChildExecution(ctx)
+	return ec.marshalOTime2ᚖtimeᚐTime(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) _ConfiguratorItemDefinitionCategory_createdAt(ctx context.Context, field graphql.CollectedField, obj *ConfiguratorItemDefinitionCategory) (ret graphql.Marshaler) {
+	ctx = ec.Tracer.StartFieldExecution(ctx, field)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+		ec.Tracer.EndFieldExecution(ctx)
+	}()
+	rctx := &graphql.ResolverContext{
+		Object:   "ConfiguratorItemDefinitionCategory",
+		Field:    field,
+		Args:     nil,
+		IsMethod: false,
+	}
+	ctx = graphql.WithResolverContext(ctx, rctx)
+	ctx = ec.Tracer.StartFieldResolverExecution(ctx, rctx)
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.CreatedAt, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		if !ec.HasError(rctx) {
+			ec.Errorf(ctx, "must not be null")
+		}
+		return graphql.Null
+	}
+	res := resTmp.(time.Time)
+	rctx.Result = res
+	ctx = ec.Tracer.StartFieldChildExecution(ctx)
+	return ec.marshalNTime2timeᚐTime(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) _ConfiguratorItemDefinitionCategory_updatedBy(ctx context.Context, field graphql.CollectedField, obj *ConfiguratorItemDefinitionCategory) (ret graphql.Marshaler) {
+	ctx = ec.Tracer.StartFieldExecution(ctx, field)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+		ec.Tracer.EndFieldExecution(ctx)
+	}()
+	rctx := &graphql.ResolverContext{
+		Object:   "ConfiguratorItemDefinitionCategory",
+		Field:    field,
+		Args:     nil,
+		IsMethod: false,
+	}
+	ctx = graphql.WithResolverContext(ctx, rctx)
+	ctx = ec.Tracer.StartFieldResolverExecution(ctx, rctx)
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.UpdatedBy, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*string)
+	rctx.Result = res
+	ctx = ec.Tracer.StartFieldChildExecution(ctx)
+	return ec.marshalOID2ᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) _ConfiguratorItemDefinitionCategory_createdBy(ctx context.Context, field graphql.CollectedField, obj *ConfiguratorItemDefinitionCategory) (ret graphql.Marshaler) {
+	ctx = ec.Tracer.StartFieldExecution(ctx, field)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+		ec.Tracer.EndFieldExecution(ctx)
+	}()
+	rctx := &graphql.ResolverContext{
+		Object:   "ConfiguratorItemDefinitionCategory",
+		Field:    field,
+		Args:     nil,
+		IsMethod: false,
+	}
+	ctx = graphql.WithResolverContext(ctx, rctx)
+	ctx = ec.Tracer.StartFieldResolverExecution(ctx, rctx)
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.CreatedBy, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*string)
+	rctx.Result = res
+	ctx = ec.Tracer.StartFieldChildExecution(ctx)
+	return ec.marshalOID2ᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) _ConfiguratorItemDefinitionCategory_definitionsIds(ctx context.Context, field graphql.CollectedField, obj *ConfiguratorItemDefinitionCategory) (ret graphql.Marshaler) {
+	ctx = ec.Tracer.StartFieldExecution(ctx, field)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+		ec.Tracer.EndFieldExecution(ctx)
+	}()
+	rctx := &graphql.ResolverContext{
+		Object:   "ConfiguratorItemDefinitionCategory",
+		Field:    field,
+		Args:     nil,
+		IsMethod: true,
+	}
+	ctx = graphql.WithResolverContext(ctx, rctx)
+	ctx = ec.Tracer.StartFieldResolverExecution(ctx, rctx)
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
+		ctx = rctx // use context from middleware stack in children
+		return ec.resolvers.ConfiguratorItemDefinitionCategory().DefinitionsIds(rctx, obj)
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		if !ec.HasError(rctx) {
+			ec.Errorf(ctx, "must not be null")
+		}
+		return graphql.Null
+	}
+	res := resTmp.([]string)
+	rctx.Result = res
+	ctx = ec.Tracer.StartFieldChildExecution(ctx)
+	return ec.marshalNID2ᚕstringᚄ(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) _ConfiguratorItemDefinitionCategoryResultType_items(ctx context.Context, field graphql.CollectedField, obj *ConfiguratorItemDefinitionCategoryResultType) (ret graphql.Marshaler) {
+	ctx = ec.Tracer.StartFieldExecution(ctx, field)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+		ec.Tracer.EndFieldExecution(ctx)
+	}()
+	rctx := &graphql.ResolverContext{
+		Object:   "ConfiguratorItemDefinitionCategoryResultType",
+		Field:    field,
+		Args:     nil,
+		IsMethod: true,
+	}
+	ctx = graphql.WithResolverContext(ctx, rctx)
+	ctx = ec.Tracer.StartFieldResolverExecution(ctx, rctx)
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
+		ctx = rctx // use context from middleware stack in children
+		return ec.resolvers.ConfiguratorItemDefinitionCategoryResultType().Items(rctx, obj)
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		if !ec.HasError(rctx) {
+			ec.Errorf(ctx, "must not be null")
+		}
+		return graphql.Null
+	}
+	res := resTmp.([]*ConfiguratorItemDefinitionCategory)
+	rctx.Result = res
+	ctx = ec.Tracer.StartFieldChildExecution(ctx)
+	return ec.marshalNConfiguratorItemDefinitionCategory2ᚕᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemDefinitionCategoryᚄ(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) _ConfiguratorItemDefinitionCategoryResultType_count(ctx context.Context, field graphql.CollectedField, obj *ConfiguratorItemDefinitionCategoryResultType) (ret graphql.Marshaler) {
+	ctx = ec.Tracer.StartFieldExecution(ctx, field)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+		ec.Tracer.EndFieldExecution(ctx)
+	}()
+	rctx := &graphql.ResolverContext{
+		Object:   "ConfiguratorItemDefinitionCategoryResultType",
+		Field:    field,
+		Args:     nil,
+		IsMethod: true,
+	}
+	ctx = graphql.WithResolverContext(ctx, rctx)
+	ctx = ec.Tracer.StartFieldResolverExecution(ctx, rctx)
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
+		ctx = rctx // use context from middleware stack in children
+		return ec.resolvers.ConfiguratorItemDefinitionCategoryResultType().Count(rctx, obj)
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		if !ec.HasError(rctx) {
+			ec.Errorf(ctx, "must not be null")
+		}
+		return graphql.Null
+	}
+	res := resTmp.(int)
+	rctx.Result = res
+	ctx = ec.Tracer.StartFieldChildExecution(ctx)
+	return ec.marshalNInt2int(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) _ConfiguratorItemDefinitionResultType_items(ctx context.Context, field graphql.CollectedField, obj *ConfiguratorItemDefinitionResultType) (ret graphql.Marshaler) {
@@ -7398,6 +8316,175 @@ func (ec *executionContext) _ConfiguratorSlotResultType_count(ctx context.Contex
 	return ec.marshalNInt2int(ctx, field.Selections, res)
 }
 
+func (ec *executionContext) _Mutation_createConfiguratorItemDefinitionCategory(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
+	ctx = ec.Tracer.StartFieldExecution(ctx, field)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+		ec.Tracer.EndFieldExecution(ctx)
+	}()
+	rctx := &graphql.ResolverContext{
+		Object:   "Mutation",
+		Field:    field,
+		Args:     nil,
+		IsMethod: true,
+	}
+	ctx = graphql.WithResolverContext(ctx, rctx)
+	rawArgs := field.ArgumentMap(ec.Variables)
+	args, err := ec.field_Mutation_createConfiguratorItemDefinitionCategory_args(ctx, rawArgs)
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	rctx.Args = args
+	ctx = ec.Tracer.StartFieldResolverExecution(ctx, rctx)
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
+		ctx = rctx // use context from middleware stack in children
+		return ec.resolvers.Mutation().CreateConfiguratorItemDefinitionCategory(rctx, args["input"].(map[string]interface{}))
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		if !ec.HasError(rctx) {
+			ec.Errorf(ctx, "must not be null")
+		}
+		return graphql.Null
+	}
+	res := resTmp.(*ConfiguratorItemDefinitionCategory)
+	rctx.Result = res
+	ctx = ec.Tracer.StartFieldChildExecution(ctx)
+	return ec.marshalNConfiguratorItemDefinitionCategory2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemDefinitionCategory(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) _Mutation_updateConfiguratorItemDefinitionCategory(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
+	ctx = ec.Tracer.StartFieldExecution(ctx, field)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+		ec.Tracer.EndFieldExecution(ctx)
+	}()
+	rctx := &graphql.ResolverContext{
+		Object:   "Mutation",
+		Field:    field,
+		Args:     nil,
+		IsMethod: true,
+	}
+	ctx = graphql.WithResolverContext(ctx, rctx)
+	rawArgs := field.ArgumentMap(ec.Variables)
+	args, err := ec.field_Mutation_updateConfiguratorItemDefinitionCategory_args(ctx, rawArgs)
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	rctx.Args = args
+	ctx = ec.Tracer.StartFieldResolverExecution(ctx, rctx)
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
+		ctx = rctx // use context from middleware stack in children
+		return ec.resolvers.Mutation().UpdateConfiguratorItemDefinitionCategory(rctx, args["id"].(string), args["input"].(map[string]interface{}))
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		if !ec.HasError(rctx) {
+			ec.Errorf(ctx, "must not be null")
+		}
+		return graphql.Null
+	}
+	res := resTmp.(*ConfiguratorItemDefinitionCategory)
+	rctx.Result = res
+	ctx = ec.Tracer.StartFieldChildExecution(ctx)
+	return ec.marshalNConfiguratorItemDefinitionCategory2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemDefinitionCategory(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) _Mutation_deleteConfiguratorItemDefinitionCategory(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
+	ctx = ec.Tracer.StartFieldExecution(ctx, field)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+		ec.Tracer.EndFieldExecution(ctx)
+	}()
+	rctx := &graphql.ResolverContext{
+		Object:   "Mutation",
+		Field:    field,
+		Args:     nil,
+		IsMethod: true,
+	}
+	ctx = graphql.WithResolverContext(ctx, rctx)
+	rawArgs := field.ArgumentMap(ec.Variables)
+	args, err := ec.field_Mutation_deleteConfiguratorItemDefinitionCategory_args(ctx, rawArgs)
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	rctx.Args = args
+	ctx = ec.Tracer.StartFieldResolverExecution(ctx, rctx)
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
+		ctx = rctx // use context from middleware stack in children
+		return ec.resolvers.Mutation().DeleteConfiguratorItemDefinitionCategory(rctx, args["id"].(string))
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		if !ec.HasError(rctx) {
+			ec.Errorf(ctx, "must not be null")
+		}
+		return graphql.Null
+	}
+	res := resTmp.(*ConfiguratorItemDefinitionCategory)
+	rctx.Result = res
+	ctx = ec.Tracer.StartFieldChildExecution(ctx)
+	return ec.marshalNConfiguratorItemDefinitionCategory2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemDefinitionCategory(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) _Mutation_deleteAllConfiguratorItemDefinitionCategories(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
+	ctx = ec.Tracer.StartFieldExecution(ctx, field)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+		ec.Tracer.EndFieldExecution(ctx)
+	}()
+	rctx := &graphql.ResolverContext{
+		Object:   "Mutation",
+		Field:    field,
+		Args:     nil,
+		IsMethod: true,
+	}
+	ctx = graphql.WithResolverContext(ctx, rctx)
+	ctx = ec.Tracer.StartFieldResolverExecution(ctx, rctx)
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
+		ctx = rctx // use context from middleware stack in children
+		return ec.resolvers.Mutation().DeleteAllConfiguratorItemDefinitionCategories(rctx)
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		if !ec.HasError(rctx) {
+			ec.Errorf(ctx, "must not be null")
+		}
+		return graphql.Null
+	}
+	res := resTmp.(bool)
+	rctx.Result = res
+	ctx = ec.Tracer.StartFieldChildExecution(ctx)
+	return ec.marshalNBoolean2bool(ctx, field.Selections, res)
+}
+
 func (ec *executionContext) _Mutation_createConfiguratorItemDefinition(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
 	ctx = ec.Tracer.StartFieldExecution(ctx, field)
 	defer func() {
@@ -8529,6 +9616,88 @@ func (ec *executionContext) _Query__service(ctx context.Context, field graphql.C
 	rctx.Result = res
 	ctx = ec.Tracer.StartFieldChildExecution(ctx)
 	return ec.marshalN_Service2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐ_Service(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) _Query_configuratorItemDefinitionCategory(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
+	ctx = ec.Tracer.StartFieldExecution(ctx, field)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+		ec.Tracer.EndFieldExecution(ctx)
+	}()
+	rctx := &graphql.ResolverContext{
+		Object:   "Query",
+		Field:    field,
+		Args:     nil,
+		IsMethod: true,
+	}
+	ctx = graphql.WithResolverContext(ctx, rctx)
+	rawArgs := field.ArgumentMap(ec.Variables)
+	args, err := ec.field_Query_configuratorItemDefinitionCategory_args(ctx, rawArgs)
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	rctx.Args = args
+	ctx = ec.Tracer.StartFieldResolverExecution(ctx, rctx)
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
+		ctx = rctx // use context from middleware stack in children
+		return ec.resolvers.Query().ConfiguratorItemDefinitionCategory(rctx, args["id"].(*string), args["q"].(*string), args["filter"].(*ConfiguratorItemDefinitionCategoryFilterType))
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*ConfiguratorItemDefinitionCategory)
+	rctx.Result = res
+	ctx = ec.Tracer.StartFieldChildExecution(ctx)
+	return ec.marshalOConfiguratorItemDefinitionCategory2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemDefinitionCategory(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) _Query_configuratorItemDefinitionCategories(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
+	ctx = ec.Tracer.StartFieldExecution(ctx, field)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+		ec.Tracer.EndFieldExecution(ctx)
+	}()
+	rctx := &graphql.ResolverContext{
+		Object:   "Query",
+		Field:    field,
+		Args:     nil,
+		IsMethod: true,
+	}
+	ctx = graphql.WithResolverContext(ctx, rctx)
+	rawArgs := field.ArgumentMap(ec.Variables)
+	args, err := ec.field_Query_configuratorItemDefinitionCategories_args(ctx, rawArgs)
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	rctx.Args = args
+	ctx = ec.Tracer.StartFieldResolverExecution(ctx, rctx)
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
+		ctx = rctx // use context from middleware stack in children
+		return ec.resolvers.Query().ConfiguratorItemDefinitionCategories(rctx, args["offset"].(*int), args["limit"].(*int), args["q"].(*string), args["sort"].([]*ConfiguratorItemDefinitionCategorySortType), args["filter"].(*ConfiguratorItemDefinitionCategoryFilterType))
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*ConfiguratorItemDefinitionCategoryResultType)
+	rctx.Result = res
+	ctx = ec.Tracer.StartFieldChildExecution(ctx)
+	return ec.marshalOConfiguratorItemDefinitionCategoryResultType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemDefinitionCategoryResultType(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) _Query_configuratorItemDefinition(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
@@ -11572,21 +12741,21 @@ func (ec *executionContext) unmarshalInputConfiguratorAttributeSortType(ctx cont
 	return it, nil
 }
 
-func (ec *executionContext) unmarshalInputConfiguratorItemDefinitionFilterType(ctx context.Context, obj interface{}) (ConfiguratorItemDefinitionFilterType, error) {
-	var it ConfiguratorItemDefinitionFilterType
+func (ec *executionContext) unmarshalInputConfiguratorItemDefinitionCategoryFilterType(ctx context.Context, obj interface{}) (ConfiguratorItemDefinitionCategoryFilterType, error) {
+	var it ConfiguratorItemDefinitionCategoryFilterType
 	var asMap = obj.(map[string]interface{})
 
 	for k, v := range asMap {
 		switch k {
 		case "AND":
 			var err error
-			it.And, err = ec.unmarshalOConfiguratorItemDefinitionFilterType2ᚕᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemDefinitionFilterTypeᚄ(ctx, v)
+			it.And, err = ec.unmarshalOConfiguratorItemDefinitionCategoryFilterType2ᚕᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemDefinitionCategoryFilterTypeᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
 		case "OR":
 			var err error
-			it.Or, err = ec.unmarshalOConfiguratorItemDefinitionFilterType2ᚕᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemDefinitionFilterTypeᚄ(ctx, v)
+			it.Or, err = ec.unmarshalOConfiguratorItemDefinitionCategoryFilterType2ᚕᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemDefinitionCategoryFilterTypeᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -11962,6 +13131,522 @@ func (ec *executionContext) unmarshalInputConfiguratorItemDefinitionFilterType(c
 			if err != nil {
 				return it, err
 			}
+		case "definitions":
+			var err error
+			it.Definitions, err = ec.unmarshalOConfiguratorItemDefinitionFilterType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemDefinitionFilterType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		}
+	}
+
+	return it, nil
+}
+
+func (ec *executionContext) unmarshalInputConfiguratorItemDefinitionCategorySortType(ctx context.Context, obj interface{}) (ConfiguratorItemDefinitionCategorySortType, error) {
+	var it ConfiguratorItemDefinitionCategorySortType
+	var asMap = obj.(map[string]interface{})
+
+	for k, v := range asMap {
+		switch k {
+		case "id":
+			var err error
+			it.ID, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "code":
+			var err error
+			it.Code, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "name":
+			var err error
+			it.Name, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedAt":
+			var err error
+			it.UpdatedAt, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdAt":
+			var err error
+			it.CreatedAt, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedBy":
+			var err error
+			it.UpdatedBy, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdBy":
+			var err error
+			it.CreatedBy, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "definitionsIds":
+			var err error
+			it.DefinitionsIds, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "definitions":
+			var err error
+			it.Definitions, err = ec.unmarshalOConfiguratorItemDefinitionSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemDefinitionSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		}
+	}
+
+	return it, nil
+}
+
+func (ec *executionContext) unmarshalInputConfiguratorItemDefinitionFilterType(ctx context.Context, obj interface{}) (ConfiguratorItemDefinitionFilterType, error) {
+	var it ConfiguratorItemDefinitionFilterType
+	var asMap = obj.(map[string]interface{})
+
+	for k, v := range asMap {
+		switch k {
+		case "AND":
+			var err error
+			it.And, err = ec.unmarshalOConfiguratorItemDefinitionFilterType2ᚕᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemDefinitionFilterTypeᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "OR":
+			var err error
+			it.Or, err = ec.unmarshalOConfiguratorItemDefinitionFilterType2ᚕᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemDefinitionFilterTypeᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "id":
+			var err error
+			it.ID, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "id_ne":
+			var err error
+			it.IDNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "id_gt":
+			var err error
+			it.IDGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "id_lt":
+			var err error
+			it.IDLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "id_gte":
+			var err error
+			it.IDGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "id_lte":
+			var err error
+			it.IDLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "id_in":
+			var err error
+			it.IDIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "id_null":
+			var err error
+			it.IDNull, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "code":
+			var err error
+			it.Code, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "code_ne":
+			var err error
+			it.CodeNe, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "code_gt":
+			var err error
+			it.CodeGt, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "code_lt":
+			var err error
+			it.CodeLt, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "code_gte":
+			var err error
+			it.CodeGte, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "code_lte":
+			var err error
+			it.CodeLte, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "code_in":
+			var err error
+			it.CodeIn, err = ec.unmarshalOString2ᚕstringᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "code_like":
+			var err error
+			it.CodeLike, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "code_prefix":
+			var err error
+			it.CodePrefix, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "code_suffix":
+			var err error
+			it.CodeSuffix, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "code_null":
+			var err error
+			it.CodeNull, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "name":
+			var err error
+			it.Name, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "name_ne":
+			var err error
+			it.NameNe, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "name_gt":
+			var err error
+			it.NameGt, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "name_lt":
+			var err error
+			it.NameLt, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "name_gte":
+			var err error
+			it.NameGte, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "name_lte":
+			var err error
+			it.NameLte, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "name_in":
+			var err error
+			it.NameIn, err = ec.unmarshalOString2ᚕstringᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "name_like":
+			var err error
+			it.NameLike, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "name_prefix":
+			var err error
+			it.NamePrefix, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "name_suffix":
+			var err error
+			it.NameSuffix, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "name_null":
+			var err error
+			it.NameNull, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "categoryId":
+			var err error
+			it.CategoryID, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "categoryId_ne":
+			var err error
+			it.CategoryIDNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "categoryId_gt":
+			var err error
+			it.CategoryIDGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "categoryId_lt":
+			var err error
+			it.CategoryIDLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "categoryId_gte":
+			var err error
+			it.CategoryIDGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "categoryId_lte":
+			var err error
+			it.CategoryIDLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "categoryId_in":
+			var err error
+			it.CategoryIDIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "categoryId_null":
+			var err error
+			it.CategoryIDNull, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedAt":
+			var err error
+			it.UpdatedAt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedAt_ne":
+			var err error
+			it.UpdatedAtNe, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedAt_gt":
+			var err error
+			it.UpdatedAtGt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedAt_lt":
+			var err error
+			it.UpdatedAtLt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedAt_gte":
+			var err error
+			it.UpdatedAtGte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedAt_lte":
+			var err error
+			it.UpdatedAtLte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedAt_in":
+			var err error
+			it.UpdatedAtIn, err = ec.unmarshalOTime2ᚕᚖtimeᚐTimeᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedAt_null":
+			var err error
+			it.UpdatedAtNull, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdAt":
+			var err error
+			it.CreatedAt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdAt_ne":
+			var err error
+			it.CreatedAtNe, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdAt_gt":
+			var err error
+			it.CreatedAtGt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdAt_lt":
+			var err error
+			it.CreatedAtLt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdAt_gte":
+			var err error
+			it.CreatedAtGte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdAt_lte":
+			var err error
+			it.CreatedAtLte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdAt_in":
+			var err error
+			it.CreatedAtIn, err = ec.unmarshalOTime2ᚕᚖtimeᚐTimeᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdAt_null":
+			var err error
+			it.CreatedAtNull, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedBy":
+			var err error
+			it.UpdatedBy, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedBy_ne":
+			var err error
+			it.UpdatedByNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedBy_gt":
+			var err error
+			it.UpdatedByGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedBy_lt":
+			var err error
+			it.UpdatedByLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedBy_gte":
+			var err error
+			it.UpdatedByGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedBy_lte":
+			var err error
+			it.UpdatedByLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedBy_in":
+			var err error
+			it.UpdatedByIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedBy_null":
+			var err error
+			it.UpdatedByNull, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdBy":
+			var err error
+			it.CreatedBy, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdBy_ne":
+			var err error
+			it.CreatedByNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdBy_gt":
+			var err error
+			it.CreatedByGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdBy_lt":
+			var err error
+			it.CreatedByLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdBy_gte":
+			var err error
+			it.CreatedByGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdBy_lte":
+			var err error
+			it.CreatedByLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdBy_in":
+			var err error
+			it.CreatedByIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdBy_null":
+			var err error
+			it.CreatedByNull, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "attributes":
 			var err error
 			it.Attributes, err = ec.unmarshalOConfiguratorAttributeDefinitionFilterType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorAttributeDefinitionFilterType(ctx, v)
@@ -11983,6 +13668,12 @@ func (ec *executionContext) unmarshalInputConfiguratorItemDefinitionFilterType(c
 		case "allowedInSlots":
 			var err error
 			it.AllowedInSlots, err = ec.unmarshalOConfiguratorSlotDefinitionFilterType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorSlotDefinitionFilterType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "category":
+			var err error
+			it.Category, err = ec.unmarshalOConfiguratorItemDefinitionCategoryFilterType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemDefinitionCategoryFilterType(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -12013,6 +13704,12 @@ func (ec *executionContext) unmarshalInputConfiguratorItemDefinitionSortType(ctx
 		case "name":
 			var err error
 			it.Name, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "categoryId":
+			var err error
+			it.CategoryID, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -12085,6 +13782,12 @@ func (ec *executionContext) unmarshalInputConfiguratorItemDefinitionSortType(ctx
 		case "allowedInSlots":
 			var err error
 			it.AllowedInSlots, err = ec.unmarshalOConfiguratorSlotDefinitionSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorSlotDefinitionSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "category":
+			var err error
+			it.Category, err = ec.unmarshalOConfiguratorItemDefinitionCategorySortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemDefinitionCategorySortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -14588,6 +16291,19 @@ func (ec *executionContext) _ConfiguratorItemDefinition(ctx context.Context, sel
 				}
 				return res
 			})
+		case "category":
+			field := field
+			out.Concurrently(i, func() (res graphql.Marshaler) {
+				defer func() {
+					if r := recover(); r != nil {
+						ec.Error(ctx, ec.Recover(ctx, r))
+					}
+				}()
+				res = ec._ConfiguratorItemDefinition_category(ctx, field, obj)
+				return res
+			})
+		case "categoryId":
+			out.Values[i] = ec._ConfiguratorItemDefinition_categoryId(ctx, field, obj)
 		case "updatedAt":
 			out.Values[i] = ec._ConfiguratorItemDefinition_updatedAt(ctx, field, obj)
 		case "createdAt":
@@ -14650,6 +16366,126 @@ func (ec *executionContext) _ConfiguratorItemDefinition(ctx context.Context, sel
 					}
 				}()
 				res = ec._ConfiguratorItemDefinition_allowedInSlotsIds(ctx, field, obj)
+				if res == graphql.Null {
+					atomic.AddUint32(&invalids, 1)
+				}
+				return res
+			})
+		default:
+			panic("unknown field " + strconv.Quote(field.Name))
+		}
+	}
+	out.Dispatch()
+	if invalids > 0 {
+		return graphql.Null
+	}
+	return out
+}
+
+var configuratorItemDefinitionCategoryImplementors = []string{"ConfiguratorItemDefinitionCategory"}
+
+func (ec *executionContext) _ConfiguratorItemDefinitionCategory(ctx context.Context, sel ast.SelectionSet, obj *ConfiguratorItemDefinitionCategory) graphql.Marshaler {
+	fields := graphql.CollectFields(ec.RequestContext, sel, configuratorItemDefinitionCategoryImplementors)
+
+	out := graphql.NewFieldSet(fields)
+	var invalids uint32
+	for i, field := range fields {
+		switch field.Name {
+		case "__typename":
+			out.Values[i] = graphql.MarshalString("ConfiguratorItemDefinitionCategory")
+		case "id":
+			out.Values[i] = ec._ConfiguratorItemDefinitionCategory_id(ctx, field, obj)
+			if out.Values[i] == graphql.Null {
+				atomic.AddUint32(&invalids, 1)
+			}
+		case "code":
+			out.Values[i] = ec._ConfiguratorItemDefinitionCategory_code(ctx, field, obj)
+		case "name":
+			out.Values[i] = ec._ConfiguratorItemDefinitionCategory_name(ctx, field, obj)
+		case "definitions":
+			field := field
+			out.Concurrently(i, func() (res graphql.Marshaler) {
+				defer func() {
+					if r := recover(); r != nil {
+						ec.Error(ctx, ec.Recover(ctx, r))
+					}
+				}()
+				res = ec._ConfiguratorItemDefinitionCategory_definitions(ctx, field, obj)
+				if res == graphql.Null {
+					atomic.AddUint32(&invalids, 1)
+				}
+				return res
+			})
+		case "updatedAt":
+			out.Values[i] = ec._ConfiguratorItemDefinitionCategory_updatedAt(ctx, field, obj)
+		case "createdAt":
+			out.Values[i] = ec._ConfiguratorItemDefinitionCategory_createdAt(ctx, field, obj)
+			if out.Values[i] == graphql.Null {
+				atomic.AddUint32(&invalids, 1)
+			}
+		case "updatedBy":
+			out.Values[i] = ec._ConfiguratorItemDefinitionCategory_updatedBy(ctx, field, obj)
+		case "createdBy":
+			out.Values[i] = ec._ConfiguratorItemDefinitionCategory_createdBy(ctx, field, obj)
+		case "definitionsIds":
+			field := field
+			out.Concurrently(i, func() (res graphql.Marshaler) {
+				defer func() {
+					if r := recover(); r != nil {
+						ec.Error(ctx, ec.Recover(ctx, r))
+					}
+				}()
+				res = ec._ConfiguratorItemDefinitionCategory_definitionsIds(ctx, field, obj)
+				if res == graphql.Null {
+					atomic.AddUint32(&invalids, 1)
+				}
+				return res
+			})
+		default:
+			panic("unknown field " + strconv.Quote(field.Name))
+		}
+	}
+	out.Dispatch()
+	if invalids > 0 {
+		return graphql.Null
+	}
+	return out
+}
+
+var configuratorItemDefinitionCategoryResultTypeImplementors = []string{"ConfiguratorItemDefinitionCategoryResultType"}
+
+func (ec *executionContext) _ConfiguratorItemDefinitionCategoryResultType(ctx context.Context, sel ast.SelectionSet, obj *ConfiguratorItemDefinitionCategoryResultType) graphql.Marshaler {
+	fields := graphql.CollectFields(ec.RequestContext, sel, configuratorItemDefinitionCategoryResultTypeImplementors)
+
+	out := graphql.NewFieldSet(fields)
+	var invalids uint32
+	for i, field := range fields {
+		switch field.Name {
+		case "__typename":
+			out.Values[i] = graphql.MarshalString("ConfiguratorItemDefinitionCategoryResultType")
+		case "items":
+			field := field
+			out.Concurrently(i, func() (res graphql.Marshaler) {
+				defer func() {
+					if r := recover(); r != nil {
+						ec.Error(ctx, ec.Recover(ctx, r))
+					}
+				}()
+				res = ec._ConfiguratorItemDefinitionCategoryResultType_items(ctx, field, obj)
+				if res == graphql.Null {
+					atomic.AddUint32(&invalids, 1)
+				}
+				return res
+			})
+		case "count":
+			field := field
+			out.Concurrently(i, func() (res graphql.Marshaler) {
+				defer func() {
+					if r := recover(); r != nil {
+						ec.Error(ctx, ec.Recover(ctx, r))
+					}
+				}()
+				res = ec._ConfiguratorItemDefinitionCategoryResultType_count(ctx, field, obj)
 				if res == graphql.Null {
 					atomic.AddUint32(&invalids, 1)
 				}
@@ -15071,6 +16907,26 @@ func (ec *executionContext) _Mutation(ctx context.Context, sel ast.SelectionSet)
 		switch field.Name {
 		case "__typename":
 			out.Values[i] = graphql.MarshalString("Mutation")
+		case "createConfiguratorItemDefinitionCategory":
+			out.Values[i] = ec._Mutation_createConfiguratorItemDefinitionCategory(ctx, field)
+			if out.Values[i] == graphql.Null {
+				invalids++
+			}
+		case "updateConfiguratorItemDefinitionCategory":
+			out.Values[i] = ec._Mutation_updateConfiguratorItemDefinitionCategory(ctx, field)
+			if out.Values[i] == graphql.Null {
+				invalids++
+			}
+		case "deleteConfiguratorItemDefinitionCategory":
+			out.Values[i] = ec._Mutation_deleteConfiguratorItemDefinitionCategory(ctx, field)
+			if out.Values[i] == graphql.Null {
+				invalids++
+			}
+		case "deleteAllConfiguratorItemDefinitionCategories":
+			out.Values[i] = ec._Mutation_deleteAllConfiguratorItemDefinitionCategories(ctx, field)
+			if out.Values[i] == graphql.Null {
+				invalids++
+			}
 		case "createConfiguratorItemDefinition":
 			out.Values[i] = ec._Mutation_createConfiguratorItemDefinition(ctx, field)
 			if out.Values[i] == graphql.Null {
@@ -15233,6 +17089,28 @@ func (ec *executionContext) _Query(ctx context.Context, sel ast.SelectionSet) gr
 				if res == graphql.Null {
 					atomic.AddUint32(&invalids, 1)
 				}
+				return res
+			})
+		case "configuratorItemDefinitionCategory":
+			field := field
+			out.Concurrently(i, func() (res graphql.Marshaler) {
+				defer func() {
+					if r := recover(); r != nil {
+						ec.Error(ctx, ec.Recover(ctx, r))
+					}
+				}()
+				res = ec._Query_configuratorItemDefinitionCategory(ctx, field)
+				return res
+			})
+		case "configuratorItemDefinitionCategories":
+			field := field
+			out.Concurrently(i, func() (res graphql.Marshaler) {
+				defer func() {
+					if r := recover(); r != nil {
+						ec.Error(ctx, ec.Recover(ctx, r))
+					}
+				}()
+				res = ec._Query_configuratorItemDefinitionCategories(ctx, field)
 				return res
 			})
 		case "configuratorItemDefinition":
@@ -16104,6 +17982,95 @@ func (ec *executionContext) marshalNConfiguratorItemDefinition2ᚖgithubᚗcom�
 		return graphql.Null
 	}
 	return ec._ConfiguratorItemDefinition(ctx, sel, v)
+}
+
+func (ec *executionContext) marshalNConfiguratorItemDefinitionCategory2githubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemDefinitionCategory(ctx context.Context, sel ast.SelectionSet, v ConfiguratorItemDefinitionCategory) graphql.Marshaler {
+	return ec._ConfiguratorItemDefinitionCategory(ctx, sel, &v)
+}
+
+func (ec *executionContext) marshalNConfiguratorItemDefinitionCategory2ᚕᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemDefinitionCategoryᚄ(ctx context.Context, sel ast.SelectionSet, v []*ConfiguratorItemDefinitionCategory) graphql.Marshaler {
+	ret := make(graphql.Array, len(v))
+	var wg sync.WaitGroup
+	isLen1 := len(v) == 1
+	if !isLen1 {
+		wg.Add(len(v))
+	}
+	for i := range v {
+		i := i
+		rctx := &graphql.ResolverContext{
+			Index:  &i,
+			Result: &v[i],
+		}
+		ctx := graphql.WithResolverContext(ctx, rctx)
+		f := func(i int) {
+			defer func() {
+				if r := recover(); r != nil {
+					ec.Error(ctx, ec.Recover(ctx, r))
+					ret = nil
+				}
+			}()
+			if !isLen1 {
+				defer wg.Done()
+			}
+			ret[i] = ec.marshalNConfiguratorItemDefinitionCategory2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemDefinitionCategory(ctx, sel, v[i])
+		}
+		if isLen1 {
+			f(i)
+		} else {
+			go f(i)
+		}
+
+	}
+	wg.Wait()
+	return ret
+}
+
+func (ec *executionContext) marshalNConfiguratorItemDefinitionCategory2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemDefinitionCategory(ctx context.Context, sel ast.SelectionSet, v *ConfiguratorItemDefinitionCategory) graphql.Marshaler {
+	if v == nil {
+		if !ec.HasError(graphql.GetResolverContext(ctx)) {
+			ec.Errorf(ctx, "must not be null")
+		}
+		return graphql.Null
+	}
+	return ec._ConfiguratorItemDefinitionCategory(ctx, sel, v)
+}
+
+func (ec *executionContext) unmarshalNConfiguratorItemDefinitionCategoryCreateInput2map(ctx context.Context, v interface{}) (map[string]interface{}, error) {
+	if v == nil {
+		return nil, nil
+	}
+	return v.(map[string]interface{}), nil
+}
+
+func (ec *executionContext) unmarshalNConfiguratorItemDefinitionCategoryFilterType2githubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemDefinitionCategoryFilterType(ctx context.Context, v interface{}) (ConfiguratorItemDefinitionCategoryFilterType, error) {
+	return ec.unmarshalInputConfiguratorItemDefinitionCategoryFilterType(ctx, v)
+}
+
+func (ec *executionContext) unmarshalNConfiguratorItemDefinitionCategoryFilterType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemDefinitionCategoryFilterType(ctx context.Context, v interface{}) (*ConfiguratorItemDefinitionCategoryFilterType, error) {
+	if v == nil {
+		return nil, nil
+	}
+	res, err := ec.unmarshalNConfiguratorItemDefinitionCategoryFilterType2githubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemDefinitionCategoryFilterType(ctx, v)
+	return &res, err
+}
+
+func (ec *executionContext) unmarshalNConfiguratorItemDefinitionCategorySortType2githubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemDefinitionCategorySortType(ctx context.Context, v interface{}) (ConfiguratorItemDefinitionCategorySortType, error) {
+	return ec.unmarshalInputConfiguratorItemDefinitionCategorySortType(ctx, v)
+}
+
+func (ec *executionContext) unmarshalNConfiguratorItemDefinitionCategorySortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemDefinitionCategorySortType(ctx context.Context, v interface{}) (*ConfiguratorItemDefinitionCategorySortType, error) {
+	if v == nil {
+		return nil, nil
+	}
+	res, err := ec.unmarshalNConfiguratorItemDefinitionCategorySortType2githubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemDefinitionCategorySortType(ctx, v)
+	return &res, err
+}
+
+func (ec *executionContext) unmarshalNConfiguratorItemDefinitionCategoryUpdateInput2map(ctx context.Context, v interface{}) (map[string]interface{}, error) {
+	if v == nil {
+		return nil, nil
+	}
+	return v.(map[string]interface{}), nil
 }
 
 func (ec *executionContext) unmarshalNConfiguratorItemDefinitionCreateInput2map(ctx context.Context, v interface{}) (map[string]interface{}, error) {
@@ -17083,6 +19050,92 @@ func (ec *executionContext) marshalOConfiguratorItemDefinition2ᚖgithubᚗcom�
 		return graphql.Null
 	}
 	return ec._ConfiguratorItemDefinition(ctx, sel, v)
+}
+
+func (ec *executionContext) marshalOConfiguratorItemDefinitionCategory2githubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemDefinitionCategory(ctx context.Context, sel ast.SelectionSet, v ConfiguratorItemDefinitionCategory) graphql.Marshaler {
+	return ec._ConfiguratorItemDefinitionCategory(ctx, sel, &v)
+}
+
+func (ec *executionContext) marshalOConfiguratorItemDefinitionCategory2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemDefinitionCategory(ctx context.Context, sel ast.SelectionSet, v *ConfiguratorItemDefinitionCategory) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	return ec._ConfiguratorItemDefinitionCategory(ctx, sel, v)
+}
+
+func (ec *executionContext) unmarshalOConfiguratorItemDefinitionCategoryFilterType2githubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemDefinitionCategoryFilterType(ctx context.Context, v interface{}) (ConfiguratorItemDefinitionCategoryFilterType, error) {
+	return ec.unmarshalInputConfiguratorItemDefinitionCategoryFilterType(ctx, v)
+}
+
+func (ec *executionContext) unmarshalOConfiguratorItemDefinitionCategoryFilterType2ᚕᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemDefinitionCategoryFilterTypeᚄ(ctx context.Context, v interface{}) ([]*ConfiguratorItemDefinitionCategoryFilterType, error) {
+	var vSlice []interface{}
+	if v != nil {
+		if tmp1, ok := v.([]interface{}); ok {
+			vSlice = tmp1
+		} else {
+			vSlice = []interface{}{v}
+		}
+	}
+	var err error
+	res := make([]*ConfiguratorItemDefinitionCategoryFilterType, len(vSlice))
+	for i := range vSlice {
+		res[i], err = ec.unmarshalNConfiguratorItemDefinitionCategoryFilterType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemDefinitionCategoryFilterType(ctx, vSlice[i])
+		if err != nil {
+			return nil, err
+		}
+	}
+	return res, nil
+}
+
+func (ec *executionContext) unmarshalOConfiguratorItemDefinitionCategoryFilterType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemDefinitionCategoryFilterType(ctx context.Context, v interface{}) (*ConfiguratorItemDefinitionCategoryFilterType, error) {
+	if v == nil {
+		return nil, nil
+	}
+	res, err := ec.unmarshalOConfiguratorItemDefinitionCategoryFilterType2githubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemDefinitionCategoryFilterType(ctx, v)
+	return &res, err
+}
+
+func (ec *executionContext) marshalOConfiguratorItemDefinitionCategoryResultType2githubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemDefinitionCategoryResultType(ctx context.Context, sel ast.SelectionSet, v ConfiguratorItemDefinitionCategoryResultType) graphql.Marshaler {
+	return ec._ConfiguratorItemDefinitionCategoryResultType(ctx, sel, &v)
+}
+
+func (ec *executionContext) marshalOConfiguratorItemDefinitionCategoryResultType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemDefinitionCategoryResultType(ctx context.Context, sel ast.SelectionSet, v *ConfiguratorItemDefinitionCategoryResultType) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	return ec._ConfiguratorItemDefinitionCategoryResultType(ctx, sel, v)
+}
+
+func (ec *executionContext) unmarshalOConfiguratorItemDefinitionCategorySortType2githubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemDefinitionCategorySortType(ctx context.Context, v interface{}) (ConfiguratorItemDefinitionCategorySortType, error) {
+	return ec.unmarshalInputConfiguratorItemDefinitionCategorySortType(ctx, v)
+}
+
+func (ec *executionContext) unmarshalOConfiguratorItemDefinitionCategorySortType2ᚕᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemDefinitionCategorySortTypeᚄ(ctx context.Context, v interface{}) ([]*ConfiguratorItemDefinitionCategorySortType, error) {
+	var vSlice []interface{}
+	if v != nil {
+		if tmp1, ok := v.([]interface{}); ok {
+			vSlice = tmp1
+		} else {
+			vSlice = []interface{}{v}
+		}
+	}
+	var err error
+	res := make([]*ConfiguratorItemDefinitionCategorySortType, len(vSlice))
+	for i := range vSlice {
+		res[i], err = ec.unmarshalNConfiguratorItemDefinitionCategorySortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemDefinitionCategorySortType(ctx, vSlice[i])
+		if err != nil {
+			return nil, err
+		}
+	}
+	return res, nil
+}
+
+func (ec *executionContext) unmarshalOConfiguratorItemDefinitionCategorySortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemDefinitionCategorySortType(ctx context.Context, v interface{}) (*ConfiguratorItemDefinitionCategorySortType, error) {
+	if v == nil {
+		return nil, nil
+	}
+	res, err := ec.unmarshalOConfiguratorItemDefinitionCategorySortType2githubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemDefinitionCategorySortType(ctx, v)
+	return &res, err
 }
 
 func (ec *executionContext) unmarshalOConfiguratorItemDefinitionFilterType2githubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemDefinitionFilterType(ctx context.Context, v interface{}) (ConfiguratorItemDefinitionFilterType, error) {
