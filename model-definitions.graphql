@@ -37,6 +37,7 @@ type ConfiguratorSlotDefinition @entity {
   name: String @column
   minCount: Float @column
   maxCount: Float @column
+  defaultCount: Float @column
 
   definition: ConfiguratorItemDefinition @relationship(inverse: slots)
   slots: [ConfiguratorSlot!]! @relationship(inverse: definition)

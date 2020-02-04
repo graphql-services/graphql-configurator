@@ -1738,6 +1738,49 @@ func (f *ConfiguratorSlotDefinitionFilterType) WhereContent(dialect gorm.Dialect
 		}
 	}
 
+	if f.DefaultCount != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("defaultCount")+" = ?")
+		values = append(values, f.DefaultCount)
+	}
+
+	if f.DefaultCountNe != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("defaultCount")+" != ?")
+		values = append(values, f.DefaultCountNe)
+	}
+
+	if f.DefaultCountGt != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("defaultCount")+" > ?")
+		values = append(values, f.DefaultCountGt)
+	}
+
+	if f.DefaultCountLt != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("defaultCount")+" < ?")
+		values = append(values, f.DefaultCountLt)
+	}
+
+	if f.DefaultCountGte != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("defaultCount")+" >= ?")
+		values = append(values, f.DefaultCountGte)
+	}
+
+	if f.DefaultCountLte != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("defaultCount")+" <= ?")
+		values = append(values, f.DefaultCountLte)
+	}
+
+	if f.DefaultCountIn != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("defaultCount")+" IN (?)")
+		values = append(values, f.DefaultCountIn)
+	}
+
+	if f.DefaultCountNull != nil {
+		if *f.DefaultCountNull {
+			conditions = append(conditions, aliasPrefix+dialect.Quote("defaultCount")+" IS NULL")
+		} else {
+			conditions = append(conditions, aliasPrefix+dialect.Quote("defaultCount")+" IS NOT NULL")
+		}
+	}
+
 	if f.DefinitionID != nil {
 		conditions = append(conditions, aliasPrefix+dialect.Quote("definitionId")+" = ?")
 		values = append(values, f.DefinitionID)

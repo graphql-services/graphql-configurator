@@ -57,12 +57,14 @@ type ConfiguratorAssemblyItemInput struct {
 type ConfiguratorAssemblySlot struct {
 	ID           *string                   `json:"id"`
 	DefinitionID string                    `json:"definitionId"`
+	Count        *float64                  `json:"count"`
 	Item         *ConfiguratorAssemblyItem `json:"item"`
 }
 
 type ConfiguratorAssemblySlotInput struct {
 	ID           *string                        `json:"id"`
 	DefinitionID string                         `json:"definitionId"`
+	Count        *float64                       `json:"count"`
 	Item         *ConfiguratorAssemblyItemInput `json:"item"`
 }
 
@@ -603,6 +605,14 @@ type ConfiguratorSlotDefinitionFilterType struct {
 	MaxCountLte            *float64                                `json:"maxCount_lte"`
 	MaxCountIn             []float64                               `json:"maxCount_in"`
 	MaxCountNull           *bool                                   `json:"maxCount_null"`
+	DefaultCount           *float64                                `json:"defaultCount"`
+	DefaultCountNe         *float64                                `json:"defaultCount_ne"`
+	DefaultCountGt         *float64                                `json:"defaultCount_gt"`
+	DefaultCountLt         *float64                                `json:"defaultCount_lt"`
+	DefaultCountGte        *float64                                `json:"defaultCount_gte"`
+	DefaultCountLte        *float64                                `json:"defaultCount_lte"`
+	DefaultCountIn         []float64                               `json:"defaultCount_in"`
+	DefaultCountNull       *bool                                   `json:"defaultCount_null"`
 	DefinitionID           *string                                 `json:"definitionId"`
 	DefinitionIDNe         *string                                 `json:"definitionId_ne"`
 	DefinitionIDGt         *string                                 `json:"definitionId_gt"`
@@ -653,6 +663,7 @@ type ConfiguratorSlotDefinitionSortType struct {
 	Name                      *ObjectSortType                     `json:"name"`
 	MinCount                  *ObjectSortType                     `json:"minCount"`
 	MaxCount                  *ObjectSortType                     `json:"maxCount"`
+	DefaultCount              *ObjectSortType                     `json:"defaultCount"`
 	DefinitionID              *ObjectSortType                     `json:"definitionId"`
 	UpdatedAt                 *ObjectSortType                     `json:"updatedAt"`
 	CreatedAt                 *ObjectSortType                     `json:"createdAt"`

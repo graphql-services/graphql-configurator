@@ -156,6 +156,7 @@ func createOrUpdateSlot(ctx context.Context, r *gen.GeneratedResolver, itemID st
 	slotValues := map[string]interface{}{
 		"parentItemId": itemID,
 		"definitionId": input.DefinitionID,
+		"count":        input.Count,
 	}
 
 	if input.Item != nil {
@@ -179,25 +180,4 @@ func createOrUpdateSlot(ctx context.Context, r *gen.GeneratedResolver, itemID st
 	// fmt.Println("!!!", err)
 
 	return
-}
-
-func removeIDs(item *gen.ConfiguratorAssemblyItem) *gen.ConfiguratorAssemblyItem {
-	item.ID = nil
-
-	attrs := []*gen.ConfiguratorAssemblyAttribute{}
-	for _, attr := range item.Attributes {
-		attr.ID = nil
-		attrs = append(attrs, attr)
-	}
-	item.Attributes = attrs
-
-	slots := []*gen.ConfiguratorAssemblySlot{}
-	for _, slot := range item.Slots {
-		slot.ID = nil
-		slot.Item = removeIDs(slot.Item)
-		slots = append(slots, slot)
-	}
-	item.Slots = slots
-
-	return item
 }

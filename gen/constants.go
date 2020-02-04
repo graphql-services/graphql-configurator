@@ -90,6 +90,7 @@ type ConfiguratorAssemblyAttribute {
 type ConfiguratorAssemblySlot {
   id: ID
   definitionId: ID!
+  count: Float
   item: ConfiguratorAssemblyItem
 }
 
@@ -122,6 +123,7 @@ input ConfiguratorAssemblyAttributeInput {
 input ConfiguratorAssemblySlotInput {
   id: ID
   definitionId: ID!
+  count: Float
   item: ConfiguratorAssemblyItemInput
 }
 
@@ -192,6 +194,7 @@ type ConfiguratorSlotDefinition {
   name: String
   minCount: Float
   maxCount: Float
+  defaultCount: Float
   definition: ConfiguratorItemDefinition
   slots: [ConfiguratorSlot!]!
   allowedItemDefinitions: [ConfiguratorItemDefinition!]!
@@ -597,6 +600,7 @@ input ConfiguratorSlotDefinitionCreateInput {
   name: String
   minCount: Float
   maxCount: Float
+  defaultCount: Float
   definitionId: ID
   slotsIds: [ID!]
   allowedItemDefinitionsIds: [ID!]
@@ -606,6 +610,7 @@ input ConfiguratorSlotDefinitionUpdateInput {
   name: String
   minCount: Float
   maxCount: Float
+  defaultCount: Float
   definitionId: ID
   slotsIds: [ID!]
   allowedItemDefinitionsIds: [ID!]
@@ -616,6 +621,7 @@ input ConfiguratorSlotDefinitionSortType {
   name: ObjectSortType
   minCount: ObjectSortType
   maxCount: ObjectSortType
+  defaultCount: ObjectSortType
   definitionId: ObjectSortType
   updatedAt: ObjectSortType
   createdAt: ObjectSortType
@@ -666,6 +672,14 @@ input ConfiguratorSlotDefinitionFilterType {
   maxCount_lte: Float
   maxCount_in: [Float!]
   maxCount_null: Boolean
+  defaultCount: Float
+  defaultCount_ne: Float
+  defaultCount_gt: Float
+  defaultCount_lt: Float
+  defaultCount_gte: Float
+  defaultCount_lte: Float
+  defaultCount_in: [Float!]
+  defaultCount_null: Boolean
   definitionId: ID
   definitionId_ne: ID
   definitionId_gt: ID

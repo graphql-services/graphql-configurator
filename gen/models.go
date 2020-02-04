@@ -134,6 +134,7 @@ type ConfiguratorSlotDefinition struct {
 	Name         *string    `json:"name" gorm:"column:name"`
 	MinCount     *float64   `json:"minCount" gorm:"column:minCount"`
 	MaxCount     *float64   `json:"maxCount" gorm:"column:maxCount"`
+	DefaultCount *float64   `json:"defaultCount" gorm:"column:defaultCount"`
 	DefinitionID *string    `json:"definitionId" gorm:"column:definitionId"`
 	UpdatedAt    *time.Time `json:"updatedAt" gorm:"column:updatedAt"`
 	CreatedAt    time.Time  `json:"createdAt" gorm:"column:createdAt"`
@@ -154,6 +155,7 @@ type ConfiguratorSlotDefinitionChanges struct {
 	Name         *string
 	MinCount     *float64
 	MaxCount     *float64
+	DefaultCount *float64
 	DefinitionID *string
 	UpdatedAt    *time.Time
 	CreatedAt    time.Time

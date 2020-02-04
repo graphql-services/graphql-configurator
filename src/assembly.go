@@ -2,6 +2,7 @@ package src
 
 import (
 	"context"
+	"fmt"
 
 	"github.com/graphql-services/graphql-configurator/gen"
 )
@@ -22,14 +23,6 @@ func LoadItem(ctx context.Context, r *gen.GeneratedResolver, ID string) (*gen.Co
 	if err != nil {
 		return nil, err
 	}
-
-	// isNotTemplate := item.sto == nil
-	// if !isNotTemplate {
-	// 	rawData := *item.RawData
-	// 	var item *gen.ConfiguratorAssemblyItem
-	// 	err := json.Unmarshal([]byte(rawData), &item)
-	// 	return item, err
-	// }
 
 	_attributes, err := r.Handlers.ConfiguratorItemAttributes(ctx, r, item)
 	if err != nil {
@@ -58,9 +51,12 @@ func LoadItem(ctx context.Context, r *gen.GeneratedResolver, ID string) (*gen.Co
 			return nil, err
 		}
 
+		fmt.Println("!!!", slot.ID, *slot.Count)
+
 		slots = append(slots, &gen.ConfiguratorAssemblySlot{
 			ID:           &slot.ID,
 			DefinitionID: *slot.DefinitionID,
+			Count:        slot.Count,
 			Item:         slotItem,
 		})
 	}
