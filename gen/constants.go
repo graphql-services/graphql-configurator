@@ -190,8 +190,8 @@ type ConfiguratorAttributeDefinition {
 type ConfiguratorSlotDefinition {
   id: ID!
   name: String
-  minCount: Int
-  maxCount: Int
+  minCount: Float
+  maxCount: Float
   definition: ConfiguratorItemDefinition
   slots: [ConfiguratorSlot!]!
   allowedItemDefinitions: [ConfiguratorItemDefinition!]!
@@ -241,6 +241,7 @@ type ConfiguratorAttribute {
 
 type ConfiguratorSlot {
   id: ID!
+  count: Float
   item: ConfiguratorItem
   definition: ConfiguratorSlotDefinition
   parentItem: ConfiguratorItem
@@ -594,8 +595,8 @@ type ConfiguratorAttributeDefinitionResultType {
 input ConfiguratorSlotDefinitionCreateInput {
   id: ID
   name: String
-  minCount: Int
-  maxCount: Int
+  minCount: Float
+  maxCount: Float
   definitionId: ID
   slotsIds: [ID!]
   allowedItemDefinitionsIds: [ID!]
@@ -603,8 +604,8 @@ input ConfiguratorSlotDefinitionCreateInput {
 
 input ConfiguratorSlotDefinitionUpdateInput {
   name: String
-  minCount: Int
-  maxCount: Int
+  minCount: Float
+  maxCount: Float
   definitionId: ID
   slotsIds: [ID!]
   allowedItemDefinitionsIds: [ID!]
@@ -649,21 +650,21 @@ input ConfiguratorSlotDefinitionFilterType {
   name_prefix: String
   name_suffix: String
   name_null: Boolean
-  minCount: Int
-  minCount_ne: Int
-  minCount_gt: Int
-  minCount_lt: Int
-  minCount_gte: Int
-  minCount_lte: Int
-  minCount_in: [Int!]
+  minCount: Float
+  minCount_ne: Float
+  minCount_gt: Float
+  minCount_lt: Float
+  minCount_gte: Float
+  minCount_lte: Float
+  minCount_in: [Float!]
   minCount_null: Boolean
-  maxCount: Int
-  maxCount_ne: Int
-  maxCount_gt: Int
-  maxCount_lt: Int
-  maxCount_gte: Int
-  maxCount_lte: Int
-  maxCount_in: [Int!]
+  maxCount: Float
+  maxCount_ne: Float
+  maxCount_gt: Float
+  maxCount_lt: Float
+  maxCount_gte: Float
+  maxCount_lte: Float
+  maxCount_in: [Float!]
   maxCount_null: Boolean
   definitionId: ID
   definitionId_ne: ID
@@ -990,12 +991,14 @@ type ConfiguratorAttributeResultType {
 
 input ConfiguratorSlotCreateInput {
   id: ID
+  count: Float
   itemId: ID
   definitionId: ID
   parentItemId: ID
 }
 
 input ConfiguratorSlotUpdateInput {
+  count: Float
   itemId: ID
   definitionId: ID
   parentItemId: ID
@@ -1003,6 +1006,7 @@ input ConfiguratorSlotUpdateInput {
 
 input ConfiguratorSlotSortType {
   id: ObjectSortType
+  count: ObjectSortType
   itemId: ObjectSortType
   definitionId: ObjectSortType
   parentItemId: ObjectSortType
@@ -1026,6 +1030,14 @@ input ConfiguratorSlotFilterType {
   id_lte: ID
   id_in: [ID!]
   id_null: Boolean
+  count: Float
+  count_ne: Float
+  count_gt: Float
+  count_lt: Float
+  count_gte: Float
+  count_lte: Float
+  count_in: [Float!]
+  count_null: Boolean
   itemId: ID
   itemId_ne: ID
   itemId_gt: ID

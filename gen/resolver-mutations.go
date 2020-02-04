@@ -1448,6 +1448,12 @@ func CreateConfiguratorSlotHandler(ctx context.Context, r *GeneratedResolver, in
 		event.AddNewValue("id", changes.ID)
 	}
 
+	if _, ok := input["count"]; ok && (item.Count != changes.Count) && (item.Count == nil || changes.Count == nil || *item.Count != *changes.Count) {
+		item.Count = changes.Count
+
+		event.AddNewValue("count", changes.Count)
+	}
+
 	if _, ok := input["itemId"]; ok && (item.ItemID != changes.ItemID) && (item.ItemID == nil || changes.ItemID == nil || *item.ItemID != *changes.ItemID) {
 		item.ItemID = changes.ItemID
 
@@ -1515,6 +1521,12 @@ func UpdateConfiguratorSlotHandler(ctx context.Context, r *GeneratedResolver, id
 	}
 
 	item.UpdatedBy = principalID
+
+	if _, ok := input["count"]; ok && (item.Count != changes.Count) && (item.Count == nil || changes.Count == nil || *item.Count != *changes.Count) {
+		event.AddOldValue("count", item.Count)
+		event.AddNewValue("count", changes.Count)
+		item.Count = changes.Count
+	}
 
 	if _, ok := input["itemId"]; ok && (item.ItemID != changes.ItemID) && (item.ItemID == nil || changes.ItemID == nil || *item.ItemID != *changes.ItemID) {
 		event.AddOldValue("itemId", item.ItemID)

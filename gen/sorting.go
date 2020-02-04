@@ -427,6 +427,10 @@ func (s ConfiguratorSlotSortType) ApplyWithAlias(ctx context.Context, dialect go
 		*sorts = append(*sorts, aliasPrefix+dialect.Quote("id")+" "+s.ID.String())
 	}
 
+	if s.Count != nil {
+		*sorts = append(*sorts, aliasPrefix+dialect.Quote("count")+" "+s.Count.String())
+	}
+
 	if s.ItemID != nil {
 		*sorts = append(*sorts, aliasPrefix+dialect.Quote("itemId")+" "+s.ItemID.String())
 	}

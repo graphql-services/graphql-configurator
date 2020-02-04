@@ -3297,6 +3297,49 @@ func (f *ConfiguratorSlotFilterType) WhereContent(dialect gorm.Dialect, aliasPre
 		}
 	}
 
+	if f.Count != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("count")+" = ?")
+		values = append(values, f.Count)
+	}
+
+	if f.CountNe != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("count")+" != ?")
+		values = append(values, f.CountNe)
+	}
+
+	if f.CountGt != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("count")+" > ?")
+		values = append(values, f.CountGt)
+	}
+
+	if f.CountLt != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("count")+" < ?")
+		values = append(values, f.CountLt)
+	}
+
+	if f.CountGte != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("count")+" >= ?")
+		values = append(values, f.CountGte)
+	}
+
+	if f.CountLte != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("count")+" <= ?")
+		values = append(values, f.CountLte)
+	}
+
+	if f.CountIn != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("count")+" IN (?)")
+		values = append(values, f.CountIn)
+	}
+
+	if f.CountNull != nil {
+		if *f.CountNull {
+			conditions = append(conditions, aliasPrefix+dialect.Quote("count")+" IS NULL")
+		} else {
+			conditions = append(conditions, aliasPrefix+dialect.Quote("count")+" IS NOT NULL")
+		}
+	}
+
 	if f.ItemID != nil {
 		conditions = append(conditions, aliasPrefix+dialect.Quote("itemId")+" = ?")
 		values = append(values, f.ItemID)

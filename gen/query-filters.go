@@ -773,6 +773,18 @@ func (qf *ConfiguratorSlotQueryFilter) applyQueryWithFields(dialect gorm.Dialect
 		fieldsMap[f.Name] = append(fieldsMap[f.Name], f)
 	}
 
+	if _, ok := fieldsMap["count"]; ok {
+
+		cast := "TEXT"
+		if dialect.GetName() == "mysql" {
+			cast = "CHAR"
+		}
+		column := fmt.Sprintf("CAST(%s"+dialect.Quote("count")+" AS %s)", dialect.Quote(alias)+".", cast)
+
+		*ors = append(*ors, fmt.Sprintf("%[1]s LIKE ? OR %[1]s LIKE ?", column))
+		*values = append(*values, query+"%", "% "+query+"%")
+	}
+
 	if fs, ok := fieldsMap["item"]; ok {
 		_fields := []*ast.Field{}
 		_alias := alias + "_item"

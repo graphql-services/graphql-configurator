@@ -587,21 +587,21 @@ type ConfiguratorSlotDefinitionFilterType struct {
 	NamePrefix             *string                                 `json:"name_prefix"`
 	NameSuffix             *string                                 `json:"name_suffix"`
 	NameNull               *bool                                   `json:"name_null"`
-	MinCount               *int                                    `json:"minCount"`
-	MinCountNe             *int                                    `json:"minCount_ne"`
-	MinCountGt             *int                                    `json:"minCount_gt"`
-	MinCountLt             *int                                    `json:"minCount_lt"`
-	MinCountGte            *int                                    `json:"minCount_gte"`
-	MinCountLte            *int                                    `json:"minCount_lte"`
-	MinCountIn             []int                                   `json:"minCount_in"`
+	MinCount               *float64                                `json:"minCount"`
+	MinCountNe             *float64                                `json:"minCount_ne"`
+	MinCountGt             *float64                                `json:"minCount_gt"`
+	MinCountLt             *float64                                `json:"minCount_lt"`
+	MinCountGte            *float64                                `json:"minCount_gte"`
+	MinCountLte            *float64                                `json:"minCount_lte"`
+	MinCountIn             []float64                               `json:"minCount_in"`
 	MinCountNull           *bool                                   `json:"minCount_null"`
-	MaxCount               *int                                    `json:"maxCount"`
-	MaxCountNe             *int                                    `json:"maxCount_ne"`
-	MaxCountGt             *int                                    `json:"maxCount_gt"`
-	MaxCountLt             *int                                    `json:"maxCount_lt"`
-	MaxCountGte            *int                                    `json:"maxCount_gte"`
-	MaxCountLte            *int                                    `json:"maxCount_lte"`
-	MaxCountIn             []int                                   `json:"maxCount_in"`
+	MaxCount               *float64                                `json:"maxCount"`
+	MaxCountNe             *float64                                `json:"maxCount_ne"`
+	MaxCountGt             *float64                                `json:"maxCount_gt"`
+	MaxCountLt             *float64                                `json:"maxCount_lt"`
+	MaxCountGte            *float64                                `json:"maxCount_gte"`
+	MaxCountLte            *float64                                `json:"maxCount_lte"`
+	MaxCountIn             []float64                               `json:"maxCount_in"`
 	MaxCountNull           *bool                                   `json:"maxCount_null"`
 	DefinitionID           *string                                 `json:"definitionId"`
 	DefinitionIDNe         *string                                 `json:"definitionId_ne"`
@@ -676,6 +676,14 @@ type ConfiguratorSlotFilterType struct {
 	IDLte            *string                               `json:"id_lte"`
 	IDIn             []string                              `json:"id_in"`
 	IDNull           *bool                                 `json:"id_null"`
+	Count            *float64                              `json:"count"`
+	CountNe          *float64                              `json:"count_ne"`
+	CountGt          *float64                              `json:"count_gt"`
+	CountLt          *float64                              `json:"count_lt"`
+	CountGte         *float64                              `json:"count_gte"`
+	CountLte         *float64                              `json:"count_lte"`
+	CountIn          []float64                             `json:"count_in"`
+	CountNull        *bool                                 `json:"count_null"`
 	ItemID           *string                               `json:"itemId"`
 	ItemIDNe         *string                               `json:"itemId_ne"`
 	ItemIDGt         *string                               `json:"itemId_gt"`
@@ -739,6 +747,7 @@ type ConfiguratorSlotFilterType struct {
 
 type ConfiguratorSlotSortType struct {
 	ID           *ObjectSortType                     `json:"id"`
+	Count        *ObjectSortType                     `json:"count"`
 	ItemID       *ObjectSortType                     `json:"itemId"`
 	DefinitionID *ObjectSortType                     `json:"definitionId"`
 	ParentItemID *ObjectSortType                     `json:"parentItemId"`

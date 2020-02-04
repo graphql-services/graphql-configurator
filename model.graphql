@@ -21,6 +21,8 @@ type ConfiguratorAttribute @entity {
 }
 
 type ConfiguratorSlot @entity {
+  count: Float @column
+
   item: ConfiguratorItem @relationship(inverse: parentSlots)
 
   definition: ConfiguratorSlotDefinition @relationship(inverse: slots)

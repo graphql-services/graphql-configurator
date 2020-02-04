@@ -132,8 +132,8 @@ type ConfiguratorSlotDefinitionResultType struct {
 type ConfiguratorSlotDefinition struct {
 	ID           string     `json:"id" gorm:"column:id;primary_key"`
 	Name         *string    `json:"name" gorm:"column:name"`
-	MinCount     *int       `json:"minCount" gorm:"column:minCount"`
-	MaxCount     *int       `json:"maxCount" gorm:"column:maxCount"`
+	MinCount     *float64   `json:"minCount" gorm:"column:minCount"`
+	MaxCount     *float64   `json:"maxCount" gorm:"column:maxCount"`
 	DefinitionID *string    `json:"definitionId" gorm:"column:definitionId"`
 	UpdatedAt    *time.Time `json:"updatedAt" gorm:"column:updatedAt"`
 	CreatedAt    time.Time  `json:"createdAt" gorm:"column:createdAt"`
@@ -152,8 +152,8 @@ func (m *ConfiguratorSlotDefinition) Is_Entity() {}
 type ConfiguratorSlotDefinitionChanges struct {
 	ID           string
 	Name         *string
-	MinCount     *int
-	MaxCount     *int
+	MinCount     *float64
+	MaxCount     *float64
 	DefinitionID *string
 	UpdatedAt    *time.Time
 	CreatedAt    time.Time
@@ -250,6 +250,7 @@ type ConfiguratorSlotResultType struct {
 
 type ConfiguratorSlot struct {
 	ID           string     `json:"id" gorm:"column:id;primary_key"`
+	Count        *float64   `json:"count" gorm:"column:count"`
 	ItemID       *string    `json:"itemId" gorm:"column:itemId"`
 	DefinitionID *string    `json:"definitionId" gorm:"column:definitionId"`
 	ParentItemID *string    `json:"parentItemId" gorm:"column:parentItemId"`
@@ -269,6 +270,7 @@ func (m *ConfiguratorSlot) Is_Entity() {}
 
 type ConfiguratorSlotChanges struct {
 	ID           string
+	Count        *float64
 	ItemID       *string
 	DefinitionID *string
 	ParentItemID *string
