@@ -2,7 +2,6 @@ package src
 
 import (
 	"context"
-	"encoding/json"
 
 	"github.com/graphql-services/graphql-configurator/gen"
 )
@@ -24,13 +23,13 @@ func LoadItem(ctx context.Context, r *gen.GeneratedResolver, ID string) (*gen.Co
 		return nil, err
 	}
 
-	isNotTemplate := item.ReferenceID == nil
-	if !isNotTemplate {
-		rawData := *item.RawData
-		var item *gen.ConfiguratorAssemblyItem
-		err := json.Unmarshal([]byte(rawData), &item)
-		return item, err
-	}
+	// isNotTemplate := item.sto == nil
+	// if !isNotTemplate {
+	// 	rawData := *item.RawData
+	// 	var item *gen.ConfiguratorAssemblyItem
+	// 	err := json.Unmarshal([]byte(rawData), &item)
+	// 	return item, err
+	// }
 
 	_attributes, err := r.Handlers.ConfiguratorItemAttributes(ctx, r, item)
 	if err != nil {
@@ -69,7 +68,7 @@ func LoadItem(ctx context.Context, r *gen.GeneratedResolver, ID string) (*gen.Co
 	return &gen.ConfiguratorAssemblyItem{
 		ID:           &item.ID,
 		DefinitionID: item.DefinitionID,
-		ReferenceID:  item.ReferenceID,
+		StockItemID:  item.StockItemID,
 		Code:         item.Code,
 		Name:         item.Name,
 		Attributes:   attributes,

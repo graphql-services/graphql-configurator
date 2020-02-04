@@ -37,7 +37,7 @@ type ConfiguratorAssemblyCreateInput struct {
 type ConfiguratorAssemblyItem struct {
 	ID           *string                          `json:"id"`
 	DefinitionID *string                          `json:"definitionId"`
-	ReferenceID  *string                          `json:"referenceID"`
+	StockItemID  *string                          `json:"stockItemId"`
 	Code         *string                          `json:"code"`
 	Name         *string                          `json:"name"`
 	Slots        []*ConfiguratorAssemblySlot      `json:"slots"`
@@ -47,7 +47,7 @@ type ConfiguratorAssemblyItem struct {
 type ConfiguratorAssemblyItemInput struct {
 	ID           *string                               `json:"id"`
 	DefinitionID *string                               `json:"definitionId"`
-	ReferenceID  *string                               `json:"referenceID"`
+	StockItemID  *string                               `json:"stockItemId"`
 	Code         *string                               `json:"code"`
 	Name         *string                               `json:"name"`
 	Slots        []*ConfiguratorAssemblySlotInput      `json:"slots"`
@@ -448,112 +448,101 @@ type ConfiguratorItemDefinitionSortType struct {
 }
 
 type ConfiguratorItemFilterType struct {
-	And               []*ConfiguratorItemFilterType         `json:"AND"`
-	Or                []*ConfiguratorItemFilterType         `json:"OR"`
-	ID                *string                               `json:"id"`
-	IDNe              *string                               `json:"id_ne"`
-	IDGt              *string                               `json:"id_gt"`
-	IDLt              *string                               `json:"id_lt"`
-	IDGte             *string                               `json:"id_gte"`
-	IDLte             *string                               `json:"id_lte"`
-	IDIn              []string                              `json:"id_in"`
-	IDNull            *bool                                 `json:"id_null"`
-	Code              *string                               `json:"code"`
-	CodeNe            *string                               `json:"code_ne"`
-	CodeGt            *string                               `json:"code_gt"`
-	CodeLt            *string                               `json:"code_lt"`
-	CodeGte           *string                               `json:"code_gte"`
-	CodeLte           *string                               `json:"code_lte"`
-	CodeIn            []string                              `json:"code_in"`
-	CodeLike          *string                               `json:"code_like"`
-	CodePrefix        *string                               `json:"code_prefix"`
-	CodeSuffix        *string                               `json:"code_suffix"`
-	CodeNull          *bool                                 `json:"code_null"`
-	Name              *string                               `json:"name"`
-	NameNe            *string                               `json:"name_ne"`
-	NameGt            *string                               `json:"name_gt"`
-	NameLt            *string                               `json:"name_lt"`
-	NameGte           *string                               `json:"name_gte"`
-	NameLte           *string                               `json:"name_lte"`
-	NameIn            []string                              `json:"name_in"`
-	NameLike          *string                               `json:"name_like"`
-	NamePrefix        *string                               `json:"name_prefix"`
-	NameSuffix        *string                               `json:"name_suffix"`
-	NameNull          *bool                                 `json:"name_null"`
-	StockItemID       *string                               `json:"stockItemId"`
-	StockItemIDNe     *string                               `json:"stockItemId_ne"`
-	StockItemIDGt     *string                               `json:"stockItemId_gt"`
-	StockItemIDLt     *string                               `json:"stockItemId_lt"`
-	StockItemIDGte    *string                               `json:"stockItemId_gte"`
-	StockItemIDLte    *string                               `json:"stockItemId_lte"`
-	StockItemIDIn     []string                              `json:"stockItemId_in"`
-	StockItemIDNull   *bool                                 `json:"stockItemId_null"`
-	ReferenceID       *string                               `json:"referenceID"`
-	ReferenceIDNe     *string                               `json:"referenceID_ne"`
-	ReferenceIDGt     *string                               `json:"referenceID_gt"`
-	ReferenceIDLt     *string                               `json:"referenceID_lt"`
-	ReferenceIDGte    *string                               `json:"referenceID_gte"`
-	ReferenceIDLte    *string                               `json:"referenceID_lte"`
-	ReferenceIDIn     []string                              `json:"referenceID_in"`
-	ReferenceIDLike   *string                               `json:"referenceID_like"`
-	ReferenceIDPrefix *string                               `json:"referenceID_prefix"`
-	ReferenceIDSuffix *string                               `json:"referenceID_suffix"`
-	ReferenceIDNull   *bool                                 `json:"referenceID_null"`
-	RawData           *string                               `json:"rawData"`
-	RawDataNe         *string                               `json:"rawData_ne"`
-	RawDataGt         *string                               `json:"rawData_gt"`
-	RawDataLt         *string                               `json:"rawData_lt"`
-	RawDataGte        *string                               `json:"rawData_gte"`
-	RawDataLte        *string                               `json:"rawData_lte"`
-	RawDataIn         []string                              `json:"rawData_in"`
-	RawDataLike       *string                               `json:"rawData_like"`
-	RawDataPrefix     *string                               `json:"rawData_prefix"`
-	RawDataSuffix     *string                               `json:"rawData_suffix"`
-	RawDataNull       *bool                                 `json:"rawData_null"`
-	DefinitionID      *string                               `json:"definitionId"`
-	DefinitionIDNe    *string                               `json:"definitionId_ne"`
-	DefinitionIDGt    *string                               `json:"definitionId_gt"`
-	DefinitionIDLt    *string                               `json:"definitionId_lt"`
-	DefinitionIDGte   *string                               `json:"definitionId_gte"`
-	DefinitionIDLte   *string                               `json:"definitionId_lte"`
-	DefinitionIDIn    []string                              `json:"definitionId_in"`
-	DefinitionIDNull  *bool                                 `json:"definitionId_null"`
-	UpdatedAt         *time.Time                            `json:"updatedAt"`
-	UpdatedAtNe       *time.Time                            `json:"updatedAt_ne"`
-	UpdatedAtGt       *time.Time                            `json:"updatedAt_gt"`
-	UpdatedAtLt       *time.Time                            `json:"updatedAt_lt"`
-	UpdatedAtGte      *time.Time                            `json:"updatedAt_gte"`
-	UpdatedAtLte      *time.Time                            `json:"updatedAt_lte"`
-	UpdatedAtIn       []*time.Time                          `json:"updatedAt_in"`
-	UpdatedAtNull     *bool                                 `json:"updatedAt_null"`
-	CreatedAt         *time.Time                            `json:"createdAt"`
-	CreatedAtNe       *time.Time                            `json:"createdAt_ne"`
-	CreatedAtGt       *time.Time                            `json:"createdAt_gt"`
-	CreatedAtLt       *time.Time                            `json:"createdAt_lt"`
-	CreatedAtGte      *time.Time                            `json:"createdAt_gte"`
-	CreatedAtLte      *time.Time                            `json:"createdAt_lte"`
-	CreatedAtIn       []*time.Time                          `json:"createdAt_in"`
-	CreatedAtNull     *bool                                 `json:"createdAt_null"`
-	UpdatedBy         *string                               `json:"updatedBy"`
-	UpdatedByNe       *string                               `json:"updatedBy_ne"`
-	UpdatedByGt       *string                               `json:"updatedBy_gt"`
-	UpdatedByLt       *string                               `json:"updatedBy_lt"`
-	UpdatedByGte      *string                               `json:"updatedBy_gte"`
-	UpdatedByLte      *string                               `json:"updatedBy_lte"`
-	UpdatedByIn       []string                              `json:"updatedBy_in"`
-	UpdatedByNull     *bool                                 `json:"updatedBy_null"`
-	CreatedBy         *string                               `json:"createdBy"`
-	CreatedByNe       *string                               `json:"createdBy_ne"`
-	CreatedByGt       *string                               `json:"createdBy_gt"`
-	CreatedByLt       *string                               `json:"createdBy_lt"`
-	CreatedByGte      *string                               `json:"createdBy_gte"`
-	CreatedByLte      *string                               `json:"createdBy_lte"`
-	CreatedByIn       []string                              `json:"createdBy_in"`
-	CreatedByNull     *bool                                 `json:"createdBy_null"`
-	Definition        *ConfiguratorItemDefinitionFilterType `json:"definition"`
-	Attributes        *ConfiguratorAttributeFilterType      `json:"attributes"`
-	Slots             *ConfiguratorSlotFilterType           `json:"slots"`
-	ParentSlots       *ConfiguratorSlotFilterType           `json:"parentSlots"`
+	And              []*ConfiguratorItemFilterType         `json:"AND"`
+	Or               []*ConfiguratorItemFilterType         `json:"OR"`
+	ID               *string                               `json:"id"`
+	IDNe             *string                               `json:"id_ne"`
+	IDGt             *string                               `json:"id_gt"`
+	IDLt             *string                               `json:"id_lt"`
+	IDGte            *string                               `json:"id_gte"`
+	IDLte            *string                               `json:"id_lte"`
+	IDIn             []string                              `json:"id_in"`
+	IDNull           *bool                                 `json:"id_null"`
+	Code             *string                               `json:"code"`
+	CodeNe           *string                               `json:"code_ne"`
+	CodeGt           *string                               `json:"code_gt"`
+	CodeLt           *string                               `json:"code_lt"`
+	CodeGte          *string                               `json:"code_gte"`
+	CodeLte          *string                               `json:"code_lte"`
+	CodeIn           []string                              `json:"code_in"`
+	CodeLike         *string                               `json:"code_like"`
+	CodePrefix       *string                               `json:"code_prefix"`
+	CodeSuffix       *string                               `json:"code_suffix"`
+	CodeNull         *bool                                 `json:"code_null"`
+	Name             *string                               `json:"name"`
+	NameNe           *string                               `json:"name_ne"`
+	NameGt           *string                               `json:"name_gt"`
+	NameLt           *string                               `json:"name_lt"`
+	NameGte          *string                               `json:"name_gte"`
+	NameLte          *string                               `json:"name_lte"`
+	NameIn           []string                              `json:"name_in"`
+	NameLike         *string                               `json:"name_like"`
+	NamePrefix       *string                               `json:"name_prefix"`
+	NameSuffix       *string                               `json:"name_suffix"`
+	NameNull         *bool                                 `json:"name_null"`
+	StockItemID      *string                               `json:"stockItemId"`
+	StockItemIDNe    *string                               `json:"stockItemId_ne"`
+	StockItemIDGt    *string                               `json:"stockItemId_gt"`
+	StockItemIDLt    *string                               `json:"stockItemId_lt"`
+	StockItemIDGte   *string                               `json:"stockItemId_gte"`
+	StockItemIDLte   *string                               `json:"stockItemId_lte"`
+	StockItemIDIn    []string                              `json:"stockItemId_in"`
+	StockItemIDNull  *bool                                 `json:"stockItemId_null"`
+	RawData          *string                               `json:"rawData"`
+	RawDataNe        *string                               `json:"rawData_ne"`
+	RawDataGt        *string                               `json:"rawData_gt"`
+	RawDataLt        *string                               `json:"rawData_lt"`
+	RawDataGte       *string                               `json:"rawData_gte"`
+	RawDataLte       *string                               `json:"rawData_lte"`
+	RawDataIn        []string                              `json:"rawData_in"`
+	RawDataLike      *string                               `json:"rawData_like"`
+	RawDataPrefix    *string                               `json:"rawData_prefix"`
+	RawDataSuffix    *string                               `json:"rawData_suffix"`
+	RawDataNull      *bool                                 `json:"rawData_null"`
+	DefinitionID     *string                               `json:"definitionId"`
+	DefinitionIDNe   *string                               `json:"definitionId_ne"`
+	DefinitionIDGt   *string                               `json:"definitionId_gt"`
+	DefinitionIDLt   *string                               `json:"definitionId_lt"`
+	DefinitionIDGte  *string                               `json:"definitionId_gte"`
+	DefinitionIDLte  *string                               `json:"definitionId_lte"`
+	DefinitionIDIn   []string                              `json:"definitionId_in"`
+	DefinitionIDNull *bool                                 `json:"definitionId_null"`
+	UpdatedAt        *time.Time                            `json:"updatedAt"`
+	UpdatedAtNe      *time.Time                            `json:"updatedAt_ne"`
+	UpdatedAtGt      *time.Time                            `json:"updatedAt_gt"`
+	UpdatedAtLt      *time.Time                            `json:"updatedAt_lt"`
+	UpdatedAtGte     *time.Time                            `json:"updatedAt_gte"`
+	UpdatedAtLte     *time.Time                            `json:"updatedAt_lte"`
+	UpdatedAtIn      []*time.Time                          `json:"updatedAt_in"`
+	UpdatedAtNull    *bool                                 `json:"updatedAt_null"`
+	CreatedAt        *time.Time                            `json:"createdAt"`
+	CreatedAtNe      *time.Time                            `json:"createdAt_ne"`
+	CreatedAtGt      *time.Time                            `json:"createdAt_gt"`
+	CreatedAtLt      *time.Time                            `json:"createdAt_lt"`
+	CreatedAtGte     *time.Time                            `json:"createdAt_gte"`
+	CreatedAtLte     *time.Time                            `json:"createdAt_lte"`
+	CreatedAtIn      []*time.Time                          `json:"createdAt_in"`
+	CreatedAtNull    *bool                                 `json:"createdAt_null"`
+	UpdatedBy        *string                               `json:"updatedBy"`
+	UpdatedByNe      *string                               `json:"updatedBy_ne"`
+	UpdatedByGt      *string                               `json:"updatedBy_gt"`
+	UpdatedByLt      *string                               `json:"updatedBy_lt"`
+	UpdatedByGte     *string                               `json:"updatedBy_gte"`
+	UpdatedByLte     *string                               `json:"updatedBy_lte"`
+	UpdatedByIn      []string                              `json:"updatedBy_in"`
+	UpdatedByNull    *bool                                 `json:"updatedBy_null"`
+	CreatedBy        *string                               `json:"createdBy"`
+	CreatedByNe      *string                               `json:"createdBy_ne"`
+	CreatedByGt      *string                               `json:"createdBy_gt"`
+	CreatedByLt      *string                               `json:"createdBy_lt"`
+	CreatedByGte     *string                               `json:"createdBy_gte"`
+	CreatedByLte     *string                               `json:"createdBy_lte"`
+	CreatedByIn      []string                              `json:"createdBy_in"`
+	CreatedByNull    *bool                                 `json:"createdBy_null"`
+	Definition       *ConfiguratorItemDefinitionFilterType `json:"definition"`
+	Attributes       *ConfiguratorAttributeFilterType      `json:"attributes"`
+	Slots            *ConfiguratorSlotFilterType           `json:"slots"`
+	ParentSlots      *ConfiguratorSlotFilterType           `json:"parentSlots"`
 }
 
 type ConfiguratorItemSortType struct {
@@ -561,7 +550,6 @@ type ConfiguratorItemSortType struct {
 	Code           *ObjectSortType                     `json:"code"`
 	Name           *ObjectSortType                     `json:"name"`
 	StockItemID    *ObjectSortType                     `json:"stockItemId"`
-	ReferenceID    *ObjectSortType                     `json:"referenceID"`
 	RawData        *ObjectSortType                     `json:"rawData"`
 	DefinitionID   *ObjectSortType                     `json:"definitionId"`
 	UpdatedAt      *ObjectSortType                     `json:"updatedAt"`

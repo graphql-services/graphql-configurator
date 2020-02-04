@@ -23,7 +23,7 @@ func createItem(ctx context.Context, r *gen.GeneratedResolver, inputItem *gen.Co
 		"code":         inputItem.Code,
 		"name":         inputItem.Name,
 		"definitionId": inputItem.DefinitionID,
-		"referenceID":  inputItem.ReferenceID,
+		"stockItemId":  inputItem.StockItemID,
 	}
 	if inputItem.ID != nil {
 		values["id"] = inputItem.ID
@@ -49,10 +49,10 @@ func createOrUpdateItem(ctx context.Context, r *gen.GeneratedResolver, inputItem
 		"code":         inputItem.Code,
 		"name":         inputItem.Name,
 		"definitionId": inputItem.DefinitionID,
-		"referenceID":  inputItem.ReferenceID,
+		"stockItemId":  inputItem.StockItemID,
 	}
 
-	isTemplate := inputItem.ReferenceID == nil
+	isTemplate := inputItem.StockItemID == nil
 	if !isTemplate {
 		var data []byte
 

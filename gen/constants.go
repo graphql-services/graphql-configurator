@@ -72,7 +72,7 @@ type ConfiguratorAssembly {
 type ConfiguratorAssemblyItem {
   id: ID
   definitionId: ID
-  referenceID: ID
+  stockItemId: ID
   code: String
   name: String
   slots: [ConfiguratorAssemblySlot!]!
@@ -104,7 +104,7 @@ input ConfiguratorAssemblyUpdateInput {
 input ConfiguratorAssemblyItemInput {
   id: ID
   definitionId: ID
-  referenceID: ID
+  stockItemId: ID
   code: String
   name: String
   slots: [ConfiguratorAssemblySlotInput!]
@@ -209,7 +209,6 @@ type ConfiguratorItem {
   code: String
   name: String
   stockItemId: ID
-  referenceID: String
   rawData: String
   definition: ConfiguratorItemDefinition
   attributes: [ConfiguratorAttribute!]!
@@ -721,7 +720,6 @@ input ConfiguratorItemCreateInput {
   code: String
   name: String
   stockItemId: ID
-  referenceID: String
   rawData: String
   definitionId: ID
   attributesIds: [ID!]
@@ -733,7 +731,6 @@ input ConfiguratorItemUpdateInput {
   code: String
   name: String
   stockItemId: ID
-  referenceID: String
   rawData: String
   definitionId: ID
   attributesIds: [ID!]
@@ -746,7 +743,6 @@ input ConfiguratorItemSortType {
   code: ObjectSortType
   name: ObjectSortType
   stockItemId: ObjectSortType
-  referenceID: ObjectSortType
   rawData: ObjectSortType
   definitionId: ObjectSortType
   updatedAt: ObjectSortType
@@ -803,17 +799,6 @@ input ConfiguratorItemFilterType {
   stockItemId_lte: ID
   stockItemId_in: [ID!]
   stockItemId_null: Boolean
-  referenceID: String
-  referenceID_ne: String
-  referenceID_gt: String
-  referenceID_lt: String
-  referenceID_gte: String
-  referenceID_lte: String
-  referenceID_in: [String!]
-  referenceID_like: String
-  referenceID_prefix: String
-  referenceID_suffix: String
-  referenceID_null: Boolean
   rawData: String
   rawData_ne: String
   rawData_gt: String

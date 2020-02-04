@@ -994,12 +994,6 @@ func CreateConfiguratorItemHandler(ctx context.Context, r *GeneratedResolver, in
 		event.AddNewValue("stockItemId", changes.StockItemID)
 	}
 
-	if _, ok := input["referenceID"]; ok && (item.ReferenceID != changes.ReferenceID) && (item.ReferenceID == nil || changes.ReferenceID == nil || *item.ReferenceID != *changes.ReferenceID) {
-		item.ReferenceID = changes.ReferenceID
-
-		event.AddNewValue("referenceID", changes.ReferenceID)
-	}
-
 	if _, ok := input["rawData"]; ok && (item.RawData != changes.RawData) && (item.RawData == nil || changes.RawData == nil || *item.RawData != *changes.RawData) {
 		item.RawData = changes.RawData
 
@@ -1099,12 +1093,6 @@ func UpdateConfiguratorItemHandler(ctx context.Context, r *GeneratedResolver, id
 		event.AddOldValue("stockItemId", item.StockItemID)
 		event.AddNewValue("stockItemId", changes.StockItemID)
 		item.StockItemID = changes.StockItemID
-	}
-
-	if _, ok := input["referenceID"]; ok && (item.ReferenceID != changes.ReferenceID) && (item.ReferenceID == nil || changes.ReferenceID == nil || *item.ReferenceID != *changes.ReferenceID) {
-		event.AddOldValue("referenceID", item.ReferenceID)
-		event.AddNewValue("referenceID", changes.ReferenceID)
-		item.ReferenceID = changes.ReferenceID
 	}
 
 	if _, ok := input["rawData"]; ok && (item.RawData != changes.RawData) && (item.RawData == nil || changes.RawData == nil || *item.RawData != *changes.RawData) {

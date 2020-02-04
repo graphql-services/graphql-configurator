@@ -531,14 +531,6 @@ func (qf *ConfiguratorItemQueryFilter) applyQueryWithFields(dialect gorm.Dialect
 		*values = append(*values, query+"%", "% "+query+"%")
 	}
 
-	if _, ok := fieldsMap["referenceID"]; ok {
-
-		column := dialect.Quote(alias) + "." + dialect.Quote("referenceID")
-
-		*ors = append(*ors, fmt.Sprintf("%[1]s LIKE ? OR %[1]s LIKE ?", column))
-		*values = append(*values, query+"%", "% "+query+"%")
-	}
-
 	if _, ok := fieldsMap["rawData"]; ok {
 
 		column := dialect.Quote(alias) + "." + dialect.Quote("rawData")

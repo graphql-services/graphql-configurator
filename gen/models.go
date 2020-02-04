@@ -173,7 +173,6 @@ type ConfiguratorItem struct {
 	Code         *string    `json:"code" gorm:"column:code"`
 	Name         *string    `json:"name" gorm:"column:name"`
 	StockItemID  *string    `json:"stockItemId" gorm:"column:stockItemId"`
-	ReferenceID  *string    `json:"referenceID" gorm:"column:referenceID"`
 	RawData      *string    `json:"rawData" gorm:"column:rawData;type:text"`
 	DefinitionID *string    `json:"definitionId" gorm:"column:definitionId"`
 	UpdatedAt    *time.Time `json:"updatedAt" gorm:"column:updatedAt"`
@@ -197,7 +196,6 @@ type ConfiguratorItemChanges struct {
 	Code         *string
 	Name         *string
 	StockItemID  *string
-	ReferenceID  *string
 	RawData      *string
 	DefinitionID *string
 	UpdatedAt    *time.Time

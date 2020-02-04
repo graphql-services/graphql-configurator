@@ -2291,64 +2291,6 @@ func (f *ConfiguratorItemFilterType) WhereContent(dialect gorm.Dialect, aliasPre
 		}
 	}
 
-	if f.ReferenceID != nil {
-		conditions = append(conditions, aliasPrefix+dialect.Quote("referenceID")+" = ?")
-		values = append(values, f.ReferenceID)
-	}
-
-	if f.ReferenceIDNe != nil {
-		conditions = append(conditions, aliasPrefix+dialect.Quote("referenceID")+" != ?")
-		values = append(values, f.ReferenceIDNe)
-	}
-
-	if f.ReferenceIDGt != nil {
-		conditions = append(conditions, aliasPrefix+dialect.Quote("referenceID")+" > ?")
-		values = append(values, f.ReferenceIDGt)
-	}
-
-	if f.ReferenceIDLt != nil {
-		conditions = append(conditions, aliasPrefix+dialect.Quote("referenceID")+" < ?")
-		values = append(values, f.ReferenceIDLt)
-	}
-
-	if f.ReferenceIDGte != nil {
-		conditions = append(conditions, aliasPrefix+dialect.Quote("referenceID")+" >= ?")
-		values = append(values, f.ReferenceIDGte)
-	}
-
-	if f.ReferenceIDLte != nil {
-		conditions = append(conditions, aliasPrefix+dialect.Quote("referenceID")+" <= ?")
-		values = append(values, f.ReferenceIDLte)
-	}
-
-	if f.ReferenceIDIn != nil {
-		conditions = append(conditions, aliasPrefix+dialect.Quote("referenceID")+" IN (?)")
-		values = append(values, f.ReferenceIDIn)
-	}
-
-	if f.ReferenceIDLike != nil {
-		conditions = append(conditions, aliasPrefix+dialect.Quote("referenceID")+" LIKE ?")
-		values = append(values, strings.Replace(strings.Replace(*f.ReferenceIDLike, "?", "_", -1), "*", "%", -1))
-	}
-
-	if f.ReferenceIDPrefix != nil {
-		conditions = append(conditions, aliasPrefix+dialect.Quote("referenceID")+" LIKE ?")
-		values = append(values, fmt.Sprintf("%s%%", *f.ReferenceIDPrefix))
-	}
-
-	if f.ReferenceIDSuffix != nil {
-		conditions = append(conditions, aliasPrefix+dialect.Quote("referenceID")+" LIKE ?")
-		values = append(values, fmt.Sprintf("%%%s", *f.ReferenceIDSuffix))
-	}
-
-	if f.ReferenceIDNull != nil {
-		if *f.ReferenceIDNull {
-			conditions = append(conditions, aliasPrefix+dialect.Quote("referenceID")+" IS NULL")
-		} else {
-			conditions = append(conditions, aliasPrefix+dialect.Quote("referenceID")+" IS NOT NULL")
-		}
-	}
-
 	if f.RawData != nil {
 		conditions = append(conditions, aliasPrefix+dialect.Quote("rawData")+" = ?")
 		values = append(values, f.RawData)
