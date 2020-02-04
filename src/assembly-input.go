@@ -2,7 +2,6 @@ package src
 
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 
 	"github.com/graphql-services/graphql-configurator/gen"
@@ -52,19 +51,6 @@ func createOrUpdateItem(ctx context.Context, r *gen.GeneratedResolver, inputItem
 		"stockItemId":  inputItem.StockItemID,
 	}
 
-	isTemplate := inputItem.StockItemID == nil
-	if !isTemplate {
-		var data []byte
-
-		data, err = json.Marshal(inputItem)
-		if err != nil {
-			return
-		}
-		values["rawData"] = string(data)
-	} else {
-		values["rawData"] = nil
-	}
-
 	var item *gen.ConfiguratorItem
 	if inputItem.ID != nil {
 		item, err = r.Handlers.UpdateConfiguratorItem(ctx, r, *inputItem.ID, values)
@@ -75,35 +61,33 @@ func createOrUpdateItem(ctx context.Context, r *gen.GeneratedResolver, inputItem
 		return
 	}
 
-	if isTemplate {
-		for _, attrInput := range inputItem.Attributes {
-			err = createOrUpdateAttribute(ctx, r, item.ID, attrInput)
-			if err != nil {
-				return
-			}
-		}
-		slotIDs := map[string]bool{}
-		for _, slotInput := range inputItem.Slots {
-			var slotID string
-			slotID, err = createOrUpdateSlot(ctx, r, item.ID, slotInput)
-			if err != nil {
-				return
-			}
-			slotIDs[slotID] = true
-		}
-
-		slots, _err := r.Handlers.ConfiguratorItemSlots(ctx, r, item)
-		if _err != nil {
-			err = _err
+	for _, attrInput := range inputItem.Attributes {
+		err = createOrUpdateAttribute(ctx, r, item.ID, attrInput)
+		if err != nil {
 			return
 		}
-		for _, slot := range slots {
-			if _, ok := slotIDs[slot.ID]; !ok {
-				fmt.Println("deleting slot", slot.ID)
-				_, err = r.Handlers.DeleteConfiguratorSlot(ctx, r, slot.ID)
-				if err != nil {
-					return
-				}
+	}
+	slotIDs := map[string]bool{}
+	for _, slotInput := range inputItem.Slots {
+		var slotID string
+		slotID, err = createOrUpdateSlot(ctx, r, item.ID, slotInput)
+		if err != nil {
+			return
+		}
+		slotIDs[slotID] = true
+	}
+
+	slots, _err := r.Handlers.ConfiguratorItemSlots(ctx, r, item)
+	if _err != nil {
+		err = _err
+		return
+	}
+	for _, slot := range slots {
+		if _, ok := slotIDs[slot.ID]; !ok {
+			fmt.Println("deleting slot", slot.ID)
+			_, err = r.Handlers.DeleteConfiguratorSlot(ctx, r, slot.ID)
+			if err != nil {
+				return
 			}
 		}
 	}

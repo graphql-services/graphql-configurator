@@ -16,7 +16,7 @@ Feature: Creating configuration items using assemblies
                     id
                 }
                 createConfiguratorSlotDefinition(
-                    input: { id: "wheel", name: "Wheel", minCount: 4, maxCount: 8 }
+                    input: { id: "wheel", name: "Wheel", minCount: 4, maxCount: 8, defaultCount: 5 }
                 ) {
                     id
                 }
@@ -52,16 +52,18 @@ Feature: Creating configuration items using assemblies
                         code: "tesla"
                         name: "Tesla"
                         definitionId: "car"
-                        attributes:[
-                        {definitionId:"weight",stringValue:"aaa"}
-                        ],
-                        slots:[
-                        {definitionId:"wheel",item:{
+                        attributes:[{
+                            definitionId:"weight",stringValue:"aaa"
+                        }]
+                        slots:[{
                             definitionId:"wheel",
-                            code:"wheel",
-                            name:"Right front"
-                        }}
-                        ]
+                            count:4,
+                            item:{
+                                definitionId:"wheel",
+                                code:"wheel",
+                                name:"Right front"
+                            }
+                        }]
                     }
                     }
                 ) {
@@ -73,6 +75,9 @@ Feature: Creating configuration items using assemblies
                     attributes {
                         definitionId
                         stringValue
+                    }
+                    slots {
+                        count
                     }
                     }
                 }
@@ -91,6 +96,11 @@ Feature: Creating configuration items using assemblies
                             {
                                 "definitionId": "weight",
                                 "stringValue": "aaa"
+                            }
+                        ],
+                        "slots": [
+                            {
+                                "count": 4
                             }
                         ]
                     }

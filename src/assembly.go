@@ -2,7 +2,6 @@ package src
 
 import (
 	"context"
-	"fmt"
 
 	"github.com/graphql-services/graphql-configurator/gen"
 )
@@ -12,13 +11,19 @@ type AssemblyHelper struct {
 }
 
 func (as *AssemblyHelper) Load(ctx context.Context, ID string) (*gen.ConfiguratorAssembly, error) {
-	item, err := LoadItem(ctx, as.r, ID)
+	cache := map[string]*gen.ConfiguratorAssemblyItem{}
+	item, err := LoadItem(ctx, as.r, ID, cache)
 	return &gen.ConfiguratorAssembly{
 		ID:   ID,
 		Item: item,
 	}, err
 }
-func LoadItem(ctx context.Context, r *gen.GeneratedResolver, ID string) (*gen.ConfiguratorAssemblyItem, error) {
+func LoadItem(ctx context.Context, r *gen.GeneratedResolver, ID string, itemCache map[string]*gen.ConfiguratorAssemblyItem) (*gen.ConfiguratorAssemblyItem, error) {
+
+	if item, exists := itemCache[ID]; exists {
+		return item, nil
+	}
+
 	item, err := r.Handlers.QueryConfiguratorItem(ctx, r, gen.QueryConfiguratorItemHandlerOptions{ID: &ID})
 	if err != nil {
 		return nil, err
@@ -39,6 +44,15 @@ func LoadItem(ctx context.Context, r *gen.GeneratedResolver, ID string) (*gen.Co
 			FloatValue:   attr.FloatValue,
 		})
 	}
+	_item := &gen.ConfiguratorAssemblyItem{
+		ID:           &item.ID,
+		DefinitionID: item.DefinitionID,
+		StockItemID:  item.StockItemID,
+		Code:         item.Code,
+		Name:         item.Name,
+		Attributes:   attributes,
+	}
+	itemCache[ID] = _item
 
 	_slots, err := r.Handlers.ConfiguratorItemSlots(ctx, r, item)
 	if err != nil {
@@ -46,12 +60,10 @@ func LoadItem(ctx context.Context, r *gen.GeneratedResolver, ID string) (*gen.Co
 	}
 	slots := []*gen.ConfiguratorAssemblySlot{}
 	for _, slot := range _slots {
-		slotItem, err := LoadItem(ctx, r, *slot.ItemID)
+		slotItem, err := LoadItem(ctx, r, *slot.ItemID, itemCache)
 		if err != nil {
 			return nil, err
 		}
-
-		fmt.Println("!!!", slot.ID, *slot.Count)
 
 		slots = append(slots, &gen.ConfiguratorAssemblySlot{
 			ID:           &slot.ID,
@@ -61,13 +73,7 @@ func LoadItem(ctx context.Context, r *gen.GeneratedResolver, ID string) (*gen.Co
 		})
 	}
 
-	return &gen.ConfiguratorAssemblyItem{
-		ID:           &item.ID,
-		DefinitionID: item.DefinitionID,
-		StockItemID:  item.StockItemID,
-		Code:         item.Code,
-		Name:         item.Name,
-		Attributes:   attributes,
-		Slots:        slots,
-	}, err
+	_item.Slots = slots
+
+	return _item, err
 }
