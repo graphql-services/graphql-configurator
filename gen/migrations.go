@@ -29,41 +29,41 @@ func AutoMigrate(db *gorm.DB) error {
 
 	if _db.Dialect().GetName() != "sqlite3" {
 
-		_db.Model(ConfiguratorAttributeDefinition_definitions{}).RemoveForeignKey("definition_id", TableName("configurator_item_definitions")+"(id)")
-		_db = _db.Model(ConfiguratorAttributeDefinition_definitions{}).AddForeignKey("definition_id", TableName("configurator_item_definitions")+"(id)", "CASCADE", "CASCADE")
+		_db.Model(ConfiguratorAttributeDefinition_definitions{}).RemoveForeignKey("definition_id", TableName("configuratorItemDefinitions")+"(id)")
+		_db = _db.Model(ConfiguratorAttributeDefinition_definitions{}).AddForeignKey("definition_id", TableName("configuratorItemDefinitions")+"(id)", "CASCADE", "CASCADE")
 
-		_db.Model(ConfiguratorSlotDefinition_allowedItemDefinitions{}).RemoveForeignKey("allowedItemDefinition_id", TableName("configurator_item_definitions")+"(id)")
-		_db = _db.Model(ConfiguratorSlotDefinition_allowedItemDefinitions{}).AddForeignKey("allowedItemDefinition_id", TableName("configurator_item_definitions")+"(id)", "CASCADE", "CASCADE")
+		_db.Model(ConfiguratorSlotDefinition_allowedItemDefinitions{}).RemoveForeignKey("allowedItemDefinition_id", TableName("configuratorItemDefinitions")+"(id)")
+		_db = _db.Model(ConfiguratorSlotDefinition_allowedItemDefinitions{}).AddForeignKey("allowedItemDefinition_id", TableName("configuratorItemDefinitions")+"(id)", "CASCADE", "CASCADE")
 
-		_db.Model(ConfiguratorItemDefinition{}).RemoveForeignKey("categoryId", TableName("configurator_item_definition_categories")+"(id)")
-		_db = _db.Model(ConfiguratorItemDefinition{}).AddForeignKey("categoryId", TableName("configurator_item_definition_categories")+"(id)", "SET NULL", "SET NULL")
+		_db.Model(ConfiguratorItemDefinition{}).RemoveForeignKey("categoryId", TableName("configuratorItemDefinitionCategories")+"(id)")
+		_db = _db.Model(ConfiguratorItemDefinition{}).AddForeignKey("categoryId", TableName("configuratorItemDefinitionCategories")+"(id)", "SET NULL", "SET NULL")
 
-		_db.Model(ConfiguratorAttributeDefinition_definitions{}).RemoveForeignKey("attribute_id", TableName("configurator_attribute_definitions")+"(id)")
-		_db = _db.Model(ConfiguratorAttributeDefinition_definitions{}).AddForeignKey("attribute_id", TableName("configurator_attribute_definitions")+"(id)", "CASCADE", "CASCADE")
+		_db.Model(ConfiguratorAttributeDefinition_definitions{}).RemoveForeignKey("attribute_id", TableName("configuratorAttributeDefinitions")+"(id)")
+		_db = _db.Model(ConfiguratorAttributeDefinition_definitions{}).AddForeignKey("attribute_id", TableName("configuratorAttributeDefinitions")+"(id)", "CASCADE", "CASCADE")
 
-		_db.Model(ConfiguratorSlotDefinition{}).RemoveForeignKey("definitionId", TableName("configurator_item_definitions")+"(id)")
-		_db = _db.Model(ConfiguratorSlotDefinition{}).AddForeignKey("definitionId", TableName("configurator_item_definitions")+"(id)", "SET NULL", "SET NULL")
+		_db.Model(ConfiguratorSlotDefinition{}).RemoveForeignKey("definitionId", TableName("configuratorItemDefinitions")+"(id)")
+		_db = _db.Model(ConfiguratorSlotDefinition{}).AddForeignKey("definitionId", TableName("configuratorItemDefinitions")+"(id)", "SET NULL", "SET NULL")
 
-		_db.Model(ConfiguratorSlotDefinition_allowedItemDefinitions{}).RemoveForeignKey("allowedInSlot_id", TableName("configurator_slot_definitions")+"(id)")
-		_db = _db.Model(ConfiguratorSlotDefinition_allowedItemDefinitions{}).AddForeignKey("allowedInSlot_id", TableName("configurator_slot_definitions")+"(id)", "CASCADE", "CASCADE")
+		_db.Model(ConfiguratorSlotDefinition_allowedItemDefinitions{}).RemoveForeignKey("allowedInSlot_id", TableName("configuratorSlotDefinitions")+"(id)")
+		_db = _db.Model(ConfiguratorSlotDefinition_allowedItemDefinitions{}).AddForeignKey("allowedInSlot_id", TableName("configuratorSlotDefinitions")+"(id)", "CASCADE", "CASCADE")
 
-		_db.Model(ConfiguratorItem{}).RemoveForeignKey("definitionId", TableName("configurator_item_definitions")+"(id)")
-		_db = _db.Model(ConfiguratorItem{}).AddForeignKey("definitionId", TableName("configurator_item_definitions")+"(id)", "SET NULL", "SET NULL")
+		_db.Model(ConfiguratorItem{}).RemoveForeignKey("definitionId", TableName("configuratorItemDefinitions")+"(id)")
+		_db = _db.Model(ConfiguratorItem{}).AddForeignKey("definitionId", TableName("configuratorItemDefinitions")+"(id)", "SET NULL", "SET NULL")
 
-		_db.Model(ConfiguratorAttribute{}).RemoveForeignKey("definitionId", TableName("configurator_attribute_definitions")+"(id)")
-		_db = _db.Model(ConfiguratorAttribute{}).AddForeignKey("definitionId", TableName("configurator_attribute_definitions")+"(id)", "SET NULL", "SET NULL")
+		_db.Model(ConfiguratorAttribute{}).RemoveForeignKey("definitionId", TableName("configuratorAttributeDefinitions")+"(id)")
+		_db = _db.Model(ConfiguratorAttribute{}).AddForeignKey("definitionId", TableName("configuratorAttributeDefinitions")+"(id)", "SET NULL", "SET NULL")
 
-		_db.Model(ConfiguratorAttribute{}).RemoveForeignKey("itemId", TableName("configurator_items")+"(id)")
-		_db = _db.Model(ConfiguratorAttribute{}).AddForeignKey("itemId", TableName("configurator_items")+"(id)", "SET NULL", "SET NULL")
+		_db.Model(ConfiguratorAttribute{}).RemoveForeignKey("itemId", TableName("configuratorItems")+"(id)")
+		_db = _db.Model(ConfiguratorAttribute{}).AddForeignKey("itemId", TableName("configuratorItems")+"(id)", "SET NULL", "SET NULL")
 
-		_db.Model(ConfiguratorSlot{}).RemoveForeignKey("itemId", TableName("configurator_items")+"(id)")
-		_db = _db.Model(ConfiguratorSlot{}).AddForeignKey("itemId", TableName("configurator_items")+"(id)", "SET NULL", "SET NULL")
+		_db.Model(ConfiguratorSlot{}).RemoveForeignKey("itemId", TableName("configuratorItems")+"(id)")
+		_db = _db.Model(ConfiguratorSlot{}).AddForeignKey("itemId", TableName("configuratorItems")+"(id)", "SET NULL", "SET NULL")
 
-		_db.Model(ConfiguratorSlot{}).RemoveForeignKey("definitionId", TableName("configurator_slot_definitions")+"(id)")
-		_db = _db.Model(ConfiguratorSlot{}).AddForeignKey("definitionId", TableName("configurator_slot_definitions")+"(id)", "SET NULL", "SET NULL")
+		_db.Model(ConfiguratorSlot{}).RemoveForeignKey("definitionId", TableName("configuratorSlotDefinitions")+"(id)")
+		_db = _db.Model(ConfiguratorSlot{}).AddForeignKey("definitionId", TableName("configuratorSlotDefinitions")+"(id)", "SET NULL", "SET NULL")
 
-		_db.Model(ConfiguratorSlot{}).RemoveForeignKey("parentItemId", TableName("configurator_items")+"(id)")
-		_db = _db.Model(ConfiguratorSlot{}).AddForeignKey("parentItemId", TableName("configurator_items")+"(id)", "SET NULL", "SET NULL")
+		_db.Model(ConfiguratorSlot{}).RemoveForeignKey("parentItemId", TableName("configuratorItems")+"(id)")
+		_db = _db.Model(ConfiguratorSlot{}).AddForeignKey("parentItemId", TableName("configuratorItems")+"(id)", "SET NULL", "SET NULL")
 
 	}
 	return _db.Error

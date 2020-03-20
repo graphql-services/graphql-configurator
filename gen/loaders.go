@@ -9,7 +9,7 @@ import (
 func GetLoaders(db *DB) map[string]*dataloader.Loader {
 	loaders := map[string]*dataloader.Loader{}
 
-	configurator_item_definition_categoriesBatchFn := func(ctx context.Context, keys dataloader.Keys) []*dataloader.Result {
+	configuratorItemDefinitionCategoriesBatchFn := func(ctx context.Context, keys dataloader.Keys) []*dataloader.Result {
 		var results []*dataloader.Result
 
 		ids := make([]string, len(keys))
@@ -49,9 +49,9 @@ func GetLoaders(db *DB) map[string]*dataloader.Loader {
 		return results
 	}
 
-	loaders["ConfiguratorItemDefinitionCategory"] = dataloader.NewBatchedLoader(configurator_item_definition_categoriesBatchFn, dataloader.WithClearCacheOnBatch())
+	loaders["ConfiguratorItemDefinitionCategory"] = dataloader.NewBatchedLoader(configuratorItemDefinitionCategoriesBatchFn, dataloader.WithClearCacheOnBatch())
 
-	configurator_item_definitionsBatchFn := func(ctx context.Context, keys dataloader.Keys) []*dataloader.Result {
+	configuratorItemDefinitionsBatchFn := func(ctx context.Context, keys dataloader.Keys) []*dataloader.Result {
 		var results []*dataloader.Result
 
 		ids := make([]string, len(keys))
@@ -91,9 +91,9 @@ func GetLoaders(db *DB) map[string]*dataloader.Loader {
 		return results
 	}
 
-	loaders["ConfiguratorItemDefinition"] = dataloader.NewBatchedLoader(configurator_item_definitionsBatchFn, dataloader.WithClearCacheOnBatch())
+	loaders["ConfiguratorItemDefinition"] = dataloader.NewBatchedLoader(configuratorItemDefinitionsBatchFn, dataloader.WithClearCacheOnBatch())
 
-	configurator_attribute_definitionsBatchFn := func(ctx context.Context, keys dataloader.Keys) []*dataloader.Result {
+	configuratorAttributeDefinitionsBatchFn := func(ctx context.Context, keys dataloader.Keys) []*dataloader.Result {
 		var results []*dataloader.Result
 
 		ids := make([]string, len(keys))
@@ -133,9 +133,9 @@ func GetLoaders(db *DB) map[string]*dataloader.Loader {
 		return results
 	}
 
-	loaders["ConfiguratorAttributeDefinition"] = dataloader.NewBatchedLoader(configurator_attribute_definitionsBatchFn, dataloader.WithClearCacheOnBatch())
+	loaders["ConfiguratorAttributeDefinition"] = dataloader.NewBatchedLoader(configuratorAttributeDefinitionsBatchFn, dataloader.WithClearCacheOnBatch())
 
-	configurator_slot_definitionsBatchFn := func(ctx context.Context, keys dataloader.Keys) []*dataloader.Result {
+	configuratorSlotDefinitionsBatchFn := func(ctx context.Context, keys dataloader.Keys) []*dataloader.Result {
 		var results []*dataloader.Result
 
 		ids := make([]string, len(keys))
@@ -175,9 +175,9 @@ func GetLoaders(db *DB) map[string]*dataloader.Loader {
 		return results
 	}
 
-	loaders["ConfiguratorSlotDefinition"] = dataloader.NewBatchedLoader(configurator_slot_definitionsBatchFn, dataloader.WithClearCacheOnBatch())
+	loaders["ConfiguratorSlotDefinition"] = dataloader.NewBatchedLoader(configuratorSlotDefinitionsBatchFn, dataloader.WithClearCacheOnBatch())
 
-	configurator_itemsBatchFn := func(ctx context.Context, keys dataloader.Keys) []*dataloader.Result {
+	configuratorItemsBatchFn := func(ctx context.Context, keys dataloader.Keys) []*dataloader.Result {
 		var results []*dataloader.Result
 
 		ids := make([]string, len(keys))
@@ -217,9 +217,9 @@ func GetLoaders(db *DB) map[string]*dataloader.Loader {
 		return results
 	}
 
-	loaders["ConfiguratorItem"] = dataloader.NewBatchedLoader(configurator_itemsBatchFn, dataloader.WithClearCacheOnBatch())
+	loaders["ConfiguratorItem"] = dataloader.NewBatchedLoader(configuratorItemsBatchFn, dataloader.WithClearCacheOnBatch())
 
-	configurator_attributesBatchFn := func(ctx context.Context, keys dataloader.Keys) []*dataloader.Result {
+	configuratorAttributesBatchFn := func(ctx context.Context, keys dataloader.Keys) []*dataloader.Result {
 		var results []*dataloader.Result
 
 		ids := make([]string, len(keys))
@@ -259,9 +259,9 @@ func GetLoaders(db *DB) map[string]*dataloader.Loader {
 		return results
 	}
 
-	loaders["ConfiguratorAttribute"] = dataloader.NewBatchedLoader(configurator_attributesBatchFn, dataloader.WithClearCacheOnBatch())
+	loaders["ConfiguratorAttribute"] = dataloader.NewBatchedLoader(configuratorAttributesBatchFn, dataloader.WithClearCacheOnBatch())
 
-	configurator_slotsBatchFn := func(ctx context.Context, keys dataloader.Keys) []*dataloader.Result {
+	configuratorSlotsBatchFn := func(ctx context.Context, keys dataloader.Keys) []*dataloader.Result {
 		var results []*dataloader.Result
 
 		ids := make([]string, len(keys))
@@ -301,7 +301,7 @@ func GetLoaders(db *DB) map[string]*dataloader.Loader {
 		return results
 	}
 
-	loaders["ConfiguratorSlot"] = dataloader.NewBatchedLoader(configurator_slotsBatchFn, dataloader.WithClearCacheOnBatch())
+	loaders["ConfiguratorSlot"] = dataloader.NewBatchedLoader(configuratorSlotsBatchFn, dataloader.WithClearCacheOnBatch())
 
 	return loaders
 }
