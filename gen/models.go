@@ -125,6 +125,11 @@ type ConfiguratorAttributeDefinitionChanges struct {
 	AttributesIDs  []*string
 }
 
+type ConfiguratorAttributeDefinition_definitions struct {
+	attribute_id  string
+	definition_id string
+}
+
 type ConfiguratorSlotDefinitionResultType struct {
 	EntityResultType
 }
@@ -164,6 +169,11 @@ type ConfiguratorSlotDefinitionChanges struct {
 
 	SlotsIDs                  []*string
 	AllowedItemDefinitionsIDs []*string
+}
+
+type ConfiguratorSlotDefinition_allowedItemDefinitions struct {
+	allowedInSlot_id         string
+	allowedItemDefinition_id string
 }
 
 type ConfiguratorItemResultType struct {

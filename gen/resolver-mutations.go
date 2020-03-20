@@ -42,6 +42,10 @@ func FinishMutationContext(ctx context.Context, r *GeneratedResolver) (err error
 
 	return
 }
+func RollbackMutationContext(ctx context.Context, r *GeneratedResolver) error {
+	tx := r.GetDB(ctx)
+	return tx.Rollback().Error
+}
 func GetMutationEventStore(ctx context.Context) *MutationEvents {
 	return ctx.Value(KeyMutationEvents).(*MutationEvents)
 }
@@ -127,6 +131,7 @@ func (r *GeneratedMutationResolver) UpdateConfiguratorItemDefinitionCategory(ctx
 	ctx = EnrichContextWithMutations(ctx, r.GeneratedResolver)
 	item, err = r.Handlers.UpdateConfiguratorItemDefinitionCategory(ctx, r.GeneratedResolver, id, input)
 	if err != nil {
+		RollbackMutationContext(ctx, r.GeneratedResolver)
 		return
 	}
 	err = FinishMutationContext(ctx, r.GeneratedResolver)
@@ -202,6 +207,7 @@ func (r *GeneratedMutationResolver) DeleteConfiguratorItemDefinitionCategory(ctx
 	ctx = EnrichContextWithMutations(ctx, r.GeneratedResolver)
 	item, err = r.Handlers.DeleteConfiguratorItemDefinitionCategory(ctx, r.GeneratedResolver, id)
 	if err != nil {
+		RollbackMutationContext(ctx, r.GeneratedResolver)
 		return
 	}
 	err = FinishMutationContext(ctx, r.GeneratedResolver)
@@ -242,6 +248,10 @@ func DeleteConfiguratorItemDefinitionCategoryHandler(ctx context.Context, r *Gen
 func (r *GeneratedMutationResolver) DeleteAllConfiguratorItemDefinitionCategories(ctx context.Context) (bool, error) {
 	ctx = EnrichContextWithMutations(ctx, r.GeneratedResolver)
 	done, err := r.Handlers.DeleteAllConfiguratorItemDefinitionCategories(ctx, r.GeneratedResolver)
+	if err != nil {
+		RollbackMutationContext(ctx, r.GeneratedResolver)
+		return done, err
+	}
 	err = FinishMutationContext(ctx, r.GeneratedResolver)
 	return done, err
 }
@@ -353,6 +363,7 @@ func (r *GeneratedMutationResolver) UpdateConfiguratorItemDefinition(ctx context
 	ctx = EnrichContextWithMutations(ctx, r.GeneratedResolver)
 	item, err = r.Handlers.UpdateConfiguratorItemDefinition(ctx, r.GeneratedResolver, id, input)
 	if err != nil {
+		RollbackMutationContext(ctx, r.GeneratedResolver)
 		return
 	}
 	err = FinishMutationContext(ctx, r.GeneratedResolver)
@@ -449,6 +460,7 @@ func (r *GeneratedMutationResolver) DeleteConfiguratorItemDefinition(ctx context
 	ctx = EnrichContextWithMutations(ctx, r.GeneratedResolver)
 	item, err = r.Handlers.DeleteConfiguratorItemDefinition(ctx, r.GeneratedResolver, id)
 	if err != nil {
+		RollbackMutationContext(ctx, r.GeneratedResolver)
 		return
 	}
 	err = FinishMutationContext(ctx, r.GeneratedResolver)
@@ -489,6 +501,10 @@ func DeleteConfiguratorItemDefinitionHandler(ctx context.Context, r *GeneratedRe
 func (r *GeneratedMutationResolver) DeleteAllConfiguratorItemDefinitions(ctx context.Context) (bool, error) {
 	ctx = EnrichContextWithMutations(ctx, r.GeneratedResolver)
 	done, err := r.Handlers.DeleteAllConfiguratorItemDefinitions(ctx, r.GeneratedResolver)
+	if err != nil {
+		RollbackMutationContext(ctx, r.GeneratedResolver)
+		return done, err
+	}
 	err = FinishMutationContext(ctx, r.GeneratedResolver)
 	return done, err
 }
@@ -580,6 +596,7 @@ func (r *GeneratedMutationResolver) UpdateConfiguratorAttributeDefinition(ctx co
 	ctx = EnrichContextWithMutations(ctx, r.GeneratedResolver)
 	item, err = r.Handlers.UpdateConfiguratorAttributeDefinition(ctx, r.GeneratedResolver, id, input)
 	if err != nil {
+		RollbackMutationContext(ctx, r.GeneratedResolver)
 		return
 	}
 	err = FinishMutationContext(ctx, r.GeneratedResolver)
@@ -656,6 +673,7 @@ func (r *GeneratedMutationResolver) DeleteConfiguratorAttributeDefinition(ctx co
 	ctx = EnrichContextWithMutations(ctx, r.GeneratedResolver)
 	item, err = r.Handlers.DeleteConfiguratorAttributeDefinition(ctx, r.GeneratedResolver, id)
 	if err != nil {
+		RollbackMutationContext(ctx, r.GeneratedResolver)
 		return
 	}
 	err = FinishMutationContext(ctx, r.GeneratedResolver)
@@ -696,6 +714,10 @@ func DeleteConfiguratorAttributeDefinitionHandler(ctx context.Context, r *Genera
 func (r *GeneratedMutationResolver) DeleteAllConfiguratorAttributeDefinitions(ctx context.Context) (bool, error) {
 	ctx = EnrichContextWithMutations(ctx, r.GeneratedResolver)
 	done, err := r.Handlers.DeleteAllConfiguratorAttributeDefinitions(ctx, r.GeneratedResolver)
+	if err != nil {
+		RollbackMutationContext(ctx, r.GeneratedResolver)
+		return done, err
+	}
 	err = FinishMutationContext(ctx, r.GeneratedResolver)
 	return done, err
 }
@@ -805,6 +827,7 @@ func (r *GeneratedMutationResolver) UpdateConfiguratorSlotDefinition(ctx context
 	ctx = EnrichContextWithMutations(ctx, r.GeneratedResolver)
 	item, err = r.Handlers.UpdateConfiguratorSlotDefinition(ctx, r.GeneratedResolver, id, input)
 	if err != nil {
+		RollbackMutationContext(ctx, r.GeneratedResolver)
 		return
 	}
 	err = FinishMutationContext(ctx, r.GeneratedResolver)
@@ -899,6 +922,7 @@ func (r *GeneratedMutationResolver) DeleteConfiguratorSlotDefinition(ctx context
 	ctx = EnrichContextWithMutations(ctx, r.GeneratedResolver)
 	item, err = r.Handlers.DeleteConfiguratorSlotDefinition(ctx, r.GeneratedResolver, id)
 	if err != nil {
+		RollbackMutationContext(ctx, r.GeneratedResolver)
 		return
 	}
 	err = FinishMutationContext(ctx, r.GeneratedResolver)
@@ -939,6 +963,10 @@ func DeleteConfiguratorSlotDefinitionHandler(ctx context.Context, r *GeneratedRe
 func (r *GeneratedMutationResolver) DeleteAllConfiguratorSlotDefinitions(ctx context.Context) (bool, error) {
 	ctx = EnrichContextWithMutations(ctx, r.GeneratedResolver)
 	done, err := r.Handlers.DeleteAllConfiguratorSlotDefinitions(ctx, r.GeneratedResolver)
+	if err != nil {
+		RollbackMutationContext(ctx, r.GeneratedResolver)
+		return done, err
+	}
 	err = FinishMutationContext(ctx, r.GeneratedResolver)
 	return done, err
 }
@@ -1055,6 +1083,7 @@ func (r *GeneratedMutationResolver) UpdateConfiguratorItem(ctx context.Context, 
 	ctx = EnrichContextWithMutations(ctx, r.GeneratedResolver)
 	item, err = r.Handlers.UpdateConfiguratorItem(ctx, r.GeneratedResolver, id, input)
 	if err != nil {
+		RollbackMutationContext(ctx, r.GeneratedResolver)
 		return
 	}
 	err = FinishMutationContext(ctx, r.GeneratedResolver)
@@ -1156,6 +1185,7 @@ func (r *GeneratedMutationResolver) DeleteConfiguratorItem(ctx context.Context, 
 	ctx = EnrichContextWithMutations(ctx, r.GeneratedResolver)
 	item, err = r.Handlers.DeleteConfiguratorItem(ctx, r.GeneratedResolver, id)
 	if err != nil {
+		RollbackMutationContext(ctx, r.GeneratedResolver)
 		return
 	}
 	err = FinishMutationContext(ctx, r.GeneratedResolver)
@@ -1196,6 +1226,10 @@ func DeleteConfiguratorItemHandler(ctx context.Context, r *GeneratedResolver, id
 func (r *GeneratedMutationResolver) DeleteAllConfiguratorItems(ctx context.Context) (bool, error) {
 	ctx = EnrichContextWithMutations(ctx, r.GeneratedResolver)
 	done, err := r.Handlers.DeleteAllConfiguratorItems(ctx, r.GeneratedResolver)
+	if err != nil {
+		RollbackMutationContext(ctx, r.GeneratedResolver)
+		return done, err
+	}
 	err = FinishMutationContext(ctx, r.GeneratedResolver)
 	return done, err
 }
@@ -1291,6 +1325,7 @@ func (r *GeneratedMutationResolver) UpdateConfiguratorAttribute(ctx context.Cont
 	ctx = EnrichContextWithMutations(ctx, r.GeneratedResolver)
 	item, err = r.Handlers.UpdateConfiguratorAttribute(ctx, r.GeneratedResolver, id, input)
 	if err != nil {
+		RollbackMutationContext(ctx, r.GeneratedResolver)
 		return
 	}
 	err = FinishMutationContext(ctx, r.GeneratedResolver)
@@ -1371,6 +1406,7 @@ func (r *GeneratedMutationResolver) DeleteConfiguratorAttribute(ctx context.Cont
 	ctx = EnrichContextWithMutations(ctx, r.GeneratedResolver)
 	item, err = r.Handlers.DeleteConfiguratorAttribute(ctx, r.GeneratedResolver, id)
 	if err != nil {
+		RollbackMutationContext(ctx, r.GeneratedResolver)
 		return
 	}
 	err = FinishMutationContext(ctx, r.GeneratedResolver)
@@ -1411,6 +1447,10 @@ func DeleteConfiguratorAttributeHandler(ctx context.Context, r *GeneratedResolve
 func (r *GeneratedMutationResolver) DeleteAllConfiguratorAttributes(ctx context.Context) (bool, error) {
 	ctx = EnrichContextWithMutations(ctx, r.GeneratedResolver)
 	done, err := r.Handlers.DeleteAllConfiguratorAttributes(ctx, r.GeneratedResolver)
+	if err != nil {
+		RollbackMutationContext(ctx, r.GeneratedResolver)
+		return done, err
+	}
 	err = FinishMutationContext(ctx, r.GeneratedResolver)
 	return done, err
 }
@@ -1500,6 +1540,7 @@ func (r *GeneratedMutationResolver) UpdateConfiguratorSlot(ctx context.Context, 
 	ctx = EnrichContextWithMutations(ctx, r.GeneratedResolver)
 	item, err = r.Handlers.UpdateConfiguratorSlot(ctx, r.GeneratedResolver, id, input)
 	if err != nil {
+		RollbackMutationContext(ctx, r.GeneratedResolver)
 		return
 	}
 	err = FinishMutationContext(ctx, r.GeneratedResolver)
@@ -1574,6 +1615,7 @@ func (r *GeneratedMutationResolver) DeleteConfiguratorSlot(ctx context.Context, 
 	ctx = EnrichContextWithMutations(ctx, r.GeneratedResolver)
 	item, err = r.Handlers.DeleteConfiguratorSlot(ctx, r.GeneratedResolver, id)
 	if err != nil {
+		RollbackMutationContext(ctx, r.GeneratedResolver)
 		return
 	}
 	err = FinishMutationContext(ctx, r.GeneratedResolver)
@@ -1614,6 +1656,10 @@ func DeleteConfiguratorSlotHandler(ctx context.Context, r *GeneratedResolver, id
 func (r *GeneratedMutationResolver) DeleteAllConfiguratorSlots(ctx context.Context) (bool, error) {
 	ctx = EnrichContextWithMutations(ctx, r.GeneratedResolver)
 	done, err := r.Handlers.DeleteAllConfiguratorSlots(ctx, r.GeneratedResolver)
+	if err != nil {
+		RollbackMutationContext(ctx, r.GeneratedResolver)
+		return done, err
+	}
 	err = FinishMutationContext(ctx, r.GeneratedResolver)
 	return done, err
 }
