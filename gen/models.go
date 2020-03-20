@@ -130,6 +130,10 @@ type ConfiguratorAttributeDefinition_definitions struct {
 	definition_id string
 }
 
+func (ConfiguratorAttributeDefinition_definitions) TableName() string {
+	return TableName("configuratorAttributeDefinition_definitions")
+}
+
 type ConfiguratorSlotDefinitionResultType struct {
 	EntityResultType
 }
@@ -174,6 +178,10 @@ type ConfiguratorSlotDefinitionChanges struct {
 type ConfiguratorSlotDefinition_allowedItemDefinitions struct {
 	allowedInSlot_id         string
 	allowedItemDefinition_id string
+}
+
+func (ConfiguratorSlotDefinition_allowedItemDefinitions) TableName() string {
+	return TableName("configuratorSlotDefinition_allowedItemDefinitions")
 }
 
 type ConfiguratorItemResultType struct {

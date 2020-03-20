@@ -48,12 +48,12 @@ func QueryConfiguratorItemDefinitionCategoryHandler(ctx context.Context, r *Gene
 		qb = r.DB.Query()
 	}
 	if opts.ID != nil {
-		qb = qb.Where(TableName("configuratorItemDefinitionCategories")+".id = ?", *opts.ID)
+		qb = qb.Where(TableName("configurator_item_definition_categories")+".id = ?", *opts.ID)
 	}
 
 	var items []*ConfiguratorItemDefinitionCategory
 	giOpts := GetItemsOptions{
-		Alias:      TableName("configuratorItemDefinitionCategories"),
+		Alias:      TableName("configurator_item_definition_categories"),
 		Preloaders: []string{},
 	}
 	err := rt.GetItems(ctx, qb, giOpts, &items)
@@ -115,7 +115,7 @@ type GeneratedConfiguratorItemDefinitionCategoryResultTypeResolver struct{ *Gene
 
 func (r *GeneratedConfiguratorItemDefinitionCategoryResultTypeResolver) Items(ctx context.Context, obj *ConfiguratorItemDefinitionCategoryResultType) (items []*ConfiguratorItemDefinitionCategory, err error) {
 	giOpts := GetItemsOptions{
-		Alias:      TableName("configuratorItemDefinitionCategories"),
+		Alias:      TableName("configurator_item_definition_categories"),
 		Preloaders: []string{},
 	}
 	err = obj.GetItems(ctx, r.DB.db, giOpts, &items)
@@ -162,7 +162,7 @@ func (r *GeneratedConfiguratorItemDefinitionCategoryResolver) DefinitionsIds(ctx
 	if db == nil {
 		db = r.DB.Query()
 	}
-	err = db.Model(obj).Select(TableName("configuratorItemDefinitions")+".id").Related(&items, "Definitions").Error
+	err = db.Model(obj).Select(TableName("configurator_item_definitions")+".id").Related(&items, "Definitions").Error
 
 	for _, item := range items {
 		ids = append(ids, item.ID)
@@ -209,12 +209,12 @@ func QueryConfiguratorItemDefinitionHandler(ctx context.Context, r *GeneratedRes
 		qb = r.DB.Query()
 	}
 	if opts.ID != nil {
-		qb = qb.Where(TableName("configuratorItemDefinitions")+".id = ?", *opts.ID)
+		qb = qb.Where(TableName("configurator_item_definitions")+".id = ?", *opts.ID)
 	}
 
 	var items []*ConfiguratorItemDefinition
 	giOpts := GetItemsOptions{
-		Alias:      TableName("configuratorItemDefinitions"),
+		Alias:      TableName("configurator_item_definitions"),
 		Preloaders: []string{},
 	}
 	err := rt.GetItems(ctx, qb, giOpts, &items)
@@ -276,7 +276,7 @@ type GeneratedConfiguratorItemDefinitionResultTypeResolver struct{ *GeneratedRes
 
 func (r *GeneratedConfiguratorItemDefinitionResultTypeResolver) Items(ctx context.Context, obj *ConfiguratorItemDefinitionResultType) (items []*ConfiguratorItemDefinition, err error) {
 	giOpts := GetItemsOptions{
-		Alias:      TableName("configuratorItemDefinitions"),
+		Alias:      TableName("configurator_item_definitions"),
 		Preloaders: []string{},
 	}
 	err = obj.GetItems(ctx, r.DB.db, giOpts, &items)
@@ -323,7 +323,7 @@ func (r *GeneratedConfiguratorItemDefinitionResolver) AttributesIds(ctx context.
 	if db == nil {
 		db = r.DB.Query()
 	}
-	err = db.Model(obj).Select(TableName("configuratorAttributeDefinitions")+".id").Related(&items, "Attributes").Error
+	err = db.Model(obj).Select(TableName("configurator_attribute_definitions")+".id").Related(&items, "Attributes").Error
 
 	for _, item := range items {
 		ids = append(ids, item.ID)
@@ -356,7 +356,7 @@ func (r *GeneratedConfiguratorItemDefinitionResolver) SlotsIds(ctx context.Conte
 	if db == nil {
 		db = r.DB.Query()
 	}
-	err = db.Model(obj).Select(TableName("configuratorSlotDefinitions")+".id").Related(&items, "Slots").Error
+	err = db.Model(obj).Select(TableName("configurator_slot_definitions")+".id").Related(&items, "Slots").Error
 
 	for _, item := range items {
 		ids = append(ids, item.ID)
@@ -389,7 +389,7 @@ func (r *GeneratedConfiguratorItemDefinitionResolver) ItemsIds(ctx context.Conte
 	if db == nil {
 		db = r.DB.Query()
 	}
-	err = db.Model(obj).Select(TableName("configuratorItems")+".id").Related(&items, "Items").Error
+	err = db.Model(obj).Select(TableName("configurator_items")+".id").Related(&items, "Items").Error
 
 	for _, item := range items {
 		ids = append(ids, item.ID)
@@ -422,7 +422,7 @@ func (r *GeneratedConfiguratorItemDefinitionResolver) AllowedInSlotsIds(ctx cont
 	if db == nil {
 		db = r.DB.Query()
 	}
-	err = db.Model(obj).Select(TableName("configuratorSlotDefinitions")+".id").Related(&items, "AllowedInSlots").Error
+	err = db.Model(obj).Select(TableName("configurator_slot_definitions")+".id").Related(&items, "AllowedInSlots").Error
 
 	for _, item := range items {
 		ids = append(ids, item.ID)
@@ -485,12 +485,12 @@ func QueryConfiguratorAttributeDefinitionHandler(ctx context.Context, r *Generat
 		qb = r.DB.Query()
 	}
 	if opts.ID != nil {
-		qb = qb.Where(TableName("configuratorAttributeDefinitions")+".id = ?", *opts.ID)
+		qb = qb.Where(TableName("configurator_attribute_definitions")+".id = ?", *opts.ID)
 	}
 
 	var items []*ConfiguratorAttributeDefinition
 	giOpts := GetItemsOptions{
-		Alias:      TableName("configuratorAttributeDefinitions"),
+		Alias:      TableName("configurator_attribute_definitions"),
 		Preloaders: []string{},
 	}
 	err := rt.GetItems(ctx, qb, giOpts, &items)
@@ -552,7 +552,7 @@ type GeneratedConfiguratorAttributeDefinitionResultTypeResolver struct{ *Generat
 
 func (r *GeneratedConfiguratorAttributeDefinitionResultTypeResolver) Items(ctx context.Context, obj *ConfiguratorAttributeDefinitionResultType) (items []*ConfiguratorAttributeDefinition, err error) {
 	giOpts := GetItemsOptions{
-		Alias:      TableName("configuratorAttributeDefinitions"),
+		Alias:      TableName("configurator_attribute_definitions"),
 		Preloaders: []string{},
 	}
 	err = obj.GetItems(ctx, r.DB.db, giOpts, &items)
@@ -599,7 +599,7 @@ func (r *GeneratedConfiguratorAttributeDefinitionResolver) DefinitionsIds(ctx co
 	if db == nil {
 		db = r.DB.Query()
 	}
-	err = db.Model(obj).Select(TableName("configuratorItemDefinitions")+".id").Related(&items, "Definitions").Error
+	err = db.Model(obj).Select(TableName("configurator_item_definitions")+".id").Related(&items, "Definitions").Error
 
 	for _, item := range items {
 		ids = append(ids, item.ID)
@@ -632,7 +632,7 @@ func (r *GeneratedConfiguratorAttributeDefinitionResolver) AttributesIds(ctx con
 	if db == nil {
 		db = r.DB.Query()
 	}
-	err = db.Model(obj).Select(TableName("configuratorAttributes")+".id").Related(&items, "Attributes").Error
+	err = db.Model(obj).Select(TableName("configurator_attributes")+".id").Related(&items, "Attributes").Error
 
 	for _, item := range items {
 		ids = append(ids, item.ID)
@@ -679,12 +679,12 @@ func QueryConfiguratorSlotDefinitionHandler(ctx context.Context, r *GeneratedRes
 		qb = r.DB.Query()
 	}
 	if opts.ID != nil {
-		qb = qb.Where(TableName("configuratorSlotDefinitions")+".id = ?", *opts.ID)
+		qb = qb.Where(TableName("configurator_slot_definitions")+".id = ?", *opts.ID)
 	}
 
 	var items []*ConfiguratorSlotDefinition
 	giOpts := GetItemsOptions{
-		Alias:      TableName("configuratorSlotDefinitions"),
+		Alias:      TableName("configurator_slot_definitions"),
 		Preloaders: []string{},
 	}
 	err := rt.GetItems(ctx, qb, giOpts, &items)
@@ -746,7 +746,7 @@ type GeneratedConfiguratorSlotDefinitionResultTypeResolver struct{ *GeneratedRes
 
 func (r *GeneratedConfiguratorSlotDefinitionResultTypeResolver) Items(ctx context.Context, obj *ConfiguratorSlotDefinitionResultType) (items []*ConfiguratorSlotDefinition, err error) {
 	giOpts := GetItemsOptions{
-		Alias:      TableName("configuratorSlotDefinitions"),
+		Alias:      TableName("configurator_slot_definitions"),
 		Preloaders: []string{},
 	}
 	err = obj.GetItems(ctx, r.DB.db, giOpts, &items)
@@ -809,7 +809,7 @@ func (r *GeneratedConfiguratorSlotDefinitionResolver) SlotsIds(ctx context.Conte
 	if db == nil {
 		db = r.DB.Query()
 	}
-	err = db.Model(obj).Select(TableName("configuratorSlots")+".id").Related(&items, "Slots").Error
+	err = db.Model(obj).Select(TableName("configurator_slots")+".id").Related(&items, "Slots").Error
 
 	for _, item := range items {
 		ids = append(ids, item.ID)
@@ -842,7 +842,7 @@ func (r *GeneratedConfiguratorSlotDefinitionResolver) AllowedItemDefinitionsIds(
 	if db == nil {
 		db = r.DB.Query()
 	}
-	err = db.Model(obj).Select(TableName("configuratorItemDefinitions")+".id").Related(&items, "AllowedItemDefinitions").Error
+	err = db.Model(obj).Select(TableName("configurator_item_definitions")+".id").Related(&items, "AllowedItemDefinitions").Error
 
 	for _, item := range items {
 		ids = append(ids, item.ID)
@@ -889,12 +889,12 @@ func QueryConfiguratorItemHandler(ctx context.Context, r *GeneratedResolver, opt
 		qb = r.DB.Query()
 	}
 	if opts.ID != nil {
-		qb = qb.Where(TableName("configuratorItems")+".id = ?", *opts.ID)
+		qb = qb.Where(TableName("configurator_items")+".id = ?", *opts.ID)
 	}
 
 	var items []*ConfiguratorItem
 	giOpts := GetItemsOptions{
-		Alias:      TableName("configuratorItems"),
+		Alias:      TableName("configurator_items"),
 		Preloaders: []string{},
 	}
 	err := rt.GetItems(ctx, qb, giOpts, &items)
@@ -956,7 +956,7 @@ type GeneratedConfiguratorItemResultTypeResolver struct{ *GeneratedResolver }
 
 func (r *GeneratedConfiguratorItemResultTypeResolver) Items(ctx context.Context, obj *ConfiguratorItemResultType) (items []*ConfiguratorItem, err error) {
 	giOpts := GetItemsOptions{
-		Alias:      TableName("configuratorItems"),
+		Alias:      TableName("configurator_items"),
 		Preloaders: []string{},
 	}
 	err = obj.GetItems(ctx, r.DB.db, giOpts, &items)
@@ -1019,7 +1019,7 @@ func (r *GeneratedConfiguratorItemResolver) AttributesIds(ctx context.Context, o
 	if db == nil {
 		db = r.DB.Query()
 	}
-	err = db.Model(obj).Select(TableName("configuratorAttributes")+".id").Related(&items, "Attributes").Error
+	err = db.Model(obj).Select(TableName("configurator_attributes")+".id").Related(&items, "Attributes").Error
 
 	for _, item := range items {
 		ids = append(ids, item.ID)
@@ -1052,7 +1052,7 @@ func (r *GeneratedConfiguratorItemResolver) SlotsIds(ctx context.Context, obj *C
 	if db == nil {
 		db = r.DB.Query()
 	}
-	err = db.Model(obj).Select(TableName("configuratorSlots")+".id").Related(&items, "Slots").Error
+	err = db.Model(obj).Select(TableName("configurator_slots")+".id").Related(&items, "Slots").Error
 
 	for _, item := range items {
 		ids = append(ids, item.ID)
@@ -1085,7 +1085,7 @@ func (r *GeneratedConfiguratorItemResolver) ParentSlotsIds(ctx context.Context, 
 	if db == nil {
 		db = r.DB.Query()
 	}
-	err = db.Model(obj).Select(TableName("configuratorSlots")+".id").Related(&items, "ParentSlots").Error
+	err = db.Model(obj).Select(TableName("configurator_slots")+".id").Related(&items, "ParentSlots").Error
 
 	for _, item := range items {
 		ids = append(ids, item.ID)
@@ -1132,12 +1132,12 @@ func QueryConfiguratorAttributeHandler(ctx context.Context, r *GeneratedResolver
 		qb = r.DB.Query()
 	}
 	if opts.ID != nil {
-		qb = qb.Where(TableName("configuratorAttributes")+".id = ?", *opts.ID)
+		qb = qb.Where(TableName("configurator_attributes")+".id = ?", *opts.ID)
 	}
 
 	var items []*ConfiguratorAttribute
 	giOpts := GetItemsOptions{
-		Alias:      TableName("configuratorAttributes"),
+		Alias:      TableName("configurator_attributes"),
 		Preloaders: []string{},
 	}
 	err := rt.GetItems(ctx, qb, giOpts, &items)
@@ -1199,7 +1199,7 @@ type GeneratedConfiguratorAttributeResultTypeResolver struct{ *GeneratedResolver
 
 func (r *GeneratedConfiguratorAttributeResultTypeResolver) Items(ctx context.Context, obj *ConfiguratorAttributeResultType) (items []*ConfiguratorAttribute, err error) {
 	giOpts := GetItemsOptions{
-		Alias:      TableName("configuratorAttributes"),
+		Alias:      TableName("configurator_attributes"),
 		Preloaders: []string{},
 	}
 	err = obj.GetItems(ctx, r.DB.db, giOpts, &items)
@@ -1292,12 +1292,12 @@ func QueryConfiguratorSlotHandler(ctx context.Context, r *GeneratedResolver, opt
 		qb = r.DB.Query()
 	}
 	if opts.ID != nil {
-		qb = qb.Where(TableName("configuratorSlots")+".id = ?", *opts.ID)
+		qb = qb.Where(TableName("configurator_slots")+".id = ?", *opts.ID)
 	}
 
 	var items []*ConfiguratorSlot
 	giOpts := GetItemsOptions{
-		Alias:      TableName("configuratorSlots"),
+		Alias:      TableName("configurator_slots"),
 		Preloaders: []string{},
 	}
 	err := rt.GetItems(ctx, qb, giOpts, &items)
@@ -1359,7 +1359,7 @@ type GeneratedConfiguratorSlotResultTypeResolver struct{ *GeneratedResolver }
 
 func (r *GeneratedConfiguratorSlotResultTypeResolver) Items(ctx context.Context, obj *ConfiguratorSlotResultType) (items []*ConfiguratorSlot, err error) {
 	giOpts := GetItemsOptions{
-		Alias:      TableName("configuratorSlots"),
+		Alias:      TableName("configurator_slots"),
 		Preloaders: []string{},
 	}
 	err = obj.GetItems(ctx, r.DB.db, giOpts, &items)

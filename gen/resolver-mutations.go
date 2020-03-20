@@ -233,7 +233,7 @@ func DeleteConfiguratorItemDefinitionCategoryHandler(ctx context.Context, r *Gen
 		PrincipalID: principalID,
 	})
 
-	err = tx.Delete(item, TableName("configuratorItemDefinitionCategories")+".id = ?", id).Error
+	err = tx.Delete(item, TableName("configurator_item_definition_categories")+".id = ?", id).Error
 	if err != nil {
 		tx.Rollback()
 		return
@@ -486,7 +486,7 @@ func DeleteConfiguratorItemDefinitionHandler(ctx context.Context, r *GeneratedRe
 		PrincipalID: principalID,
 	})
 
-	err = tx.Delete(item, TableName("configuratorItemDefinitions")+".id = ?", id).Error
+	err = tx.Delete(item, TableName("configurator_item_definitions")+".id = ?", id).Error
 	if err != nil {
 		tx.Rollback()
 		return
@@ -699,7 +699,7 @@ func DeleteConfiguratorAttributeDefinitionHandler(ctx context.Context, r *Genera
 		PrincipalID: principalID,
 	})
 
-	err = tx.Delete(item, TableName("configuratorAttributeDefinitions")+".id = ?", id).Error
+	err = tx.Delete(item, TableName("configurator_attribute_definitions")+".id = ?", id).Error
 	if err != nil {
 		tx.Rollback()
 		return
@@ -948,7 +948,7 @@ func DeleteConfiguratorSlotDefinitionHandler(ctx context.Context, r *GeneratedRe
 		PrincipalID: principalID,
 	})
 
-	err = tx.Delete(item, TableName("configuratorSlotDefinitions")+".id = ?", id).Error
+	err = tx.Delete(item, TableName("configurator_slot_definitions")+".id = ?", id).Error
 	if err != nil {
 		tx.Rollback()
 		return
@@ -1211,7 +1211,7 @@ func DeleteConfiguratorItemHandler(ctx context.Context, r *GeneratedResolver, id
 		PrincipalID: principalID,
 	})
 
-	err = tx.Delete(item, TableName("configuratorItems")+".id = ?", id).Error
+	err = tx.Delete(item, TableName("configurator_items")+".id = ?", id).Error
 	if err != nil {
 		tx.Rollback()
 		return
@@ -1432,7 +1432,7 @@ func DeleteConfiguratorAttributeHandler(ctx context.Context, r *GeneratedResolve
 		PrincipalID: principalID,
 	})
 
-	err = tx.Delete(item, TableName("configuratorAttributes")+".id = ?", id).Error
+	err = tx.Delete(item, TableName("configurator_attributes")+".id = ?", id).Error
 	if err != nil {
 		tx.Rollback()
 		return
@@ -1641,7 +1641,7 @@ func DeleteConfiguratorSlotHandler(ctx context.Context, r *GeneratedResolver, id
 		PrincipalID: principalID,
 	})
 
-	err = tx.Delete(item, TableName("configuratorSlots")+".id = ?", id).Error
+	err = tx.Delete(item, TableName("configurator_slots")+".id = ?", id).Error
 	if err != nil {
 		tx.Rollback()
 		return

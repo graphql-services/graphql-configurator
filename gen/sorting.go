@@ -7,7 +7,7 @@ import (
 )
 
 func (s ConfiguratorItemDefinitionCategorySortType) Apply(ctx context.Context, dialect gorm.Dialect, sorts *[]string, joins *[]string) error {
-	return s.ApplyWithAlias(ctx, dialect, TableName("configuratorItemDefinitionCategories"), sorts, joins)
+	return s.ApplyWithAlias(ctx, dialect, TableName("configurator_item_definition_categories"), sorts, joins)
 }
 func (s ConfiguratorItemDefinitionCategorySortType) ApplyWithAlias(ctx context.Context, dialect gorm.Dialect, alias string, sorts *[]string, joins *[]string) error {
 	aliasPrefix := dialect.Quote(alias) + "."
@@ -46,7 +46,7 @@ func (s ConfiguratorItemDefinitionCategorySortType) ApplyWithAlias(ctx context.C
 
 	if s.Definitions != nil {
 		_alias := alias + "_definitions"
-		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configuratorItemDefinitions"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias)+"."+dialect.Quote("categoryId")+" = "+dialect.Quote(alias)+".id")
+		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configurator_item_definitions"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias)+"."+dialect.Quote("categoryId")+" = "+dialect.Quote(alias)+".id")
 		err := s.Definitions.ApplyWithAlias(ctx, dialect, _alias, sorts, joins)
 		if err != nil {
 			return err
@@ -57,7 +57,7 @@ func (s ConfiguratorItemDefinitionCategorySortType) ApplyWithAlias(ctx context.C
 }
 
 func (s ConfiguratorItemDefinitionSortType) Apply(ctx context.Context, dialect gorm.Dialect, sorts *[]string, joins *[]string) error {
-	return s.ApplyWithAlias(ctx, dialect, TableName("configuratorItemDefinitions"), sorts, joins)
+	return s.ApplyWithAlias(ctx, dialect, TableName("configurator_item_definitions"), sorts, joins)
 }
 func (s ConfiguratorItemDefinitionSortType) ApplyWithAlias(ctx context.Context, dialect gorm.Dialect, alias string, sorts *[]string, joins *[]string) error {
 	aliasPrefix := dialect.Quote(alias) + "."
@@ -96,7 +96,7 @@ func (s ConfiguratorItemDefinitionSortType) ApplyWithAlias(ctx context.Context, 
 
 	if s.Attributes != nil {
 		_alias := alias + "_attributes"
-		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configuratorAttributeDefinition_definitions"))+" "+dialect.Quote(_alias+"_jointable")+" ON "+dialect.Quote(alias)+".id = "+dialect.Quote(_alias+"_jointable")+"."+dialect.Quote("definition_id")+" LEFT JOIN "+dialect.Quote(TableName("configuratorAttributeDefinitions"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias+"_jointable")+"."+dialect.Quote("attribute_id")+" = "+dialect.Quote(_alias)+".id")
+		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configuratorAttributeDefinition_definitions"))+" "+dialect.Quote(_alias+"_jointable")+" ON "+dialect.Quote(alias)+".id = "+dialect.Quote(_alias+"_jointable")+"."+dialect.Quote("definition_id")+" LEFT JOIN "+dialect.Quote(TableName("configurator_attribute_definitions"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias+"_jointable")+"."+dialect.Quote("attribute_id")+" = "+dialect.Quote(_alias)+".id")
 		err := s.Attributes.ApplyWithAlias(ctx, dialect, _alias, sorts, joins)
 		if err != nil {
 			return err
@@ -105,7 +105,7 @@ func (s ConfiguratorItemDefinitionSortType) ApplyWithAlias(ctx context.Context, 
 
 	if s.Slots != nil {
 		_alias := alias + "_slots"
-		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configuratorSlotDefinitions"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias)+"."+dialect.Quote("definitionId")+" = "+dialect.Quote(alias)+".id")
+		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configurator_slot_definitions"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias)+"."+dialect.Quote("definitionId")+" = "+dialect.Quote(alias)+".id")
 		err := s.Slots.ApplyWithAlias(ctx, dialect, _alias, sorts, joins)
 		if err != nil {
 			return err
@@ -114,7 +114,7 @@ func (s ConfiguratorItemDefinitionSortType) ApplyWithAlias(ctx context.Context, 
 
 	if s.Items != nil {
 		_alias := alias + "_items"
-		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configuratorItems"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias)+"."+dialect.Quote("definitionId")+" = "+dialect.Quote(alias)+".id")
+		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configurator_items"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias)+"."+dialect.Quote("definitionId")+" = "+dialect.Quote(alias)+".id")
 		err := s.Items.ApplyWithAlias(ctx, dialect, _alias, sorts, joins)
 		if err != nil {
 			return err
@@ -123,7 +123,7 @@ func (s ConfiguratorItemDefinitionSortType) ApplyWithAlias(ctx context.Context, 
 
 	if s.AllowedInSlots != nil {
 		_alias := alias + "_allowedInSlots"
-		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configuratorSlotDefinition_allowedItemDefinitions"))+" "+dialect.Quote(_alias+"_jointable")+" ON "+dialect.Quote(alias)+".id = "+dialect.Quote(_alias+"_jointable")+"."+dialect.Quote("allowedItemDefinition_id")+" LEFT JOIN "+dialect.Quote(TableName("configuratorSlotDefinitions"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias+"_jointable")+"."+dialect.Quote("allowedInSlot_id")+" = "+dialect.Quote(_alias)+".id")
+		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configuratorSlotDefinition_allowedItemDefinitions"))+" "+dialect.Quote(_alias+"_jointable")+" ON "+dialect.Quote(alias)+".id = "+dialect.Quote(_alias+"_jointable")+"."+dialect.Quote("allowedItemDefinition_id")+" LEFT JOIN "+dialect.Quote(TableName("configurator_slot_definitions"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias+"_jointable")+"."+dialect.Quote("allowedInSlot_id")+" = "+dialect.Quote(_alias)+".id")
 		err := s.AllowedInSlots.ApplyWithAlias(ctx, dialect, _alias, sorts, joins)
 		if err != nil {
 			return err
@@ -132,7 +132,7 @@ func (s ConfiguratorItemDefinitionSortType) ApplyWithAlias(ctx context.Context, 
 
 	if s.Category != nil {
 		_alias := alias + "_category"
-		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configuratorItemDefinitionCategories"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias)+".id = "+alias+"."+dialect.Quote("categoryId"))
+		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configurator_item_definition_categories"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias)+".id = "+alias+"."+dialect.Quote("categoryId"))
 		err := s.Category.ApplyWithAlias(ctx, dialect, _alias, sorts, joins)
 		if err != nil {
 			return err
@@ -143,7 +143,7 @@ func (s ConfiguratorItemDefinitionSortType) ApplyWithAlias(ctx context.Context, 
 }
 
 func (s ConfiguratorAttributeDefinitionSortType) Apply(ctx context.Context, dialect gorm.Dialect, sorts *[]string, joins *[]string) error {
-	return s.ApplyWithAlias(ctx, dialect, TableName("configuratorAttributeDefinitions"), sorts, joins)
+	return s.ApplyWithAlias(ctx, dialect, TableName("configurator_attribute_definitions"), sorts, joins)
 }
 func (s ConfiguratorAttributeDefinitionSortType) ApplyWithAlias(ctx context.Context, dialect gorm.Dialect, alias string, sorts *[]string, joins *[]string) error {
 	aliasPrefix := dialect.Quote(alias) + "."
@@ -174,7 +174,7 @@ func (s ConfiguratorAttributeDefinitionSortType) ApplyWithAlias(ctx context.Cont
 
 	if s.Definitions != nil {
 		_alias := alias + "_definitions"
-		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configuratorAttributeDefinition_definitions"))+" "+dialect.Quote(_alias+"_jointable")+" ON "+dialect.Quote(alias)+".id = "+dialect.Quote(_alias+"_jointable")+"."+dialect.Quote("attribute_id")+" LEFT JOIN "+dialect.Quote(TableName("configuratorItemDefinitions"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias+"_jointable")+"."+dialect.Quote("definition_id")+" = "+dialect.Quote(_alias)+".id")
+		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configuratorAttributeDefinition_definitions"))+" "+dialect.Quote(_alias+"_jointable")+" ON "+dialect.Quote(alias)+".id = "+dialect.Quote(_alias+"_jointable")+"."+dialect.Quote("attribute_id")+" LEFT JOIN "+dialect.Quote(TableName("configurator_item_definitions"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias+"_jointable")+"."+dialect.Quote("definition_id")+" = "+dialect.Quote(_alias)+".id")
 		err := s.Definitions.ApplyWithAlias(ctx, dialect, _alias, sorts, joins)
 		if err != nil {
 			return err
@@ -183,7 +183,7 @@ func (s ConfiguratorAttributeDefinitionSortType) ApplyWithAlias(ctx context.Cont
 
 	if s.Attributes != nil {
 		_alias := alias + "_attributes"
-		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configuratorAttributes"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias)+"."+dialect.Quote("definitionId")+" = "+dialect.Quote(alias)+".id")
+		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configurator_attributes"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias)+"."+dialect.Quote("definitionId")+" = "+dialect.Quote(alias)+".id")
 		err := s.Attributes.ApplyWithAlias(ctx, dialect, _alias, sorts, joins)
 		if err != nil {
 			return err
@@ -194,7 +194,7 @@ func (s ConfiguratorAttributeDefinitionSortType) ApplyWithAlias(ctx context.Cont
 }
 
 func (s ConfiguratorSlotDefinitionSortType) Apply(ctx context.Context, dialect gorm.Dialect, sorts *[]string, joins *[]string) error {
-	return s.ApplyWithAlias(ctx, dialect, TableName("configuratorSlotDefinitions"), sorts, joins)
+	return s.ApplyWithAlias(ctx, dialect, TableName("configurator_slot_definitions"), sorts, joins)
 }
 func (s ConfiguratorSlotDefinitionSortType) ApplyWithAlias(ctx context.Context, dialect gorm.Dialect, alias string, sorts *[]string, joins *[]string) error {
 	aliasPrefix := dialect.Quote(alias) + "."
@@ -241,7 +241,7 @@ func (s ConfiguratorSlotDefinitionSortType) ApplyWithAlias(ctx context.Context, 
 
 	if s.Definition != nil {
 		_alias := alias + "_definition"
-		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configuratorItemDefinitions"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias)+".id = "+alias+"."+dialect.Quote("definitionId"))
+		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configurator_item_definitions"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias)+".id = "+alias+"."+dialect.Quote("definitionId"))
 		err := s.Definition.ApplyWithAlias(ctx, dialect, _alias, sorts, joins)
 		if err != nil {
 			return err
@@ -250,7 +250,7 @@ func (s ConfiguratorSlotDefinitionSortType) ApplyWithAlias(ctx context.Context, 
 
 	if s.Slots != nil {
 		_alias := alias + "_slots"
-		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configuratorSlots"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias)+"."+dialect.Quote("definitionId")+" = "+dialect.Quote(alias)+".id")
+		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configurator_slots"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias)+"."+dialect.Quote("definitionId")+" = "+dialect.Quote(alias)+".id")
 		err := s.Slots.ApplyWithAlias(ctx, dialect, _alias, sorts, joins)
 		if err != nil {
 			return err
@@ -259,7 +259,7 @@ func (s ConfiguratorSlotDefinitionSortType) ApplyWithAlias(ctx context.Context, 
 
 	if s.AllowedItemDefinitions != nil {
 		_alias := alias + "_allowedItemDefinitions"
-		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configuratorSlotDefinition_allowedItemDefinitions"))+" "+dialect.Quote(_alias+"_jointable")+" ON "+dialect.Quote(alias)+".id = "+dialect.Quote(_alias+"_jointable")+"."+dialect.Quote("allowedInSlot_id")+" LEFT JOIN "+dialect.Quote(TableName("configuratorItemDefinitions"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias+"_jointable")+"."+dialect.Quote("allowedItemDefinition_id")+" = "+dialect.Quote(_alias)+".id")
+		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configuratorSlotDefinition_allowedItemDefinitions"))+" "+dialect.Quote(_alias+"_jointable")+" ON "+dialect.Quote(alias)+".id = "+dialect.Quote(_alias+"_jointable")+"."+dialect.Quote("allowedInSlot_id")+" LEFT JOIN "+dialect.Quote(TableName("configurator_item_definitions"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias+"_jointable")+"."+dialect.Quote("allowedItemDefinition_id")+" = "+dialect.Quote(_alias)+".id")
 		err := s.AllowedItemDefinitions.ApplyWithAlias(ctx, dialect, _alias, sorts, joins)
 		if err != nil {
 			return err
@@ -270,7 +270,7 @@ func (s ConfiguratorSlotDefinitionSortType) ApplyWithAlias(ctx context.Context, 
 }
 
 func (s ConfiguratorItemSortType) Apply(ctx context.Context, dialect gorm.Dialect, sorts *[]string, joins *[]string) error {
-	return s.ApplyWithAlias(ctx, dialect, TableName("configuratorItems"), sorts, joins)
+	return s.ApplyWithAlias(ctx, dialect, TableName("configurator_items"), sorts, joins)
 }
 func (s ConfiguratorItemSortType) ApplyWithAlias(ctx context.Context, dialect gorm.Dialect, alias string, sorts *[]string, joins *[]string) error {
 	aliasPrefix := dialect.Quote(alias) + "."
@@ -317,7 +317,7 @@ func (s ConfiguratorItemSortType) ApplyWithAlias(ctx context.Context, dialect go
 
 	if s.Definition != nil {
 		_alias := alias + "_definition"
-		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configuratorItemDefinitions"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias)+".id = "+alias+"."+dialect.Quote("definitionId"))
+		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configurator_item_definitions"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias)+".id = "+alias+"."+dialect.Quote("definitionId"))
 		err := s.Definition.ApplyWithAlias(ctx, dialect, _alias, sorts, joins)
 		if err != nil {
 			return err
@@ -326,7 +326,7 @@ func (s ConfiguratorItemSortType) ApplyWithAlias(ctx context.Context, dialect go
 
 	if s.Attributes != nil {
 		_alias := alias + "_attributes"
-		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configuratorAttributes"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias)+"."+dialect.Quote("itemId")+" = "+dialect.Quote(alias)+".id")
+		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configurator_attributes"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias)+"."+dialect.Quote("itemId")+" = "+dialect.Quote(alias)+".id")
 		err := s.Attributes.ApplyWithAlias(ctx, dialect, _alias, sorts, joins)
 		if err != nil {
 			return err
@@ -335,7 +335,7 @@ func (s ConfiguratorItemSortType) ApplyWithAlias(ctx context.Context, dialect go
 
 	if s.Slots != nil {
 		_alias := alias + "_slots"
-		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configuratorSlots"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias)+"."+dialect.Quote("parentItemId")+" = "+dialect.Quote(alias)+".id")
+		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configurator_slots"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias)+"."+dialect.Quote("parentItemId")+" = "+dialect.Quote(alias)+".id")
 		err := s.Slots.ApplyWithAlias(ctx, dialect, _alias, sorts, joins)
 		if err != nil {
 			return err
@@ -344,7 +344,7 @@ func (s ConfiguratorItemSortType) ApplyWithAlias(ctx context.Context, dialect go
 
 	if s.ParentSlots != nil {
 		_alias := alias + "_parentSlots"
-		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configuratorSlots"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias)+"."+dialect.Quote("itemId")+" = "+dialect.Quote(alias)+".id")
+		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configurator_slots"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias)+"."+dialect.Quote("itemId")+" = "+dialect.Quote(alias)+".id")
 		err := s.ParentSlots.ApplyWithAlias(ctx, dialect, _alias, sorts, joins)
 		if err != nil {
 			return err
@@ -355,7 +355,7 @@ func (s ConfiguratorItemSortType) ApplyWithAlias(ctx context.Context, dialect go
 }
 
 func (s ConfiguratorAttributeSortType) Apply(ctx context.Context, dialect gorm.Dialect, sorts *[]string, joins *[]string) error {
-	return s.ApplyWithAlias(ctx, dialect, TableName("configuratorAttributes"), sorts, joins)
+	return s.ApplyWithAlias(ctx, dialect, TableName("configurator_attributes"), sorts, joins)
 }
 func (s ConfiguratorAttributeSortType) ApplyWithAlias(ctx context.Context, dialect gorm.Dialect, alias string, sorts *[]string, joins *[]string) error {
 	aliasPrefix := dialect.Quote(alias) + "."
@@ -402,7 +402,7 @@ func (s ConfiguratorAttributeSortType) ApplyWithAlias(ctx context.Context, diale
 
 	if s.Definition != nil {
 		_alias := alias + "_definition"
-		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configuratorAttributeDefinitions"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias)+".id = "+alias+"."+dialect.Quote("definitionId"))
+		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configurator_attribute_definitions"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias)+".id = "+alias+"."+dialect.Quote("definitionId"))
 		err := s.Definition.ApplyWithAlias(ctx, dialect, _alias, sorts, joins)
 		if err != nil {
 			return err
@@ -411,7 +411,7 @@ func (s ConfiguratorAttributeSortType) ApplyWithAlias(ctx context.Context, diale
 
 	if s.Item != nil {
 		_alias := alias + "_item"
-		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configuratorItems"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias)+".id = "+alias+"."+dialect.Quote("itemId"))
+		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configurator_items"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias)+".id = "+alias+"."+dialect.Quote("itemId"))
 		err := s.Item.ApplyWithAlias(ctx, dialect, _alias, sorts, joins)
 		if err != nil {
 			return err
@@ -422,7 +422,7 @@ func (s ConfiguratorAttributeSortType) ApplyWithAlias(ctx context.Context, diale
 }
 
 func (s ConfiguratorSlotSortType) Apply(ctx context.Context, dialect gorm.Dialect, sorts *[]string, joins *[]string) error {
-	return s.ApplyWithAlias(ctx, dialect, TableName("configuratorSlots"), sorts, joins)
+	return s.ApplyWithAlias(ctx, dialect, TableName("configurator_slots"), sorts, joins)
 }
 func (s ConfiguratorSlotSortType) ApplyWithAlias(ctx context.Context, dialect gorm.Dialect, alias string, sorts *[]string, joins *[]string) error {
 	aliasPrefix := dialect.Quote(alias) + "."
@@ -465,7 +465,7 @@ func (s ConfiguratorSlotSortType) ApplyWithAlias(ctx context.Context, dialect go
 
 	if s.Item != nil {
 		_alias := alias + "_item"
-		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configuratorItems"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias)+".id = "+alias+"."+dialect.Quote("itemId"))
+		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configurator_items"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias)+".id = "+alias+"."+dialect.Quote("itemId"))
 		err := s.Item.ApplyWithAlias(ctx, dialect, _alias, sorts, joins)
 		if err != nil {
 			return err
@@ -474,7 +474,7 @@ func (s ConfiguratorSlotSortType) ApplyWithAlias(ctx context.Context, dialect go
 
 	if s.Definition != nil {
 		_alias := alias + "_definition"
-		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configuratorSlotDefinitions"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias)+".id = "+alias+"."+dialect.Quote("definitionId"))
+		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configurator_slot_definitions"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias)+".id = "+alias+"."+dialect.Quote("definitionId"))
 		err := s.Definition.ApplyWithAlias(ctx, dialect, _alias, sorts, joins)
 		if err != nil {
 			return err
@@ -483,7 +483,7 @@ func (s ConfiguratorSlotSortType) ApplyWithAlias(ctx context.Context, dialect go
 
 	if s.ParentItem != nil {
 		_alias := alias + "_parentItem"
-		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configuratorItems"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias)+".id = "+alias+"."+dialect.Quote("parentItemId"))
+		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configurator_items"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias)+".id = "+alias+"."+dialect.Quote("parentItemId"))
 		err := s.ParentItem.ApplyWithAlias(ctx, dialect, _alias, sorts, joins)
 		if err != nil {
 			return err

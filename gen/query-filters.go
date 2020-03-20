@@ -32,7 +32,7 @@ func (qf *ConfiguratorItemDefinitionCategoryQueryFilter) Apply(ctx context.Conte
 	queryParts := strings.Split(*qf.Query, " ")
 	for _, part := range queryParts {
 		ors := []string{}
-		if err := qf.applyQueryWithFields(dialect, fields, part, TableName("configuratorItemDefinitionCategories"), &ors, values, joins); err != nil {
+		if err := qf.applyQueryWithFields(dialect, fields, part, TableName("configurator_item_definition_categories"), &ors, values, joins); err != nil {
 			return err
 		}
 		*wheres = append(*wheres, "("+strings.Join(ors, " OR ")+")")
@@ -77,7 +77,7 @@ func (qf *ConfiguratorItemDefinitionCategoryQueryFilter) applyQueryWithFields(di
 	if fs, ok := fieldsMap["definitions"]; ok {
 		_fields := []*ast.Field{}
 		_alias := alias + "_definitions"
-		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configuratorItemDefinitions"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias)+"."+dialect.Quote("categoryId")+" = "+dialect.Quote(alias)+".id")
+		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configurator_item_definitions"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias)+"."+dialect.Quote("categoryId")+" = "+dialect.Quote(alias)+".id")
 
 		for _, f := range fs {
 			for _, s := range f.SelectionSet {
@@ -119,7 +119,7 @@ func (qf *ConfiguratorItemDefinitionQueryFilter) Apply(ctx context.Context, dial
 	queryParts := strings.Split(*qf.Query, " ")
 	for _, part := range queryParts {
 		ors := []string{}
-		if err := qf.applyQueryWithFields(dialect, fields, part, TableName("configuratorItemDefinitions"), &ors, values, joins); err != nil {
+		if err := qf.applyQueryWithFields(dialect, fields, part, TableName("configurator_item_definitions"), &ors, values, joins); err != nil {
 			return err
 		}
 		*wheres = append(*wheres, "("+strings.Join(ors, " OR ")+")")
@@ -156,7 +156,7 @@ func (qf *ConfiguratorItemDefinitionQueryFilter) applyQueryWithFields(dialect go
 	if fs, ok := fieldsMap["attributes"]; ok {
 		_fields := []*ast.Field{}
 		_alias := alias + "_attributes"
-		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configuratorAttributeDefinition_definitions"))+" "+dialect.Quote(_alias+"_jointable")+" ON "+dialect.Quote(alias)+".id = "+dialect.Quote(_alias+"_jointable")+"."+dialect.Quote("definition_id")+" LEFT JOIN "+dialect.Quote(TableName("configuratorAttributeDefinitions"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias+"_jointable")+"."+dialect.Quote("attribute_id")+" = "+dialect.Quote(_alias)+".id")
+		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configuratorAttributeDefinition_definitions"))+" "+dialect.Quote(_alias+"_jointable")+" ON "+dialect.Quote(alias)+".id = "+dialect.Quote(_alias+"_jointable")+"."+dialect.Quote("definition_id")+" LEFT JOIN "+dialect.Quote(TableName("configurator_attribute_definitions"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias+"_jointable")+"."+dialect.Quote("attribute_id")+" = "+dialect.Quote(_alias)+".id")
 
 		for _, f := range fs {
 			for _, s := range f.SelectionSet {
@@ -175,7 +175,7 @@ func (qf *ConfiguratorItemDefinitionQueryFilter) applyQueryWithFields(dialect go
 	if fs, ok := fieldsMap["slots"]; ok {
 		_fields := []*ast.Field{}
 		_alias := alias + "_slots"
-		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configuratorSlotDefinitions"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias)+"."+dialect.Quote("definitionId")+" = "+dialect.Quote(alias)+".id")
+		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configurator_slot_definitions"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias)+"."+dialect.Quote("definitionId")+" = "+dialect.Quote(alias)+".id")
 
 		for _, f := range fs {
 			for _, s := range f.SelectionSet {
@@ -194,7 +194,7 @@ func (qf *ConfiguratorItemDefinitionQueryFilter) applyQueryWithFields(dialect go
 	if fs, ok := fieldsMap["items"]; ok {
 		_fields := []*ast.Field{}
 		_alias := alias + "_items"
-		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configuratorItems"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias)+"."+dialect.Quote("definitionId")+" = "+dialect.Quote(alias)+".id")
+		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configurator_items"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias)+"."+dialect.Quote("definitionId")+" = "+dialect.Quote(alias)+".id")
 
 		for _, f := range fs {
 			for _, s := range f.SelectionSet {
@@ -213,7 +213,7 @@ func (qf *ConfiguratorItemDefinitionQueryFilter) applyQueryWithFields(dialect go
 	if fs, ok := fieldsMap["allowedInSlots"]; ok {
 		_fields := []*ast.Field{}
 		_alias := alias + "_allowedInSlots"
-		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configuratorSlotDefinition_allowedItemDefinitions"))+" "+dialect.Quote(_alias+"_jointable")+" ON "+dialect.Quote(alias)+".id = "+dialect.Quote(_alias+"_jointable")+"."+dialect.Quote("allowedItemDefinition_id")+" LEFT JOIN "+dialect.Quote(TableName("configuratorSlotDefinitions"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias+"_jointable")+"."+dialect.Quote("allowedInSlot_id")+" = "+dialect.Quote(_alias)+".id")
+		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configuratorSlotDefinition_allowedItemDefinitions"))+" "+dialect.Quote(_alias+"_jointable")+" ON "+dialect.Quote(alias)+".id = "+dialect.Quote(_alias+"_jointable")+"."+dialect.Quote("allowedItemDefinition_id")+" LEFT JOIN "+dialect.Quote(TableName("configurator_slot_definitions"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias+"_jointable")+"."+dialect.Quote("allowedInSlot_id")+" = "+dialect.Quote(_alias)+".id")
 
 		for _, f := range fs {
 			for _, s := range f.SelectionSet {
@@ -232,7 +232,7 @@ func (qf *ConfiguratorItemDefinitionQueryFilter) applyQueryWithFields(dialect go
 	if fs, ok := fieldsMap["category"]; ok {
 		_fields := []*ast.Field{}
 		_alias := alias + "_category"
-		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configuratorItemDefinitionCategories"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias)+".id = "+alias+"."+dialect.Quote("categoryId"))
+		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configurator_item_definition_categories"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias)+".id = "+alias+"."+dialect.Quote("categoryId"))
 
 		for _, f := range fs {
 			for _, s := range f.SelectionSet {
@@ -274,7 +274,7 @@ func (qf *ConfiguratorAttributeDefinitionQueryFilter) Apply(ctx context.Context,
 	queryParts := strings.Split(*qf.Query, " ")
 	for _, part := range queryParts {
 		ors := []string{}
-		if err := qf.applyQueryWithFields(dialect, fields, part, TableName("configuratorAttributeDefinitions"), &ors, values, joins); err != nil {
+		if err := qf.applyQueryWithFields(dialect, fields, part, TableName("configurator_attribute_definitions"), &ors, values, joins); err != nil {
 			return err
 		}
 		*wheres = append(*wheres, "("+strings.Join(ors, " OR ")+")")
@@ -303,7 +303,7 @@ func (qf *ConfiguratorAttributeDefinitionQueryFilter) applyQueryWithFields(diale
 	if fs, ok := fieldsMap["definitions"]; ok {
 		_fields := []*ast.Field{}
 		_alias := alias + "_definitions"
-		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configuratorAttributeDefinition_definitions"))+" "+dialect.Quote(_alias+"_jointable")+" ON "+dialect.Quote(alias)+".id = "+dialect.Quote(_alias+"_jointable")+"."+dialect.Quote("attribute_id")+" LEFT JOIN "+dialect.Quote(TableName("configuratorItemDefinitions"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias+"_jointable")+"."+dialect.Quote("definition_id")+" = "+dialect.Quote(_alias)+".id")
+		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configuratorAttributeDefinition_definitions"))+" "+dialect.Quote(_alias+"_jointable")+" ON "+dialect.Quote(alias)+".id = "+dialect.Quote(_alias+"_jointable")+"."+dialect.Quote("attribute_id")+" LEFT JOIN "+dialect.Quote(TableName("configurator_item_definitions"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias+"_jointable")+"."+dialect.Quote("definition_id")+" = "+dialect.Quote(_alias)+".id")
 
 		for _, f := range fs {
 			for _, s := range f.SelectionSet {
@@ -322,7 +322,7 @@ func (qf *ConfiguratorAttributeDefinitionQueryFilter) applyQueryWithFields(diale
 	if fs, ok := fieldsMap["attributes"]; ok {
 		_fields := []*ast.Field{}
 		_alias := alias + "_attributes"
-		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configuratorAttributes"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias)+"."+dialect.Quote("definitionId")+" = "+dialect.Quote(alias)+".id")
+		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configurator_attributes"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias)+"."+dialect.Quote("definitionId")+" = "+dialect.Quote(alias)+".id")
 
 		for _, f := range fs {
 			for _, s := range f.SelectionSet {
@@ -364,7 +364,7 @@ func (qf *ConfiguratorSlotDefinitionQueryFilter) Apply(ctx context.Context, dial
 	queryParts := strings.Split(*qf.Query, " ")
 	for _, part := range queryParts {
 		ors := []string{}
-		if err := qf.applyQueryWithFields(dialect, fields, part, TableName("configuratorSlotDefinitions"), &ors, values, joins); err != nil {
+		if err := qf.applyQueryWithFields(dialect, fields, part, TableName("configurator_slot_definitions"), &ors, values, joins); err != nil {
 			return err
 		}
 		*wheres = append(*wheres, "("+strings.Join(ors, " OR ")+")")
@@ -429,7 +429,7 @@ func (qf *ConfiguratorSlotDefinitionQueryFilter) applyQueryWithFields(dialect go
 	if fs, ok := fieldsMap["definition"]; ok {
 		_fields := []*ast.Field{}
 		_alias := alias + "_definition"
-		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configuratorItemDefinitions"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias)+".id = "+alias+"."+dialect.Quote("definitionId"))
+		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configurator_item_definitions"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias)+".id = "+alias+"."+dialect.Quote("definitionId"))
 
 		for _, f := range fs {
 			for _, s := range f.SelectionSet {
@@ -448,7 +448,7 @@ func (qf *ConfiguratorSlotDefinitionQueryFilter) applyQueryWithFields(dialect go
 	if fs, ok := fieldsMap["slots"]; ok {
 		_fields := []*ast.Field{}
 		_alias := alias + "_slots"
-		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configuratorSlots"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias)+"."+dialect.Quote("definitionId")+" = "+dialect.Quote(alias)+".id")
+		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configurator_slots"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias)+"."+dialect.Quote("definitionId")+" = "+dialect.Quote(alias)+".id")
 
 		for _, f := range fs {
 			for _, s := range f.SelectionSet {
@@ -467,7 +467,7 @@ func (qf *ConfiguratorSlotDefinitionQueryFilter) applyQueryWithFields(dialect go
 	if fs, ok := fieldsMap["allowedItemDefinitions"]; ok {
 		_fields := []*ast.Field{}
 		_alias := alias + "_allowedItemDefinitions"
-		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configuratorSlotDefinition_allowedItemDefinitions"))+" "+dialect.Quote(_alias+"_jointable")+" ON "+dialect.Quote(alias)+".id = "+dialect.Quote(_alias+"_jointable")+"."+dialect.Quote("allowedInSlot_id")+" LEFT JOIN "+dialect.Quote(TableName("configuratorItemDefinitions"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias+"_jointable")+"."+dialect.Quote("allowedItemDefinition_id")+" = "+dialect.Quote(_alias)+".id")
+		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configuratorSlotDefinition_allowedItemDefinitions"))+" "+dialect.Quote(_alias+"_jointable")+" ON "+dialect.Quote(alias)+".id = "+dialect.Quote(_alias+"_jointable")+"."+dialect.Quote("allowedInSlot_id")+" LEFT JOIN "+dialect.Quote(TableName("configurator_item_definitions"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias+"_jointable")+"."+dialect.Quote("allowedItemDefinition_id")+" = "+dialect.Quote(_alias)+".id")
 
 		for _, f := range fs {
 			for _, s := range f.SelectionSet {
@@ -509,7 +509,7 @@ func (qf *ConfiguratorItemQueryFilter) Apply(ctx context.Context, dialect gorm.D
 	queryParts := strings.Split(*qf.Query, " ")
 	for _, part := range queryParts {
 		ors := []string{}
-		if err := qf.applyQueryWithFields(dialect, fields, part, TableName("configuratorItems"), &ors, values, joins); err != nil {
+		if err := qf.applyQueryWithFields(dialect, fields, part, TableName("configurator_items"), &ors, values, joins); err != nil {
 			return err
 		}
 		*wheres = append(*wheres, "("+strings.Join(ors, " OR ")+")")
@@ -554,7 +554,7 @@ func (qf *ConfiguratorItemQueryFilter) applyQueryWithFields(dialect gorm.Dialect
 	if fs, ok := fieldsMap["definition"]; ok {
 		_fields := []*ast.Field{}
 		_alias := alias + "_definition"
-		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configuratorItemDefinitions"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias)+".id = "+alias+"."+dialect.Quote("definitionId"))
+		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configurator_item_definitions"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias)+".id = "+alias+"."+dialect.Quote("definitionId"))
 
 		for _, f := range fs {
 			for _, s := range f.SelectionSet {
@@ -573,7 +573,7 @@ func (qf *ConfiguratorItemQueryFilter) applyQueryWithFields(dialect gorm.Dialect
 	if fs, ok := fieldsMap["attributes"]; ok {
 		_fields := []*ast.Field{}
 		_alias := alias + "_attributes"
-		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configuratorAttributes"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias)+"."+dialect.Quote("itemId")+" = "+dialect.Quote(alias)+".id")
+		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configurator_attributes"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias)+"."+dialect.Quote("itemId")+" = "+dialect.Quote(alias)+".id")
 
 		for _, f := range fs {
 			for _, s := range f.SelectionSet {
@@ -592,7 +592,7 @@ func (qf *ConfiguratorItemQueryFilter) applyQueryWithFields(dialect gorm.Dialect
 	if fs, ok := fieldsMap["slots"]; ok {
 		_fields := []*ast.Field{}
 		_alias := alias + "_slots"
-		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configuratorSlots"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias)+"."+dialect.Quote("parentItemId")+" = "+dialect.Quote(alias)+".id")
+		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configurator_slots"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias)+"."+dialect.Quote("parentItemId")+" = "+dialect.Quote(alias)+".id")
 
 		for _, f := range fs {
 			for _, s := range f.SelectionSet {
@@ -611,7 +611,7 @@ func (qf *ConfiguratorItemQueryFilter) applyQueryWithFields(dialect gorm.Dialect
 	if fs, ok := fieldsMap["parentSlots"]; ok {
 		_fields := []*ast.Field{}
 		_alias := alias + "_parentSlots"
-		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configuratorSlots"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias)+"."+dialect.Quote("itemId")+" = "+dialect.Quote(alias)+".id")
+		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configurator_slots"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias)+"."+dialect.Quote("itemId")+" = "+dialect.Quote(alias)+".id")
 
 		for _, f := range fs {
 			for _, s := range f.SelectionSet {
@@ -653,7 +653,7 @@ func (qf *ConfiguratorAttributeQueryFilter) Apply(ctx context.Context, dialect g
 	queryParts := strings.Split(*qf.Query, " ")
 	for _, part := range queryParts {
 		ors := []string{}
-		if err := qf.applyQueryWithFields(dialect, fields, part, TableName("configuratorAttributes"), &ors, values, joins); err != nil {
+		if err := qf.applyQueryWithFields(dialect, fields, part, TableName("configurator_attributes"), &ors, values, joins); err != nil {
 			return err
 		}
 		*wheres = append(*wheres, "("+strings.Join(ors, " OR ")+")")
@@ -706,7 +706,7 @@ func (qf *ConfiguratorAttributeQueryFilter) applyQueryWithFields(dialect gorm.Di
 	if fs, ok := fieldsMap["definition"]; ok {
 		_fields := []*ast.Field{}
 		_alias := alias + "_definition"
-		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configuratorAttributeDefinitions"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias)+".id = "+alias+"."+dialect.Quote("definitionId"))
+		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configurator_attribute_definitions"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias)+".id = "+alias+"."+dialect.Quote("definitionId"))
 
 		for _, f := range fs {
 			for _, s := range f.SelectionSet {
@@ -725,7 +725,7 @@ func (qf *ConfiguratorAttributeQueryFilter) applyQueryWithFields(dialect gorm.Di
 	if fs, ok := fieldsMap["item"]; ok {
 		_fields := []*ast.Field{}
 		_alias := alias + "_item"
-		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configuratorItems"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias)+".id = "+alias+"."+dialect.Quote("itemId"))
+		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configurator_items"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias)+".id = "+alias+"."+dialect.Quote("itemId"))
 
 		for _, f := range fs {
 			for _, s := range f.SelectionSet {
@@ -767,7 +767,7 @@ func (qf *ConfiguratorSlotQueryFilter) Apply(ctx context.Context, dialect gorm.D
 	queryParts := strings.Split(*qf.Query, " ")
 	for _, part := range queryParts {
 		ors := []string{}
-		if err := qf.applyQueryWithFields(dialect, fields, part, TableName("configuratorSlots"), &ors, values, joins); err != nil {
+		if err := qf.applyQueryWithFields(dialect, fields, part, TableName("configurator_slots"), &ors, values, joins); err != nil {
 			return err
 		}
 		*wheres = append(*wheres, "("+strings.Join(ors, " OR ")+")")
@@ -800,7 +800,7 @@ func (qf *ConfiguratorSlotQueryFilter) applyQueryWithFields(dialect gorm.Dialect
 	if fs, ok := fieldsMap["item"]; ok {
 		_fields := []*ast.Field{}
 		_alias := alias + "_item"
-		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configuratorItems"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias)+".id = "+alias+"."+dialect.Quote("itemId"))
+		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configurator_items"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias)+".id = "+alias+"."+dialect.Quote("itemId"))
 
 		for _, f := range fs {
 			for _, s := range f.SelectionSet {
@@ -819,7 +819,7 @@ func (qf *ConfiguratorSlotQueryFilter) applyQueryWithFields(dialect gorm.Dialect
 	if fs, ok := fieldsMap["definition"]; ok {
 		_fields := []*ast.Field{}
 		_alias := alias + "_definition"
-		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configuratorSlotDefinitions"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias)+".id = "+alias+"."+dialect.Quote("definitionId"))
+		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configurator_slot_definitions"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias)+".id = "+alias+"."+dialect.Quote("definitionId"))
 
 		for _, f := range fs {
 			for _, s := range f.SelectionSet {
@@ -838,7 +838,7 @@ func (qf *ConfiguratorSlotQueryFilter) applyQueryWithFields(dialect gorm.Dialect
 	if fs, ok := fieldsMap["parentItem"]; ok {
 		_fields := []*ast.Field{}
 		_alias := alias + "_parentItem"
-		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configuratorItems"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias)+".id = "+alias+"."+dialect.Quote("parentItemId"))
+		*joins = append(*joins, "LEFT JOIN "+dialect.Quote(TableName("configurator_items"))+" "+dialect.Quote(_alias)+" ON "+dialect.Quote(_alias)+".id = "+alias+"."+dialect.Quote("parentItemId"))
 
 		for _, f := range fs {
 			for _, s := range f.SelectionSet {
