@@ -5,8 +5,10 @@ type ConfiguratorItem @entity {
 
   rawData: String @column(type: text)
 
-  definition: ConfiguratorItemDefinition @relationship(inverse: items)
-  attributes: [ConfiguratorAttribute!]! @relationship(inverse: item)
+  definition: ConfiguratorItemDefinition
+    @relationship(inverse: items, onDelete: RESTRICT)
+  attributes: [ConfiguratorAttribute!]!
+    @relationship(inverse: item, onDelete: CASCADE)
   slots: [ConfiguratorSlot!]! @relationship(inverse: parentItem)
   parentSlots: [ConfiguratorSlot!]! @relationship(inverse: item)
 }
@@ -16,7 +18,8 @@ type ConfiguratorAttribute @entity {
   floatValue: Float @column
   intValue: Int @column
 
-  definition: ConfiguratorAttributeDefinition @relationship(inverse: attributes)
+  definition: ConfiguratorAttributeDefinition
+    @relationship(inverse: attributes, onDelete: RESTRICT)
   item: ConfiguratorItem @relationship(inverse: attributes)
 }
 
@@ -25,6 +28,7 @@ type ConfiguratorSlot @entity {
 
   item: ConfiguratorItem @relationship(inverse: parentSlots)
 
-  definition: ConfiguratorSlotDefinition @relationship(inverse: slots)
+  definition: ConfiguratorSlotDefinition
+    @relationship(inverse: slots, onDelete: RESTRICT)
   parentItem: ConfiguratorItem @relationship(inverse: slots)
 }

@@ -48,10 +48,10 @@ func AutoMigrate(db *gorm.DB) error {
 		_db = _db.Model(ConfiguratorSlotDefinition_allowedItemDefinitions{}).AddForeignKey("allowedInSlot_id", TableName("configurator_slot_definitions")+"(id)", "CASCADE", "CASCADE")
 
 		_db.Model(ConfiguratorItem{}).RemoveForeignKey("definitionId", TableName("configurator_item_definitions")+"(id)")
-		_db = _db.Model(ConfiguratorItem{}).AddForeignKey("definitionId", TableName("configurator_item_definitions")+"(id)", "SET NULL", "SET NULL")
+		_db = _db.Model(ConfiguratorItem{}).AddForeignKey("definitionId", TableName("configurator_item_definitions")+"(id)", "RESTRICT", "SET NULL")
 
 		_db.Model(ConfiguratorAttribute{}).RemoveForeignKey("definitionId", TableName("configurator_attribute_definitions")+"(id)")
-		_db = _db.Model(ConfiguratorAttribute{}).AddForeignKey("definitionId", TableName("configurator_attribute_definitions")+"(id)", "SET NULL", "SET NULL")
+		_db = _db.Model(ConfiguratorAttribute{}).AddForeignKey("definitionId", TableName("configurator_attribute_definitions")+"(id)", "RESTRICT", "SET NULL")
 
 		_db.Model(ConfiguratorAttribute{}).RemoveForeignKey("itemId", TableName("configurator_items")+"(id)")
 		_db = _db.Model(ConfiguratorAttribute{}).AddForeignKey("itemId", TableName("configurator_items")+"(id)", "SET NULL", "SET NULL")
@@ -60,7 +60,7 @@ func AutoMigrate(db *gorm.DB) error {
 		_db = _db.Model(ConfiguratorSlot{}).AddForeignKey("itemId", TableName("configurator_items")+"(id)", "SET NULL", "SET NULL")
 
 		_db.Model(ConfiguratorSlot{}).RemoveForeignKey("definitionId", TableName("configurator_slot_definitions")+"(id)")
-		_db = _db.Model(ConfiguratorSlot{}).AddForeignKey("definitionId", TableName("configurator_slot_definitions")+"(id)", "SET NULL", "SET NULL")
+		_db = _db.Model(ConfiguratorSlot{}).AddForeignKey("definitionId", TableName("configurator_slot_definitions")+"(id)", "RESTRICT", "SET NULL")
 
 		_db.Model(ConfiguratorSlot{}).RemoveForeignKey("parentItemId", TableName("configurator_items")+"(id)")
 		_db = _db.Model(ConfiguratorSlot{}).AddForeignKey("parentItemId", TableName("configurator_items")+"(id)", "SET NULL", "SET NULL")
