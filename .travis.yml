@@ -14,7 +14,7 @@ deploy:
   - provider: releases
     api_key:
       secure: We/xNd9d7Xr3OYtX4CsD8Ua4uE6ApxxyDGHWlKrGHThVMAM1vFtE5LoQcCli8C8gWXt9c9WtFNB1yXgDeptvoHtvEBYlpwQ3x+FH4SrOwJHTOiq77xzajdSGsqdae0DJDsNPNW2nbmjzTYpNArK97CwRsnlF1UlpBEL6nciFx0UX3g5Iv419bL8hbUU8HErdLuF5nI3GxByI0wWXKWNZeEQnLEXddNPSEFnuI3DNifBhyNIhGngVe8F90kA/AofoPhH2cR/9QGdZQGK+m7HHeGT83VmahXA0fQC0IzfaguYZpru9dLHnvK/vFe7SIU4GJGgQ/ZsiuI7EW5hNOj9WT9FBsukrNvcu0v8zOWYORCxdADiYrdfhFZNDmtClOcwd6ujvu30WfXptBcJpSlipgm6tmVMw8lE8vnJdKX3/oUXdLZAJwTRbVu9ncmQ7qdEHs6FceZXv6TJmwoFVZ1LQiwjZ3xF/nLdKF6cHn12ygwzNLH9HvgdfcvCDEr0O742UMKlKaOnLTT8R+UFgg0OOE4x81ZYl9YmqKI+IahytfxulzF07dhSrfNDx0Uv3mwaldoHcQAEJgQbTe19n5Jn/joHvuNDx4hXzEJUGwvBiDvy42IelMDAYX+g+kNlaQa2QW794HaiPwvlMHCKXrt0Q9X/dn4BEaHGFC8aSZSgcTvg=
-      file: release/lambda.zip
+    file: release/lambda.zip
     skip_cleanup: true
     on:
       tags: true
