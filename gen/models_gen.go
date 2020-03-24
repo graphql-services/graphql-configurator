@@ -771,6 +771,10 @@ type ConfiguratorSlotSortType struct {
 	ParentItem   *ConfiguratorItemSortType           `json:"parentItem"`
 }
 
+type StockItem struct {
+	ID string `json:"id"`
+}
+
 type _Service struct {
 	Sdl *string `json:"sdl"`
 }

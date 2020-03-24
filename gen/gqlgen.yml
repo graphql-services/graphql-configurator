@@ -162,5 +162,8 @@ models:
   
   
   
+  StockItem:
+    fields:
+  
   _Any:
     model: github.com/graphql-services/graphql-configurator/gen._Any

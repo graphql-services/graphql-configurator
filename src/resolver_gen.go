@@ -153,3 +153,7 @@ type ConfiguratorSlotResolver struct {
 func (r *Resolver) ConfiguratorSlot() gen.ConfiguratorSlotResolver {
 	return &ConfiguratorSlotResolver{&gen.GeneratedConfiguratorSlotResolver{r.GeneratedResolver}}
 }
+
+type StockItemResolver struct {
+	*gen.GeneratedStockItemResolver
+}

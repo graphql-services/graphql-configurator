@@ -67,6 +67,8 @@ type ResolutionHandlers struct {
 	QueryConfiguratorItem      func(ctx context.Context, r *GeneratedResolver, opts QueryConfiguratorItemHandlerOptions) (*ConfiguratorItem, error)
 	QueryConfiguratorItems     func(ctx context.Context, r *GeneratedResolver, opts QueryConfiguratorItemsHandlerOptions) (*ConfiguratorItemResultType, error)
 
+	ConfiguratorItemStockItem func(ctx context.Context, r *GeneratedResolver, obj *ConfiguratorItem) (res *StockItem, err error)
+
 	ConfiguratorItemDefinition func(ctx context.Context, r *GeneratedResolver, obj *ConfiguratorItem) (res *ConfiguratorItemDefinition, err error)
 
 	ConfiguratorItemAttributes func(ctx context.Context, r *GeneratedResolver, obj *ConfiguratorItem) (res []*ConfiguratorAttribute, err error)
@@ -160,6 +162,8 @@ func DefaultResolutionHandlers() ResolutionHandlers {
 		DeleteAllConfiguratorItems: DeleteAllConfiguratorItemsHandler,
 		QueryConfiguratorItem:      QueryConfiguratorItemHandler,
 		QueryConfiguratorItems:     QueryConfiguratorItemsHandler,
+
+		ConfiguratorItemStockItem: ConfiguratorItemStockItemHandler,
 
 		ConfiguratorItemDefinition: ConfiguratorItemDefinitionHandler,
 

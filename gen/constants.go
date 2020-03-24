@@ -212,6 +212,7 @@ type ConfiguratorItem {
   code: String
   name: String
   stockItemId: ID
+  stockItem: StockItem
   rawData: String
   definition: ConfiguratorItemDefinition
   attributes: [ConfiguratorAttribute!]!
@@ -255,6 +256,10 @@ type ConfiguratorSlot {
   createdAt: Time!
   updatedBy: ID
   createdBy: ID
+}
+
+extend type StockItem @key(fields: "id") {
+  id: ID! @external
 }
 
 input ConfiguratorItemDefinitionCategoryCreateInput {

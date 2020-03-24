@@ -2,6 +2,7 @@ type ConfiguratorItem @entity {
   code: String @column
   name: String @column
   stockItemId: ID @column
+  stockItem: StockItem
 
   rawData: String @column(type: text)
 
@@ -31,4 +32,8 @@ type ConfiguratorSlot @entity {
   definition: ConfiguratorSlotDefinition
     @relationship(inverse: slots, onDelete: RESTRICT)
   parentItem: ConfiguratorItem @relationship(inverse: slots)
+}
+
+extend type StockItem @key(fields: "id") {
+  id: ID! @external
 }

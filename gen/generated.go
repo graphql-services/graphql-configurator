@@ -141,6 +141,7 @@ type ComplexityRoot struct {
 		RawData        func(childComplexity int) int
 		Slots          func(childComplexity int) int
 		SlotsIds       func(childComplexity int) int
+		StockItem      func(childComplexity int) int
 		StockItemID    func(childComplexity int) int
 		UpdatedAt      func(childComplexity int) int
 		UpdatedBy      func(childComplexity int) int
@@ -289,6 +290,10 @@ type ComplexityRoot struct {
 		_service                             func(childComplexity int) int
 	}
 
+	StockItem struct {
+		ID func(childComplexity int) int
+	}
+
 	_Service struct {
 		Sdl func(childComplexity int) int
 	}
@@ -314,6 +319,8 @@ type ConfiguratorAttributeResultTypeResolver interface {
 	Count(ctx context.Context, obj *ConfiguratorAttributeResultType) (int, error)
 }
 type ConfiguratorItemResolver interface {
+	StockItem(ctx context.Context, obj *ConfiguratorItem) (*StockItem, error)
+
 	Definition(ctx context.Context, obj *ConfiguratorItem) (*ConfiguratorItemDefinition, error)
 	Attributes(ctx context.Context, obj *ConfiguratorItem) ([]*ConfiguratorAttribute, error)
 	Slots(ctx context.Context, obj *ConfiguratorItem) ([]*ConfiguratorSlot, error)
@@ -851,6 +858,13 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.ConfiguratorItem.SlotsIds(childComplexity), true
+
+	case "ConfiguratorItem.stockItem":
+		if e.complexity.ConfiguratorItem.StockItem == nil {
+			break
+		}
+
+		return e.complexity.ConfiguratorItem.StockItem(childComplexity), true
 
 	case "ConfiguratorItem.stockItemId":
 		if e.complexity.ConfiguratorItem.StockItemID == nil {
@@ -1833,6 +1847,13 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.Query._service(childComplexity), true
 
+	case "StockItem.id":
+		if e.complexity.StockItem.ID == nil {
+			break
+		}
+
+		return e.complexity.StockItem.ID(childComplexity), true
+
 	case "_Service.sdl":
 		if e.complexity._Service.Sdl == nil {
 			break
@@ -2115,6 +2136,7 @@ type ConfiguratorItem {
   code: String
   name: String
   stockItemId: ID
+  stockItem: StockItem
   rawData: String
   definition: ConfiguratorItemDefinition
   attributes: [ConfiguratorAttribute!]!
@@ -3023,6 +3045,10 @@ type ConfiguratorSlotResultType {
 
 type _Service {
   sdl: String
+}
+
+type StockItem {
+  id: ID!
 }
 `},
 )
@@ -5731,6 +5757,40 @@ func (ec *executionContext) _ConfiguratorItem_stockItemId(ctx context.Context, f
 	rctx.Result = res
 	ctx = ec.Tracer.StartFieldChildExecution(ctx)
 	return ec.marshalOID2ᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) _ConfiguratorItem_stockItem(ctx context.Context, field graphql.CollectedField, obj *ConfiguratorItem) (ret graphql.Marshaler) {
+	ctx = ec.Tracer.StartFieldExecution(ctx, field)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+		ec.Tracer.EndFieldExecution(ctx)
+	}()
+	rctx := &graphql.ResolverContext{
+		Object:   "ConfiguratorItem",
+		Field:    field,
+		Args:     nil,
+		IsMethod: true,
+	}
+	ctx = graphql.WithResolverContext(ctx, rctx)
+	ctx = ec.Tracer.StartFieldResolverExecution(ctx, rctx)
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
+		ctx = rctx // use context from middleware stack in children
+		return ec.resolvers.ConfiguratorItem().StockItem(rctx, obj)
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*StockItem)
+	rctx.Result = res
+	ctx = ec.Tracer.StartFieldChildExecution(ctx)
+	return ec.marshalOStockItem2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐStockItem(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) _ConfiguratorItem_rawData(ctx context.Context, field graphql.CollectedField, obj *ConfiguratorItem) (ret graphql.Marshaler) {
@@ -10458,6 +10518,43 @@ func (ec *executionContext) _Query___schema(ctx context.Context, field graphql.C
 	rctx.Result = res
 	ctx = ec.Tracer.StartFieldChildExecution(ctx)
 	return ec.marshalO__Schema2ᚖgithubᚗcomᚋ99designsᚋgqlgenᚋgraphqlᚋintrospectionᚐSchema(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) _StockItem_id(ctx context.Context, field graphql.CollectedField, obj *StockItem) (ret graphql.Marshaler) {
+	ctx = ec.Tracer.StartFieldExecution(ctx, field)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+		ec.Tracer.EndFieldExecution(ctx)
+	}()
+	rctx := &graphql.ResolverContext{
+		Object:   "StockItem",
+		Field:    field,
+		Args:     nil,
+		IsMethod: false,
+	}
+	ctx = graphql.WithResolverContext(ctx, rctx)
+	ctx = ec.Tracer.StartFieldResolverExecution(ctx, rctx)
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.ID, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		if !ec.HasError(rctx) {
+			ec.Errorf(ctx, "must not be null")
+		}
+		return graphql.Null
+	}
+	res := resTmp.(string)
+	rctx.Result = res
+	ctx = ec.Tracer.StartFieldChildExecution(ctx)
+	return ec.marshalNID2string(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) __Service_sdl(ctx context.Context, field graphql.CollectedField, obj *_Service) (ret graphql.Marshaler) {
@@ -16360,6 +16457,17 @@ func (ec *executionContext) _ConfiguratorItem(ctx context.Context, sel ast.Selec
 			out.Values[i] = ec._ConfiguratorItem_name(ctx, field, obj)
 		case "stockItemId":
 			out.Values[i] = ec._ConfiguratorItem_stockItemId(ctx, field, obj)
+		case "stockItem":
+			field := field
+			out.Concurrently(i, func() (res graphql.Marshaler) {
+				defer func() {
+					if r := recover(); r != nil {
+						ec.Error(ctx, ec.Recover(ctx, r))
+					}
+				}()
+				res = ec._ConfiguratorItem_stockItem(ctx, field, obj)
+				return res
+			})
 		case "rawData":
 			out.Values[i] = ec._ConfiguratorItem_rawData(ctx, field, obj)
 		case "definition":
@@ -17532,6 +17640,33 @@ func (ec *executionContext) _Query(ctx context.Context, sel ast.SelectionSet) gr
 			out.Values[i] = ec._Query___type(ctx, field)
 		case "__schema":
 			out.Values[i] = ec._Query___schema(ctx, field)
+		default:
+			panic("unknown field " + strconv.Quote(field.Name))
+		}
+	}
+	out.Dispatch()
+	if invalids > 0 {
+		return graphql.Null
+	}
+	return out
+}
+
+var stockItemImplementors = []string{"StockItem"}
+
+func (ec *executionContext) _StockItem(ctx context.Context, sel ast.SelectionSet, obj *StockItem) graphql.Marshaler {
+	fields := graphql.CollectFields(ec.RequestContext, sel, stockItemImplementors)
+
+	out := graphql.NewFieldSet(fields)
+	var invalids uint32
+	for i, field := range fields {
+		switch field.Name {
+		case "__typename":
+			out.Values[i] = graphql.MarshalString("StockItem")
+		case "id":
+			out.Values[i] = ec._StockItem_id(ctx, field, obj)
+			if out.Values[i] == graphql.Null {
+				invalids++
+			}
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -19919,6 +20054,17 @@ func (ec *executionContext) marshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑs
 		return graphql.Null
 	}
 	return v
+}
+
+func (ec *executionContext) marshalOStockItem2githubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐStockItem(ctx context.Context, sel ast.SelectionSet, v StockItem) graphql.Marshaler {
+	return ec._StockItem(ctx, sel, &v)
+}
+
+func (ec *executionContext) marshalOStockItem2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐStockItem(ctx context.Context, sel ast.SelectionSet, v *StockItem) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	return ec._StockItem(ctx, sel, v)
 }
 
 func (ec *executionContext) unmarshalOString2string(ctx context.Context, v interface{}) (string, error) {

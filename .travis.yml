@@ -7,7 +7,7 @@ jobs:
   include:
     - stage: deploy
       script: make build tag push
-    - stage: lambda
+    - stage: Lambda
       if: tag IS present
       script: make build-lambda-function && mkdir release && mv lambda.zip release/lambda.zip
 deploy:

@@ -979,6 +979,18 @@ func (r *GeneratedConfiguratorItemResultTypeResolver) Count(ctx context.Context,
 
 type GeneratedConfiguratorItemResolver struct{ *GeneratedResolver }
 
+func (r *GeneratedConfiguratorItemResolver) StockItem(ctx context.Context, obj *ConfiguratorItem) (res *StockItem, err error) {
+	return r.Handlers.ConfiguratorItemStockItem(ctx, r.GeneratedResolver, obj)
+}
+func ConfiguratorItemStockItemHandler(ctx context.Context, r *GeneratedResolver, obj *ConfiguratorItem) (res *StockItem, err error) {
+
+	if obj.StockItemID != nil {
+		res = &StockItem{ID: *obj.StockItemID}
+	}
+
+	return
+}
+
 func (r *GeneratedConfiguratorItemResolver) Definition(ctx context.Context, obj *ConfiguratorItem) (res *ConfiguratorItemDefinition, err error) {
 	return r.Handlers.ConfiguratorItemDefinition(ctx, r.GeneratedResolver, obj)
 }
