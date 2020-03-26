@@ -65,12 +65,14 @@ func LoadItem(ctx context.Context, r *gen.GeneratedResolver, ID string, itemCach
 			return nil, err
 		}
 
-		slots = append(slots, &gen.ConfiguratorAssemblySlot{
-			ID:           &slot.ID,
-			DefinitionID: slot.DefinitionID,
-			Count:        slot.Count,
-			Item:         slotItem,
-		})
+		if slot.DefinitionID != nil {
+			slots = append(slots, &gen.ConfiguratorAssemblySlot{
+				ID:           &slot.ID,
+				DefinitionID: *slot.DefinitionID,
+				Count:        slot.Count,
+				Item:         slotItem,
+			})
+		}
 	}
 
 	_item.Slots = slots
