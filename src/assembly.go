@@ -67,7 +67,7 @@ func LoadItem(ctx context.Context, r *gen.GeneratedResolver, ID string, itemCach
 
 		slots = append(slots, &gen.ConfiguratorAssemblySlot{
 			ID:           &slot.ID,
-			DefinitionID: *slot.DefinitionID,
+			DefinitionID: slot.DefinitionID,
 			Count:        slot.Count,
 			Item:         slotItem,
 		})

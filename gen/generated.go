@@ -2013,7 +2013,7 @@ type ConfiguratorAssemblyAttribute {
 
 type ConfiguratorAssemblySlot {
   id: ID
-  definitionId: ID!
+  definitionId: ID
   count: Float
   item: ConfiguratorAssemblyItem
 }
@@ -4587,15 +4587,12 @@ func (ec *executionContext) _ConfiguratorAssemblySlot_definitionId(ctx context.C
 		return graphql.Null
 	}
 	if resTmp == nil {
-		if !ec.HasError(rctx) {
-			ec.Errorf(ctx, "must not be null")
-		}
 		return graphql.Null
 	}
-	res := resTmp.(string)
+	res := resTmp.(*string)
 	rctx.Result = res
 	ctx = ec.Tracer.StartFieldChildExecution(ctx)
-	return ec.marshalNID2string(ctx, field.Selections, res)
+	return ec.marshalOID2ᚖstring(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) _ConfiguratorAssemblySlot_count(ctx context.Context, field graphql.CollectedField, obj *ConfiguratorAssemblySlot) (ret graphql.Marshaler) {
@@ -16149,9 +16146,6 @@ func (ec *executionContext) _ConfiguratorAssemblySlot(ctx context.Context, sel a
 			out.Values[i] = ec._ConfiguratorAssemblySlot_id(ctx, field, obj)
 		case "definitionId":
 			out.Values[i] = ec._ConfiguratorAssemblySlot_definitionId(ctx, field, obj)
-			if out.Values[i] == graphql.Null {
-				invalids++
-			}
 		case "count":
 			out.Values[i] = ec._ConfiguratorAssemblySlot_count(ctx, field, obj)
 		case "item":

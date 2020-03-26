@@ -56,7 +56,7 @@ type ConfiguratorAssemblyItemInput struct {
 
 type ConfiguratorAssemblySlot struct {
 	ID           *string                   `json:"id"`
-	DefinitionID string                    `json:"definitionId"`
+	DefinitionID *string                   `json:"definitionId"`
 	Count        *float64                  `json:"count"`
 	Item         *ConfiguratorAssemblyItem `json:"item"`
 }

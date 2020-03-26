@@ -89,7 +89,7 @@ type ConfiguratorAssemblyAttribute {
 
 type ConfiguratorAssemblySlot {
   id: ID
-  definitionId: ID!
+  definitionId: ID
   count: Float
   item: ConfiguratorAssemblyItem
 }
