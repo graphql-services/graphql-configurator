@@ -27,11 +27,11 @@ type ConfiguratorAttribute @entity {
 type ConfiguratorSlot @entity {
   count: Float @column
 
-  item: ConfiguratorItem @relationship(inverse: parentSlots)
+  item: ConfiguratorItem @relationship(inverse: parentSlots, onDelete: CASCADE)
 
   definition: ConfiguratorSlotDefinition
     @relationship(inverse: slots, onDelete: RESTRICT)
-  parentItem: ConfiguratorItem @relationship(inverse: slots)
+  parentItem: ConfiguratorItem @relationship(inverse: slots, onDelete: CASCADE)
 }
 
 extend type StockItem @key(fields: "id") {

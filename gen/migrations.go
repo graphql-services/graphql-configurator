@@ -57,13 +57,13 @@ func AutoMigrate(db *gorm.DB) error {
 		_db = _db.Model(ConfiguratorAttribute{}).AddForeignKey("itemId", TableName("configurator_items")+"(id)", "SET NULL", "SET NULL")
 
 		_db.Model(ConfiguratorSlot{}).RemoveForeignKey("itemId", TableName("configurator_items")+"(id)")
-		_db = _db.Model(ConfiguratorSlot{}).AddForeignKey("itemId", TableName("configurator_items")+"(id)", "SET NULL", "SET NULL")
+		_db = _db.Model(ConfiguratorSlot{}).AddForeignKey("itemId", TableName("configurator_items")+"(id)", "CASCADE", "SET NULL")
 
 		_db.Model(ConfiguratorSlot{}).RemoveForeignKey("definitionId", TableName("configurator_slot_definitions")+"(id)")
 		_db = _db.Model(ConfiguratorSlot{}).AddForeignKey("definitionId", TableName("configurator_slot_definitions")+"(id)", "RESTRICT", "SET NULL")
 
 		_db.Model(ConfiguratorSlot{}).RemoveForeignKey("parentItemId", TableName("configurator_items")+"(id)")
-		_db = _db.Model(ConfiguratorSlot{}).AddForeignKey("parentItemId", TableName("configurator_items")+"(id)", "SET NULL", "SET NULL")
+		_db = _db.Model(ConfiguratorSlot{}).AddForeignKey("parentItemId", TableName("configurator_items")+"(id)", "CASCADE", "SET NULL")
 
 	}
 	return _db.Error
