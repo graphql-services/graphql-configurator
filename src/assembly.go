@@ -60,9 +60,12 @@ func LoadItem(ctx context.Context, r *gen.GeneratedResolver, ID string, itemCach
 	}
 	slots := []*gen.ConfiguratorAssemblySlot{}
 	for _, slot := range _slots {
-		slotItem, err := LoadItem(ctx, r, *slot.ItemID, itemCache)
-		if err != nil {
-			return nil, err
+		var slotItem *gen.ConfiguratorAssemblyItem
+		if slot.ItemID != nil {
+			slotItem, err = LoadItem(ctx, r, *slot.ItemID, itemCache)
+			if err != nil {
+				return nil, err
+			}
 		}
 
 		if slot.DefinitionID != nil {
