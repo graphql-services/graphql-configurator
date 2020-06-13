@@ -12,7 +12,8 @@ type ConfiguratorItemDefinition @entity {
 
   attributes: [ConfiguratorAttributeDefinition!]!
     @relationship(inverse: definitions)
-  slots: [ConfiguratorSlotDefinition!]! @relationship(inverse: definition)
+  slots: [ConfiguratorSlotDefinition!]!
+    @relationship(inverse: definition, onDelete: RESTRICT)
   items: [ConfiguratorItem!]! @relationship(inverse: definition)
   allowedInSlots: [ConfiguratorSlotDefinition!]!
     @relationship(inverse: allowedItemDefinitions)

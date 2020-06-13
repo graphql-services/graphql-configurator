@@ -10,8 +10,10 @@ type ConfiguratorItem @entity {
     @relationship(inverse: items, onDelete: RESTRICT)
   attributes: [ConfiguratorAttribute!]!
     @relationship(inverse: item, onDelete: CASCADE)
-  slots: [ConfiguratorSlot!]! @relationship(inverse: parentItem)
-  parentSlots: [ConfiguratorSlot!]! @relationship(inverse: item)
+  slots: [ConfiguratorSlot!]!
+    @relationship(inverse: parentItem, onDelete: CASCADE)
+  parentSlots: [ConfiguratorSlot!]!
+    @relationship(inverse: item, onDelete: CASCADE)
 }
 
 type ConfiguratorAttribute @entity {
