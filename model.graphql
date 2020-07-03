@@ -1,4 +1,4 @@
-type ConfiguratorItem @entity {
+type ConfiguratorItem @entity @key(fields: "id") {
   code: String @column
   name: String @column
   stockItemId: ID @column

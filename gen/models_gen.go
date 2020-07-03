@@ -9,6 +9,10 @@ import (
 	"time"
 )
 
+type _Entity interface {
+	Is_Entity()
+}
+
 type ConfiguratorAssembly struct {
 	ID   string                    `json:"id"`
 	Item *ConfiguratorAssemblyItem `json:"item"`

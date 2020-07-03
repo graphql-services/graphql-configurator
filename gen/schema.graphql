@@ -11,6 +11,7 @@ schema {
 
 type Query {
   _service: _Service!
+  _entities(representations: [_Any!]!): [_Entity]!
   configuratorItemDefinitionCategory(id: ID, q: String, filter: ConfiguratorItemDefinitionCategoryFilterType): ConfiguratorItemDefinitionCategory
   configuratorItemDefinitionCategories(offset: Int, limit: Int = 30, q: String, sort: [ConfiguratorItemDefinitionCategorySortType!], filter: ConfiguratorItemDefinitionCategoryFilterType): ConfiguratorItemDefinitionCategoryResultType
   configuratorItemDefinition(id: ID, q: String, filter: ConfiguratorItemDefinitionFilterType): ConfiguratorItemDefinition
@@ -1121,6 +1122,8 @@ type ConfiguratorSlotResultType {
 type _Service {
   sdl: String
 }
+
+union _Entity = ConfiguratorItem
 
 type StockItem {
   id: ID!

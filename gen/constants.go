@@ -207,7 +207,7 @@ type ConfiguratorSlotDefinition {
   allowedItemDefinitionsIds: [ID!]!
 }
 
-type ConfiguratorItem {
+type ConfiguratorItem @key(fields: "id") {
   id: ID!
   code: String
   name: String
