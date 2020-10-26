@@ -61,7 +61,7 @@ func QueryConfiguratorItemDefinitionCategoryHandler(ctx context.Context, r *Gene
 		return nil, err
 	}
 	if len(items) == 0 {
-		return nil, &NotFoundError{Entity: "ConfiguratorItemDefinitionCategory"}
+		return nil, nil
 	}
 	return items[0], err
 }
@@ -114,11 +114,11 @@ func QueryConfiguratorItemDefinitionCategoriesHandler(ctx context.Context, r *Ge
 type GeneratedConfiguratorItemDefinitionCategoryResultTypeResolver struct{ *GeneratedResolver }
 
 func (r *GeneratedConfiguratorItemDefinitionCategoryResultTypeResolver) Items(ctx context.Context, obj *ConfiguratorItemDefinitionCategoryResultType) (items []*ConfiguratorItemDefinitionCategory, err error) {
-	giOpts := GetItemsOptions{
+	otps := GetItemsOptions{
 		Alias:      TableName("configurator_item_definition_categories"),
 		Preloaders: []string{},
 	}
-	err = obj.GetItems(ctx, r.DB.db, giOpts, &items)
+	err = obj.GetItems(ctx, r.DB.db, otps, &items)
 
 	uniqueItems := []*ConfiguratorItemDefinitionCategory{}
 	idMap := map[string]bool{}
@@ -133,7 +133,11 @@ func (r *GeneratedConfiguratorItemDefinitionCategoryResultTypeResolver) Items(ct
 }
 
 func (r *GeneratedConfiguratorItemDefinitionCategoryResultTypeResolver) Count(ctx context.Context, obj *ConfiguratorItemDefinitionCategoryResultType) (count int, err error) {
-	return obj.GetCount(ctx, r.DB.db, &ConfiguratorItemDefinitionCategory{})
+	opts := GetItemsOptions{
+		Alias:      TableName("configurator_item_definition_categories"),
+		Preloaders: []string{},
+	}
+	return obj.GetCount(ctx, r.DB.db, opts, &ConfiguratorItemDefinitionCategory{})
 }
 
 type GeneratedConfiguratorItemDefinitionCategoryResolver struct{ *GeneratedResolver }
@@ -169,6 +173,31 @@ func (r *GeneratedConfiguratorItemDefinitionCategoryResolver) DefinitionsIds(ctx
 	}
 
 	return
+}
+func (r *GeneratedConfiguratorItemDefinitionCategoryResolver) DefinitionsConnection(ctx context.Context, obj *ConfiguratorItemDefinitionCategory, offset *int, limit *int, q *string, sort []*ConfiguratorItemDefinitionSortType, filter *ConfiguratorItemDefinitionFilterType) (res *ConfiguratorItemDefinitionResultType, err error) {
+	f := &ConfiguratorItemDefinitionFilterType{
+		Category: &ConfiguratorItemDefinitionCategoryFilterType{
+			ID: &obj.ID,
+		},
+	}
+	if filter == nil {
+		filter = f
+	} else {
+		filter = &ConfiguratorItemDefinitionFilterType{
+			And: []*ConfiguratorItemDefinitionFilterType{
+				filter,
+				f,
+			},
+		}
+	}
+	opts := QueryConfiguratorItemDefinitionsHandlerOptions{
+		Offset: offset,
+		Limit:  limit,
+		Q:      q,
+		Sort:   sort,
+		Filter: filter,
+	}
+	return r.Handlers.QueryConfiguratorItemDefinitions(ctx, r.GeneratedResolver, opts)
 }
 
 type QueryConfiguratorItemDefinitionHandlerOptions struct {
@@ -222,7 +251,7 @@ func QueryConfiguratorItemDefinitionHandler(ctx context.Context, r *GeneratedRes
 		return nil, err
 	}
 	if len(items) == 0 {
-		return nil, &NotFoundError{Entity: "ConfiguratorItemDefinition"}
+		return nil, nil
 	}
 	return items[0], err
 }
@@ -275,11 +304,11 @@ func QueryConfiguratorItemDefinitionsHandler(ctx context.Context, r *GeneratedRe
 type GeneratedConfiguratorItemDefinitionResultTypeResolver struct{ *GeneratedResolver }
 
 func (r *GeneratedConfiguratorItemDefinitionResultTypeResolver) Items(ctx context.Context, obj *ConfiguratorItemDefinitionResultType) (items []*ConfiguratorItemDefinition, err error) {
-	giOpts := GetItemsOptions{
+	otps := GetItemsOptions{
 		Alias:      TableName("configurator_item_definitions"),
 		Preloaders: []string{},
 	}
-	err = obj.GetItems(ctx, r.DB.db, giOpts, &items)
+	err = obj.GetItems(ctx, r.DB.db, otps, &items)
 
 	uniqueItems := []*ConfiguratorItemDefinition{}
 	idMap := map[string]bool{}
@@ -294,7 +323,11 @@ func (r *GeneratedConfiguratorItemDefinitionResultTypeResolver) Items(ctx contex
 }
 
 func (r *GeneratedConfiguratorItemDefinitionResultTypeResolver) Count(ctx context.Context, obj *ConfiguratorItemDefinitionResultType) (count int, err error) {
-	return obj.GetCount(ctx, r.DB.db, &ConfiguratorItemDefinition{})
+	opts := GetItemsOptions{
+		Alias:      TableName("configurator_item_definitions"),
+		Preloaders: []string{},
+	}
+	return obj.GetCount(ctx, r.DB.db, opts, &ConfiguratorItemDefinition{})
 }
 
 type GeneratedConfiguratorItemDefinitionResolver struct{ *GeneratedResolver }
@@ -331,6 +364,31 @@ func (r *GeneratedConfiguratorItemDefinitionResolver) AttributesIds(ctx context.
 
 	return
 }
+func (r *GeneratedConfiguratorItemDefinitionResolver) AttributesConnection(ctx context.Context, obj *ConfiguratorItemDefinition, offset *int, limit *int, q *string, sort []*ConfiguratorAttributeDefinitionSortType, filter *ConfiguratorAttributeDefinitionFilterType) (res *ConfiguratorAttributeDefinitionResultType, err error) {
+	f := &ConfiguratorAttributeDefinitionFilterType{
+		Definitions: &ConfiguratorItemDefinitionFilterType{
+			ID: &obj.ID,
+		},
+	}
+	if filter == nil {
+		filter = f
+	} else {
+		filter = &ConfiguratorAttributeDefinitionFilterType{
+			And: []*ConfiguratorAttributeDefinitionFilterType{
+				filter,
+				f,
+			},
+		}
+	}
+	opts := QueryConfiguratorAttributeDefinitionsHandlerOptions{
+		Offset: offset,
+		Limit:  limit,
+		Q:      q,
+		Sort:   sort,
+		Filter: filter,
+	}
+	return r.Handlers.QueryConfiguratorAttributeDefinitions(ctx, r.GeneratedResolver, opts)
+}
 
 func (r *GeneratedConfiguratorItemDefinitionResolver) Slots(ctx context.Context, obj *ConfiguratorItemDefinition) (res []*ConfiguratorSlotDefinition, err error) {
 	return r.Handlers.ConfiguratorItemDefinitionSlots(ctx, r.GeneratedResolver, obj)
@@ -363,6 +421,31 @@ func (r *GeneratedConfiguratorItemDefinitionResolver) SlotsIds(ctx context.Conte
 	}
 
 	return
+}
+func (r *GeneratedConfiguratorItemDefinitionResolver) SlotsConnection(ctx context.Context, obj *ConfiguratorItemDefinition, offset *int, limit *int, q *string, sort []*ConfiguratorSlotDefinitionSortType, filter *ConfiguratorSlotDefinitionFilterType) (res *ConfiguratorSlotDefinitionResultType, err error) {
+	f := &ConfiguratorSlotDefinitionFilterType{
+		Definition: &ConfiguratorItemDefinitionFilterType{
+			ID: &obj.ID,
+		},
+	}
+	if filter == nil {
+		filter = f
+	} else {
+		filter = &ConfiguratorSlotDefinitionFilterType{
+			And: []*ConfiguratorSlotDefinitionFilterType{
+				filter,
+				f,
+			},
+		}
+	}
+	opts := QueryConfiguratorSlotDefinitionsHandlerOptions{
+		Offset: offset,
+		Limit:  limit,
+		Q:      q,
+		Sort:   sort,
+		Filter: filter,
+	}
+	return r.Handlers.QueryConfiguratorSlotDefinitions(ctx, r.GeneratedResolver, opts)
 }
 
 func (r *GeneratedConfiguratorItemDefinitionResolver) Items(ctx context.Context, obj *ConfiguratorItemDefinition) (res []*ConfiguratorItem, err error) {
@@ -397,6 +480,31 @@ func (r *GeneratedConfiguratorItemDefinitionResolver) ItemsIds(ctx context.Conte
 
 	return
 }
+func (r *GeneratedConfiguratorItemDefinitionResolver) ItemsConnection(ctx context.Context, obj *ConfiguratorItemDefinition, offset *int, limit *int, q *string, sort []*ConfiguratorItemSortType, filter *ConfiguratorItemFilterType) (res *ConfiguratorItemResultType, err error) {
+	f := &ConfiguratorItemFilterType{
+		Definition: &ConfiguratorItemDefinitionFilterType{
+			ID: &obj.ID,
+		},
+	}
+	if filter == nil {
+		filter = f
+	} else {
+		filter = &ConfiguratorItemFilterType{
+			And: []*ConfiguratorItemFilterType{
+				filter,
+				f,
+			},
+		}
+	}
+	opts := QueryConfiguratorItemsHandlerOptions{
+		Offset: offset,
+		Limit:  limit,
+		Q:      q,
+		Sort:   sort,
+		Filter: filter,
+	}
+	return r.Handlers.QueryConfiguratorItems(ctx, r.GeneratedResolver, opts)
+}
 
 func (r *GeneratedConfiguratorItemDefinitionResolver) AllowedInSlots(ctx context.Context, obj *ConfiguratorItemDefinition) (res []*ConfiguratorSlotDefinition, err error) {
 	return r.Handlers.ConfiguratorItemDefinitionAllowedInSlots(ctx, r.GeneratedResolver, obj)
@@ -429,6 +537,31 @@ func (r *GeneratedConfiguratorItemDefinitionResolver) AllowedInSlotsIds(ctx cont
 	}
 
 	return
+}
+func (r *GeneratedConfiguratorItemDefinitionResolver) AllowedInSlotsConnection(ctx context.Context, obj *ConfiguratorItemDefinition, offset *int, limit *int, q *string, sort []*ConfiguratorSlotDefinitionSortType, filter *ConfiguratorSlotDefinitionFilterType) (res *ConfiguratorSlotDefinitionResultType, err error) {
+	f := &ConfiguratorSlotDefinitionFilterType{
+		AllowedItemDefinitions: &ConfiguratorItemDefinitionFilterType{
+			ID: &obj.ID,
+		},
+	}
+	if filter == nil {
+		filter = f
+	} else {
+		filter = &ConfiguratorSlotDefinitionFilterType{
+			And: []*ConfiguratorSlotDefinitionFilterType{
+				filter,
+				f,
+			},
+		}
+	}
+	opts := QueryConfiguratorSlotDefinitionsHandlerOptions{
+		Offset: offset,
+		Limit:  limit,
+		Q:      q,
+		Sort:   sort,
+		Filter: filter,
+	}
+	return r.Handlers.QueryConfiguratorSlotDefinitions(ctx, r.GeneratedResolver, opts)
 }
 
 func (r *GeneratedConfiguratorItemDefinitionResolver) Category(ctx context.Context, obj *ConfiguratorItemDefinition) (res *ConfiguratorItemDefinitionCategory, err error) {
@@ -498,7 +631,7 @@ func QueryConfiguratorAttributeDefinitionHandler(ctx context.Context, r *Generat
 		return nil, err
 	}
 	if len(items) == 0 {
-		return nil, &NotFoundError{Entity: "ConfiguratorAttributeDefinition"}
+		return nil, nil
 	}
 	return items[0], err
 }
@@ -551,11 +684,11 @@ func QueryConfiguratorAttributeDefinitionsHandler(ctx context.Context, r *Genera
 type GeneratedConfiguratorAttributeDefinitionResultTypeResolver struct{ *GeneratedResolver }
 
 func (r *GeneratedConfiguratorAttributeDefinitionResultTypeResolver) Items(ctx context.Context, obj *ConfiguratorAttributeDefinitionResultType) (items []*ConfiguratorAttributeDefinition, err error) {
-	giOpts := GetItemsOptions{
+	otps := GetItemsOptions{
 		Alias:      TableName("configurator_attribute_definitions"),
 		Preloaders: []string{},
 	}
-	err = obj.GetItems(ctx, r.DB.db, giOpts, &items)
+	err = obj.GetItems(ctx, r.DB.db, otps, &items)
 
 	uniqueItems := []*ConfiguratorAttributeDefinition{}
 	idMap := map[string]bool{}
@@ -570,7 +703,11 @@ func (r *GeneratedConfiguratorAttributeDefinitionResultTypeResolver) Items(ctx c
 }
 
 func (r *GeneratedConfiguratorAttributeDefinitionResultTypeResolver) Count(ctx context.Context, obj *ConfiguratorAttributeDefinitionResultType) (count int, err error) {
-	return obj.GetCount(ctx, r.DB.db, &ConfiguratorAttributeDefinition{})
+	opts := GetItemsOptions{
+		Alias:      TableName("configurator_attribute_definitions"),
+		Preloaders: []string{},
+	}
+	return obj.GetCount(ctx, r.DB.db, opts, &ConfiguratorAttributeDefinition{})
 }
 
 type GeneratedConfiguratorAttributeDefinitionResolver struct{ *GeneratedResolver }
@@ -607,6 +744,31 @@ func (r *GeneratedConfiguratorAttributeDefinitionResolver) DefinitionsIds(ctx co
 
 	return
 }
+func (r *GeneratedConfiguratorAttributeDefinitionResolver) DefinitionsConnection(ctx context.Context, obj *ConfiguratorAttributeDefinition, offset *int, limit *int, q *string, sort []*ConfiguratorItemDefinitionSortType, filter *ConfiguratorItemDefinitionFilterType) (res *ConfiguratorItemDefinitionResultType, err error) {
+	f := &ConfiguratorItemDefinitionFilterType{
+		Attributes: &ConfiguratorAttributeDefinitionFilterType{
+			ID: &obj.ID,
+		},
+	}
+	if filter == nil {
+		filter = f
+	} else {
+		filter = &ConfiguratorItemDefinitionFilterType{
+			And: []*ConfiguratorItemDefinitionFilterType{
+				filter,
+				f,
+			},
+		}
+	}
+	opts := QueryConfiguratorItemDefinitionsHandlerOptions{
+		Offset: offset,
+		Limit:  limit,
+		Q:      q,
+		Sort:   sort,
+		Filter: filter,
+	}
+	return r.Handlers.QueryConfiguratorItemDefinitions(ctx, r.GeneratedResolver, opts)
+}
 
 func (r *GeneratedConfiguratorAttributeDefinitionResolver) Attributes(ctx context.Context, obj *ConfiguratorAttributeDefinition) (res []*ConfiguratorAttribute, err error) {
 	return r.Handlers.ConfiguratorAttributeDefinitionAttributes(ctx, r.GeneratedResolver, obj)
@@ -639,6 +801,31 @@ func (r *GeneratedConfiguratorAttributeDefinitionResolver) AttributesIds(ctx con
 	}
 
 	return
+}
+func (r *GeneratedConfiguratorAttributeDefinitionResolver) AttributesConnection(ctx context.Context, obj *ConfiguratorAttributeDefinition, offset *int, limit *int, q *string, sort []*ConfiguratorAttributeSortType, filter *ConfiguratorAttributeFilterType) (res *ConfiguratorAttributeResultType, err error) {
+	f := &ConfiguratorAttributeFilterType{
+		Definition: &ConfiguratorAttributeDefinitionFilterType{
+			ID: &obj.ID,
+		},
+	}
+	if filter == nil {
+		filter = f
+	} else {
+		filter = &ConfiguratorAttributeFilterType{
+			And: []*ConfiguratorAttributeFilterType{
+				filter,
+				f,
+			},
+		}
+	}
+	opts := QueryConfiguratorAttributesHandlerOptions{
+		Offset: offset,
+		Limit:  limit,
+		Q:      q,
+		Sort:   sort,
+		Filter: filter,
+	}
+	return r.Handlers.QueryConfiguratorAttributes(ctx, r.GeneratedResolver, opts)
 }
 
 type QueryConfiguratorSlotDefinitionHandlerOptions struct {
@@ -692,7 +879,7 @@ func QueryConfiguratorSlotDefinitionHandler(ctx context.Context, r *GeneratedRes
 		return nil, err
 	}
 	if len(items) == 0 {
-		return nil, &NotFoundError{Entity: "ConfiguratorSlotDefinition"}
+		return nil, nil
 	}
 	return items[0], err
 }
@@ -745,11 +932,11 @@ func QueryConfiguratorSlotDefinitionsHandler(ctx context.Context, r *GeneratedRe
 type GeneratedConfiguratorSlotDefinitionResultTypeResolver struct{ *GeneratedResolver }
 
 func (r *GeneratedConfiguratorSlotDefinitionResultTypeResolver) Items(ctx context.Context, obj *ConfiguratorSlotDefinitionResultType) (items []*ConfiguratorSlotDefinition, err error) {
-	giOpts := GetItemsOptions{
+	otps := GetItemsOptions{
 		Alias:      TableName("configurator_slot_definitions"),
 		Preloaders: []string{},
 	}
-	err = obj.GetItems(ctx, r.DB.db, giOpts, &items)
+	err = obj.GetItems(ctx, r.DB.db, otps, &items)
 
 	uniqueItems := []*ConfiguratorSlotDefinition{}
 	idMap := map[string]bool{}
@@ -764,7 +951,11 @@ func (r *GeneratedConfiguratorSlotDefinitionResultTypeResolver) Items(ctx contex
 }
 
 func (r *GeneratedConfiguratorSlotDefinitionResultTypeResolver) Count(ctx context.Context, obj *ConfiguratorSlotDefinitionResultType) (count int, err error) {
-	return obj.GetCount(ctx, r.DB.db, &ConfiguratorSlotDefinition{})
+	opts := GetItemsOptions{
+		Alias:      TableName("configurator_slot_definitions"),
+		Preloaders: []string{},
+	}
+	return obj.GetCount(ctx, r.DB.db, opts, &ConfiguratorSlotDefinition{})
 }
 
 type GeneratedConfiguratorSlotDefinitionResolver struct{ *GeneratedResolver }
@@ -817,6 +1008,31 @@ func (r *GeneratedConfiguratorSlotDefinitionResolver) SlotsIds(ctx context.Conte
 
 	return
 }
+func (r *GeneratedConfiguratorSlotDefinitionResolver) SlotsConnection(ctx context.Context, obj *ConfiguratorSlotDefinition, offset *int, limit *int, q *string, sort []*ConfiguratorSlotSortType, filter *ConfiguratorSlotFilterType) (res *ConfiguratorSlotResultType, err error) {
+	f := &ConfiguratorSlotFilterType{
+		Definition: &ConfiguratorSlotDefinitionFilterType{
+			ID: &obj.ID,
+		},
+	}
+	if filter == nil {
+		filter = f
+	} else {
+		filter = &ConfiguratorSlotFilterType{
+			And: []*ConfiguratorSlotFilterType{
+				filter,
+				f,
+			},
+		}
+	}
+	opts := QueryConfiguratorSlotsHandlerOptions{
+		Offset: offset,
+		Limit:  limit,
+		Q:      q,
+		Sort:   sort,
+		Filter: filter,
+	}
+	return r.Handlers.QueryConfiguratorSlots(ctx, r.GeneratedResolver, opts)
+}
 
 func (r *GeneratedConfiguratorSlotDefinitionResolver) AllowedItemDefinitions(ctx context.Context, obj *ConfiguratorSlotDefinition) (res []*ConfiguratorItemDefinition, err error) {
 	return r.Handlers.ConfiguratorSlotDefinitionAllowedItemDefinitions(ctx, r.GeneratedResolver, obj)
@@ -849,6 +1065,31 @@ func (r *GeneratedConfiguratorSlotDefinitionResolver) AllowedItemDefinitionsIds(
 	}
 
 	return
+}
+func (r *GeneratedConfiguratorSlotDefinitionResolver) AllowedItemDefinitionsConnection(ctx context.Context, obj *ConfiguratorSlotDefinition, offset *int, limit *int, q *string, sort []*ConfiguratorItemDefinitionSortType, filter *ConfiguratorItemDefinitionFilterType) (res *ConfiguratorItemDefinitionResultType, err error) {
+	f := &ConfiguratorItemDefinitionFilterType{
+		AllowedInSlots: &ConfiguratorSlotDefinitionFilterType{
+			ID: &obj.ID,
+		},
+	}
+	if filter == nil {
+		filter = f
+	} else {
+		filter = &ConfiguratorItemDefinitionFilterType{
+			And: []*ConfiguratorItemDefinitionFilterType{
+				filter,
+				f,
+			},
+		}
+	}
+	opts := QueryConfiguratorItemDefinitionsHandlerOptions{
+		Offset: offset,
+		Limit:  limit,
+		Q:      q,
+		Sort:   sort,
+		Filter: filter,
+	}
+	return r.Handlers.QueryConfiguratorItemDefinitions(ctx, r.GeneratedResolver, opts)
 }
 
 type QueryConfiguratorItemHandlerOptions struct {
@@ -902,7 +1143,7 @@ func QueryConfiguratorItemHandler(ctx context.Context, r *GeneratedResolver, opt
 		return nil, err
 	}
 	if len(items) == 0 {
-		return nil, &NotFoundError{Entity: "ConfiguratorItem"}
+		return nil, nil
 	}
 	return items[0], err
 }
@@ -955,11 +1196,11 @@ func QueryConfiguratorItemsHandler(ctx context.Context, r *GeneratedResolver, op
 type GeneratedConfiguratorItemResultTypeResolver struct{ *GeneratedResolver }
 
 func (r *GeneratedConfiguratorItemResultTypeResolver) Items(ctx context.Context, obj *ConfiguratorItemResultType) (items []*ConfiguratorItem, err error) {
-	giOpts := GetItemsOptions{
+	otps := GetItemsOptions{
 		Alias:      TableName("configurator_items"),
 		Preloaders: []string{},
 	}
-	err = obj.GetItems(ctx, r.DB.db, giOpts, &items)
+	err = obj.GetItems(ctx, r.DB.db, otps, &items)
 
 	uniqueItems := []*ConfiguratorItem{}
 	idMap := map[string]bool{}
@@ -974,7 +1215,11 @@ func (r *GeneratedConfiguratorItemResultTypeResolver) Items(ctx context.Context,
 }
 
 func (r *GeneratedConfiguratorItemResultTypeResolver) Count(ctx context.Context, obj *ConfiguratorItemResultType) (count int, err error) {
-	return obj.GetCount(ctx, r.DB.db, &ConfiguratorItem{})
+	opts := GetItemsOptions{
+		Alias:      TableName("configurator_items"),
+		Preloaders: []string{},
+	}
+	return obj.GetCount(ctx, r.DB.db, opts, &ConfiguratorItem{})
 }
 
 type GeneratedConfiguratorItemResolver struct{ *GeneratedResolver }
@@ -1039,6 +1284,31 @@ func (r *GeneratedConfiguratorItemResolver) AttributesIds(ctx context.Context, o
 
 	return
 }
+func (r *GeneratedConfiguratorItemResolver) AttributesConnection(ctx context.Context, obj *ConfiguratorItem, offset *int, limit *int, q *string, sort []*ConfiguratorAttributeSortType, filter *ConfiguratorAttributeFilterType) (res *ConfiguratorAttributeResultType, err error) {
+	f := &ConfiguratorAttributeFilterType{
+		Item: &ConfiguratorItemFilterType{
+			ID: &obj.ID,
+		},
+	}
+	if filter == nil {
+		filter = f
+	} else {
+		filter = &ConfiguratorAttributeFilterType{
+			And: []*ConfiguratorAttributeFilterType{
+				filter,
+				f,
+			},
+		}
+	}
+	opts := QueryConfiguratorAttributesHandlerOptions{
+		Offset: offset,
+		Limit:  limit,
+		Q:      q,
+		Sort:   sort,
+		Filter: filter,
+	}
+	return r.Handlers.QueryConfiguratorAttributes(ctx, r.GeneratedResolver, opts)
+}
 
 func (r *GeneratedConfiguratorItemResolver) Slots(ctx context.Context, obj *ConfiguratorItem) (res []*ConfiguratorSlot, err error) {
 	return r.Handlers.ConfiguratorItemSlots(ctx, r.GeneratedResolver, obj)
@@ -1072,6 +1342,31 @@ func (r *GeneratedConfiguratorItemResolver) SlotsIds(ctx context.Context, obj *C
 
 	return
 }
+func (r *GeneratedConfiguratorItemResolver) SlotsConnection(ctx context.Context, obj *ConfiguratorItem, offset *int, limit *int, q *string, sort []*ConfiguratorSlotSortType, filter *ConfiguratorSlotFilterType) (res *ConfiguratorSlotResultType, err error) {
+	f := &ConfiguratorSlotFilterType{
+		ParentItem: &ConfiguratorItemFilterType{
+			ID: &obj.ID,
+		},
+	}
+	if filter == nil {
+		filter = f
+	} else {
+		filter = &ConfiguratorSlotFilterType{
+			And: []*ConfiguratorSlotFilterType{
+				filter,
+				f,
+			},
+		}
+	}
+	opts := QueryConfiguratorSlotsHandlerOptions{
+		Offset: offset,
+		Limit:  limit,
+		Q:      q,
+		Sort:   sort,
+		Filter: filter,
+	}
+	return r.Handlers.QueryConfiguratorSlots(ctx, r.GeneratedResolver, opts)
+}
 
 func (r *GeneratedConfiguratorItemResolver) ParentSlots(ctx context.Context, obj *ConfiguratorItem) (res []*ConfiguratorSlot, err error) {
 	return r.Handlers.ConfiguratorItemParentSlots(ctx, r.GeneratedResolver, obj)
@@ -1104,6 +1399,31 @@ func (r *GeneratedConfiguratorItemResolver) ParentSlotsIds(ctx context.Context, 
 	}
 
 	return
+}
+func (r *GeneratedConfiguratorItemResolver) ParentSlotsConnection(ctx context.Context, obj *ConfiguratorItem, offset *int, limit *int, q *string, sort []*ConfiguratorSlotSortType, filter *ConfiguratorSlotFilterType) (res *ConfiguratorSlotResultType, err error) {
+	f := &ConfiguratorSlotFilterType{
+		Item: &ConfiguratorItemFilterType{
+			ID: &obj.ID,
+		},
+	}
+	if filter == nil {
+		filter = f
+	} else {
+		filter = &ConfiguratorSlotFilterType{
+			And: []*ConfiguratorSlotFilterType{
+				filter,
+				f,
+			},
+		}
+	}
+	opts := QueryConfiguratorSlotsHandlerOptions{
+		Offset: offset,
+		Limit:  limit,
+		Q:      q,
+		Sort:   sort,
+		Filter: filter,
+	}
+	return r.Handlers.QueryConfiguratorSlots(ctx, r.GeneratedResolver, opts)
 }
 
 type QueryConfiguratorAttributeHandlerOptions struct {
@@ -1157,7 +1477,7 @@ func QueryConfiguratorAttributeHandler(ctx context.Context, r *GeneratedResolver
 		return nil, err
 	}
 	if len(items) == 0 {
-		return nil, &NotFoundError{Entity: "ConfiguratorAttribute"}
+		return nil, nil
 	}
 	return items[0], err
 }
@@ -1210,11 +1530,11 @@ func QueryConfiguratorAttributesHandler(ctx context.Context, r *GeneratedResolve
 type GeneratedConfiguratorAttributeResultTypeResolver struct{ *GeneratedResolver }
 
 func (r *GeneratedConfiguratorAttributeResultTypeResolver) Items(ctx context.Context, obj *ConfiguratorAttributeResultType) (items []*ConfiguratorAttribute, err error) {
-	giOpts := GetItemsOptions{
+	otps := GetItemsOptions{
 		Alias:      TableName("configurator_attributes"),
 		Preloaders: []string{},
 	}
-	err = obj.GetItems(ctx, r.DB.db, giOpts, &items)
+	err = obj.GetItems(ctx, r.DB.db, otps, &items)
 
 	uniqueItems := []*ConfiguratorAttribute{}
 	idMap := map[string]bool{}
@@ -1229,7 +1549,11 @@ func (r *GeneratedConfiguratorAttributeResultTypeResolver) Items(ctx context.Con
 }
 
 func (r *GeneratedConfiguratorAttributeResultTypeResolver) Count(ctx context.Context, obj *ConfiguratorAttributeResultType) (count int, err error) {
-	return obj.GetCount(ctx, r.DB.db, &ConfiguratorAttribute{})
+	opts := GetItemsOptions{
+		Alias:      TableName("configurator_attributes"),
+		Preloaders: []string{},
+	}
+	return obj.GetCount(ctx, r.DB.db, opts, &ConfiguratorAttribute{})
 }
 
 type GeneratedConfiguratorAttributeResolver struct{ *GeneratedResolver }
@@ -1317,7 +1641,7 @@ func QueryConfiguratorSlotHandler(ctx context.Context, r *GeneratedResolver, opt
 		return nil, err
 	}
 	if len(items) == 0 {
-		return nil, &NotFoundError{Entity: "ConfiguratorSlot"}
+		return nil, nil
 	}
 	return items[0], err
 }
@@ -1370,11 +1694,11 @@ func QueryConfiguratorSlotsHandler(ctx context.Context, r *GeneratedResolver, op
 type GeneratedConfiguratorSlotResultTypeResolver struct{ *GeneratedResolver }
 
 func (r *GeneratedConfiguratorSlotResultTypeResolver) Items(ctx context.Context, obj *ConfiguratorSlotResultType) (items []*ConfiguratorSlot, err error) {
-	giOpts := GetItemsOptions{
+	otps := GetItemsOptions{
 		Alias:      TableName("configurator_slots"),
 		Preloaders: []string{},
 	}
-	err = obj.GetItems(ctx, r.DB.db, giOpts, &items)
+	err = obj.GetItems(ctx, r.DB.db, otps, &items)
 
 	uniqueItems := []*ConfiguratorSlot{}
 	idMap := map[string]bool{}
@@ -1389,7 +1713,11 @@ func (r *GeneratedConfiguratorSlotResultTypeResolver) Items(ctx context.Context,
 }
 
 func (r *GeneratedConfiguratorSlotResultTypeResolver) Count(ctx context.Context, obj *ConfiguratorSlotResultType) (count int, err error) {
-	return obj.GetCount(ctx, r.DB.db, &ConfiguratorSlot{})
+	opts := GetItemsOptions{
+		Alias:      TableName("configurator_slots"),
+		Preloaders: []string{},
+	}
+	return obj.GetCount(ctx, r.DB.db, opts, &ConfiguratorSlot{})
 }
 
 type GeneratedConfiguratorSlotResolver struct{ *GeneratedResolver }

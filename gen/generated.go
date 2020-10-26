@@ -104,17 +104,19 @@ type ComplexityRoot struct {
 	}
 
 	ConfiguratorAttributeDefinition struct {
-		Attributes     func(childComplexity int) int
-		AttributesIds  func(childComplexity int) int
-		CreatedAt      func(childComplexity int) int
-		CreatedBy      func(childComplexity int) int
-		Definitions    func(childComplexity int) int
-		DefinitionsIds func(childComplexity int) int
-		ID             func(childComplexity int) int
-		Name           func(childComplexity int) int
-		Type           func(childComplexity int) int
-		UpdatedAt      func(childComplexity int) int
-		UpdatedBy      func(childComplexity int) int
+		Attributes            func(childComplexity int) int
+		AttributesConnection  func(childComplexity int, offset *int, limit *int, q *string, sort []*ConfiguratorAttributeSortType, filter *ConfiguratorAttributeFilterType) int
+		AttributesIds         func(childComplexity int) int
+		CreatedAt             func(childComplexity int) int
+		CreatedBy             func(childComplexity int) int
+		Definitions           func(childComplexity int) int
+		DefinitionsConnection func(childComplexity int, offset *int, limit *int, q *string, sort []*ConfiguratorItemDefinitionSortType, filter *ConfiguratorItemDefinitionFilterType) int
+		DefinitionsIds        func(childComplexity int) int
+		ID                    func(childComplexity int) int
+		Name                  func(childComplexity int) int
+		Type                  func(childComplexity int) int
+		UpdatedAt             func(childComplexity int) int
+		UpdatedBy             func(childComplexity int) int
 	}
 
 	ConfiguratorAttributeDefinitionResultType struct {
@@ -128,57 +130,66 @@ type ComplexityRoot struct {
 	}
 
 	ConfiguratorItem struct {
-		Attributes     func(childComplexity int) int
-		AttributesIds  func(childComplexity int) int
-		Code           func(childComplexity int) int
-		CreatedAt      func(childComplexity int) int
-		CreatedBy      func(childComplexity int) int
-		Definition     func(childComplexity int) int
-		DefinitionID   func(childComplexity int) int
-		ID             func(childComplexity int) int
-		Name           func(childComplexity int) int
-		ParentSlots    func(childComplexity int) int
-		ParentSlotsIds func(childComplexity int) int
-		RawData        func(childComplexity int) int
-		Slots          func(childComplexity int) int
-		SlotsIds       func(childComplexity int) int
-		StockItem      func(childComplexity int) int
-		StockItemID    func(childComplexity int) int
-		UpdatedAt      func(childComplexity int) int
-		UpdatedBy      func(childComplexity int) int
+		Attributes            func(childComplexity int) int
+		AttributesConnection  func(childComplexity int, offset *int, limit *int, q *string, sort []*ConfiguratorAttributeSortType, filter *ConfiguratorAttributeFilterType) int
+		AttributesIds         func(childComplexity int) int
+		Code                  func(childComplexity int) int
+		CreatedAt             func(childComplexity int) int
+		CreatedBy             func(childComplexity int) int
+		Definition            func(childComplexity int) int
+		DefinitionID          func(childComplexity int) int
+		ID                    func(childComplexity int) int
+		Name                  func(childComplexity int) int
+		ParentSlots           func(childComplexity int) int
+		ParentSlotsConnection func(childComplexity int, offset *int, limit *int, q *string, sort []*ConfiguratorSlotSortType, filter *ConfiguratorSlotFilterType) int
+		ParentSlotsIds        func(childComplexity int) int
+		RawData               func(childComplexity int) int
+		Slots                 func(childComplexity int) int
+		SlotsConnection       func(childComplexity int, offset *int, limit *int, q *string, sort []*ConfiguratorSlotSortType, filter *ConfiguratorSlotFilterType) int
+		SlotsIds              func(childComplexity int) int
+		StockItem             func(childComplexity int) int
+		StockItemID           func(childComplexity int) int
+		UpdatedAt             func(childComplexity int) int
+		UpdatedBy             func(childComplexity int) int
 	}
 
 	ConfiguratorItemDefinition struct {
-		AllowedInSlots    func(childComplexity int) int
-		AllowedInSlotsIds func(childComplexity int) int
-		Attributes        func(childComplexity int) int
-		AttributesIds     func(childComplexity int) int
-		Category          func(childComplexity int) int
-		CategoryID        func(childComplexity int) int
-		Code              func(childComplexity int) int
-		CreatedAt         func(childComplexity int) int
-		CreatedBy         func(childComplexity int) int
-		ID                func(childComplexity int) int
-		Items             func(childComplexity int) int
-		ItemsIds          func(childComplexity int) int
-		Name              func(childComplexity int) int
-		Slots             func(childComplexity int) int
-		SlotsIds          func(childComplexity int) int
-		UpdatedAt         func(childComplexity int) int
-		UpdatedBy         func(childComplexity int) int
+		AllowedInSlots           func(childComplexity int) int
+		AllowedInSlotsConnection func(childComplexity int, offset *int, limit *int, q *string, sort []*ConfiguratorSlotDefinitionSortType, filter *ConfiguratorSlotDefinitionFilterType) int
+		AllowedInSlotsIds        func(childComplexity int) int
+		Attributes               func(childComplexity int) int
+		AttributesConnection     func(childComplexity int, offset *int, limit *int, q *string, sort []*ConfiguratorAttributeDefinitionSortType, filter *ConfiguratorAttributeDefinitionFilterType) int
+		AttributesIds            func(childComplexity int) int
+		Category                 func(childComplexity int) int
+		CategoryID               func(childComplexity int) int
+		Code                     func(childComplexity int) int
+		CreatedAt                func(childComplexity int) int
+		CreatedBy                func(childComplexity int) int
+		ID                       func(childComplexity int) int
+		Items                    func(childComplexity int) int
+		ItemsConnection          func(childComplexity int, offset *int, limit *int, q *string, sort []*ConfiguratorItemSortType, filter *ConfiguratorItemFilterType) int
+		ItemsIds                 func(childComplexity int) int
+		Name                     func(childComplexity int) int
+		Slots                    func(childComplexity int) int
+		SlotsConnection          func(childComplexity int, offset *int, limit *int, q *string, sort []*ConfiguratorSlotDefinitionSortType, filter *ConfiguratorSlotDefinitionFilterType) int
+		SlotsIds                 func(childComplexity int) int
+		UpdatedAt                func(childComplexity int) int
+		UpdatedBy                func(childComplexity int) int
 	}
 
 	ConfiguratorItemDefinitionCategory struct {
-		Code           func(childComplexity int) int
-		CreatedAt      func(childComplexity int) int
-		CreatedBy      func(childComplexity int) int
-		Definitions    func(childComplexity int) int
-		DefinitionsIds func(childComplexity int) int
-		ID             func(childComplexity int) int
-		Name           func(childComplexity int) int
-		Type           func(childComplexity int) int
-		UpdatedAt      func(childComplexity int) int
-		UpdatedBy      func(childComplexity int) int
+		Code                  func(childComplexity int) int
+		CreatedAt             func(childComplexity int) int
+		CreatedBy             func(childComplexity int) int
+		Definitions           func(childComplexity int) int
+		DefinitionsConnection func(childComplexity int, offset *int, limit *int, q *string, sort []*ConfiguratorItemDefinitionSortType, filter *ConfiguratorItemDefinitionFilterType) int
+		DefinitionsIds        func(childComplexity int) int
+		ID                    func(childComplexity int) int
+		Name                  func(childComplexity int) int
+		Primary               func(childComplexity int) int
+		Type                  func(childComplexity int) int
+		UpdatedAt             func(childComplexity int) int
+		UpdatedBy             func(childComplexity int) int
 	}
 
 	ConfiguratorItemDefinitionCategoryResultType struct {
@@ -212,21 +223,23 @@ type ComplexityRoot struct {
 	}
 
 	ConfiguratorSlotDefinition struct {
-		AllowedItemDefinitions    func(childComplexity int) int
-		AllowedItemDefinitionsIds func(childComplexity int) int
-		CreatedAt                 func(childComplexity int) int
-		CreatedBy                 func(childComplexity int) int
-		DefaultCount              func(childComplexity int) int
-		Definition                func(childComplexity int) int
-		DefinitionID              func(childComplexity int) int
-		ID                        func(childComplexity int) int
-		MaxCount                  func(childComplexity int) int
-		MinCount                  func(childComplexity int) int
-		Name                      func(childComplexity int) int
-		Slots                     func(childComplexity int) int
-		SlotsIds                  func(childComplexity int) int
-		UpdatedAt                 func(childComplexity int) int
-		UpdatedBy                 func(childComplexity int) int
+		AllowedItemDefinitions           func(childComplexity int) int
+		AllowedItemDefinitionsConnection func(childComplexity int, offset *int, limit *int, q *string, sort []*ConfiguratorItemDefinitionSortType, filter *ConfiguratorItemDefinitionFilterType) int
+		AllowedItemDefinitionsIds        func(childComplexity int) int
+		CreatedAt                        func(childComplexity int) int
+		CreatedBy                        func(childComplexity int) int
+		DefaultCount                     func(childComplexity int) int
+		Definition                       func(childComplexity int) int
+		DefinitionID                     func(childComplexity int) int
+		ID                               func(childComplexity int) int
+		MaxCount                         func(childComplexity int) int
+		MinCount                         func(childComplexity int) int
+		Name                             func(childComplexity int) int
+		Slots                            func(childComplexity int) int
+		SlotsConnection                  func(childComplexity int, offset *int, limit *int, q *string, sort []*ConfiguratorSlotSortType, filter *ConfiguratorSlotFilterType) int
+		SlotsIds                         func(childComplexity int) int
+		UpdatedAt                        func(childComplexity int) int
+		UpdatedBy                        func(childComplexity int) int
 	}
 
 	ConfiguratorSlotDefinitionResultType struct {
@@ -310,7 +323,9 @@ type ConfiguratorAttributeDefinitionResolver interface {
 	Attributes(ctx context.Context, obj *ConfiguratorAttributeDefinition) ([]*ConfiguratorAttribute, error)
 
 	DefinitionsIds(ctx context.Context, obj *ConfiguratorAttributeDefinition) ([]string, error)
+	DefinitionsConnection(ctx context.Context, obj *ConfiguratorAttributeDefinition, offset *int, limit *int, q *string, sort []*ConfiguratorItemDefinitionSortType, filter *ConfiguratorItemDefinitionFilterType) (*ConfiguratorItemDefinitionResultType, error)
 	AttributesIds(ctx context.Context, obj *ConfiguratorAttributeDefinition) ([]string, error)
+	AttributesConnection(ctx context.Context, obj *ConfiguratorAttributeDefinition, offset *int, limit *int, q *string, sort []*ConfiguratorAttributeSortType, filter *ConfiguratorAttributeFilterType) (*ConfiguratorAttributeResultType, error)
 }
 type ConfiguratorAttributeDefinitionResultTypeResolver interface {
 	Items(ctx context.Context, obj *ConfiguratorAttributeDefinitionResultType) ([]*ConfiguratorAttributeDefinition, error)
@@ -329,8 +344,11 @@ type ConfiguratorItemResolver interface {
 	ParentSlots(ctx context.Context, obj *ConfiguratorItem) ([]*ConfiguratorSlot, error)
 
 	AttributesIds(ctx context.Context, obj *ConfiguratorItem) ([]string, error)
+	AttributesConnection(ctx context.Context, obj *ConfiguratorItem, offset *int, limit *int, q *string, sort []*ConfiguratorAttributeSortType, filter *ConfiguratorAttributeFilterType) (*ConfiguratorAttributeResultType, error)
 	SlotsIds(ctx context.Context, obj *ConfiguratorItem) ([]string, error)
+	SlotsConnection(ctx context.Context, obj *ConfiguratorItem, offset *int, limit *int, q *string, sort []*ConfiguratorSlotSortType, filter *ConfiguratorSlotFilterType) (*ConfiguratorSlotResultType, error)
 	ParentSlotsIds(ctx context.Context, obj *ConfiguratorItem) ([]string, error)
+	ParentSlotsConnection(ctx context.Context, obj *ConfiguratorItem, offset *int, limit *int, q *string, sort []*ConfiguratorSlotSortType, filter *ConfiguratorSlotFilterType) (*ConfiguratorSlotResultType, error)
 }
 type ConfiguratorItemDefinitionResolver interface {
 	Attributes(ctx context.Context, obj *ConfiguratorItemDefinition) ([]*ConfiguratorAttributeDefinition, error)
@@ -340,14 +358,19 @@ type ConfiguratorItemDefinitionResolver interface {
 	Category(ctx context.Context, obj *ConfiguratorItemDefinition) (*ConfiguratorItemDefinitionCategory, error)
 
 	AttributesIds(ctx context.Context, obj *ConfiguratorItemDefinition) ([]string, error)
+	AttributesConnection(ctx context.Context, obj *ConfiguratorItemDefinition, offset *int, limit *int, q *string, sort []*ConfiguratorAttributeDefinitionSortType, filter *ConfiguratorAttributeDefinitionFilterType) (*ConfiguratorAttributeDefinitionResultType, error)
 	SlotsIds(ctx context.Context, obj *ConfiguratorItemDefinition) ([]string, error)
+	SlotsConnection(ctx context.Context, obj *ConfiguratorItemDefinition, offset *int, limit *int, q *string, sort []*ConfiguratorSlotDefinitionSortType, filter *ConfiguratorSlotDefinitionFilterType) (*ConfiguratorSlotDefinitionResultType, error)
 	ItemsIds(ctx context.Context, obj *ConfiguratorItemDefinition) ([]string, error)
+	ItemsConnection(ctx context.Context, obj *ConfiguratorItemDefinition, offset *int, limit *int, q *string, sort []*ConfiguratorItemSortType, filter *ConfiguratorItemFilterType) (*ConfiguratorItemResultType, error)
 	AllowedInSlotsIds(ctx context.Context, obj *ConfiguratorItemDefinition) ([]string, error)
+	AllowedInSlotsConnection(ctx context.Context, obj *ConfiguratorItemDefinition, offset *int, limit *int, q *string, sort []*ConfiguratorSlotDefinitionSortType, filter *ConfiguratorSlotDefinitionFilterType) (*ConfiguratorSlotDefinitionResultType, error)
 }
 type ConfiguratorItemDefinitionCategoryResolver interface {
 	Definitions(ctx context.Context, obj *ConfiguratorItemDefinitionCategory) ([]*ConfiguratorItemDefinition, error)
 
 	DefinitionsIds(ctx context.Context, obj *ConfiguratorItemDefinitionCategory) ([]string, error)
+	DefinitionsConnection(ctx context.Context, obj *ConfiguratorItemDefinitionCategory, offset *int, limit *int, q *string, sort []*ConfiguratorItemDefinitionSortType, filter *ConfiguratorItemDefinitionFilterType) (*ConfiguratorItemDefinitionResultType, error)
 }
 type ConfiguratorItemDefinitionCategoryResultTypeResolver interface {
 	Items(ctx context.Context, obj *ConfiguratorItemDefinitionCategoryResultType) ([]*ConfiguratorItemDefinitionCategory, error)
@@ -372,7 +395,9 @@ type ConfiguratorSlotDefinitionResolver interface {
 	AllowedItemDefinitions(ctx context.Context, obj *ConfiguratorSlotDefinition) ([]*ConfiguratorItemDefinition, error)
 
 	SlotsIds(ctx context.Context, obj *ConfiguratorSlotDefinition) ([]string, error)
+	SlotsConnection(ctx context.Context, obj *ConfiguratorSlotDefinition, offset *int, limit *int, q *string, sort []*ConfiguratorSlotSortType, filter *ConfiguratorSlotFilterType) (*ConfiguratorSlotResultType, error)
 	AllowedItemDefinitionsIds(ctx context.Context, obj *ConfiguratorSlotDefinition) ([]string, error)
+	AllowedItemDefinitionsConnection(ctx context.Context, obj *ConfiguratorSlotDefinition, offset *int, limit *int, q *string, sort []*ConfiguratorItemDefinitionSortType, filter *ConfiguratorItemDefinitionFilterType) (*ConfiguratorItemDefinitionResultType, error)
 }
 type ConfiguratorSlotDefinitionResultTypeResolver interface {
 	Items(ctx context.Context, obj *ConfiguratorSlotDefinitionResultType) ([]*ConfiguratorSlotDefinition, error)
@@ -666,6 +691,18 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.ConfiguratorAttributeDefinition.Attributes(childComplexity), true
 
+	case "ConfiguratorAttributeDefinition.attributesConnection":
+		if e.complexity.ConfiguratorAttributeDefinition.AttributesConnection == nil {
+			break
+		}
+
+		args, err := ec.field_ConfiguratorAttributeDefinition_attributesConnection_args(context.TODO(), rawArgs)
+		if err != nil {
+			return 0, false
+		}
+
+		return e.complexity.ConfiguratorAttributeDefinition.AttributesConnection(childComplexity, args["offset"].(*int), args["limit"].(*int), args["q"].(*string), args["sort"].([]*ConfiguratorAttributeSortType), args["filter"].(*ConfiguratorAttributeFilterType)), true
+
 	case "ConfiguratorAttributeDefinition.attributesIds":
 		if e.complexity.ConfiguratorAttributeDefinition.AttributesIds == nil {
 			break
@@ -693,6 +730,18 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.ConfiguratorAttributeDefinition.Definitions(childComplexity), true
+
+	case "ConfiguratorAttributeDefinition.definitionsConnection":
+		if e.complexity.ConfiguratorAttributeDefinition.DefinitionsConnection == nil {
+			break
+		}
+
+		args, err := ec.field_ConfiguratorAttributeDefinition_definitionsConnection_args(context.TODO(), rawArgs)
+		if err != nil {
+			return 0, false
+		}
+
+		return e.complexity.ConfiguratorAttributeDefinition.DefinitionsConnection(childComplexity, args["offset"].(*int), args["limit"].(*int), args["q"].(*string), args["sort"].([]*ConfiguratorItemDefinitionSortType), args["filter"].(*ConfiguratorItemDefinitionFilterType)), true
 
 	case "ConfiguratorAttributeDefinition.definitionsIds":
 		if e.complexity.ConfiguratorAttributeDefinition.DefinitionsIds == nil {
@@ -771,6 +820,18 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.ConfiguratorItem.Attributes(childComplexity), true
 
+	case "ConfiguratorItem.attributesConnection":
+		if e.complexity.ConfiguratorItem.AttributesConnection == nil {
+			break
+		}
+
+		args, err := ec.field_ConfiguratorItem_attributesConnection_args(context.TODO(), rawArgs)
+		if err != nil {
+			return 0, false
+		}
+
+		return e.complexity.ConfiguratorItem.AttributesConnection(childComplexity, args["offset"].(*int), args["limit"].(*int), args["q"].(*string), args["sort"].([]*ConfiguratorAttributeSortType), args["filter"].(*ConfiguratorAttributeFilterType)), true
+
 	case "ConfiguratorItem.attributesIds":
 		if e.complexity.ConfiguratorItem.AttributesIds == nil {
 			break
@@ -834,6 +895,18 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.ConfiguratorItem.ParentSlots(childComplexity), true
 
+	case "ConfiguratorItem.parentSlotsConnection":
+		if e.complexity.ConfiguratorItem.ParentSlotsConnection == nil {
+			break
+		}
+
+		args, err := ec.field_ConfiguratorItem_parentSlotsConnection_args(context.TODO(), rawArgs)
+		if err != nil {
+			return 0, false
+		}
+
+		return e.complexity.ConfiguratorItem.ParentSlotsConnection(childComplexity, args["offset"].(*int), args["limit"].(*int), args["q"].(*string), args["sort"].([]*ConfiguratorSlotSortType), args["filter"].(*ConfiguratorSlotFilterType)), true
+
 	case "ConfiguratorItem.parentSlotsIds":
 		if e.complexity.ConfiguratorItem.ParentSlotsIds == nil {
 			break
@@ -854,6 +927,18 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.ConfiguratorItem.Slots(childComplexity), true
+
+	case "ConfiguratorItem.slotsConnection":
+		if e.complexity.ConfiguratorItem.SlotsConnection == nil {
+			break
+		}
+
+		args, err := ec.field_ConfiguratorItem_slotsConnection_args(context.TODO(), rawArgs)
+		if err != nil {
+			return 0, false
+		}
+
+		return e.complexity.ConfiguratorItem.SlotsConnection(childComplexity, args["offset"].(*int), args["limit"].(*int), args["q"].(*string), args["sort"].([]*ConfiguratorSlotSortType), args["filter"].(*ConfiguratorSlotFilterType)), true
 
 	case "ConfiguratorItem.slotsIds":
 		if e.complexity.ConfiguratorItem.SlotsIds == nil {
@@ -897,6 +982,18 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.ConfiguratorItemDefinition.AllowedInSlots(childComplexity), true
 
+	case "ConfiguratorItemDefinition.allowedInSlotsConnection":
+		if e.complexity.ConfiguratorItemDefinition.AllowedInSlotsConnection == nil {
+			break
+		}
+
+		args, err := ec.field_ConfiguratorItemDefinition_allowedInSlotsConnection_args(context.TODO(), rawArgs)
+		if err != nil {
+			return 0, false
+		}
+
+		return e.complexity.ConfiguratorItemDefinition.AllowedInSlotsConnection(childComplexity, args["offset"].(*int), args["limit"].(*int), args["q"].(*string), args["sort"].([]*ConfiguratorSlotDefinitionSortType), args["filter"].(*ConfiguratorSlotDefinitionFilterType)), true
+
 	case "ConfiguratorItemDefinition.allowedInSlotsIds":
 		if e.complexity.ConfiguratorItemDefinition.AllowedInSlotsIds == nil {
 			break
@@ -910,6 +1007,18 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.ConfiguratorItemDefinition.Attributes(childComplexity), true
+
+	case "ConfiguratorItemDefinition.attributesConnection":
+		if e.complexity.ConfiguratorItemDefinition.AttributesConnection == nil {
+			break
+		}
+
+		args, err := ec.field_ConfiguratorItemDefinition_attributesConnection_args(context.TODO(), rawArgs)
+		if err != nil {
+			return 0, false
+		}
+
+		return e.complexity.ConfiguratorItemDefinition.AttributesConnection(childComplexity, args["offset"].(*int), args["limit"].(*int), args["q"].(*string), args["sort"].([]*ConfiguratorAttributeDefinitionSortType), args["filter"].(*ConfiguratorAttributeDefinitionFilterType)), true
 
 	case "ConfiguratorItemDefinition.attributesIds":
 		if e.complexity.ConfiguratorItemDefinition.AttributesIds == nil {
@@ -967,6 +1076,18 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.ConfiguratorItemDefinition.Items(childComplexity), true
 
+	case "ConfiguratorItemDefinition.itemsConnection":
+		if e.complexity.ConfiguratorItemDefinition.ItemsConnection == nil {
+			break
+		}
+
+		args, err := ec.field_ConfiguratorItemDefinition_itemsConnection_args(context.TODO(), rawArgs)
+		if err != nil {
+			return 0, false
+		}
+
+		return e.complexity.ConfiguratorItemDefinition.ItemsConnection(childComplexity, args["offset"].(*int), args["limit"].(*int), args["q"].(*string), args["sort"].([]*ConfiguratorItemSortType), args["filter"].(*ConfiguratorItemFilterType)), true
+
 	case "ConfiguratorItemDefinition.itemsIds":
 		if e.complexity.ConfiguratorItemDefinition.ItemsIds == nil {
 			break
@@ -987,6 +1108,18 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.ConfiguratorItemDefinition.Slots(childComplexity), true
+
+	case "ConfiguratorItemDefinition.slotsConnection":
+		if e.complexity.ConfiguratorItemDefinition.SlotsConnection == nil {
+			break
+		}
+
+		args, err := ec.field_ConfiguratorItemDefinition_slotsConnection_args(context.TODO(), rawArgs)
+		if err != nil {
+			return 0, false
+		}
+
+		return e.complexity.ConfiguratorItemDefinition.SlotsConnection(childComplexity, args["offset"].(*int), args["limit"].(*int), args["q"].(*string), args["sort"].([]*ConfiguratorSlotDefinitionSortType), args["filter"].(*ConfiguratorSlotDefinitionFilterType)), true
 
 	case "ConfiguratorItemDefinition.slotsIds":
 		if e.complexity.ConfiguratorItemDefinition.SlotsIds == nil {
@@ -1037,6 +1170,18 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.ConfiguratorItemDefinitionCategory.Definitions(childComplexity), true
 
+	case "ConfiguratorItemDefinitionCategory.definitionsConnection":
+		if e.complexity.ConfiguratorItemDefinitionCategory.DefinitionsConnection == nil {
+			break
+		}
+
+		args, err := ec.field_ConfiguratorItemDefinitionCategory_definitionsConnection_args(context.TODO(), rawArgs)
+		if err != nil {
+			return 0, false
+		}
+
+		return e.complexity.ConfiguratorItemDefinitionCategory.DefinitionsConnection(childComplexity, args["offset"].(*int), args["limit"].(*int), args["q"].(*string), args["sort"].([]*ConfiguratorItemDefinitionSortType), args["filter"].(*ConfiguratorItemDefinitionFilterType)), true
+
 	case "ConfiguratorItemDefinitionCategory.definitionsIds":
 		if e.complexity.ConfiguratorItemDefinitionCategory.DefinitionsIds == nil {
 			break
@@ -1057,6 +1202,13 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.ConfiguratorItemDefinitionCategory.Name(childComplexity), true
+
+	case "ConfiguratorItemDefinitionCategory.primary":
+		if e.complexity.ConfiguratorItemDefinitionCategory.Primary == nil {
+			break
+		}
+
+		return e.complexity.ConfiguratorItemDefinitionCategory.Primary(childComplexity), true
 
 	case "ConfiguratorItemDefinitionCategory.type":
 		if e.complexity.ConfiguratorItemDefinitionCategory.Type == nil {
@@ -1212,6 +1364,18 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.ConfiguratorSlotDefinition.AllowedItemDefinitions(childComplexity), true
 
+	case "ConfiguratorSlotDefinition.allowedItemDefinitionsConnection":
+		if e.complexity.ConfiguratorSlotDefinition.AllowedItemDefinitionsConnection == nil {
+			break
+		}
+
+		args, err := ec.field_ConfiguratorSlotDefinition_allowedItemDefinitionsConnection_args(context.TODO(), rawArgs)
+		if err != nil {
+			return 0, false
+		}
+
+		return e.complexity.ConfiguratorSlotDefinition.AllowedItemDefinitionsConnection(childComplexity, args["offset"].(*int), args["limit"].(*int), args["q"].(*string), args["sort"].([]*ConfiguratorItemDefinitionSortType), args["filter"].(*ConfiguratorItemDefinitionFilterType)), true
+
 	case "ConfiguratorSlotDefinition.allowedItemDefinitionsIds":
 		if e.complexity.ConfiguratorSlotDefinition.AllowedItemDefinitionsIds == nil {
 			break
@@ -1288,6 +1452,18 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.ConfiguratorSlotDefinition.Slots(childComplexity), true
+
+	case "ConfiguratorSlotDefinition.slotsConnection":
+		if e.complexity.ConfiguratorSlotDefinition.SlotsConnection == nil {
+			break
+		}
+
+		args, err := ec.field_ConfiguratorSlotDefinition_slotsConnection_args(context.TODO(), rawArgs)
+		if err != nil {
+			return 0, false
+		}
+
+		return e.complexity.ConfiguratorSlotDefinition.SlotsConnection(childComplexity, args["offset"].(*int), args["limit"].(*int), args["q"].(*string), args["sort"].([]*ConfiguratorSlotSortType), args["filter"].(*ConfiguratorSlotFilterType)), true
 
 	case "ConfiguratorSlotDefinition.slotsIds":
 		if e.complexity.ConfiguratorSlotDefinition.SlotsIds == nil {
@@ -1953,19 +2129,19 @@ type Query {
   _service: _Service!
   _entities(representations: [_Any!]!): [_Entity]!
   configuratorItemDefinitionCategory(id: ID, q: String, filter: ConfiguratorItemDefinitionCategoryFilterType): ConfiguratorItemDefinitionCategory
-  configuratorItemDefinitionCategories(offset: Int, limit: Int = 30, q: String, sort: [ConfiguratorItemDefinitionCategorySortType!], filter: ConfiguratorItemDefinitionCategoryFilterType): ConfiguratorItemDefinitionCategoryResultType
+  configuratorItemDefinitionCategories(offset: Int, limit: Int = 30, q: String, sort: [ConfiguratorItemDefinitionCategorySortType!], filter: ConfiguratorItemDefinitionCategoryFilterType): ConfiguratorItemDefinitionCategoryResultType!
   configuratorItemDefinition(id: ID, q: String, filter: ConfiguratorItemDefinitionFilterType): ConfiguratorItemDefinition
-  configuratorItemDefinitions(offset: Int, limit: Int = 30, q: String, sort: [ConfiguratorItemDefinitionSortType!], filter: ConfiguratorItemDefinitionFilterType): ConfiguratorItemDefinitionResultType
+  configuratorItemDefinitions(offset: Int, limit: Int = 30, q: String, sort: [ConfiguratorItemDefinitionSortType!], filter: ConfiguratorItemDefinitionFilterType): ConfiguratorItemDefinitionResultType!
   configuratorAttributeDefinition(id: ID, q: String, filter: ConfiguratorAttributeDefinitionFilterType): ConfiguratorAttributeDefinition
-  configuratorAttributeDefinitions(offset: Int, limit: Int = 30, q: String, sort: [ConfiguratorAttributeDefinitionSortType!], filter: ConfiguratorAttributeDefinitionFilterType): ConfiguratorAttributeDefinitionResultType
+  configuratorAttributeDefinitions(offset: Int, limit: Int = 30, q: String, sort: [ConfiguratorAttributeDefinitionSortType!], filter: ConfiguratorAttributeDefinitionFilterType): ConfiguratorAttributeDefinitionResultType!
   configuratorSlotDefinition(id: ID, q: String, filter: ConfiguratorSlotDefinitionFilterType): ConfiguratorSlotDefinition
-  configuratorSlotDefinitions(offset: Int, limit: Int = 30, q: String, sort: [ConfiguratorSlotDefinitionSortType!], filter: ConfiguratorSlotDefinitionFilterType): ConfiguratorSlotDefinitionResultType
+  configuratorSlotDefinitions(offset: Int, limit: Int = 30, q: String, sort: [ConfiguratorSlotDefinitionSortType!], filter: ConfiguratorSlotDefinitionFilterType): ConfiguratorSlotDefinitionResultType!
   configuratorItem(id: ID, q: String, filter: ConfiguratorItemFilterType): ConfiguratorItem
-  configuratorItems(offset: Int, limit: Int = 30, q: String, sort: [ConfiguratorItemSortType!], filter: ConfiguratorItemFilterType): ConfiguratorItemResultType
+  configuratorItems(offset: Int, limit: Int = 30, q: String, sort: [ConfiguratorItemSortType!], filter: ConfiguratorItemFilterType): ConfiguratorItemResultType!
   configuratorAttribute(id: ID, q: String, filter: ConfiguratorAttributeFilterType): ConfiguratorAttribute
-  configuratorAttributes(offset: Int, limit: Int = 30, q: String, sort: [ConfiguratorAttributeSortType!], filter: ConfiguratorAttributeFilterType): ConfiguratorAttributeResultType
+  configuratorAttributes(offset: Int, limit: Int = 30, q: String, sort: [ConfiguratorAttributeSortType!], filter: ConfiguratorAttributeFilterType): ConfiguratorAttributeResultType!
   configuratorSlot(id: ID, q: String, filter: ConfiguratorSlotFilterType): ConfiguratorSlot
-  configuratorSlots(offset: Int, limit: Int = 30, q: String, sort: [ConfiguratorSlotSortType!], filter: ConfiguratorSlotFilterType): ConfiguratorSlotResultType
+  configuratorSlots(offset: Int, limit: Int = 30, q: String, sort: [ConfiguratorSlotSortType!], filter: ConfiguratorSlotFilterType): ConfiguratorSlotResultType!
 }
 
 type Mutation {
@@ -2081,12 +2257,14 @@ type ConfiguratorItemDefinitionCategory {
   code: String
   name: String
   type: String
+  primary: Boolean
   definitions: [ConfiguratorItemDefinition!]!
   updatedAt: Time
   createdAt: Time!
   updatedBy: ID
   createdBy: ID
   definitionsIds: [ID!]!
+  definitionsConnection(offset: Int, limit: Int = 30, q: String, sort: [ConfiguratorItemDefinitionSortType!], filter: ConfiguratorItemDefinitionFilterType): ConfiguratorItemDefinitionResultType!
 }
 
 type ConfiguratorItemDefinition {
@@ -2104,9 +2282,13 @@ type ConfiguratorItemDefinition {
   updatedBy: ID
   createdBy: ID
   attributesIds: [ID!]!
+  attributesConnection(offset: Int, limit: Int = 30, q: String, sort: [ConfiguratorAttributeDefinitionSortType!], filter: ConfiguratorAttributeDefinitionFilterType): ConfiguratorAttributeDefinitionResultType!
   slotsIds: [ID!]!
+  slotsConnection(offset: Int, limit: Int = 30, q: String, sort: [ConfiguratorSlotDefinitionSortType!], filter: ConfiguratorSlotDefinitionFilterType): ConfiguratorSlotDefinitionResultType!
   itemsIds: [ID!]!
+  itemsConnection(offset: Int, limit: Int = 30, q: String, sort: [ConfiguratorItemSortType!], filter: ConfiguratorItemFilterType): ConfiguratorItemResultType!
   allowedInSlotsIds: [ID!]!
+  allowedInSlotsConnection(offset: Int, limit: Int = 30, q: String, sort: [ConfiguratorSlotDefinitionSortType!], filter: ConfiguratorSlotDefinitionFilterType): ConfiguratorSlotDefinitionResultType!
 }
 
 enum ConfiguratorAttributeType {
@@ -2126,7 +2308,9 @@ type ConfiguratorAttributeDefinition {
   updatedBy: ID
   createdBy: ID
   definitionsIds: [ID!]!
+  definitionsConnection(offset: Int, limit: Int = 30, q: String, sort: [ConfiguratorItemDefinitionSortType!], filter: ConfiguratorItemDefinitionFilterType): ConfiguratorItemDefinitionResultType!
   attributesIds: [ID!]!
+  attributesConnection(offset: Int, limit: Int = 30, q: String, sort: [ConfiguratorAttributeSortType!], filter: ConfiguratorAttributeFilterType): ConfiguratorAttributeResultType!
 }
 
 type ConfiguratorSlotDefinition {
@@ -2144,7 +2328,9 @@ type ConfiguratorSlotDefinition {
   updatedBy: ID
   createdBy: ID
   slotsIds: [ID!]!
+  slotsConnection(offset: Int, limit: Int = 30, q: String, sort: [ConfiguratorSlotSortType!], filter: ConfiguratorSlotFilterType): ConfiguratorSlotResultType!
   allowedItemDefinitionsIds: [ID!]!
+  allowedItemDefinitionsConnection(offset: Int, limit: Int = 30, q: String, sort: [ConfiguratorItemDefinitionSortType!], filter: ConfiguratorItemDefinitionFilterType): ConfiguratorItemDefinitionResultType!
 }
 
 type ConfiguratorItem {
@@ -2164,8 +2350,11 @@ type ConfiguratorItem {
   updatedBy: ID
   createdBy: ID
   attributesIds: [ID!]!
+  attributesConnection(offset: Int, limit: Int = 30, q: String, sort: [ConfiguratorAttributeSortType!], filter: ConfiguratorAttributeFilterType): ConfiguratorAttributeResultType!
   slotsIds: [ID!]!
+  slotsConnection(offset: Int, limit: Int = 30, q: String, sort: [ConfiguratorSlotSortType!], filter: ConfiguratorSlotFilterType): ConfiguratorSlotResultType!
   parentSlotsIds: [ID!]!
+  parentSlotsConnection(offset: Int, limit: Int = 30, q: String, sort: [ConfiguratorSlotSortType!], filter: ConfiguratorSlotFilterType): ConfiguratorSlotResultType!
 }
 
 type ConfiguratorAttribute {
@@ -2203,6 +2392,7 @@ input ConfiguratorItemDefinitionCategoryCreateInput {
   code: String
   name: String
   type: String
+  primary: Boolean
   definitionsIds: [ID!]
 }
 
@@ -2210,19 +2400,41 @@ input ConfiguratorItemDefinitionCategoryUpdateInput {
   code: String
   name: String
   type: String
+  primary: Boolean
   definitionsIds: [ID!]
 }
 
 input ConfiguratorItemDefinitionCategorySortType {
   id: ObjectSortType
+  idMin: ObjectSortType
+  idMax: ObjectSortType
   code: ObjectSortType
+  codeMin: ObjectSortType
+  codeMax: ObjectSortType
   name: ObjectSortType
+  nameMin: ObjectSortType
+  nameMax: ObjectSortType
   type: ObjectSortType
+  typeMin: ObjectSortType
+  typeMax: ObjectSortType
+  primary: ObjectSortType
+  primaryMin: ObjectSortType
+  primaryMax: ObjectSortType
   updatedAt: ObjectSortType
+  updatedAtMin: ObjectSortType
+  updatedAtMax: ObjectSortType
   createdAt: ObjectSortType
+  createdAtMin: ObjectSortType
+  createdAtMax: ObjectSortType
   updatedBy: ObjectSortType
+  updatedByMin: ObjectSortType
+  updatedByMax: ObjectSortType
   createdBy: ObjectSortType
+  createdByMin: ObjectSortType
+  createdByMax: ObjectSortType
   definitionsIds: ObjectSortType
+  definitionsIdsMin: ObjectSortType
+  definitionsIdsMax: ObjectSortType
   definitions: ConfiguratorItemDefinitionSortType
 }
 
@@ -2230,77 +2442,229 @@ input ConfiguratorItemDefinitionCategoryFilterType {
   AND: [ConfiguratorItemDefinitionCategoryFilterType!]
   OR: [ConfiguratorItemDefinitionCategoryFilterType!]
   id: ID
+  idMin: ID
+  idMax: ID
   id_ne: ID
+  idMin_ne: ID
+  idMax_ne: ID
   id_gt: ID
+  idMin_gt: ID
+  idMax_gt: ID
   id_lt: ID
+  idMin_lt: ID
+  idMax_lt: ID
   id_gte: ID
+  idMin_gte: ID
+  idMax_gte: ID
   id_lte: ID
+  idMin_lte: ID
+  idMax_lte: ID
   id_in: [ID!]
+  idMin_in: [ID!]
+  idMax_in: [ID!]
   id_null: Boolean
   code: String
+  codeMin: String
+  codeMax: String
   code_ne: String
+  codeMin_ne: String
+  codeMax_ne: String
   code_gt: String
+  codeMin_gt: String
+  codeMax_gt: String
   code_lt: String
+  codeMin_lt: String
+  codeMax_lt: String
   code_gte: String
+  codeMin_gte: String
+  codeMax_gte: String
   code_lte: String
+  codeMin_lte: String
+  codeMax_lte: String
   code_in: [String!]
+  codeMin_in: [String!]
+  codeMax_in: [String!]
   code_like: String
+  codeMin_like: String
+  codeMax_like: String
   code_prefix: String
+  codeMin_prefix: String
+  codeMax_prefix: String
   code_suffix: String
+  codeMin_suffix: String
+  codeMax_suffix: String
   code_null: Boolean
   name: String
+  nameMin: String
+  nameMax: String
   name_ne: String
+  nameMin_ne: String
+  nameMax_ne: String
   name_gt: String
+  nameMin_gt: String
+  nameMax_gt: String
   name_lt: String
+  nameMin_lt: String
+  nameMax_lt: String
   name_gte: String
+  nameMin_gte: String
+  nameMax_gte: String
   name_lte: String
+  nameMin_lte: String
+  nameMax_lte: String
   name_in: [String!]
+  nameMin_in: [String!]
+  nameMax_in: [String!]
   name_like: String
+  nameMin_like: String
+  nameMax_like: String
   name_prefix: String
+  nameMin_prefix: String
+  nameMax_prefix: String
   name_suffix: String
+  nameMin_suffix: String
+  nameMax_suffix: String
   name_null: Boolean
   type: String
+  typeMin: String
+  typeMax: String
   type_ne: String
+  typeMin_ne: String
+  typeMax_ne: String
   type_gt: String
+  typeMin_gt: String
+  typeMax_gt: String
   type_lt: String
+  typeMin_lt: String
+  typeMax_lt: String
   type_gte: String
+  typeMin_gte: String
+  typeMax_gte: String
   type_lte: String
+  typeMin_lte: String
+  typeMax_lte: String
   type_in: [String!]
+  typeMin_in: [String!]
+  typeMax_in: [String!]
   type_like: String
+  typeMin_like: String
+  typeMax_like: String
   type_prefix: String
+  typeMin_prefix: String
+  typeMax_prefix: String
   type_suffix: String
+  typeMin_suffix: String
+  typeMax_suffix: String
   type_null: Boolean
+  primary: Boolean
+  primaryMin: Boolean
+  primaryMax: Boolean
+  primary_ne: Boolean
+  primaryMin_ne: Boolean
+  primaryMax_ne: Boolean
+  primary_gt: Boolean
+  primaryMin_gt: Boolean
+  primaryMax_gt: Boolean
+  primary_lt: Boolean
+  primaryMin_lt: Boolean
+  primaryMax_lt: Boolean
+  primary_gte: Boolean
+  primaryMin_gte: Boolean
+  primaryMax_gte: Boolean
+  primary_lte: Boolean
+  primaryMin_lte: Boolean
+  primaryMax_lte: Boolean
+  primary_in: [Boolean!]
+  primaryMin_in: [Boolean!]
+  primaryMax_in: [Boolean!]
+  primary_null: Boolean
   updatedAt: Time
+  updatedAtMin: Time
+  updatedAtMax: Time
   updatedAt_ne: Time
+  updatedAtMin_ne: Time
+  updatedAtMax_ne: Time
   updatedAt_gt: Time
+  updatedAtMin_gt: Time
+  updatedAtMax_gt: Time
   updatedAt_lt: Time
+  updatedAtMin_lt: Time
+  updatedAtMax_lt: Time
   updatedAt_gte: Time
+  updatedAtMin_gte: Time
+  updatedAtMax_gte: Time
   updatedAt_lte: Time
+  updatedAtMin_lte: Time
+  updatedAtMax_lte: Time
   updatedAt_in: [Time!]
+  updatedAtMin_in: [Time!]
+  updatedAtMax_in: [Time!]
   updatedAt_null: Boolean
   createdAt: Time
+  createdAtMin: Time
+  createdAtMax: Time
   createdAt_ne: Time
+  createdAtMin_ne: Time
+  createdAtMax_ne: Time
   createdAt_gt: Time
+  createdAtMin_gt: Time
+  createdAtMax_gt: Time
   createdAt_lt: Time
+  createdAtMin_lt: Time
+  createdAtMax_lt: Time
   createdAt_gte: Time
+  createdAtMin_gte: Time
+  createdAtMax_gte: Time
   createdAt_lte: Time
+  createdAtMin_lte: Time
+  createdAtMax_lte: Time
   createdAt_in: [Time!]
+  createdAtMin_in: [Time!]
+  createdAtMax_in: [Time!]
   createdAt_null: Boolean
   updatedBy: ID
+  updatedByMin: ID
+  updatedByMax: ID
   updatedBy_ne: ID
+  updatedByMin_ne: ID
+  updatedByMax_ne: ID
   updatedBy_gt: ID
+  updatedByMin_gt: ID
+  updatedByMax_gt: ID
   updatedBy_lt: ID
+  updatedByMin_lt: ID
+  updatedByMax_lt: ID
   updatedBy_gte: ID
+  updatedByMin_gte: ID
+  updatedByMax_gte: ID
   updatedBy_lte: ID
+  updatedByMin_lte: ID
+  updatedByMax_lte: ID
   updatedBy_in: [ID!]
+  updatedByMin_in: [ID!]
+  updatedByMax_in: [ID!]
   updatedBy_null: Boolean
   createdBy: ID
+  createdByMin: ID
+  createdByMax: ID
   createdBy_ne: ID
+  createdByMin_ne: ID
+  createdByMax_ne: ID
   createdBy_gt: ID
+  createdByMin_gt: ID
+  createdByMax_gt: ID
   createdBy_lt: ID
+  createdByMin_lt: ID
+  createdByMax_lt: ID
   createdBy_gte: ID
+  createdByMin_gte: ID
+  createdByMax_gte: ID
   createdBy_lte: ID
+  createdByMin_lte: ID
+  createdByMax_lte: ID
   createdBy_in: [ID!]
+  createdByMin_in: [ID!]
+  createdByMax_in: [ID!]
   createdBy_null: Boolean
   definitions: ConfiguratorItemDefinitionFilterType
 }
@@ -2333,17 +2697,41 @@ input ConfiguratorItemDefinitionUpdateInput {
 
 input ConfiguratorItemDefinitionSortType {
   id: ObjectSortType
+  idMin: ObjectSortType
+  idMax: ObjectSortType
   code: ObjectSortType
+  codeMin: ObjectSortType
+  codeMax: ObjectSortType
   name: ObjectSortType
+  nameMin: ObjectSortType
+  nameMax: ObjectSortType
   categoryId: ObjectSortType
+  categoryIdMin: ObjectSortType
+  categoryIdMax: ObjectSortType
   updatedAt: ObjectSortType
+  updatedAtMin: ObjectSortType
+  updatedAtMax: ObjectSortType
   createdAt: ObjectSortType
+  createdAtMin: ObjectSortType
+  createdAtMax: ObjectSortType
   updatedBy: ObjectSortType
+  updatedByMin: ObjectSortType
+  updatedByMax: ObjectSortType
   createdBy: ObjectSortType
+  createdByMin: ObjectSortType
+  createdByMax: ObjectSortType
   attributesIds: ObjectSortType
+  attributesIdsMin: ObjectSortType
+  attributesIdsMax: ObjectSortType
   slotsIds: ObjectSortType
+  slotsIdsMin: ObjectSortType
+  slotsIdsMax: ObjectSortType
   itemsIds: ObjectSortType
+  itemsIdsMin: ObjectSortType
+  itemsIdsMax: ObjectSortType
   allowedInSlotsIds: ObjectSortType
+  allowedInSlotsIdsMin: ObjectSortType
+  allowedInSlotsIdsMax: ObjectSortType
   attributes: ConfiguratorAttributeDefinitionSortType
   slots: ConfiguratorSlotDefinitionSortType
   items: ConfiguratorItemSortType
@@ -2355,74 +2743,198 @@ input ConfiguratorItemDefinitionFilterType {
   AND: [ConfiguratorItemDefinitionFilterType!]
   OR: [ConfiguratorItemDefinitionFilterType!]
   id: ID
+  idMin: ID
+  idMax: ID
   id_ne: ID
+  idMin_ne: ID
+  idMax_ne: ID
   id_gt: ID
+  idMin_gt: ID
+  idMax_gt: ID
   id_lt: ID
+  idMin_lt: ID
+  idMax_lt: ID
   id_gte: ID
+  idMin_gte: ID
+  idMax_gte: ID
   id_lte: ID
+  idMin_lte: ID
+  idMax_lte: ID
   id_in: [ID!]
+  idMin_in: [ID!]
+  idMax_in: [ID!]
   id_null: Boolean
   code: String
+  codeMin: String
+  codeMax: String
   code_ne: String
+  codeMin_ne: String
+  codeMax_ne: String
   code_gt: String
+  codeMin_gt: String
+  codeMax_gt: String
   code_lt: String
+  codeMin_lt: String
+  codeMax_lt: String
   code_gte: String
+  codeMin_gte: String
+  codeMax_gte: String
   code_lte: String
+  codeMin_lte: String
+  codeMax_lte: String
   code_in: [String!]
+  codeMin_in: [String!]
+  codeMax_in: [String!]
   code_like: String
+  codeMin_like: String
+  codeMax_like: String
   code_prefix: String
+  codeMin_prefix: String
+  codeMax_prefix: String
   code_suffix: String
+  codeMin_suffix: String
+  codeMax_suffix: String
   code_null: Boolean
   name: String
+  nameMin: String
+  nameMax: String
   name_ne: String
+  nameMin_ne: String
+  nameMax_ne: String
   name_gt: String
+  nameMin_gt: String
+  nameMax_gt: String
   name_lt: String
+  nameMin_lt: String
+  nameMax_lt: String
   name_gte: String
+  nameMin_gte: String
+  nameMax_gte: String
   name_lte: String
+  nameMin_lte: String
+  nameMax_lte: String
   name_in: [String!]
+  nameMin_in: [String!]
+  nameMax_in: [String!]
   name_like: String
+  nameMin_like: String
+  nameMax_like: String
   name_prefix: String
+  nameMin_prefix: String
+  nameMax_prefix: String
   name_suffix: String
+  nameMin_suffix: String
+  nameMax_suffix: String
   name_null: Boolean
   categoryId: ID
+  categoryIdMin: ID
+  categoryIdMax: ID
   categoryId_ne: ID
+  categoryIdMin_ne: ID
+  categoryIdMax_ne: ID
   categoryId_gt: ID
+  categoryIdMin_gt: ID
+  categoryIdMax_gt: ID
   categoryId_lt: ID
+  categoryIdMin_lt: ID
+  categoryIdMax_lt: ID
   categoryId_gte: ID
+  categoryIdMin_gte: ID
+  categoryIdMax_gte: ID
   categoryId_lte: ID
+  categoryIdMin_lte: ID
+  categoryIdMax_lte: ID
   categoryId_in: [ID!]
+  categoryIdMin_in: [ID!]
+  categoryIdMax_in: [ID!]
   categoryId_null: Boolean
   updatedAt: Time
+  updatedAtMin: Time
+  updatedAtMax: Time
   updatedAt_ne: Time
+  updatedAtMin_ne: Time
+  updatedAtMax_ne: Time
   updatedAt_gt: Time
+  updatedAtMin_gt: Time
+  updatedAtMax_gt: Time
   updatedAt_lt: Time
+  updatedAtMin_lt: Time
+  updatedAtMax_lt: Time
   updatedAt_gte: Time
+  updatedAtMin_gte: Time
+  updatedAtMax_gte: Time
   updatedAt_lte: Time
+  updatedAtMin_lte: Time
+  updatedAtMax_lte: Time
   updatedAt_in: [Time!]
+  updatedAtMin_in: [Time!]
+  updatedAtMax_in: [Time!]
   updatedAt_null: Boolean
   createdAt: Time
+  createdAtMin: Time
+  createdAtMax: Time
   createdAt_ne: Time
+  createdAtMin_ne: Time
+  createdAtMax_ne: Time
   createdAt_gt: Time
+  createdAtMin_gt: Time
+  createdAtMax_gt: Time
   createdAt_lt: Time
+  createdAtMin_lt: Time
+  createdAtMax_lt: Time
   createdAt_gte: Time
+  createdAtMin_gte: Time
+  createdAtMax_gte: Time
   createdAt_lte: Time
+  createdAtMin_lte: Time
+  createdAtMax_lte: Time
   createdAt_in: [Time!]
+  createdAtMin_in: [Time!]
+  createdAtMax_in: [Time!]
   createdAt_null: Boolean
   updatedBy: ID
+  updatedByMin: ID
+  updatedByMax: ID
   updatedBy_ne: ID
+  updatedByMin_ne: ID
+  updatedByMax_ne: ID
   updatedBy_gt: ID
+  updatedByMin_gt: ID
+  updatedByMax_gt: ID
   updatedBy_lt: ID
+  updatedByMin_lt: ID
+  updatedByMax_lt: ID
   updatedBy_gte: ID
+  updatedByMin_gte: ID
+  updatedByMax_gte: ID
   updatedBy_lte: ID
+  updatedByMin_lte: ID
+  updatedByMax_lte: ID
   updatedBy_in: [ID!]
+  updatedByMin_in: [ID!]
+  updatedByMax_in: [ID!]
   updatedBy_null: Boolean
   createdBy: ID
+  createdByMin: ID
+  createdByMax: ID
   createdBy_ne: ID
+  createdByMin_ne: ID
+  createdByMax_ne: ID
   createdBy_gt: ID
+  createdByMin_gt: ID
+  createdByMax_gt: ID
   createdBy_lt: ID
+  createdByMin_lt: ID
+  createdByMax_lt: ID
   createdBy_gte: ID
+  createdByMin_gte: ID
+  createdByMax_gte: ID
   createdBy_lte: ID
+  createdByMin_lte: ID
+  createdByMax_lte: ID
   createdBy_in: [ID!]
+  createdByMin_in: [ID!]
+  createdByMax_in: [ID!]
   createdBy_null: Boolean
   attributes: ConfiguratorAttributeDefinitionFilterType
   slots: ConfiguratorSlotDefinitionFilterType
@@ -2453,14 +2965,32 @@ input ConfiguratorAttributeDefinitionUpdateInput {
 
 input ConfiguratorAttributeDefinitionSortType {
   id: ObjectSortType
+  idMin: ObjectSortType
+  idMax: ObjectSortType
   name: ObjectSortType
+  nameMin: ObjectSortType
+  nameMax: ObjectSortType
   type: ObjectSortType
+  typeMin: ObjectSortType
+  typeMax: ObjectSortType
   updatedAt: ObjectSortType
+  updatedAtMin: ObjectSortType
+  updatedAtMax: ObjectSortType
   createdAt: ObjectSortType
+  createdAtMin: ObjectSortType
+  createdAtMax: ObjectSortType
   updatedBy: ObjectSortType
+  updatedByMin: ObjectSortType
+  updatedByMax: ObjectSortType
   createdBy: ObjectSortType
+  createdByMin: ObjectSortType
+  createdByMax: ObjectSortType
   definitionsIds: ObjectSortType
+  definitionsIdsMin: ObjectSortType
+  definitionsIdsMax: ObjectSortType
   attributesIds: ObjectSortType
+  attributesIdsMin: ObjectSortType
+  attributesIdsMax: ObjectSortType
   definitions: ConfiguratorItemDefinitionSortType
   attributes: ConfiguratorAttributeSortType
 }
@@ -2469,63 +2999,167 @@ input ConfiguratorAttributeDefinitionFilterType {
   AND: [ConfiguratorAttributeDefinitionFilterType!]
   OR: [ConfiguratorAttributeDefinitionFilterType!]
   id: ID
+  idMin: ID
+  idMax: ID
   id_ne: ID
+  idMin_ne: ID
+  idMax_ne: ID
   id_gt: ID
+  idMin_gt: ID
+  idMax_gt: ID
   id_lt: ID
+  idMin_lt: ID
+  idMax_lt: ID
   id_gte: ID
+  idMin_gte: ID
+  idMax_gte: ID
   id_lte: ID
+  idMin_lte: ID
+  idMax_lte: ID
   id_in: [ID!]
+  idMin_in: [ID!]
+  idMax_in: [ID!]
   id_null: Boolean
   name: String
+  nameMin: String
+  nameMax: String
   name_ne: String
+  nameMin_ne: String
+  nameMax_ne: String
   name_gt: String
+  nameMin_gt: String
+  nameMax_gt: String
   name_lt: String
+  nameMin_lt: String
+  nameMax_lt: String
   name_gte: String
+  nameMin_gte: String
+  nameMax_gte: String
   name_lte: String
+  nameMin_lte: String
+  nameMax_lte: String
   name_in: [String!]
+  nameMin_in: [String!]
+  nameMax_in: [String!]
   name_like: String
+  nameMin_like: String
+  nameMax_like: String
   name_prefix: String
+  nameMin_prefix: String
+  nameMax_prefix: String
   name_suffix: String
+  nameMin_suffix: String
+  nameMax_suffix: String
   name_null: Boolean
   type: ConfiguratorAttributeType
+  typeMin: ConfiguratorAttributeType
+  typeMax: ConfiguratorAttributeType
   type_ne: ConfiguratorAttributeType
+  typeMin_ne: ConfiguratorAttributeType
+  typeMax_ne: ConfiguratorAttributeType
   type_gt: ConfiguratorAttributeType
+  typeMin_gt: ConfiguratorAttributeType
+  typeMax_gt: ConfiguratorAttributeType
   type_lt: ConfiguratorAttributeType
+  typeMin_lt: ConfiguratorAttributeType
+  typeMax_lt: ConfiguratorAttributeType
   type_gte: ConfiguratorAttributeType
+  typeMin_gte: ConfiguratorAttributeType
+  typeMax_gte: ConfiguratorAttributeType
   type_lte: ConfiguratorAttributeType
+  typeMin_lte: ConfiguratorAttributeType
+  typeMax_lte: ConfiguratorAttributeType
   type_in: [ConfiguratorAttributeType!]
+  typeMin_in: [ConfiguratorAttributeType!]
+  typeMax_in: [ConfiguratorAttributeType!]
   type_null: Boolean
   updatedAt: Time
+  updatedAtMin: Time
+  updatedAtMax: Time
   updatedAt_ne: Time
+  updatedAtMin_ne: Time
+  updatedAtMax_ne: Time
   updatedAt_gt: Time
+  updatedAtMin_gt: Time
+  updatedAtMax_gt: Time
   updatedAt_lt: Time
+  updatedAtMin_lt: Time
+  updatedAtMax_lt: Time
   updatedAt_gte: Time
+  updatedAtMin_gte: Time
+  updatedAtMax_gte: Time
   updatedAt_lte: Time
+  updatedAtMin_lte: Time
+  updatedAtMax_lte: Time
   updatedAt_in: [Time!]
+  updatedAtMin_in: [Time!]
+  updatedAtMax_in: [Time!]
   updatedAt_null: Boolean
   createdAt: Time
+  createdAtMin: Time
+  createdAtMax: Time
   createdAt_ne: Time
+  createdAtMin_ne: Time
+  createdAtMax_ne: Time
   createdAt_gt: Time
+  createdAtMin_gt: Time
+  createdAtMax_gt: Time
   createdAt_lt: Time
+  createdAtMin_lt: Time
+  createdAtMax_lt: Time
   createdAt_gte: Time
+  createdAtMin_gte: Time
+  createdAtMax_gte: Time
   createdAt_lte: Time
+  createdAtMin_lte: Time
+  createdAtMax_lte: Time
   createdAt_in: [Time!]
+  createdAtMin_in: [Time!]
+  createdAtMax_in: [Time!]
   createdAt_null: Boolean
   updatedBy: ID
+  updatedByMin: ID
+  updatedByMax: ID
   updatedBy_ne: ID
+  updatedByMin_ne: ID
+  updatedByMax_ne: ID
   updatedBy_gt: ID
+  updatedByMin_gt: ID
+  updatedByMax_gt: ID
   updatedBy_lt: ID
+  updatedByMin_lt: ID
+  updatedByMax_lt: ID
   updatedBy_gte: ID
+  updatedByMin_gte: ID
+  updatedByMax_gte: ID
   updatedBy_lte: ID
+  updatedByMin_lte: ID
+  updatedByMax_lte: ID
   updatedBy_in: [ID!]
+  updatedByMin_in: [ID!]
+  updatedByMax_in: [ID!]
   updatedBy_null: Boolean
   createdBy: ID
+  createdByMin: ID
+  createdByMax: ID
   createdBy_ne: ID
+  createdByMin_ne: ID
+  createdByMax_ne: ID
   createdBy_gt: ID
+  createdByMin_gt: ID
+  createdByMax_gt: ID
   createdBy_lt: ID
+  createdByMin_lt: ID
+  createdByMax_lt: ID
   createdBy_gte: ID
+  createdByMin_gte: ID
+  createdByMax_gte: ID
   createdBy_lte: ID
+  createdByMin_lte: ID
+  createdByMax_lte: ID
   createdBy_in: [ID!]
+  createdByMin_in: [ID!]
+  createdByMax_in: [ID!]
   createdBy_null: Boolean
   definitions: ConfiguratorItemDefinitionFilterType
   attributes: ConfiguratorAttributeFilterType
@@ -2559,17 +3193,44 @@ input ConfiguratorSlotDefinitionUpdateInput {
 
 input ConfiguratorSlotDefinitionSortType {
   id: ObjectSortType
+  idMin: ObjectSortType
+  idMax: ObjectSortType
   name: ObjectSortType
+  nameMin: ObjectSortType
+  nameMax: ObjectSortType
   minCount: ObjectSortType
+  minCountMin: ObjectSortType
+  minCountMax: ObjectSortType
+  minCountAvg: ObjectSortType
   maxCount: ObjectSortType
+  maxCountMin: ObjectSortType
+  maxCountMax: ObjectSortType
+  maxCountAvg: ObjectSortType
   defaultCount: ObjectSortType
+  defaultCountMin: ObjectSortType
+  defaultCountMax: ObjectSortType
+  defaultCountAvg: ObjectSortType
   definitionId: ObjectSortType
+  definitionIdMin: ObjectSortType
+  definitionIdMax: ObjectSortType
   updatedAt: ObjectSortType
+  updatedAtMin: ObjectSortType
+  updatedAtMax: ObjectSortType
   createdAt: ObjectSortType
+  createdAtMin: ObjectSortType
+  createdAtMax: ObjectSortType
   updatedBy: ObjectSortType
+  updatedByMin: ObjectSortType
+  updatedByMax: ObjectSortType
   createdBy: ObjectSortType
+  createdByMin: ObjectSortType
+  createdByMax: ObjectSortType
   slotsIds: ObjectSortType
+  slotsIdsMin: ObjectSortType
+  slotsIdsMax: ObjectSortType
   allowedItemDefinitionsIds: ObjectSortType
+  allowedItemDefinitionsIdsMin: ObjectSortType
+  allowedItemDefinitionsIdsMax: ObjectSortType
   definition: ConfiguratorItemDefinitionSortType
   slots: ConfiguratorSlotSortType
   allowedItemDefinitions: ConfiguratorItemDefinitionSortType
@@ -2579,87 +3240,254 @@ input ConfiguratorSlotDefinitionFilterType {
   AND: [ConfiguratorSlotDefinitionFilterType!]
   OR: [ConfiguratorSlotDefinitionFilterType!]
   id: ID
+  idMin: ID
+  idMax: ID
   id_ne: ID
+  idMin_ne: ID
+  idMax_ne: ID
   id_gt: ID
+  idMin_gt: ID
+  idMax_gt: ID
   id_lt: ID
+  idMin_lt: ID
+  idMax_lt: ID
   id_gte: ID
+  idMin_gte: ID
+  idMax_gte: ID
   id_lte: ID
+  idMin_lte: ID
+  idMax_lte: ID
   id_in: [ID!]
+  idMin_in: [ID!]
+  idMax_in: [ID!]
   id_null: Boolean
   name: String
+  nameMin: String
+  nameMax: String
   name_ne: String
+  nameMin_ne: String
+  nameMax_ne: String
   name_gt: String
+  nameMin_gt: String
+  nameMax_gt: String
   name_lt: String
+  nameMin_lt: String
+  nameMax_lt: String
   name_gte: String
+  nameMin_gte: String
+  nameMax_gte: String
   name_lte: String
+  nameMin_lte: String
+  nameMax_lte: String
   name_in: [String!]
+  nameMin_in: [String!]
+  nameMax_in: [String!]
   name_like: String
+  nameMin_like: String
+  nameMax_like: String
   name_prefix: String
+  nameMin_prefix: String
+  nameMax_prefix: String
   name_suffix: String
+  nameMin_suffix: String
+  nameMax_suffix: String
   name_null: Boolean
   minCount: Float
+  minCountMin: Float
+  minCountMax: Float
+  minCountAvg: Float
   minCount_ne: Float
+  minCountMin_ne: Float
+  minCountMax_ne: Float
+  minCountAvg_ne: Float
   minCount_gt: Float
+  minCountMin_gt: Float
+  minCountMax_gt: Float
+  minCountAvg_gt: Float
   minCount_lt: Float
+  minCountMin_lt: Float
+  minCountMax_lt: Float
+  minCountAvg_lt: Float
   minCount_gte: Float
+  minCountMin_gte: Float
+  minCountMax_gte: Float
+  minCountAvg_gte: Float
   minCount_lte: Float
+  minCountMin_lte: Float
+  minCountMax_lte: Float
+  minCountAvg_lte: Float
   minCount_in: [Float!]
+  minCountMin_in: [Float!]
+  minCountMax_in: [Float!]
+  minCountAvg_in: [Float!]
   minCount_null: Boolean
   maxCount: Float
+  maxCountMin: Float
+  maxCountMax: Float
+  maxCountAvg: Float
   maxCount_ne: Float
+  maxCountMin_ne: Float
+  maxCountMax_ne: Float
+  maxCountAvg_ne: Float
   maxCount_gt: Float
+  maxCountMin_gt: Float
+  maxCountMax_gt: Float
+  maxCountAvg_gt: Float
   maxCount_lt: Float
+  maxCountMin_lt: Float
+  maxCountMax_lt: Float
+  maxCountAvg_lt: Float
   maxCount_gte: Float
+  maxCountMin_gte: Float
+  maxCountMax_gte: Float
+  maxCountAvg_gte: Float
   maxCount_lte: Float
+  maxCountMin_lte: Float
+  maxCountMax_lte: Float
+  maxCountAvg_lte: Float
   maxCount_in: [Float!]
+  maxCountMin_in: [Float!]
+  maxCountMax_in: [Float!]
+  maxCountAvg_in: [Float!]
   maxCount_null: Boolean
   defaultCount: Float
+  defaultCountMin: Float
+  defaultCountMax: Float
+  defaultCountAvg: Float
   defaultCount_ne: Float
+  defaultCountMin_ne: Float
+  defaultCountMax_ne: Float
+  defaultCountAvg_ne: Float
   defaultCount_gt: Float
+  defaultCountMin_gt: Float
+  defaultCountMax_gt: Float
+  defaultCountAvg_gt: Float
   defaultCount_lt: Float
+  defaultCountMin_lt: Float
+  defaultCountMax_lt: Float
+  defaultCountAvg_lt: Float
   defaultCount_gte: Float
+  defaultCountMin_gte: Float
+  defaultCountMax_gte: Float
+  defaultCountAvg_gte: Float
   defaultCount_lte: Float
+  defaultCountMin_lte: Float
+  defaultCountMax_lte: Float
+  defaultCountAvg_lte: Float
   defaultCount_in: [Float!]
+  defaultCountMin_in: [Float!]
+  defaultCountMax_in: [Float!]
+  defaultCountAvg_in: [Float!]
   defaultCount_null: Boolean
   definitionId: ID
+  definitionIdMin: ID
+  definitionIdMax: ID
   definitionId_ne: ID
+  definitionIdMin_ne: ID
+  definitionIdMax_ne: ID
   definitionId_gt: ID
+  definitionIdMin_gt: ID
+  definitionIdMax_gt: ID
   definitionId_lt: ID
+  definitionIdMin_lt: ID
+  definitionIdMax_lt: ID
   definitionId_gte: ID
+  definitionIdMin_gte: ID
+  definitionIdMax_gte: ID
   definitionId_lte: ID
+  definitionIdMin_lte: ID
+  definitionIdMax_lte: ID
   definitionId_in: [ID!]
+  definitionIdMin_in: [ID!]
+  definitionIdMax_in: [ID!]
   definitionId_null: Boolean
   updatedAt: Time
+  updatedAtMin: Time
+  updatedAtMax: Time
   updatedAt_ne: Time
+  updatedAtMin_ne: Time
+  updatedAtMax_ne: Time
   updatedAt_gt: Time
+  updatedAtMin_gt: Time
+  updatedAtMax_gt: Time
   updatedAt_lt: Time
+  updatedAtMin_lt: Time
+  updatedAtMax_lt: Time
   updatedAt_gte: Time
+  updatedAtMin_gte: Time
+  updatedAtMax_gte: Time
   updatedAt_lte: Time
+  updatedAtMin_lte: Time
+  updatedAtMax_lte: Time
   updatedAt_in: [Time!]
+  updatedAtMin_in: [Time!]
+  updatedAtMax_in: [Time!]
   updatedAt_null: Boolean
   createdAt: Time
+  createdAtMin: Time
+  createdAtMax: Time
   createdAt_ne: Time
+  createdAtMin_ne: Time
+  createdAtMax_ne: Time
   createdAt_gt: Time
+  createdAtMin_gt: Time
+  createdAtMax_gt: Time
   createdAt_lt: Time
+  createdAtMin_lt: Time
+  createdAtMax_lt: Time
   createdAt_gte: Time
+  createdAtMin_gte: Time
+  createdAtMax_gte: Time
   createdAt_lte: Time
+  createdAtMin_lte: Time
+  createdAtMax_lte: Time
   createdAt_in: [Time!]
+  createdAtMin_in: [Time!]
+  createdAtMax_in: [Time!]
   createdAt_null: Boolean
   updatedBy: ID
+  updatedByMin: ID
+  updatedByMax: ID
   updatedBy_ne: ID
+  updatedByMin_ne: ID
+  updatedByMax_ne: ID
   updatedBy_gt: ID
+  updatedByMin_gt: ID
+  updatedByMax_gt: ID
   updatedBy_lt: ID
+  updatedByMin_lt: ID
+  updatedByMax_lt: ID
   updatedBy_gte: ID
+  updatedByMin_gte: ID
+  updatedByMax_gte: ID
   updatedBy_lte: ID
+  updatedByMin_lte: ID
+  updatedByMax_lte: ID
   updatedBy_in: [ID!]
+  updatedByMin_in: [ID!]
+  updatedByMax_in: [ID!]
   updatedBy_null: Boolean
   createdBy: ID
+  createdByMin: ID
+  createdByMax: ID
   createdBy_ne: ID
+  createdByMin_ne: ID
+  createdByMax_ne: ID
   createdBy_gt: ID
+  createdByMin_gt: ID
+  createdByMax_gt: ID
   createdBy_lt: ID
+  createdByMin_lt: ID
+  createdByMax_lt: ID
   createdBy_gte: ID
+  createdByMin_gte: ID
+  createdByMax_gte: ID
   createdBy_lte: ID
+  createdByMin_lte: ID
+  createdByMax_lte: ID
   createdBy_in: [ID!]
+  createdByMin_in: [ID!]
+  createdByMax_in: [ID!]
   createdBy_null: Boolean
   definition: ConfiguratorItemDefinitionFilterType
   slots: ConfiguratorSlotFilterType
@@ -2696,18 +3524,44 @@ input ConfiguratorItemUpdateInput {
 
 input ConfiguratorItemSortType {
   id: ObjectSortType
+  idMin: ObjectSortType
+  idMax: ObjectSortType
   code: ObjectSortType
+  codeMin: ObjectSortType
+  codeMax: ObjectSortType
   name: ObjectSortType
+  nameMin: ObjectSortType
+  nameMax: ObjectSortType
   stockItemId: ObjectSortType
+  stockItemIdMin: ObjectSortType
+  stockItemIdMax: ObjectSortType
   rawData: ObjectSortType
+  rawDataMin: ObjectSortType
+  rawDataMax: ObjectSortType
   definitionId: ObjectSortType
+  definitionIdMin: ObjectSortType
+  definitionIdMax: ObjectSortType
   updatedAt: ObjectSortType
+  updatedAtMin: ObjectSortType
+  updatedAtMax: ObjectSortType
   createdAt: ObjectSortType
+  createdAtMin: ObjectSortType
+  createdAtMax: ObjectSortType
   updatedBy: ObjectSortType
+  updatedByMin: ObjectSortType
+  updatedByMax: ObjectSortType
   createdBy: ObjectSortType
+  createdByMin: ObjectSortType
+  createdByMax: ObjectSortType
   attributesIds: ObjectSortType
+  attributesIdsMin: ObjectSortType
+  attributesIdsMax: ObjectSortType
   slotsIds: ObjectSortType
+  slotsIdsMin: ObjectSortType
+  slotsIdsMax: ObjectSortType
   parentSlotsIds: ObjectSortType
+  parentSlotsIdsMin: ObjectSortType
+  parentSlotsIdsMax: ObjectSortType
   definition: ConfiguratorItemDefinitionSortType
   attributes: ConfiguratorAttributeSortType
   slots: ConfiguratorSlotSortType
@@ -2718,93 +3572,251 @@ input ConfiguratorItemFilterType {
   AND: [ConfiguratorItemFilterType!]
   OR: [ConfiguratorItemFilterType!]
   id: ID
+  idMin: ID
+  idMax: ID
   id_ne: ID
+  idMin_ne: ID
+  idMax_ne: ID
   id_gt: ID
+  idMin_gt: ID
+  idMax_gt: ID
   id_lt: ID
+  idMin_lt: ID
+  idMax_lt: ID
   id_gte: ID
+  idMin_gte: ID
+  idMax_gte: ID
   id_lte: ID
+  idMin_lte: ID
+  idMax_lte: ID
   id_in: [ID!]
+  idMin_in: [ID!]
+  idMax_in: [ID!]
   id_null: Boolean
   code: String
+  codeMin: String
+  codeMax: String
   code_ne: String
+  codeMin_ne: String
+  codeMax_ne: String
   code_gt: String
+  codeMin_gt: String
+  codeMax_gt: String
   code_lt: String
+  codeMin_lt: String
+  codeMax_lt: String
   code_gte: String
+  codeMin_gte: String
+  codeMax_gte: String
   code_lte: String
+  codeMin_lte: String
+  codeMax_lte: String
   code_in: [String!]
+  codeMin_in: [String!]
+  codeMax_in: [String!]
   code_like: String
+  codeMin_like: String
+  codeMax_like: String
   code_prefix: String
+  codeMin_prefix: String
+  codeMax_prefix: String
   code_suffix: String
+  codeMin_suffix: String
+  codeMax_suffix: String
   code_null: Boolean
   name: String
+  nameMin: String
+  nameMax: String
   name_ne: String
+  nameMin_ne: String
+  nameMax_ne: String
   name_gt: String
+  nameMin_gt: String
+  nameMax_gt: String
   name_lt: String
+  nameMin_lt: String
+  nameMax_lt: String
   name_gte: String
+  nameMin_gte: String
+  nameMax_gte: String
   name_lte: String
+  nameMin_lte: String
+  nameMax_lte: String
   name_in: [String!]
+  nameMin_in: [String!]
+  nameMax_in: [String!]
   name_like: String
+  nameMin_like: String
+  nameMax_like: String
   name_prefix: String
+  nameMin_prefix: String
+  nameMax_prefix: String
   name_suffix: String
+  nameMin_suffix: String
+  nameMax_suffix: String
   name_null: Boolean
   stockItemId: ID
+  stockItemIdMin: ID
+  stockItemIdMax: ID
   stockItemId_ne: ID
+  stockItemIdMin_ne: ID
+  stockItemIdMax_ne: ID
   stockItemId_gt: ID
+  stockItemIdMin_gt: ID
+  stockItemIdMax_gt: ID
   stockItemId_lt: ID
+  stockItemIdMin_lt: ID
+  stockItemIdMax_lt: ID
   stockItemId_gte: ID
+  stockItemIdMin_gte: ID
+  stockItemIdMax_gte: ID
   stockItemId_lte: ID
+  stockItemIdMin_lte: ID
+  stockItemIdMax_lte: ID
   stockItemId_in: [ID!]
+  stockItemIdMin_in: [ID!]
+  stockItemIdMax_in: [ID!]
   stockItemId_null: Boolean
   rawData: String
+  rawDataMin: String
+  rawDataMax: String
   rawData_ne: String
+  rawDataMin_ne: String
+  rawDataMax_ne: String
   rawData_gt: String
+  rawDataMin_gt: String
+  rawDataMax_gt: String
   rawData_lt: String
+  rawDataMin_lt: String
+  rawDataMax_lt: String
   rawData_gte: String
+  rawDataMin_gte: String
+  rawDataMax_gte: String
   rawData_lte: String
+  rawDataMin_lte: String
+  rawDataMax_lte: String
   rawData_in: [String!]
+  rawDataMin_in: [String!]
+  rawDataMax_in: [String!]
   rawData_like: String
+  rawDataMin_like: String
+  rawDataMax_like: String
   rawData_prefix: String
+  rawDataMin_prefix: String
+  rawDataMax_prefix: String
   rawData_suffix: String
+  rawDataMin_suffix: String
+  rawDataMax_suffix: String
   rawData_null: Boolean
   definitionId: ID
+  definitionIdMin: ID
+  definitionIdMax: ID
   definitionId_ne: ID
+  definitionIdMin_ne: ID
+  definitionIdMax_ne: ID
   definitionId_gt: ID
+  definitionIdMin_gt: ID
+  definitionIdMax_gt: ID
   definitionId_lt: ID
+  definitionIdMin_lt: ID
+  definitionIdMax_lt: ID
   definitionId_gte: ID
+  definitionIdMin_gte: ID
+  definitionIdMax_gte: ID
   definitionId_lte: ID
+  definitionIdMin_lte: ID
+  definitionIdMax_lte: ID
   definitionId_in: [ID!]
+  definitionIdMin_in: [ID!]
+  definitionIdMax_in: [ID!]
   definitionId_null: Boolean
   updatedAt: Time
+  updatedAtMin: Time
+  updatedAtMax: Time
   updatedAt_ne: Time
+  updatedAtMin_ne: Time
+  updatedAtMax_ne: Time
   updatedAt_gt: Time
+  updatedAtMin_gt: Time
+  updatedAtMax_gt: Time
   updatedAt_lt: Time
+  updatedAtMin_lt: Time
+  updatedAtMax_lt: Time
   updatedAt_gte: Time
+  updatedAtMin_gte: Time
+  updatedAtMax_gte: Time
   updatedAt_lte: Time
+  updatedAtMin_lte: Time
+  updatedAtMax_lte: Time
   updatedAt_in: [Time!]
+  updatedAtMin_in: [Time!]
+  updatedAtMax_in: [Time!]
   updatedAt_null: Boolean
   createdAt: Time
+  createdAtMin: Time
+  createdAtMax: Time
   createdAt_ne: Time
+  createdAtMin_ne: Time
+  createdAtMax_ne: Time
   createdAt_gt: Time
+  createdAtMin_gt: Time
+  createdAtMax_gt: Time
   createdAt_lt: Time
+  createdAtMin_lt: Time
+  createdAtMax_lt: Time
   createdAt_gte: Time
+  createdAtMin_gte: Time
+  createdAtMax_gte: Time
   createdAt_lte: Time
+  createdAtMin_lte: Time
+  createdAtMax_lte: Time
   createdAt_in: [Time!]
+  createdAtMin_in: [Time!]
+  createdAtMax_in: [Time!]
   createdAt_null: Boolean
   updatedBy: ID
+  updatedByMin: ID
+  updatedByMax: ID
   updatedBy_ne: ID
+  updatedByMin_ne: ID
+  updatedByMax_ne: ID
   updatedBy_gt: ID
+  updatedByMin_gt: ID
+  updatedByMax_gt: ID
   updatedBy_lt: ID
+  updatedByMin_lt: ID
+  updatedByMax_lt: ID
   updatedBy_gte: ID
+  updatedByMin_gte: ID
+  updatedByMax_gte: ID
   updatedBy_lte: ID
+  updatedByMin_lte: ID
+  updatedByMax_lte: ID
   updatedBy_in: [ID!]
+  updatedByMin_in: [ID!]
+  updatedByMax_in: [ID!]
   updatedBy_null: Boolean
   createdBy: ID
+  createdByMin: ID
+  createdByMax: ID
   createdBy_ne: ID
+  createdByMin_ne: ID
+  createdByMax_ne: ID
   createdBy_gt: ID
+  createdByMin_gt: ID
+  createdByMax_gt: ID
   createdBy_lt: ID
+  createdByMin_lt: ID
+  createdByMax_lt: ID
   createdBy_gte: ID
+  createdByMin_gte: ID
+  createdByMax_gte: ID
   createdBy_lte: ID
+  createdByMin_lte: ID
+  createdByMax_lte: ID
   createdBy_in: [ID!]
+  createdByMin_in: [ID!]
+  createdByMax_in: [ID!]
   createdBy_null: Boolean
   definition: ConfiguratorItemDefinitionFilterType
   attributes: ConfiguratorAttributeFilterType
@@ -2836,15 +3848,37 @@ input ConfiguratorAttributeUpdateInput {
 
 input ConfiguratorAttributeSortType {
   id: ObjectSortType
+  idMin: ObjectSortType
+  idMax: ObjectSortType
   stringValue: ObjectSortType
+  stringValueMin: ObjectSortType
+  stringValueMax: ObjectSortType
   floatValue: ObjectSortType
+  floatValueMin: ObjectSortType
+  floatValueMax: ObjectSortType
+  floatValueAvg: ObjectSortType
   intValue: ObjectSortType
+  intValueMin: ObjectSortType
+  intValueMax: ObjectSortType
+  intValueAvg: ObjectSortType
   definitionId: ObjectSortType
+  definitionIdMin: ObjectSortType
+  definitionIdMax: ObjectSortType
   itemId: ObjectSortType
+  itemIdMin: ObjectSortType
+  itemIdMax: ObjectSortType
   updatedAt: ObjectSortType
+  updatedAtMin: ObjectSortType
+  updatedAtMax: ObjectSortType
   createdAt: ObjectSortType
+  createdAtMin: ObjectSortType
+  createdAtMax: ObjectSortType
   updatedBy: ObjectSortType
+  updatedByMin: ObjectSortType
+  updatedByMax: ObjectSortType
   createdBy: ObjectSortType
+  createdByMin: ObjectSortType
+  createdByMax: ObjectSortType
   definition: ConfiguratorAttributeDefinitionSortType
   item: ConfiguratorItemSortType
 }
@@ -2853,87 +3887,247 @@ input ConfiguratorAttributeFilterType {
   AND: [ConfiguratorAttributeFilterType!]
   OR: [ConfiguratorAttributeFilterType!]
   id: ID
+  idMin: ID
+  idMax: ID
   id_ne: ID
+  idMin_ne: ID
+  idMax_ne: ID
   id_gt: ID
+  idMin_gt: ID
+  idMax_gt: ID
   id_lt: ID
+  idMin_lt: ID
+  idMax_lt: ID
   id_gte: ID
+  idMin_gte: ID
+  idMax_gte: ID
   id_lte: ID
+  idMin_lte: ID
+  idMax_lte: ID
   id_in: [ID!]
+  idMin_in: [ID!]
+  idMax_in: [ID!]
   id_null: Boolean
   stringValue: String
+  stringValueMin: String
+  stringValueMax: String
   stringValue_ne: String
+  stringValueMin_ne: String
+  stringValueMax_ne: String
   stringValue_gt: String
+  stringValueMin_gt: String
+  stringValueMax_gt: String
   stringValue_lt: String
+  stringValueMin_lt: String
+  stringValueMax_lt: String
   stringValue_gte: String
+  stringValueMin_gte: String
+  stringValueMax_gte: String
   stringValue_lte: String
+  stringValueMin_lte: String
+  stringValueMax_lte: String
   stringValue_in: [String!]
+  stringValueMin_in: [String!]
+  stringValueMax_in: [String!]
   stringValue_like: String
+  stringValueMin_like: String
+  stringValueMax_like: String
   stringValue_prefix: String
+  stringValueMin_prefix: String
+  stringValueMax_prefix: String
   stringValue_suffix: String
+  stringValueMin_suffix: String
+  stringValueMax_suffix: String
   stringValue_null: Boolean
   floatValue: Float
+  floatValueMin: Float
+  floatValueMax: Float
+  floatValueAvg: Float
   floatValue_ne: Float
+  floatValueMin_ne: Float
+  floatValueMax_ne: Float
+  floatValueAvg_ne: Float
   floatValue_gt: Float
+  floatValueMin_gt: Float
+  floatValueMax_gt: Float
+  floatValueAvg_gt: Float
   floatValue_lt: Float
+  floatValueMin_lt: Float
+  floatValueMax_lt: Float
+  floatValueAvg_lt: Float
   floatValue_gte: Float
+  floatValueMin_gte: Float
+  floatValueMax_gte: Float
+  floatValueAvg_gte: Float
   floatValue_lte: Float
+  floatValueMin_lte: Float
+  floatValueMax_lte: Float
+  floatValueAvg_lte: Float
   floatValue_in: [Float!]
+  floatValueMin_in: [Float!]
+  floatValueMax_in: [Float!]
+  floatValueAvg_in: [Float!]
   floatValue_null: Boolean
   intValue: Int
+  intValueMin: Int
+  intValueMax: Int
+  intValueAvg: Int
   intValue_ne: Int
+  intValueMin_ne: Int
+  intValueMax_ne: Int
+  intValueAvg_ne: Int
   intValue_gt: Int
+  intValueMin_gt: Int
+  intValueMax_gt: Int
+  intValueAvg_gt: Int
   intValue_lt: Int
+  intValueMin_lt: Int
+  intValueMax_lt: Int
+  intValueAvg_lt: Int
   intValue_gte: Int
+  intValueMin_gte: Int
+  intValueMax_gte: Int
+  intValueAvg_gte: Int
   intValue_lte: Int
+  intValueMin_lte: Int
+  intValueMax_lte: Int
+  intValueAvg_lte: Int
   intValue_in: [Int!]
+  intValueMin_in: [Int!]
+  intValueMax_in: [Int!]
+  intValueAvg_in: [Int!]
   intValue_null: Boolean
   definitionId: ID
+  definitionIdMin: ID
+  definitionIdMax: ID
   definitionId_ne: ID
+  definitionIdMin_ne: ID
+  definitionIdMax_ne: ID
   definitionId_gt: ID
+  definitionIdMin_gt: ID
+  definitionIdMax_gt: ID
   definitionId_lt: ID
+  definitionIdMin_lt: ID
+  definitionIdMax_lt: ID
   definitionId_gte: ID
+  definitionIdMin_gte: ID
+  definitionIdMax_gte: ID
   definitionId_lte: ID
+  definitionIdMin_lte: ID
+  definitionIdMax_lte: ID
   definitionId_in: [ID!]
+  definitionIdMin_in: [ID!]
+  definitionIdMax_in: [ID!]
   definitionId_null: Boolean
   itemId: ID
+  itemIdMin: ID
+  itemIdMax: ID
   itemId_ne: ID
+  itemIdMin_ne: ID
+  itemIdMax_ne: ID
   itemId_gt: ID
+  itemIdMin_gt: ID
+  itemIdMax_gt: ID
   itemId_lt: ID
+  itemIdMin_lt: ID
+  itemIdMax_lt: ID
   itemId_gte: ID
+  itemIdMin_gte: ID
+  itemIdMax_gte: ID
   itemId_lte: ID
+  itemIdMin_lte: ID
+  itemIdMax_lte: ID
   itemId_in: [ID!]
+  itemIdMin_in: [ID!]
+  itemIdMax_in: [ID!]
   itemId_null: Boolean
   updatedAt: Time
+  updatedAtMin: Time
+  updatedAtMax: Time
   updatedAt_ne: Time
+  updatedAtMin_ne: Time
+  updatedAtMax_ne: Time
   updatedAt_gt: Time
+  updatedAtMin_gt: Time
+  updatedAtMax_gt: Time
   updatedAt_lt: Time
+  updatedAtMin_lt: Time
+  updatedAtMax_lt: Time
   updatedAt_gte: Time
+  updatedAtMin_gte: Time
+  updatedAtMax_gte: Time
   updatedAt_lte: Time
+  updatedAtMin_lte: Time
+  updatedAtMax_lte: Time
   updatedAt_in: [Time!]
+  updatedAtMin_in: [Time!]
+  updatedAtMax_in: [Time!]
   updatedAt_null: Boolean
   createdAt: Time
+  createdAtMin: Time
+  createdAtMax: Time
   createdAt_ne: Time
+  createdAtMin_ne: Time
+  createdAtMax_ne: Time
   createdAt_gt: Time
+  createdAtMin_gt: Time
+  createdAtMax_gt: Time
   createdAt_lt: Time
+  createdAtMin_lt: Time
+  createdAtMax_lt: Time
   createdAt_gte: Time
+  createdAtMin_gte: Time
+  createdAtMax_gte: Time
   createdAt_lte: Time
+  createdAtMin_lte: Time
+  createdAtMax_lte: Time
   createdAt_in: [Time!]
+  createdAtMin_in: [Time!]
+  createdAtMax_in: [Time!]
   createdAt_null: Boolean
   updatedBy: ID
+  updatedByMin: ID
+  updatedByMax: ID
   updatedBy_ne: ID
+  updatedByMin_ne: ID
+  updatedByMax_ne: ID
   updatedBy_gt: ID
+  updatedByMin_gt: ID
+  updatedByMax_gt: ID
   updatedBy_lt: ID
+  updatedByMin_lt: ID
+  updatedByMax_lt: ID
   updatedBy_gte: ID
+  updatedByMin_gte: ID
+  updatedByMax_gte: ID
   updatedBy_lte: ID
+  updatedByMin_lte: ID
+  updatedByMax_lte: ID
   updatedBy_in: [ID!]
+  updatedByMin_in: [ID!]
+  updatedByMax_in: [ID!]
   updatedBy_null: Boolean
   createdBy: ID
+  createdByMin: ID
+  createdByMax: ID
   createdBy_ne: ID
+  createdByMin_ne: ID
+  createdByMax_ne: ID
   createdBy_gt: ID
+  createdByMin_gt: ID
+  createdByMax_gt: ID
   createdBy_lt: ID
+  createdByMin_lt: ID
+  createdByMax_lt: ID
   createdBy_gte: ID
+  createdByMin_gte: ID
+  createdByMax_gte: ID
   createdBy_lte: ID
+  createdByMin_lte: ID
+  createdByMax_lte: ID
   createdBy_in: [ID!]
+  createdByMin_in: [ID!]
+  createdByMax_in: [ID!]
   createdBy_null: Boolean
   definition: ConfiguratorAttributeDefinitionFilterType
   item: ConfiguratorItemFilterType
@@ -2961,14 +4155,33 @@ input ConfiguratorSlotUpdateInput {
 
 input ConfiguratorSlotSortType {
   id: ObjectSortType
+  idMin: ObjectSortType
+  idMax: ObjectSortType
   count: ObjectSortType
+  countMin: ObjectSortType
+  countMax: ObjectSortType
+  countAvg: ObjectSortType
   itemId: ObjectSortType
+  itemIdMin: ObjectSortType
+  itemIdMax: ObjectSortType
   definitionId: ObjectSortType
+  definitionIdMin: ObjectSortType
+  definitionIdMax: ObjectSortType
   parentItemId: ObjectSortType
+  parentItemIdMin: ObjectSortType
+  parentItemIdMax: ObjectSortType
   updatedAt: ObjectSortType
+  updatedAtMin: ObjectSortType
+  updatedAtMax: ObjectSortType
   createdAt: ObjectSortType
+  createdAtMin: ObjectSortType
+  createdAtMax: ObjectSortType
   updatedBy: ObjectSortType
+  updatedByMin: ObjectSortType
+  updatedByMax: ObjectSortType
   createdBy: ObjectSortType
+  createdByMin: ObjectSortType
+  createdByMax: ObjectSortType
   item: ConfiguratorItemSortType
   definition: ConfiguratorSlotDefinitionSortType
   parentItem: ConfiguratorItemSortType
@@ -2978,76 +4191,209 @@ input ConfiguratorSlotFilterType {
   AND: [ConfiguratorSlotFilterType!]
   OR: [ConfiguratorSlotFilterType!]
   id: ID
+  idMin: ID
+  idMax: ID
   id_ne: ID
+  idMin_ne: ID
+  idMax_ne: ID
   id_gt: ID
+  idMin_gt: ID
+  idMax_gt: ID
   id_lt: ID
+  idMin_lt: ID
+  idMax_lt: ID
   id_gte: ID
+  idMin_gte: ID
+  idMax_gte: ID
   id_lte: ID
+  idMin_lte: ID
+  idMax_lte: ID
   id_in: [ID!]
+  idMin_in: [ID!]
+  idMax_in: [ID!]
   id_null: Boolean
   count: Float
+  countMin: Float
+  countMax: Float
+  countAvg: Float
   count_ne: Float
+  countMin_ne: Float
+  countMax_ne: Float
+  countAvg_ne: Float
   count_gt: Float
+  countMin_gt: Float
+  countMax_gt: Float
+  countAvg_gt: Float
   count_lt: Float
+  countMin_lt: Float
+  countMax_lt: Float
+  countAvg_lt: Float
   count_gte: Float
+  countMin_gte: Float
+  countMax_gte: Float
+  countAvg_gte: Float
   count_lte: Float
+  countMin_lte: Float
+  countMax_lte: Float
+  countAvg_lte: Float
   count_in: [Float!]
+  countMin_in: [Float!]
+  countMax_in: [Float!]
+  countAvg_in: [Float!]
   count_null: Boolean
   itemId: ID
+  itemIdMin: ID
+  itemIdMax: ID
   itemId_ne: ID
+  itemIdMin_ne: ID
+  itemIdMax_ne: ID
   itemId_gt: ID
+  itemIdMin_gt: ID
+  itemIdMax_gt: ID
   itemId_lt: ID
+  itemIdMin_lt: ID
+  itemIdMax_lt: ID
   itemId_gte: ID
+  itemIdMin_gte: ID
+  itemIdMax_gte: ID
   itemId_lte: ID
+  itemIdMin_lte: ID
+  itemIdMax_lte: ID
   itemId_in: [ID!]
+  itemIdMin_in: [ID!]
+  itemIdMax_in: [ID!]
   itemId_null: Boolean
   definitionId: ID
+  definitionIdMin: ID
+  definitionIdMax: ID
   definitionId_ne: ID
+  definitionIdMin_ne: ID
+  definitionIdMax_ne: ID
   definitionId_gt: ID
+  definitionIdMin_gt: ID
+  definitionIdMax_gt: ID
   definitionId_lt: ID
+  definitionIdMin_lt: ID
+  definitionIdMax_lt: ID
   definitionId_gte: ID
+  definitionIdMin_gte: ID
+  definitionIdMax_gte: ID
   definitionId_lte: ID
+  definitionIdMin_lte: ID
+  definitionIdMax_lte: ID
   definitionId_in: [ID!]
+  definitionIdMin_in: [ID!]
+  definitionIdMax_in: [ID!]
   definitionId_null: Boolean
   parentItemId: ID
+  parentItemIdMin: ID
+  parentItemIdMax: ID
   parentItemId_ne: ID
+  parentItemIdMin_ne: ID
+  parentItemIdMax_ne: ID
   parentItemId_gt: ID
+  parentItemIdMin_gt: ID
+  parentItemIdMax_gt: ID
   parentItemId_lt: ID
+  parentItemIdMin_lt: ID
+  parentItemIdMax_lt: ID
   parentItemId_gte: ID
+  parentItemIdMin_gte: ID
+  parentItemIdMax_gte: ID
   parentItemId_lte: ID
+  parentItemIdMin_lte: ID
+  parentItemIdMax_lte: ID
   parentItemId_in: [ID!]
+  parentItemIdMin_in: [ID!]
+  parentItemIdMax_in: [ID!]
   parentItemId_null: Boolean
   updatedAt: Time
+  updatedAtMin: Time
+  updatedAtMax: Time
   updatedAt_ne: Time
+  updatedAtMin_ne: Time
+  updatedAtMax_ne: Time
   updatedAt_gt: Time
+  updatedAtMin_gt: Time
+  updatedAtMax_gt: Time
   updatedAt_lt: Time
+  updatedAtMin_lt: Time
+  updatedAtMax_lt: Time
   updatedAt_gte: Time
+  updatedAtMin_gte: Time
+  updatedAtMax_gte: Time
   updatedAt_lte: Time
+  updatedAtMin_lte: Time
+  updatedAtMax_lte: Time
   updatedAt_in: [Time!]
+  updatedAtMin_in: [Time!]
+  updatedAtMax_in: [Time!]
   updatedAt_null: Boolean
   createdAt: Time
+  createdAtMin: Time
+  createdAtMax: Time
   createdAt_ne: Time
+  createdAtMin_ne: Time
+  createdAtMax_ne: Time
   createdAt_gt: Time
+  createdAtMin_gt: Time
+  createdAtMax_gt: Time
   createdAt_lt: Time
+  createdAtMin_lt: Time
+  createdAtMax_lt: Time
   createdAt_gte: Time
+  createdAtMin_gte: Time
+  createdAtMax_gte: Time
   createdAt_lte: Time
+  createdAtMin_lte: Time
+  createdAtMax_lte: Time
   createdAt_in: [Time!]
+  createdAtMin_in: [Time!]
+  createdAtMax_in: [Time!]
   createdAt_null: Boolean
   updatedBy: ID
+  updatedByMin: ID
+  updatedByMax: ID
   updatedBy_ne: ID
+  updatedByMin_ne: ID
+  updatedByMax_ne: ID
   updatedBy_gt: ID
+  updatedByMin_gt: ID
+  updatedByMax_gt: ID
   updatedBy_lt: ID
+  updatedByMin_lt: ID
+  updatedByMax_lt: ID
   updatedBy_gte: ID
+  updatedByMin_gte: ID
+  updatedByMax_gte: ID
   updatedBy_lte: ID
+  updatedByMin_lte: ID
+  updatedByMax_lte: ID
   updatedBy_in: [ID!]
+  updatedByMin_in: [ID!]
+  updatedByMax_in: [ID!]
   updatedBy_null: Boolean
   createdBy: ID
+  createdByMin: ID
+  createdByMax: ID
   createdBy_ne: ID
+  createdByMin_ne: ID
+  createdByMax_ne: ID
   createdBy_gt: ID
+  createdByMin_gt: ID
+  createdByMax_gt: ID
   createdBy_lt: ID
+  createdByMin_lt: ID
+  createdByMax_lt: ID
   createdBy_gte: ID
+  createdByMin_gte: ID
+  createdByMax_gte: ID
   createdBy_lte: ID
+  createdByMin_lte: ID
+  createdByMax_lte: ID
   createdBy_in: [ID!]
+  createdByMin_in: [ID!]
+  createdByMax_in: [ID!]
   createdBy_null: Boolean
   item: ConfiguratorItemFilterType
   definition: ConfiguratorSlotDefinitionFilterType
@@ -3074,6 +4420,558 @@ type StockItem {
 // endregion ************************** generated!.gotpl **************************
 
 // region    ***************************** args.gotpl *****************************
+
+func (ec *executionContext) field_ConfiguratorAttributeDefinition_attributesConnection_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
+	var err error
+	args := map[string]interface{}{}
+	var arg0 *int
+	if tmp, ok := rawArgs["offset"]; ok {
+		arg0, err = ec.unmarshalOInt2ᚖint(ctx, tmp)
+		if err != nil {
+			return nil, err
+		}
+	}
+	args["offset"] = arg0
+	var arg1 *int
+	if tmp, ok := rawArgs["limit"]; ok {
+		arg1, err = ec.unmarshalOInt2ᚖint(ctx, tmp)
+		if err != nil {
+			return nil, err
+		}
+	}
+	args["limit"] = arg1
+	var arg2 *string
+	if tmp, ok := rawArgs["q"]; ok {
+		arg2, err = ec.unmarshalOString2ᚖstring(ctx, tmp)
+		if err != nil {
+			return nil, err
+		}
+	}
+	args["q"] = arg2
+	var arg3 []*ConfiguratorAttributeSortType
+	if tmp, ok := rawArgs["sort"]; ok {
+		arg3, err = ec.unmarshalOConfiguratorAttributeSortType2ᚕᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorAttributeSortTypeᚄ(ctx, tmp)
+		if err != nil {
+			return nil, err
+		}
+	}
+	args["sort"] = arg3
+	var arg4 *ConfiguratorAttributeFilterType
+	if tmp, ok := rawArgs["filter"]; ok {
+		arg4, err = ec.unmarshalOConfiguratorAttributeFilterType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorAttributeFilterType(ctx, tmp)
+		if err != nil {
+			return nil, err
+		}
+	}
+	args["filter"] = arg4
+	return args, nil
+}
+
+func (ec *executionContext) field_ConfiguratorAttributeDefinition_definitionsConnection_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
+	var err error
+	args := map[string]interface{}{}
+	var arg0 *int
+	if tmp, ok := rawArgs["offset"]; ok {
+		arg0, err = ec.unmarshalOInt2ᚖint(ctx, tmp)
+		if err != nil {
+			return nil, err
+		}
+	}
+	args["offset"] = arg0
+	var arg1 *int
+	if tmp, ok := rawArgs["limit"]; ok {
+		arg1, err = ec.unmarshalOInt2ᚖint(ctx, tmp)
+		if err != nil {
+			return nil, err
+		}
+	}
+	args["limit"] = arg1
+	var arg2 *string
+	if tmp, ok := rawArgs["q"]; ok {
+		arg2, err = ec.unmarshalOString2ᚖstring(ctx, tmp)
+		if err != nil {
+			return nil, err
+		}
+	}
+	args["q"] = arg2
+	var arg3 []*ConfiguratorItemDefinitionSortType
+	if tmp, ok := rawArgs["sort"]; ok {
+		arg3, err = ec.unmarshalOConfiguratorItemDefinitionSortType2ᚕᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemDefinitionSortTypeᚄ(ctx, tmp)
+		if err != nil {
+			return nil, err
+		}
+	}
+	args["sort"] = arg3
+	var arg4 *ConfiguratorItemDefinitionFilterType
+	if tmp, ok := rawArgs["filter"]; ok {
+		arg4, err = ec.unmarshalOConfiguratorItemDefinitionFilterType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemDefinitionFilterType(ctx, tmp)
+		if err != nil {
+			return nil, err
+		}
+	}
+	args["filter"] = arg4
+	return args, nil
+}
+
+func (ec *executionContext) field_ConfiguratorItemDefinitionCategory_definitionsConnection_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
+	var err error
+	args := map[string]interface{}{}
+	var arg0 *int
+	if tmp, ok := rawArgs["offset"]; ok {
+		arg0, err = ec.unmarshalOInt2ᚖint(ctx, tmp)
+		if err != nil {
+			return nil, err
+		}
+	}
+	args["offset"] = arg0
+	var arg1 *int
+	if tmp, ok := rawArgs["limit"]; ok {
+		arg1, err = ec.unmarshalOInt2ᚖint(ctx, tmp)
+		if err != nil {
+			return nil, err
+		}
+	}
+	args["limit"] = arg1
+	var arg2 *string
+	if tmp, ok := rawArgs["q"]; ok {
+		arg2, err = ec.unmarshalOString2ᚖstring(ctx, tmp)
+		if err != nil {
+			return nil, err
+		}
+	}
+	args["q"] = arg2
+	var arg3 []*ConfiguratorItemDefinitionSortType
+	if tmp, ok := rawArgs["sort"]; ok {
+		arg3, err = ec.unmarshalOConfiguratorItemDefinitionSortType2ᚕᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemDefinitionSortTypeᚄ(ctx, tmp)
+		if err != nil {
+			return nil, err
+		}
+	}
+	args["sort"] = arg3
+	var arg4 *ConfiguratorItemDefinitionFilterType
+	if tmp, ok := rawArgs["filter"]; ok {
+		arg4, err = ec.unmarshalOConfiguratorItemDefinitionFilterType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemDefinitionFilterType(ctx, tmp)
+		if err != nil {
+			return nil, err
+		}
+	}
+	args["filter"] = arg4
+	return args, nil
+}
+
+func (ec *executionContext) field_ConfiguratorItemDefinition_allowedInSlotsConnection_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
+	var err error
+	args := map[string]interface{}{}
+	var arg0 *int
+	if tmp, ok := rawArgs["offset"]; ok {
+		arg0, err = ec.unmarshalOInt2ᚖint(ctx, tmp)
+		if err != nil {
+			return nil, err
+		}
+	}
+	args["offset"] = arg0
+	var arg1 *int
+	if tmp, ok := rawArgs["limit"]; ok {
+		arg1, err = ec.unmarshalOInt2ᚖint(ctx, tmp)
+		if err != nil {
+			return nil, err
+		}
+	}
+	args["limit"] = arg1
+	var arg2 *string
+	if tmp, ok := rawArgs["q"]; ok {
+		arg2, err = ec.unmarshalOString2ᚖstring(ctx, tmp)
+		if err != nil {
+			return nil, err
+		}
+	}
+	args["q"] = arg2
+	var arg3 []*ConfiguratorSlotDefinitionSortType
+	if tmp, ok := rawArgs["sort"]; ok {
+		arg3, err = ec.unmarshalOConfiguratorSlotDefinitionSortType2ᚕᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorSlotDefinitionSortTypeᚄ(ctx, tmp)
+		if err != nil {
+			return nil, err
+		}
+	}
+	args["sort"] = arg3
+	var arg4 *ConfiguratorSlotDefinitionFilterType
+	if tmp, ok := rawArgs["filter"]; ok {
+		arg4, err = ec.unmarshalOConfiguratorSlotDefinitionFilterType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorSlotDefinitionFilterType(ctx, tmp)
+		if err != nil {
+			return nil, err
+		}
+	}
+	args["filter"] = arg4
+	return args, nil
+}
+
+func (ec *executionContext) field_ConfiguratorItemDefinition_attributesConnection_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
+	var err error
+	args := map[string]interface{}{}
+	var arg0 *int
+	if tmp, ok := rawArgs["offset"]; ok {
+		arg0, err = ec.unmarshalOInt2ᚖint(ctx, tmp)
+		if err != nil {
+			return nil, err
+		}
+	}
+	args["offset"] = arg0
+	var arg1 *int
+	if tmp, ok := rawArgs["limit"]; ok {
+		arg1, err = ec.unmarshalOInt2ᚖint(ctx, tmp)
+		if err != nil {
+			return nil, err
+		}
+	}
+	args["limit"] = arg1
+	var arg2 *string
+	if tmp, ok := rawArgs["q"]; ok {
+		arg2, err = ec.unmarshalOString2ᚖstring(ctx, tmp)
+		if err != nil {
+			return nil, err
+		}
+	}
+	args["q"] = arg2
+	var arg3 []*ConfiguratorAttributeDefinitionSortType
+	if tmp, ok := rawArgs["sort"]; ok {
+		arg3, err = ec.unmarshalOConfiguratorAttributeDefinitionSortType2ᚕᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorAttributeDefinitionSortTypeᚄ(ctx, tmp)
+		if err != nil {
+			return nil, err
+		}
+	}
+	args["sort"] = arg3
+	var arg4 *ConfiguratorAttributeDefinitionFilterType
+	if tmp, ok := rawArgs["filter"]; ok {
+		arg4, err = ec.unmarshalOConfiguratorAttributeDefinitionFilterType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorAttributeDefinitionFilterType(ctx, tmp)
+		if err != nil {
+			return nil, err
+		}
+	}
+	args["filter"] = arg4
+	return args, nil
+}
+
+func (ec *executionContext) field_ConfiguratorItemDefinition_itemsConnection_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
+	var err error
+	args := map[string]interface{}{}
+	var arg0 *int
+	if tmp, ok := rawArgs["offset"]; ok {
+		arg0, err = ec.unmarshalOInt2ᚖint(ctx, tmp)
+		if err != nil {
+			return nil, err
+		}
+	}
+	args["offset"] = arg0
+	var arg1 *int
+	if tmp, ok := rawArgs["limit"]; ok {
+		arg1, err = ec.unmarshalOInt2ᚖint(ctx, tmp)
+		if err != nil {
+			return nil, err
+		}
+	}
+	args["limit"] = arg1
+	var arg2 *string
+	if tmp, ok := rawArgs["q"]; ok {
+		arg2, err = ec.unmarshalOString2ᚖstring(ctx, tmp)
+		if err != nil {
+			return nil, err
+		}
+	}
+	args["q"] = arg2
+	var arg3 []*ConfiguratorItemSortType
+	if tmp, ok := rawArgs["sort"]; ok {
+		arg3, err = ec.unmarshalOConfiguratorItemSortType2ᚕᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemSortTypeᚄ(ctx, tmp)
+		if err != nil {
+			return nil, err
+		}
+	}
+	args["sort"] = arg3
+	var arg4 *ConfiguratorItemFilterType
+	if tmp, ok := rawArgs["filter"]; ok {
+		arg4, err = ec.unmarshalOConfiguratorItemFilterType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemFilterType(ctx, tmp)
+		if err != nil {
+			return nil, err
+		}
+	}
+	args["filter"] = arg4
+	return args, nil
+}
+
+func (ec *executionContext) field_ConfiguratorItemDefinition_slotsConnection_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
+	var err error
+	args := map[string]interface{}{}
+	var arg0 *int
+	if tmp, ok := rawArgs["offset"]; ok {
+		arg0, err = ec.unmarshalOInt2ᚖint(ctx, tmp)
+		if err != nil {
+			return nil, err
+		}
+	}
+	args["offset"] = arg0
+	var arg1 *int
+	if tmp, ok := rawArgs["limit"]; ok {
+		arg1, err = ec.unmarshalOInt2ᚖint(ctx, tmp)
+		if err != nil {
+			return nil, err
+		}
+	}
+	args["limit"] = arg1
+	var arg2 *string
+	if tmp, ok := rawArgs["q"]; ok {
+		arg2, err = ec.unmarshalOString2ᚖstring(ctx, tmp)
+		if err != nil {
+			return nil, err
+		}
+	}
+	args["q"] = arg2
+	var arg3 []*ConfiguratorSlotDefinitionSortType
+	if tmp, ok := rawArgs["sort"]; ok {
+		arg3, err = ec.unmarshalOConfiguratorSlotDefinitionSortType2ᚕᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorSlotDefinitionSortTypeᚄ(ctx, tmp)
+		if err != nil {
+			return nil, err
+		}
+	}
+	args["sort"] = arg3
+	var arg4 *ConfiguratorSlotDefinitionFilterType
+	if tmp, ok := rawArgs["filter"]; ok {
+		arg4, err = ec.unmarshalOConfiguratorSlotDefinitionFilterType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorSlotDefinitionFilterType(ctx, tmp)
+		if err != nil {
+			return nil, err
+		}
+	}
+	args["filter"] = arg4
+	return args, nil
+}
+
+func (ec *executionContext) field_ConfiguratorItem_attributesConnection_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
+	var err error
+	args := map[string]interface{}{}
+	var arg0 *int
+	if tmp, ok := rawArgs["offset"]; ok {
+		arg0, err = ec.unmarshalOInt2ᚖint(ctx, tmp)
+		if err != nil {
+			return nil, err
+		}
+	}
+	args["offset"] = arg0
+	var arg1 *int
+	if tmp, ok := rawArgs["limit"]; ok {
+		arg1, err = ec.unmarshalOInt2ᚖint(ctx, tmp)
+		if err != nil {
+			return nil, err
+		}
+	}
+	args["limit"] = arg1
+	var arg2 *string
+	if tmp, ok := rawArgs["q"]; ok {
+		arg2, err = ec.unmarshalOString2ᚖstring(ctx, tmp)
+		if err != nil {
+			return nil, err
+		}
+	}
+	args["q"] = arg2
+	var arg3 []*ConfiguratorAttributeSortType
+	if tmp, ok := rawArgs["sort"]; ok {
+		arg3, err = ec.unmarshalOConfiguratorAttributeSortType2ᚕᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorAttributeSortTypeᚄ(ctx, tmp)
+		if err != nil {
+			return nil, err
+		}
+	}
+	args["sort"] = arg3
+	var arg4 *ConfiguratorAttributeFilterType
+	if tmp, ok := rawArgs["filter"]; ok {
+		arg4, err = ec.unmarshalOConfiguratorAttributeFilterType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorAttributeFilterType(ctx, tmp)
+		if err != nil {
+			return nil, err
+		}
+	}
+	args["filter"] = arg4
+	return args, nil
+}
+
+func (ec *executionContext) field_ConfiguratorItem_parentSlotsConnection_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
+	var err error
+	args := map[string]interface{}{}
+	var arg0 *int
+	if tmp, ok := rawArgs["offset"]; ok {
+		arg0, err = ec.unmarshalOInt2ᚖint(ctx, tmp)
+		if err != nil {
+			return nil, err
+		}
+	}
+	args["offset"] = arg0
+	var arg1 *int
+	if tmp, ok := rawArgs["limit"]; ok {
+		arg1, err = ec.unmarshalOInt2ᚖint(ctx, tmp)
+		if err != nil {
+			return nil, err
+		}
+	}
+	args["limit"] = arg1
+	var arg2 *string
+	if tmp, ok := rawArgs["q"]; ok {
+		arg2, err = ec.unmarshalOString2ᚖstring(ctx, tmp)
+		if err != nil {
+			return nil, err
+		}
+	}
+	args["q"] = arg2
+	var arg3 []*ConfiguratorSlotSortType
+	if tmp, ok := rawArgs["sort"]; ok {
+		arg3, err = ec.unmarshalOConfiguratorSlotSortType2ᚕᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorSlotSortTypeᚄ(ctx, tmp)
+		if err != nil {
+			return nil, err
+		}
+	}
+	args["sort"] = arg3
+	var arg4 *ConfiguratorSlotFilterType
+	if tmp, ok := rawArgs["filter"]; ok {
+		arg4, err = ec.unmarshalOConfiguratorSlotFilterType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorSlotFilterType(ctx, tmp)
+		if err != nil {
+			return nil, err
+		}
+	}
+	args["filter"] = arg4
+	return args, nil
+}
+
+func (ec *executionContext) field_ConfiguratorItem_slotsConnection_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
+	var err error
+	args := map[string]interface{}{}
+	var arg0 *int
+	if tmp, ok := rawArgs["offset"]; ok {
+		arg0, err = ec.unmarshalOInt2ᚖint(ctx, tmp)
+		if err != nil {
+			return nil, err
+		}
+	}
+	args["offset"] = arg0
+	var arg1 *int
+	if tmp, ok := rawArgs["limit"]; ok {
+		arg1, err = ec.unmarshalOInt2ᚖint(ctx, tmp)
+		if err != nil {
+			return nil, err
+		}
+	}
+	args["limit"] = arg1
+	var arg2 *string
+	if tmp, ok := rawArgs["q"]; ok {
+		arg2, err = ec.unmarshalOString2ᚖstring(ctx, tmp)
+		if err != nil {
+			return nil, err
+		}
+	}
+	args["q"] = arg2
+	var arg3 []*ConfiguratorSlotSortType
+	if tmp, ok := rawArgs["sort"]; ok {
+		arg3, err = ec.unmarshalOConfiguratorSlotSortType2ᚕᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorSlotSortTypeᚄ(ctx, tmp)
+		if err != nil {
+			return nil, err
+		}
+	}
+	args["sort"] = arg3
+	var arg4 *ConfiguratorSlotFilterType
+	if tmp, ok := rawArgs["filter"]; ok {
+		arg4, err = ec.unmarshalOConfiguratorSlotFilterType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorSlotFilterType(ctx, tmp)
+		if err != nil {
+			return nil, err
+		}
+	}
+	args["filter"] = arg4
+	return args, nil
+}
+
+func (ec *executionContext) field_ConfiguratorSlotDefinition_allowedItemDefinitionsConnection_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
+	var err error
+	args := map[string]interface{}{}
+	var arg0 *int
+	if tmp, ok := rawArgs["offset"]; ok {
+		arg0, err = ec.unmarshalOInt2ᚖint(ctx, tmp)
+		if err != nil {
+			return nil, err
+		}
+	}
+	args["offset"] = arg0
+	var arg1 *int
+	if tmp, ok := rawArgs["limit"]; ok {
+		arg1, err = ec.unmarshalOInt2ᚖint(ctx, tmp)
+		if err != nil {
+			return nil, err
+		}
+	}
+	args["limit"] = arg1
+	var arg2 *string
+	if tmp, ok := rawArgs["q"]; ok {
+		arg2, err = ec.unmarshalOString2ᚖstring(ctx, tmp)
+		if err != nil {
+			return nil, err
+		}
+	}
+	args["q"] = arg2
+	var arg3 []*ConfiguratorItemDefinitionSortType
+	if tmp, ok := rawArgs["sort"]; ok {
+		arg3, err = ec.unmarshalOConfiguratorItemDefinitionSortType2ᚕᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemDefinitionSortTypeᚄ(ctx, tmp)
+		if err != nil {
+			return nil, err
+		}
+	}
+	args["sort"] = arg3
+	var arg4 *ConfiguratorItemDefinitionFilterType
+	if tmp, ok := rawArgs["filter"]; ok {
+		arg4, err = ec.unmarshalOConfiguratorItemDefinitionFilterType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemDefinitionFilterType(ctx, tmp)
+		if err != nil {
+			return nil, err
+		}
+	}
+	args["filter"] = arg4
+	return args, nil
+}
+
+func (ec *executionContext) field_ConfiguratorSlotDefinition_slotsConnection_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
+	var err error
+	args := map[string]interface{}{}
+	var arg0 *int
+	if tmp, ok := rawArgs["offset"]; ok {
+		arg0, err = ec.unmarshalOInt2ᚖint(ctx, tmp)
+		if err != nil {
+			return nil, err
+		}
+	}
+	args["offset"] = arg0
+	var arg1 *int
+	if tmp, ok := rawArgs["limit"]; ok {
+		arg1, err = ec.unmarshalOInt2ᚖint(ctx, tmp)
+		if err != nil {
+			return nil, err
+		}
+	}
+	args["limit"] = arg1
+	var arg2 *string
+	if tmp, ok := rawArgs["q"]; ok {
+		arg2, err = ec.unmarshalOString2ᚖstring(ctx, tmp)
+		if err != nil {
+			return nil, err
+		}
+	}
+	args["q"] = arg2
+	var arg3 []*ConfiguratorSlotSortType
+	if tmp, ok := rawArgs["sort"]; ok {
+		arg3, err = ec.unmarshalOConfiguratorSlotSortType2ᚕᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorSlotSortTypeᚄ(ctx, tmp)
+		if err != nil {
+			return nil, err
+		}
+	}
+	args["sort"] = arg3
+	var arg4 *ConfiguratorSlotFilterType
+	if tmp, ok := rawArgs["filter"]; ok {
+		arg4, err = ec.unmarshalOConfiguratorSlotFilterType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorSlotFilterType(ctx, tmp)
+		if err != nil {
+			return nil, err
+		}
+	}
+	args["filter"] = arg4
+	return args, nil
+}
 
 func (ec *executionContext) field_Mutation_createConfiguratorAssembly_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
 	var err error
@@ -5467,6 +7365,50 @@ func (ec *executionContext) _ConfiguratorAttributeDefinition_definitionsIds(ctx 
 	return ec.marshalNID2ᚕstringᚄ(ctx, field.Selections, res)
 }
 
+func (ec *executionContext) _ConfiguratorAttributeDefinition_definitionsConnection(ctx context.Context, field graphql.CollectedField, obj *ConfiguratorAttributeDefinition) (ret graphql.Marshaler) {
+	ctx = ec.Tracer.StartFieldExecution(ctx, field)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+		ec.Tracer.EndFieldExecution(ctx)
+	}()
+	rctx := &graphql.ResolverContext{
+		Object:   "ConfiguratorAttributeDefinition",
+		Field:    field,
+		Args:     nil,
+		IsMethod: true,
+	}
+	ctx = graphql.WithResolverContext(ctx, rctx)
+	rawArgs := field.ArgumentMap(ec.Variables)
+	args, err := ec.field_ConfiguratorAttributeDefinition_definitionsConnection_args(ctx, rawArgs)
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	rctx.Args = args
+	ctx = ec.Tracer.StartFieldResolverExecution(ctx, rctx)
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
+		ctx = rctx // use context from middleware stack in children
+		return ec.resolvers.ConfiguratorAttributeDefinition().DefinitionsConnection(rctx, obj, args["offset"].(*int), args["limit"].(*int), args["q"].(*string), args["sort"].([]*ConfiguratorItemDefinitionSortType), args["filter"].(*ConfiguratorItemDefinitionFilterType))
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		if !ec.HasError(rctx) {
+			ec.Errorf(ctx, "must not be null")
+		}
+		return graphql.Null
+	}
+	res := resTmp.(*ConfiguratorItemDefinitionResultType)
+	rctx.Result = res
+	ctx = ec.Tracer.StartFieldChildExecution(ctx)
+	return ec.marshalNConfiguratorItemDefinitionResultType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemDefinitionResultType(ctx, field.Selections, res)
+}
+
 func (ec *executionContext) _ConfiguratorAttributeDefinition_attributesIds(ctx context.Context, field graphql.CollectedField, obj *ConfiguratorAttributeDefinition) (ret graphql.Marshaler) {
 	ctx = ec.Tracer.StartFieldExecution(ctx, field)
 	defer func() {
@@ -5502,6 +7444,50 @@ func (ec *executionContext) _ConfiguratorAttributeDefinition_attributesIds(ctx c
 	rctx.Result = res
 	ctx = ec.Tracer.StartFieldChildExecution(ctx)
 	return ec.marshalNID2ᚕstringᚄ(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) _ConfiguratorAttributeDefinition_attributesConnection(ctx context.Context, field graphql.CollectedField, obj *ConfiguratorAttributeDefinition) (ret graphql.Marshaler) {
+	ctx = ec.Tracer.StartFieldExecution(ctx, field)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+		ec.Tracer.EndFieldExecution(ctx)
+	}()
+	rctx := &graphql.ResolverContext{
+		Object:   "ConfiguratorAttributeDefinition",
+		Field:    field,
+		Args:     nil,
+		IsMethod: true,
+	}
+	ctx = graphql.WithResolverContext(ctx, rctx)
+	rawArgs := field.ArgumentMap(ec.Variables)
+	args, err := ec.field_ConfiguratorAttributeDefinition_attributesConnection_args(ctx, rawArgs)
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	rctx.Args = args
+	ctx = ec.Tracer.StartFieldResolverExecution(ctx, rctx)
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
+		ctx = rctx // use context from middleware stack in children
+		return ec.resolvers.ConfiguratorAttributeDefinition().AttributesConnection(rctx, obj, args["offset"].(*int), args["limit"].(*int), args["q"].(*string), args["sort"].([]*ConfiguratorAttributeSortType), args["filter"].(*ConfiguratorAttributeFilterType))
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		if !ec.HasError(rctx) {
+			ec.Errorf(ctx, "must not be null")
+		}
+		return graphql.Null
+	}
+	res := resTmp.(*ConfiguratorAttributeResultType)
+	rctx.Result = res
+	ctx = ec.Tracer.StartFieldChildExecution(ctx)
+	return ec.marshalNConfiguratorAttributeResultType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorAttributeResultType(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) _ConfiguratorAttributeDefinitionResultType_items(ctx context.Context, field graphql.CollectedField, obj *ConfiguratorAttributeDefinitionResultType) (ret graphql.Marshaler) {
@@ -6214,6 +8200,50 @@ func (ec *executionContext) _ConfiguratorItem_attributesIds(ctx context.Context,
 	return ec.marshalNID2ᚕstringᚄ(ctx, field.Selections, res)
 }
 
+func (ec *executionContext) _ConfiguratorItem_attributesConnection(ctx context.Context, field graphql.CollectedField, obj *ConfiguratorItem) (ret graphql.Marshaler) {
+	ctx = ec.Tracer.StartFieldExecution(ctx, field)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+		ec.Tracer.EndFieldExecution(ctx)
+	}()
+	rctx := &graphql.ResolverContext{
+		Object:   "ConfiguratorItem",
+		Field:    field,
+		Args:     nil,
+		IsMethod: true,
+	}
+	ctx = graphql.WithResolverContext(ctx, rctx)
+	rawArgs := field.ArgumentMap(ec.Variables)
+	args, err := ec.field_ConfiguratorItem_attributesConnection_args(ctx, rawArgs)
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	rctx.Args = args
+	ctx = ec.Tracer.StartFieldResolverExecution(ctx, rctx)
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
+		ctx = rctx // use context from middleware stack in children
+		return ec.resolvers.ConfiguratorItem().AttributesConnection(rctx, obj, args["offset"].(*int), args["limit"].(*int), args["q"].(*string), args["sort"].([]*ConfiguratorAttributeSortType), args["filter"].(*ConfiguratorAttributeFilterType))
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		if !ec.HasError(rctx) {
+			ec.Errorf(ctx, "must not be null")
+		}
+		return graphql.Null
+	}
+	res := resTmp.(*ConfiguratorAttributeResultType)
+	rctx.Result = res
+	ctx = ec.Tracer.StartFieldChildExecution(ctx)
+	return ec.marshalNConfiguratorAttributeResultType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorAttributeResultType(ctx, field.Selections, res)
+}
+
 func (ec *executionContext) _ConfiguratorItem_slotsIds(ctx context.Context, field graphql.CollectedField, obj *ConfiguratorItem) (ret graphql.Marshaler) {
 	ctx = ec.Tracer.StartFieldExecution(ctx, field)
 	defer func() {
@@ -6251,6 +8281,50 @@ func (ec *executionContext) _ConfiguratorItem_slotsIds(ctx context.Context, fiel
 	return ec.marshalNID2ᚕstringᚄ(ctx, field.Selections, res)
 }
 
+func (ec *executionContext) _ConfiguratorItem_slotsConnection(ctx context.Context, field graphql.CollectedField, obj *ConfiguratorItem) (ret graphql.Marshaler) {
+	ctx = ec.Tracer.StartFieldExecution(ctx, field)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+		ec.Tracer.EndFieldExecution(ctx)
+	}()
+	rctx := &graphql.ResolverContext{
+		Object:   "ConfiguratorItem",
+		Field:    field,
+		Args:     nil,
+		IsMethod: true,
+	}
+	ctx = graphql.WithResolverContext(ctx, rctx)
+	rawArgs := field.ArgumentMap(ec.Variables)
+	args, err := ec.field_ConfiguratorItem_slotsConnection_args(ctx, rawArgs)
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	rctx.Args = args
+	ctx = ec.Tracer.StartFieldResolverExecution(ctx, rctx)
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
+		ctx = rctx // use context from middleware stack in children
+		return ec.resolvers.ConfiguratorItem().SlotsConnection(rctx, obj, args["offset"].(*int), args["limit"].(*int), args["q"].(*string), args["sort"].([]*ConfiguratorSlotSortType), args["filter"].(*ConfiguratorSlotFilterType))
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		if !ec.HasError(rctx) {
+			ec.Errorf(ctx, "must not be null")
+		}
+		return graphql.Null
+	}
+	res := resTmp.(*ConfiguratorSlotResultType)
+	rctx.Result = res
+	ctx = ec.Tracer.StartFieldChildExecution(ctx)
+	return ec.marshalNConfiguratorSlotResultType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorSlotResultType(ctx, field.Selections, res)
+}
+
 func (ec *executionContext) _ConfiguratorItem_parentSlotsIds(ctx context.Context, field graphql.CollectedField, obj *ConfiguratorItem) (ret graphql.Marshaler) {
 	ctx = ec.Tracer.StartFieldExecution(ctx, field)
 	defer func() {
@@ -6286,6 +8360,50 @@ func (ec *executionContext) _ConfiguratorItem_parentSlotsIds(ctx context.Context
 	rctx.Result = res
 	ctx = ec.Tracer.StartFieldChildExecution(ctx)
 	return ec.marshalNID2ᚕstringᚄ(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) _ConfiguratorItem_parentSlotsConnection(ctx context.Context, field graphql.CollectedField, obj *ConfiguratorItem) (ret graphql.Marshaler) {
+	ctx = ec.Tracer.StartFieldExecution(ctx, field)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+		ec.Tracer.EndFieldExecution(ctx)
+	}()
+	rctx := &graphql.ResolverContext{
+		Object:   "ConfiguratorItem",
+		Field:    field,
+		Args:     nil,
+		IsMethod: true,
+	}
+	ctx = graphql.WithResolverContext(ctx, rctx)
+	rawArgs := field.ArgumentMap(ec.Variables)
+	args, err := ec.field_ConfiguratorItem_parentSlotsConnection_args(ctx, rawArgs)
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	rctx.Args = args
+	ctx = ec.Tracer.StartFieldResolverExecution(ctx, rctx)
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
+		ctx = rctx // use context from middleware stack in children
+		return ec.resolvers.ConfiguratorItem().ParentSlotsConnection(rctx, obj, args["offset"].(*int), args["limit"].(*int), args["q"].(*string), args["sort"].([]*ConfiguratorSlotSortType), args["filter"].(*ConfiguratorSlotFilterType))
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		if !ec.HasError(rctx) {
+			ec.Errorf(ctx, "must not be null")
+		}
+		return graphql.Null
+	}
+	res := resTmp.(*ConfiguratorSlotResultType)
+	rctx.Result = res
+	ctx = ec.Tracer.StartFieldChildExecution(ctx)
+	return ec.marshalNConfiguratorSlotResultType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorSlotResultType(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) _ConfiguratorItemDefinition_id(ctx context.Context, field graphql.CollectedField, obj *ConfiguratorItemDefinition) (ret graphql.Marshaler) {
@@ -6785,6 +8903,50 @@ func (ec *executionContext) _ConfiguratorItemDefinition_attributesIds(ctx contex
 	return ec.marshalNID2ᚕstringᚄ(ctx, field.Selections, res)
 }
 
+func (ec *executionContext) _ConfiguratorItemDefinition_attributesConnection(ctx context.Context, field graphql.CollectedField, obj *ConfiguratorItemDefinition) (ret graphql.Marshaler) {
+	ctx = ec.Tracer.StartFieldExecution(ctx, field)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+		ec.Tracer.EndFieldExecution(ctx)
+	}()
+	rctx := &graphql.ResolverContext{
+		Object:   "ConfiguratorItemDefinition",
+		Field:    field,
+		Args:     nil,
+		IsMethod: true,
+	}
+	ctx = graphql.WithResolverContext(ctx, rctx)
+	rawArgs := field.ArgumentMap(ec.Variables)
+	args, err := ec.field_ConfiguratorItemDefinition_attributesConnection_args(ctx, rawArgs)
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	rctx.Args = args
+	ctx = ec.Tracer.StartFieldResolverExecution(ctx, rctx)
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
+		ctx = rctx // use context from middleware stack in children
+		return ec.resolvers.ConfiguratorItemDefinition().AttributesConnection(rctx, obj, args["offset"].(*int), args["limit"].(*int), args["q"].(*string), args["sort"].([]*ConfiguratorAttributeDefinitionSortType), args["filter"].(*ConfiguratorAttributeDefinitionFilterType))
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		if !ec.HasError(rctx) {
+			ec.Errorf(ctx, "must not be null")
+		}
+		return graphql.Null
+	}
+	res := resTmp.(*ConfiguratorAttributeDefinitionResultType)
+	rctx.Result = res
+	ctx = ec.Tracer.StartFieldChildExecution(ctx)
+	return ec.marshalNConfiguratorAttributeDefinitionResultType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorAttributeDefinitionResultType(ctx, field.Selections, res)
+}
+
 func (ec *executionContext) _ConfiguratorItemDefinition_slotsIds(ctx context.Context, field graphql.CollectedField, obj *ConfiguratorItemDefinition) (ret graphql.Marshaler) {
 	ctx = ec.Tracer.StartFieldExecution(ctx, field)
 	defer func() {
@@ -6820,6 +8982,50 @@ func (ec *executionContext) _ConfiguratorItemDefinition_slotsIds(ctx context.Con
 	rctx.Result = res
 	ctx = ec.Tracer.StartFieldChildExecution(ctx)
 	return ec.marshalNID2ᚕstringᚄ(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) _ConfiguratorItemDefinition_slotsConnection(ctx context.Context, field graphql.CollectedField, obj *ConfiguratorItemDefinition) (ret graphql.Marshaler) {
+	ctx = ec.Tracer.StartFieldExecution(ctx, field)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+		ec.Tracer.EndFieldExecution(ctx)
+	}()
+	rctx := &graphql.ResolverContext{
+		Object:   "ConfiguratorItemDefinition",
+		Field:    field,
+		Args:     nil,
+		IsMethod: true,
+	}
+	ctx = graphql.WithResolverContext(ctx, rctx)
+	rawArgs := field.ArgumentMap(ec.Variables)
+	args, err := ec.field_ConfiguratorItemDefinition_slotsConnection_args(ctx, rawArgs)
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	rctx.Args = args
+	ctx = ec.Tracer.StartFieldResolverExecution(ctx, rctx)
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
+		ctx = rctx // use context from middleware stack in children
+		return ec.resolvers.ConfiguratorItemDefinition().SlotsConnection(rctx, obj, args["offset"].(*int), args["limit"].(*int), args["q"].(*string), args["sort"].([]*ConfiguratorSlotDefinitionSortType), args["filter"].(*ConfiguratorSlotDefinitionFilterType))
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		if !ec.HasError(rctx) {
+			ec.Errorf(ctx, "must not be null")
+		}
+		return graphql.Null
+	}
+	res := resTmp.(*ConfiguratorSlotDefinitionResultType)
+	rctx.Result = res
+	ctx = ec.Tracer.StartFieldChildExecution(ctx)
+	return ec.marshalNConfiguratorSlotDefinitionResultType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorSlotDefinitionResultType(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) _ConfiguratorItemDefinition_itemsIds(ctx context.Context, field graphql.CollectedField, obj *ConfiguratorItemDefinition) (ret graphql.Marshaler) {
@@ -6859,6 +9065,50 @@ func (ec *executionContext) _ConfiguratorItemDefinition_itemsIds(ctx context.Con
 	return ec.marshalNID2ᚕstringᚄ(ctx, field.Selections, res)
 }
 
+func (ec *executionContext) _ConfiguratorItemDefinition_itemsConnection(ctx context.Context, field graphql.CollectedField, obj *ConfiguratorItemDefinition) (ret graphql.Marshaler) {
+	ctx = ec.Tracer.StartFieldExecution(ctx, field)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+		ec.Tracer.EndFieldExecution(ctx)
+	}()
+	rctx := &graphql.ResolverContext{
+		Object:   "ConfiguratorItemDefinition",
+		Field:    field,
+		Args:     nil,
+		IsMethod: true,
+	}
+	ctx = graphql.WithResolverContext(ctx, rctx)
+	rawArgs := field.ArgumentMap(ec.Variables)
+	args, err := ec.field_ConfiguratorItemDefinition_itemsConnection_args(ctx, rawArgs)
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	rctx.Args = args
+	ctx = ec.Tracer.StartFieldResolverExecution(ctx, rctx)
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
+		ctx = rctx // use context from middleware stack in children
+		return ec.resolvers.ConfiguratorItemDefinition().ItemsConnection(rctx, obj, args["offset"].(*int), args["limit"].(*int), args["q"].(*string), args["sort"].([]*ConfiguratorItemSortType), args["filter"].(*ConfiguratorItemFilterType))
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		if !ec.HasError(rctx) {
+			ec.Errorf(ctx, "must not be null")
+		}
+		return graphql.Null
+	}
+	res := resTmp.(*ConfiguratorItemResultType)
+	rctx.Result = res
+	ctx = ec.Tracer.StartFieldChildExecution(ctx)
+	return ec.marshalNConfiguratorItemResultType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemResultType(ctx, field.Selections, res)
+}
+
 func (ec *executionContext) _ConfiguratorItemDefinition_allowedInSlotsIds(ctx context.Context, field graphql.CollectedField, obj *ConfiguratorItemDefinition) (ret graphql.Marshaler) {
 	ctx = ec.Tracer.StartFieldExecution(ctx, field)
 	defer func() {
@@ -6894,6 +9144,50 @@ func (ec *executionContext) _ConfiguratorItemDefinition_allowedInSlotsIds(ctx co
 	rctx.Result = res
 	ctx = ec.Tracer.StartFieldChildExecution(ctx)
 	return ec.marshalNID2ᚕstringᚄ(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) _ConfiguratorItemDefinition_allowedInSlotsConnection(ctx context.Context, field graphql.CollectedField, obj *ConfiguratorItemDefinition) (ret graphql.Marshaler) {
+	ctx = ec.Tracer.StartFieldExecution(ctx, field)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+		ec.Tracer.EndFieldExecution(ctx)
+	}()
+	rctx := &graphql.ResolverContext{
+		Object:   "ConfiguratorItemDefinition",
+		Field:    field,
+		Args:     nil,
+		IsMethod: true,
+	}
+	ctx = graphql.WithResolverContext(ctx, rctx)
+	rawArgs := field.ArgumentMap(ec.Variables)
+	args, err := ec.field_ConfiguratorItemDefinition_allowedInSlotsConnection_args(ctx, rawArgs)
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	rctx.Args = args
+	ctx = ec.Tracer.StartFieldResolverExecution(ctx, rctx)
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
+		ctx = rctx // use context from middleware stack in children
+		return ec.resolvers.ConfiguratorItemDefinition().AllowedInSlotsConnection(rctx, obj, args["offset"].(*int), args["limit"].(*int), args["q"].(*string), args["sort"].([]*ConfiguratorSlotDefinitionSortType), args["filter"].(*ConfiguratorSlotDefinitionFilterType))
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		if !ec.HasError(rctx) {
+			ec.Errorf(ctx, "must not be null")
+		}
+		return graphql.Null
+	}
+	res := resTmp.(*ConfiguratorSlotDefinitionResultType)
+	rctx.Result = res
+	ctx = ec.Tracer.StartFieldChildExecution(ctx)
+	return ec.marshalNConfiguratorSlotDefinitionResultType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorSlotDefinitionResultType(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) _ConfiguratorItemDefinitionCategory_id(ctx context.Context, field graphql.CollectedField, obj *ConfiguratorItemDefinitionCategory) (ret graphql.Marshaler) {
@@ -7033,6 +9327,40 @@ func (ec *executionContext) _ConfiguratorItemDefinitionCategory_type(ctx context
 	rctx.Result = res
 	ctx = ec.Tracer.StartFieldChildExecution(ctx)
 	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) _ConfiguratorItemDefinitionCategory_primary(ctx context.Context, field graphql.CollectedField, obj *ConfiguratorItemDefinitionCategory) (ret graphql.Marshaler) {
+	ctx = ec.Tracer.StartFieldExecution(ctx, field)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+		ec.Tracer.EndFieldExecution(ctx)
+	}()
+	rctx := &graphql.ResolverContext{
+		Object:   "ConfiguratorItemDefinitionCategory",
+		Field:    field,
+		Args:     nil,
+		IsMethod: false,
+	}
+	ctx = graphql.WithResolverContext(ctx, rctx)
+	ctx = ec.Tracer.StartFieldResolverExecution(ctx, rctx)
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Primary, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*bool)
+	rctx.Result = res
+	ctx = ec.Tracer.StartFieldChildExecution(ctx)
+	return ec.marshalOBoolean2ᚖbool(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) _ConfiguratorItemDefinitionCategory_definitions(ctx context.Context, field graphql.CollectedField, obj *ConfiguratorItemDefinitionCategory) (ret graphql.Marshaler) {
@@ -7246,6 +9574,50 @@ func (ec *executionContext) _ConfiguratorItemDefinitionCategory_definitionsIds(c
 	rctx.Result = res
 	ctx = ec.Tracer.StartFieldChildExecution(ctx)
 	return ec.marshalNID2ᚕstringᚄ(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) _ConfiguratorItemDefinitionCategory_definitionsConnection(ctx context.Context, field graphql.CollectedField, obj *ConfiguratorItemDefinitionCategory) (ret graphql.Marshaler) {
+	ctx = ec.Tracer.StartFieldExecution(ctx, field)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+		ec.Tracer.EndFieldExecution(ctx)
+	}()
+	rctx := &graphql.ResolverContext{
+		Object:   "ConfiguratorItemDefinitionCategory",
+		Field:    field,
+		Args:     nil,
+		IsMethod: true,
+	}
+	ctx = graphql.WithResolverContext(ctx, rctx)
+	rawArgs := field.ArgumentMap(ec.Variables)
+	args, err := ec.field_ConfiguratorItemDefinitionCategory_definitionsConnection_args(ctx, rawArgs)
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	rctx.Args = args
+	ctx = ec.Tracer.StartFieldResolverExecution(ctx, rctx)
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
+		ctx = rctx // use context from middleware stack in children
+		return ec.resolvers.ConfiguratorItemDefinitionCategory().DefinitionsConnection(rctx, obj, args["offset"].(*int), args["limit"].(*int), args["q"].(*string), args["sort"].([]*ConfiguratorItemDefinitionSortType), args["filter"].(*ConfiguratorItemDefinitionFilterType))
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		if !ec.HasError(rctx) {
+			ec.Errorf(ctx, "must not be null")
+		}
+		return graphql.Null
+	}
+	res := resTmp.(*ConfiguratorItemDefinitionResultType)
+	rctx.Result = res
+	ctx = ec.Tracer.StartFieldChildExecution(ctx)
+	return ec.marshalNConfiguratorItemDefinitionResultType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemDefinitionResultType(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) _ConfiguratorItemDefinitionCategoryResultType_items(ctx context.Context, field graphql.CollectedField, obj *ConfiguratorItemDefinitionCategoryResultType) (ret graphql.Marshaler) {
@@ -8375,6 +10747,50 @@ func (ec *executionContext) _ConfiguratorSlotDefinition_slotsIds(ctx context.Con
 	return ec.marshalNID2ᚕstringᚄ(ctx, field.Selections, res)
 }
 
+func (ec *executionContext) _ConfiguratorSlotDefinition_slotsConnection(ctx context.Context, field graphql.CollectedField, obj *ConfiguratorSlotDefinition) (ret graphql.Marshaler) {
+	ctx = ec.Tracer.StartFieldExecution(ctx, field)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+		ec.Tracer.EndFieldExecution(ctx)
+	}()
+	rctx := &graphql.ResolverContext{
+		Object:   "ConfiguratorSlotDefinition",
+		Field:    field,
+		Args:     nil,
+		IsMethod: true,
+	}
+	ctx = graphql.WithResolverContext(ctx, rctx)
+	rawArgs := field.ArgumentMap(ec.Variables)
+	args, err := ec.field_ConfiguratorSlotDefinition_slotsConnection_args(ctx, rawArgs)
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	rctx.Args = args
+	ctx = ec.Tracer.StartFieldResolverExecution(ctx, rctx)
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
+		ctx = rctx // use context from middleware stack in children
+		return ec.resolvers.ConfiguratorSlotDefinition().SlotsConnection(rctx, obj, args["offset"].(*int), args["limit"].(*int), args["q"].(*string), args["sort"].([]*ConfiguratorSlotSortType), args["filter"].(*ConfiguratorSlotFilterType))
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		if !ec.HasError(rctx) {
+			ec.Errorf(ctx, "must not be null")
+		}
+		return graphql.Null
+	}
+	res := resTmp.(*ConfiguratorSlotResultType)
+	rctx.Result = res
+	ctx = ec.Tracer.StartFieldChildExecution(ctx)
+	return ec.marshalNConfiguratorSlotResultType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorSlotResultType(ctx, field.Selections, res)
+}
+
 func (ec *executionContext) _ConfiguratorSlotDefinition_allowedItemDefinitionsIds(ctx context.Context, field graphql.CollectedField, obj *ConfiguratorSlotDefinition) (ret graphql.Marshaler) {
 	ctx = ec.Tracer.StartFieldExecution(ctx, field)
 	defer func() {
@@ -8410,6 +10826,50 @@ func (ec *executionContext) _ConfiguratorSlotDefinition_allowedItemDefinitionsId
 	rctx.Result = res
 	ctx = ec.Tracer.StartFieldChildExecution(ctx)
 	return ec.marshalNID2ᚕstringᚄ(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) _ConfiguratorSlotDefinition_allowedItemDefinitionsConnection(ctx context.Context, field graphql.CollectedField, obj *ConfiguratorSlotDefinition) (ret graphql.Marshaler) {
+	ctx = ec.Tracer.StartFieldExecution(ctx, field)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+		ec.Tracer.EndFieldExecution(ctx)
+	}()
+	rctx := &graphql.ResolverContext{
+		Object:   "ConfiguratorSlotDefinition",
+		Field:    field,
+		Args:     nil,
+		IsMethod: true,
+	}
+	ctx = graphql.WithResolverContext(ctx, rctx)
+	rawArgs := field.ArgumentMap(ec.Variables)
+	args, err := ec.field_ConfiguratorSlotDefinition_allowedItemDefinitionsConnection_args(ctx, rawArgs)
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	rctx.Args = args
+	ctx = ec.Tracer.StartFieldResolverExecution(ctx, rctx)
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
+		ctx = rctx // use context from middleware stack in children
+		return ec.resolvers.ConfiguratorSlotDefinition().AllowedItemDefinitionsConnection(rctx, obj, args["offset"].(*int), args["limit"].(*int), args["q"].(*string), args["sort"].([]*ConfiguratorItemDefinitionSortType), args["filter"].(*ConfiguratorItemDefinitionFilterType))
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		if !ec.HasError(rctx) {
+			ec.Errorf(ctx, "must not be null")
+		}
+		return graphql.Null
+	}
+	res := resTmp.(*ConfiguratorItemDefinitionResultType)
+	rctx.Result = res
+	ctx = ec.Tracer.StartFieldChildExecution(ctx)
+	return ec.marshalNConfiguratorItemDefinitionResultType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemDefinitionResultType(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) _ConfiguratorSlotDefinitionResultType_items(ctx context.Context, field graphql.CollectedField, obj *ConfiguratorSlotDefinitionResultType) (ret graphql.Marshaler) {
@@ -9980,12 +12440,15 @@ func (ec *executionContext) _Query_configuratorItemDefinitionCategories(ctx cont
 		return graphql.Null
 	}
 	if resTmp == nil {
+		if !ec.HasError(rctx) {
+			ec.Errorf(ctx, "must not be null")
+		}
 		return graphql.Null
 	}
 	res := resTmp.(*ConfiguratorItemDefinitionCategoryResultType)
 	rctx.Result = res
 	ctx = ec.Tracer.StartFieldChildExecution(ctx)
-	return ec.marshalOConfiguratorItemDefinitionCategoryResultType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemDefinitionCategoryResultType(ctx, field.Selections, res)
+	return ec.marshalNConfiguratorItemDefinitionCategoryResultType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemDefinitionCategoryResultType(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) _Query_configuratorItemDefinition(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
@@ -10062,12 +12525,15 @@ func (ec *executionContext) _Query_configuratorItemDefinitions(ctx context.Conte
 		return graphql.Null
 	}
 	if resTmp == nil {
+		if !ec.HasError(rctx) {
+			ec.Errorf(ctx, "must not be null")
+		}
 		return graphql.Null
 	}
 	res := resTmp.(*ConfiguratorItemDefinitionResultType)
 	rctx.Result = res
 	ctx = ec.Tracer.StartFieldChildExecution(ctx)
-	return ec.marshalOConfiguratorItemDefinitionResultType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemDefinitionResultType(ctx, field.Selections, res)
+	return ec.marshalNConfiguratorItemDefinitionResultType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemDefinitionResultType(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) _Query_configuratorAttributeDefinition(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
@@ -10144,12 +12610,15 @@ func (ec *executionContext) _Query_configuratorAttributeDefinitions(ctx context.
 		return graphql.Null
 	}
 	if resTmp == nil {
+		if !ec.HasError(rctx) {
+			ec.Errorf(ctx, "must not be null")
+		}
 		return graphql.Null
 	}
 	res := resTmp.(*ConfiguratorAttributeDefinitionResultType)
 	rctx.Result = res
 	ctx = ec.Tracer.StartFieldChildExecution(ctx)
-	return ec.marshalOConfiguratorAttributeDefinitionResultType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorAttributeDefinitionResultType(ctx, field.Selections, res)
+	return ec.marshalNConfiguratorAttributeDefinitionResultType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorAttributeDefinitionResultType(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) _Query_configuratorSlotDefinition(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
@@ -10226,12 +12695,15 @@ func (ec *executionContext) _Query_configuratorSlotDefinitions(ctx context.Conte
 		return graphql.Null
 	}
 	if resTmp == nil {
+		if !ec.HasError(rctx) {
+			ec.Errorf(ctx, "must not be null")
+		}
 		return graphql.Null
 	}
 	res := resTmp.(*ConfiguratorSlotDefinitionResultType)
 	rctx.Result = res
 	ctx = ec.Tracer.StartFieldChildExecution(ctx)
-	return ec.marshalOConfiguratorSlotDefinitionResultType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorSlotDefinitionResultType(ctx, field.Selections, res)
+	return ec.marshalNConfiguratorSlotDefinitionResultType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorSlotDefinitionResultType(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) _Query_configuratorItem(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
@@ -10308,12 +12780,15 @@ func (ec *executionContext) _Query_configuratorItems(ctx context.Context, field 
 		return graphql.Null
 	}
 	if resTmp == nil {
+		if !ec.HasError(rctx) {
+			ec.Errorf(ctx, "must not be null")
+		}
 		return graphql.Null
 	}
 	res := resTmp.(*ConfiguratorItemResultType)
 	rctx.Result = res
 	ctx = ec.Tracer.StartFieldChildExecution(ctx)
-	return ec.marshalOConfiguratorItemResultType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemResultType(ctx, field.Selections, res)
+	return ec.marshalNConfiguratorItemResultType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemResultType(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) _Query_configuratorAttribute(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
@@ -10390,12 +12865,15 @@ func (ec *executionContext) _Query_configuratorAttributes(ctx context.Context, f
 		return graphql.Null
 	}
 	if resTmp == nil {
+		if !ec.HasError(rctx) {
+			ec.Errorf(ctx, "must not be null")
+		}
 		return graphql.Null
 	}
 	res := resTmp.(*ConfiguratorAttributeResultType)
 	rctx.Result = res
 	ctx = ec.Tracer.StartFieldChildExecution(ctx)
-	return ec.marshalOConfiguratorAttributeResultType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorAttributeResultType(ctx, field.Selections, res)
+	return ec.marshalNConfiguratorAttributeResultType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorAttributeResultType(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) _Query_configuratorSlot(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
@@ -10472,12 +12950,15 @@ func (ec *executionContext) _Query_configuratorSlots(ctx context.Context, field 
 		return graphql.Null
 	}
 	if resTmp == nil {
+		if !ec.HasError(rctx) {
+			ec.Errorf(ctx, "must not be null")
+		}
 		return graphql.Null
 	}
 	res := resTmp.(*ConfiguratorSlotResultType)
 	rctx.Result = res
 	ctx = ec.Tracer.StartFieldChildExecution(ctx)
-	return ec.marshalOConfiguratorSlotResultType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorSlotResultType(ctx, field.Selections, res)
+	return ec.marshalNConfiguratorSlotResultType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorSlotResultType(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) _Query_configuratorAssembly(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
@@ -12010,9 +14491,33 @@ func (ec *executionContext) unmarshalInputConfiguratorAttributeDefinitionFilterT
 			if err != nil {
 				return it, err
 			}
+		case "idMin":
+			var err error
+			it.IDMin, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "idMax":
+			var err error
+			it.IDMax, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "id_ne":
 			var err error
 			it.IDNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "idMin_ne":
+			var err error
+			it.IDMinNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "idMax_ne":
+			var err error
+			it.IDMaxNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -12022,9 +14527,33 @@ func (ec *executionContext) unmarshalInputConfiguratorAttributeDefinitionFilterT
 			if err != nil {
 				return it, err
 			}
+		case "idMin_gt":
+			var err error
+			it.IDMinGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "idMax_gt":
+			var err error
+			it.IDMaxGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "id_lt":
 			var err error
 			it.IDLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "idMin_lt":
+			var err error
+			it.IDMinLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "idMax_lt":
+			var err error
+			it.IDMaxLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -12034,15 +14563,51 @@ func (ec *executionContext) unmarshalInputConfiguratorAttributeDefinitionFilterT
 			if err != nil {
 				return it, err
 			}
+		case "idMin_gte":
+			var err error
+			it.IDMinGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "idMax_gte":
+			var err error
+			it.IDMaxGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "id_lte":
 			var err error
 			it.IDLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
+		case "idMin_lte":
+			var err error
+			it.IDMinLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "idMax_lte":
+			var err error
+			it.IDMaxLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "id_in":
 			var err error
 			it.IDIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "idMin_in":
+			var err error
+			it.IDMinIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "idMax_in":
+			var err error
+			it.IDMaxIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -12058,9 +14623,33 @@ func (ec *executionContext) unmarshalInputConfiguratorAttributeDefinitionFilterT
 			if err != nil {
 				return it, err
 			}
+		case "nameMin":
+			var err error
+			it.NameMin, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "nameMax":
+			var err error
+			it.NameMax, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "name_ne":
 			var err error
 			it.NameNe, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "nameMin_ne":
+			var err error
+			it.NameMinNe, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "nameMax_ne":
+			var err error
+			it.NameMaxNe, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -12070,9 +14659,33 @@ func (ec *executionContext) unmarshalInputConfiguratorAttributeDefinitionFilterT
 			if err != nil {
 				return it, err
 			}
+		case "nameMin_gt":
+			var err error
+			it.NameMinGt, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "nameMax_gt":
+			var err error
+			it.NameMaxGt, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "name_lt":
 			var err error
 			it.NameLt, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "nameMin_lt":
+			var err error
+			it.NameMinLt, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "nameMax_lt":
+			var err error
+			it.NameMaxLt, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -12082,9 +14695,33 @@ func (ec *executionContext) unmarshalInputConfiguratorAttributeDefinitionFilterT
 			if err != nil {
 				return it, err
 			}
+		case "nameMin_gte":
+			var err error
+			it.NameMinGte, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "nameMax_gte":
+			var err error
+			it.NameMaxGte, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "name_lte":
 			var err error
 			it.NameLte, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "nameMin_lte":
+			var err error
+			it.NameMinLte, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "nameMax_lte":
+			var err error
+			it.NameMaxLte, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -12094,9 +14731,33 @@ func (ec *executionContext) unmarshalInputConfiguratorAttributeDefinitionFilterT
 			if err != nil {
 				return it, err
 			}
+		case "nameMin_in":
+			var err error
+			it.NameMinIn, err = ec.unmarshalOString2ᚕstringᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "nameMax_in":
+			var err error
+			it.NameMaxIn, err = ec.unmarshalOString2ᚕstringᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "name_like":
 			var err error
 			it.NameLike, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "nameMin_like":
+			var err error
+			it.NameMinLike, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "nameMax_like":
+			var err error
+			it.NameMaxLike, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -12106,9 +14767,33 @@ func (ec *executionContext) unmarshalInputConfiguratorAttributeDefinitionFilterT
 			if err != nil {
 				return it, err
 			}
+		case "nameMin_prefix":
+			var err error
+			it.NameMinPrefix, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "nameMax_prefix":
+			var err error
+			it.NameMaxPrefix, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "name_suffix":
 			var err error
 			it.NameSuffix, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "nameMin_suffix":
+			var err error
+			it.NameMinSuffix, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "nameMax_suffix":
+			var err error
+			it.NameMaxSuffix, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -12124,9 +14809,33 @@ func (ec *executionContext) unmarshalInputConfiguratorAttributeDefinitionFilterT
 			if err != nil {
 				return it, err
 			}
+		case "typeMin":
+			var err error
+			it.TypeMin, err = ec.unmarshalOConfiguratorAttributeType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorAttributeType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "typeMax":
+			var err error
+			it.TypeMax, err = ec.unmarshalOConfiguratorAttributeType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorAttributeType(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "type_ne":
 			var err error
 			it.TypeNe, err = ec.unmarshalOConfiguratorAttributeType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorAttributeType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "typeMin_ne":
+			var err error
+			it.TypeMinNe, err = ec.unmarshalOConfiguratorAttributeType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorAttributeType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "typeMax_ne":
+			var err error
+			it.TypeMaxNe, err = ec.unmarshalOConfiguratorAttributeType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorAttributeType(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -12136,9 +14845,33 @@ func (ec *executionContext) unmarshalInputConfiguratorAttributeDefinitionFilterT
 			if err != nil {
 				return it, err
 			}
+		case "typeMin_gt":
+			var err error
+			it.TypeMinGt, err = ec.unmarshalOConfiguratorAttributeType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorAttributeType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "typeMax_gt":
+			var err error
+			it.TypeMaxGt, err = ec.unmarshalOConfiguratorAttributeType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorAttributeType(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "type_lt":
 			var err error
 			it.TypeLt, err = ec.unmarshalOConfiguratorAttributeType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorAttributeType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "typeMin_lt":
+			var err error
+			it.TypeMinLt, err = ec.unmarshalOConfiguratorAttributeType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorAttributeType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "typeMax_lt":
+			var err error
+			it.TypeMaxLt, err = ec.unmarshalOConfiguratorAttributeType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorAttributeType(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -12148,15 +14881,51 @@ func (ec *executionContext) unmarshalInputConfiguratorAttributeDefinitionFilterT
 			if err != nil {
 				return it, err
 			}
+		case "typeMin_gte":
+			var err error
+			it.TypeMinGte, err = ec.unmarshalOConfiguratorAttributeType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorAttributeType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "typeMax_gte":
+			var err error
+			it.TypeMaxGte, err = ec.unmarshalOConfiguratorAttributeType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorAttributeType(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "type_lte":
 			var err error
 			it.TypeLte, err = ec.unmarshalOConfiguratorAttributeType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorAttributeType(ctx, v)
 			if err != nil {
 				return it, err
 			}
+		case "typeMin_lte":
+			var err error
+			it.TypeMinLte, err = ec.unmarshalOConfiguratorAttributeType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorAttributeType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "typeMax_lte":
+			var err error
+			it.TypeMaxLte, err = ec.unmarshalOConfiguratorAttributeType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorAttributeType(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "type_in":
 			var err error
 			it.TypeIn, err = ec.unmarshalOConfiguratorAttributeType2ᚕgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorAttributeTypeᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "typeMin_in":
+			var err error
+			it.TypeMinIn, err = ec.unmarshalOConfiguratorAttributeType2ᚕgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorAttributeTypeᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "typeMax_in":
+			var err error
+			it.TypeMaxIn, err = ec.unmarshalOConfiguratorAttributeType2ᚕgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorAttributeTypeᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -12172,9 +14941,33 @@ func (ec *executionContext) unmarshalInputConfiguratorAttributeDefinitionFilterT
 			if err != nil {
 				return it, err
 			}
+		case "updatedAtMin":
+			var err error
+			it.UpdatedAtMin, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedAtMax":
+			var err error
+			it.UpdatedAtMax, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "updatedAt_ne":
 			var err error
 			it.UpdatedAtNe, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedAtMin_ne":
+			var err error
+			it.UpdatedAtMinNe, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedAtMax_ne":
+			var err error
+			it.UpdatedAtMaxNe, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -12184,9 +14977,33 @@ func (ec *executionContext) unmarshalInputConfiguratorAttributeDefinitionFilterT
 			if err != nil {
 				return it, err
 			}
+		case "updatedAtMin_gt":
+			var err error
+			it.UpdatedAtMinGt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedAtMax_gt":
+			var err error
+			it.UpdatedAtMaxGt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "updatedAt_lt":
 			var err error
 			it.UpdatedAtLt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedAtMin_lt":
+			var err error
+			it.UpdatedAtMinLt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedAtMax_lt":
+			var err error
+			it.UpdatedAtMaxLt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -12196,15 +15013,51 @@ func (ec *executionContext) unmarshalInputConfiguratorAttributeDefinitionFilterT
 			if err != nil {
 				return it, err
 			}
+		case "updatedAtMin_gte":
+			var err error
+			it.UpdatedAtMinGte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedAtMax_gte":
+			var err error
+			it.UpdatedAtMaxGte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "updatedAt_lte":
 			var err error
 			it.UpdatedAtLte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
+		case "updatedAtMin_lte":
+			var err error
+			it.UpdatedAtMinLte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedAtMax_lte":
+			var err error
+			it.UpdatedAtMaxLte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "updatedAt_in":
 			var err error
 			it.UpdatedAtIn, err = ec.unmarshalOTime2ᚕᚖtimeᚐTimeᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedAtMin_in":
+			var err error
+			it.UpdatedAtMinIn, err = ec.unmarshalOTime2ᚕᚖtimeᚐTimeᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedAtMax_in":
+			var err error
+			it.UpdatedAtMaxIn, err = ec.unmarshalOTime2ᚕᚖtimeᚐTimeᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -12220,9 +15073,33 @@ func (ec *executionContext) unmarshalInputConfiguratorAttributeDefinitionFilterT
 			if err != nil {
 				return it, err
 			}
+		case "createdAtMin":
+			var err error
+			it.CreatedAtMin, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdAtMax":
+			var err error
+			it.CreatedAtMax, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "createdAt_ne":
 			var err error
 			it.CreatedAtNe, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdAtMin_ne":
+			var err error
+			it.CreatedAtMinNe, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdAtMax_ne":
+			var err error
+			it.CreatedAtMaxNe, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -12232,9 +15109,33 @@ func (ec *executionContext) unmarshalInputConfiguratorAttributeDefinitionFilterT
 			if err != nil {
 				return it, err
 			}
+		case "createdAtMin_gt":
+			var err error
+			it.CreatedAtMinGt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdAtMax_gt":
+			var err error
+			it.CreatedAtMaxGt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "createdAt_lt":
 			var err error
 			it.CreatedAtLt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdAtMin_lt":
+			var err error
+			it.CreatedAtMinLt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdAtMax_lt":
+			var err error
+			it.CreatedAtMaxLt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -12244,15 +15145,51 @@ func (ec *executionContext) unmarshalInputConfiguratorAttributeDefinitionFilterT
 			if err != nil {
 				return it, err
 			}
+		case "createdAtMin_gte":
+			var err error
+			it.CreatedAtMinGte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdAtMax_gte":
+			var err error
+			it.CreatedAtMaxGte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "createdAt_lte":
 			var err error
 			it.CreatedAtLte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
+		case "createdAtMin_lte":
+			var err error
+			it.CreatedAtMinLte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdAtMax_lte":
+			var err error
+			it.CreatedAtMaxLte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "createdAt_in":
 			var err error
 			it.CreatedAtIn, err = ec.unmarshalOTime2ᚕᚖtimeᚐTimeᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdAtMin_in":
+			var err error
+			it.CreatedAtMinIn, err = ec.unmarshalOTime2ᚕᚖtimeᚐTimeᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdAtMax_in":
+			var err error
+			it.CreatedAtMaxIn, err = ec.unmarshalOTime2ᚕᚖtimeᚐTimeᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -12268,9 +15205,33 @@ func (ec *executionContext) unmarshalInputConfiguratorAttributeDefinitionFilterT
 			if err != nil {
 				return it, err
 			}
+		case "updatedByMin":
+			var err error
+			it.UpdatedByMin, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedByMax":
+			var err error
+			it.UpdatedByMax, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "updatedBy_ne":
 			var err error
 			it.UpdatedByNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedByMin_ne":
+			var err error
+			it.UpdatedByMinNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedByMax_ne":
+			var err error
+			it.UpdatedByMaxNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -12280,9 +15241,33 @@ func (ec *executionContext) unmarshalInputConfiguratorAttributeDefinitionFilterT
 			if err != nil {
 				return it, err
 			}
+		case "updatedByMin_gt":
+			var err error
+			it.UpdatedByMinGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedByMax_gt":
+			var err error
+			it.UpdatedByMaxGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "updatedBy_lt":
 			var err error
 			it.UpdatedByLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedByMin_lt":
+			var err error
+			it.UpdatedByMinLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedByMax_lt":
+			var err error
+			it.UpdatedByMaxLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -12292,15 +15277,51 @@ func (ec *executionContext) unmarshalInputConfiguratorAttributeDefinitionFilterT
 			if err != nil {
 				return it, err
 			}
+		case "updatedByMin_gte":
+			var err error
+			it.UpdatedByMinGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedByMax_gte":
+			var err error
+			it.UpdatedByMaxGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "updatedBy_lte":
 			var err error
 			it.UpdatedByLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
+		case "updatedByMin_lte":
+			var err error
+			it.UpdatedByMinLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedByMax_lte":
+			var err error
+			it.UpdatedByMaxLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "updatedBy_in":
 			var err error
 			it.UpdatedByIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedByMin_in":
+			var err error
+			it.UpdatedByMinIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedByMax_in":
+			var err error
+			it.UpdatedByMaxIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -12316,9 +15337,33 @@ func (ec *executionContext) unmarshalInputConfiguratorAttributeDefinitionFilterT
 			if err != nil {
 				return it, err
 			}
+		case "createdByMin":
+			var err error
+			it.CreatedByMin, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdByMax":
+			var err error
+			it.CreatedByMax, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "createdBy_ne":
 			var err error
 			it.CreatedByNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdByMin_ne":
+			var err error
+			it.CreatedByMinNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdByMax_ne":
+			var err error
+			it.CreatedByMaxNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -12328,9 +15373,33 @@ func (ec *executionContext) unmarshalInputConfiguratorAttributeDefinitionFilterT
 			if err != nil {
 				return it, err
 			}
+		case "createdByMin_gt":
+			var err error
+			it.CreatedByMinGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdByMax_gt":
+			var err error
+			it.CreatedByMaxGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "createdBy_lt":
 			var err error
 			it.CreatedByLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdByMin_lt":
+			var err error
+			it.CreatedByMinLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdByMax_lt":
+			var err error
+			it.CreatedByMaxLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -12340,15 +15409,51 @@ func (ec *executionContext) unmarshalInputConfiguratorAttributeDefinitionFilterT
 			if err != nil {
 				return it, err
 			}
+		case "createdByMin_gte":
+			var err error
+			it.CreatedByMinGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdByMax_gte":
+			var err error
+			it.CreatedByMaxGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "createdBy_lte":
 			var err error
 			it.CreatedByLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
+		case "createdByMin_lte":
+			var err error
+			it.CreatedByMinLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdByMax_lte":
+			var err error
+			it.CreatedByMaxLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "createdBy_in":
 			var err error
 			it.CreatedByIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdByMin_in":
+			var err error
+			it.CreatedByMinIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdByMax_in":
+			var err error
+			it.CreatedByMaxIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -12388,9 +15493,33 @@ func (ec *executionContext) unmarshalInputConfiguratorAttributeDefinitionSortTyp
 			if err != nil {
 				return it, err
 			}
+		case "idMin":
+			var err error
+			it.IDMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "idMax":
+			var err error
+			it.IDMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "name":
 			var err error
 			it.Name, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "nameMin":
+			var err error
+			it.NameMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "nameMax":
+			var err error
+			it.NameMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -12400,9 +15529,33 @@ func (ec *executionContext) unmarshalInputConfiguratorAttributeDefinitionSortTyp
 			if err != nil {
 				return it, err
 			}
+		case "typeMin":
+			var err error
+			it.TypeMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "typeMax":
+			var err error
+			it.TypeMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "updatedAt":
 			var err error
 			it.UpdatedAt, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedAtMin":
+			var err error
+			it.UpdatedAtMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedAtMax":
+			var err error
+			it.UpdatedAtMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -12412,9 +15565,33 @@ func (ec *executionContext) unmarshalInputConfiguratorAttributeDefinitionSortTyp
 			if err != nil {
 				return it, err
 			}
+		case "createdAtMin":
+			var err error
+			it.CreatedAtMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdAtMax":
+			var err error
+			it.CreatedAtMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "updatedBy":
 			var err error
 			it.UpdatedBy, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedByMin":
+			var err error
+			it.UpdatedByMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedByMax":
+			var err error
+			it.UpdatedByMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -12424,15 +15601,51 @@ func (ec *executionContext) unmarshalInputConfiguratorAttributeDefinitionSortTyp
 			if err != nil {
 				return it, err
 			}
+		case "createdByMin":
+			var err error
+			it.CreatedByMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdByMax":
+			var err error
+			it.CreatedByMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "definitionsIds":
 			var err error
 			it.DefinitionsIds, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
+		case "definitionsIdsMin":
+			var err error
+			it.DefinitionsIdsMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "definitionsIdsMax":
+			var err error
+			it.DefinitionsIdsMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "attributesIds":
 			var err error
 			it.AttributesIds, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "attributesIdsMin":
+			var err error
+			it.AttributesIdsMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "attributesIdsMax":
+			var err error
+			it.AttributesIdsMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -12478,9 +15691,33 @@ func (ec *executionContext) unmarshalInputConfiguratorAttributeFilterType(ctx co
 			if err != nil {
 				return it, err
 			}
+		case "idMin":
+			var err error
+			it.IDMin, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "idMax":
+			var err error
+			it.IDMax, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "id_ne":
 			var err error
 			it.IDNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "idMin_ne":
+			var err error
+			it.IDMinNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "idMax_ne":
+			var err error
+			it.IDMaxNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -12490,9 +15727,33 @@ func (ec *executionContext) unmarshalInputConfiguratorAttributeFilterType(ctx co
 			if err != nil {
 				return it, err
 			}
+		case "idMin_gt":
+			var err error
+			it.IDMinGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "idMax_gt":
+			var err error
+			it.IDMaxGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "id_lt":
 			var err error
 			it.IDLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "idMin_lt":
+			var err error
+			it.IDMinLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "idMax_lt":
+			var err error
+			it.IDMaxLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -12502,15 +15763,51 @@ func (ec *executionContext) unmarshalInputConfiguratorAttributeFilterType(ctx co
 			if err != nil {
 				return it, err
 			}
+		case "idMin_gte":
+			var err error
+			it.IDMinGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "idMax_gte":
+			var err error
+			it.IDMaxGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "id_lte":
 			var err error
 			it.IDLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
+		case "idMin_lte":
+			var err error
+			it.IDMinLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "idMax_lte":
+			var err error
+			it.IDMaxLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "id_in":
 			var err error
 			it.IDIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "idMin_in":
+			var err error
+			it.IDMinIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "idMax_in":
+			var err error
+			it.IDMaxIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -12526,9 +15823,33 @@ func (ec *executionContext) unmarshalInputConfiguratorAttributeFilterType(ctx co
 			if err != nil {
 				return it, err
 			}
+		case "stringValueMin":
+			var err error
+			it.StringValueMin, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "stringValueMax":
+			var err error
+			it.StringValueMax, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "stringValue_ne":
 			var err error
 			it.StringValueNe, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "stringValueMin_ne":
+			var err error
+			it.StringValueMinNe, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "stringValueMax_ne":
+			var err error
+			it.StringValueMaxNe, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -12538,9 +15859,33 @@ func (ec *executionContext) unmarshalInputConfiguratorAttributeFilterType(ctx co
 			if err != nil {
 				return it, err
 			}
+		case "stringValueMin_gt":
+			var err error
+			it.StringValueMinGt, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "stringValueMax_gt":
+			var err error
+			it.StringValueMaxGt, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "stringValue_lt":
 			var err error
 			it.StringValueLt, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "stringValueMin_lt":
+			var err error
+			it.StringValueMinLt, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "stringValueMax_lt":
+			var err error
+			it.StringValueMaxLt, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -12550,9 +15895,33 @@ func (ec *executionContext) unmarshalInputConfiguratorAttributeFilterType(ctx co
 			if err != nil {
 				return it, err
 			}
+		case "stringValueMin_gte":
+			var err error
+			it.StringValueMinGte, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "stringValueMax_gte":
+			var err error
+			it.StringValueMaxGte, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "stringValue_lte":
 			var err error
 			it.StringValueLte, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "stringValueMin_lte":
+			var err error
+			it.StringValueMinLte, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "stringValueMax_lte":
+			var err error
+			it.StringValueMaxLte, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -12562,9 +15931,33 @@ func (ec *executionContext) unmarshalInputConfiguratorAttributeFilterType(ctx co
 			if err != nil {
 				return it, err
 			}
+		case "stringValueMin_in":
+			var err error
+			it.StringValueMinIn, err = ec.unmarshalOString2ᚕstringᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "stringValueMax_in":
+			var err error
+			it.StringValueMaxIn, err = ec.unmarshalOString2ᚕstringᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "stringValue_like":
 			var err error
 			it.StringValueLike, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "stringValueMin_like":
+			var err error
+			it.StringValueMinLike, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "stringValueMax_like":
+			var err error
+			it.StringValueMaxLike, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -12574,9 +15967,33 @@ func (ec *executionContext) unmarshalInputConfiguratorAttributeFilterType(ctx co
 			if err != nil {
 				return it, err
 			}
+		case "stringValueMin_prefix":
+			var err error
+			it.StringValueMinPrefix, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "stringValueMax_prefix":
+			var err error
+			it.StringValueMaxPrefix, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "stringValue_suffix":
 			var err error
 			it.StringValueSuffix, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "stringValueMin_suffix":
+			var err error
+			it.StringValueMinSuffix, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "stringValueMax_suffix":
+			var err error
+			it.StringValueMaxSuffix, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -12592,9 +16009,45 @@ func (ec *executionContext) unmarshalInputConfiguratorAttributeFilterType(ctx co
 			if err != nil {
 				return it, err
 			}
+		case "floatValueMin":
+			var err error
+			it.FloatValueMin, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "floatValueMax":
+			var err error
+			it.FloatValueMax, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "floatValueAvg":
+			var err error
+			it.FloatValueAvg, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "floatValue_ne":
 			var err error
 			it.FloatValueNe, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "floatValueMin_ne":
+			var err error
+			it.FloatValueMinNe, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "floatValueMax_ne":
+			var err error
+			it.FloatValueMaxNe, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "floatValueAvg_ne":
+			var err error
+			it.FloatValueAvgNe, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -12604,9 +16057,45 @@ func (ec *executionContext) unmarshalInputConfiguratorAttributeFilterType(ctx co
 			if err != nil {
 				return it, err
 			}
+		case "floatValueMin_gt":
+			var err error
+			it.FloatValueMinGt, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "floatValueMax_gt":
+			var err error
+			it.FloatValueMaxGt, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "floatValueAvg_gt":
+			var err error
+			it.FloatValueAvgGt, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "floatValue_lt":
 			var err error
 			it.FloatValueLt, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "floatValueMin_lt":
+			var err error
+			it.FloatValueMinLt, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "floatValueMax_lt":
+			var err error
+			it.FloatValueMaxLt, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "floatValueAvg_lt":
+			var err error
+			it.FloatValueAvgLt, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -12616,15 +16105,69 @@ func (ec *executionContext) unmarshalInputConfiguratorAttributeFilterType(ctx co
 			if err != nil {
 				return it, err
 			}
+		case "floatValueMin_gte":
+			var err error
+			it.FloatValueMinGte, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "floatValueMax_gte":
+			var err error
+			it.FloatValueMaxGte, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "floatValueAvg_gte":
+			var err error
+			it.FloatValueAvgGte, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "floatValue_lte":
 			var err error
 			it.FloatValueLte, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
 			if err != nil {
 				return it, err
 			}
+		case "floatValueMin_lte":
+			var err error
+			it.FloatValueMinLte, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "floatValueMax_lte":
+			var err error
+			it.FloatValueMaxLte, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "floatValueAvg_lte":
+			var err error
+			it.FloatValueAvgLte, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "floatValue_in":
 			var err error
 			it.FloatValueIn, err = ec.unmarshalOFloat2ᚕfloat64ᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "floatValueMin_in":
+			var err error
+			it.FloatValueMinIn, err = ec.unmarshalOFloat2ᚕfloat64ᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "floatValueMax_in":
+			var err error
+			it.FloatValueMaxIn, err = ec.unmarshalOFloat2ᚕfloat64ᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "floatValueAvg_in":
+			var err error
+			it.FloatValueAvgIn, err = ec.unmarshalOFloat2ᚕfloat64ᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -12640,9 +16183,45 @@ func (ec *executionContext) unmarshalInputConfiguratorAttributeFilterType(ctx co
 			if err != nil {
 				return it, err
 			}
+		case "intValueMin":
+			var err error
+			it.IntValueMin, err = ec.unmarshalOInt2ᚖint(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "intValueMax":
+			var err error
+			it.IntValueMax, err = ec.unmarshalOInt2ᚖint(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "intValueAvg":
+			var err error
+			it.IntValueAvg, err = ec.unmarshalOInt2ᚖint(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "intValue_ne":
 			var err error
 			it.IntValueNe, err = ec.unmarshalOInt2ᚖint(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "intValueMin_ne":
+			var err error
+			it.IntValueMinNe, err = ec.unmarshalOInt2ᚖint(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "intValueMax_ne":
+			var err error
+			it.IntValueMaxNe, err = ec.unmarshalOInt2ᚖint(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "intValueAvg_ne":
+			var err error
+			it.IntValueAvgNe, err = ec.unmarshalOInt2ᚖint(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -12652,9 +16231,45 @@ func (ec *executionContext) unmarshalInputConfiguratorAttributeFilterType(ctx co
 			if err != nil {
 				return it, err
 			}
+		case "intValueMin_gt":
+			var err error
+			it.IntValueMinGt, err = ec.unmarshalOInt2ᚖint(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "intValueMax_gt":
+			var err error
+			it.IntValueMaxGt, err = ec.unmarshalOInt2ᚖint(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "intValueAvg_gt":
+			var err error
+			it.IntValueAvgGt, err = ec.unmarshalOInt2ᚖint(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "intValue_lt":
 			var err error
 			it.IntValueLt, err = ec.unmarshalOInt2ᚖint(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "intValueMin_lt":
+			var err error
+			it.IntValueMinLt, err = ec.unmarshalOInt2ᚖint(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "intValueMax_lt":
+			var err error
+			it.IntValueMaxLt, err = ec.unmarshalOInt2ᚖint(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "intValueAvg_lt":
+			var err error
+			it.IntValueAvgLt, err = ec.unmarshalOInt2ᚖint(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -12664,15 +16279,69 @@ func (ec *executionContext) unmarshalInputConfiguratorAttributeFilterType(ctx co
 			if err != nil {
 				return it, err
 			}
+		case "intValueMin_gte":
+			var err error
+			it.IntValueMinGte, err = ec.unmarshalOInt2ᚖint(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "intValueMax_gte":
+			var err error
+			it.IntValueMaxGte, err = ec.unmarshalOInt2ᚖint(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "intValueAvg_gte":
+			var err error
+			it.IntValueAvgGte, err = ec.unmarshalOInt2ᚖint(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "intValue_lte":
 			var err error
 			it.IntValueLte, err = ec.unmarshalOInt2ᚖint(ctx, v)
 			if err != nil {
 				return it, err
 			}
+		case "intValueMin_lte":
+			var err error
+			it.IntValueMinLte, err = ec.unmarshalOInt2ᚖint(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "intValueMax_lte":
+			var err error
+			it.IntValueMaxLte, err = ec.unmarshalOInt2ᚖint(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "intValueAvg_lte":
+			var err error
+			it.IntValueAvgLte, err = ec.unmarshalOInt2ᚖint(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "intValue_in":
 			var err error
 			it.IntValueIn, err = ec.unmarshalOInt2ᚕintᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "intValueMin_in":
+			var err error
+			it.IntValueMinIn, err = ec.unmarshalOInt2ᚕintᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "intValueMax_in":
+			var err error
+			it.IntValueMaxIn, err = ec.unmarshalOInt2ᚕintᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "intValueAvg_in":
+			var err error
+			it.IntValueAvgIn, err = ec.unmarshalOInt2ᚕintᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -12688,9 +16357,33 @@ func (ec *executionContext) unmarshalInputConfiguratorAttributeFilterType(ctx co
 			if err != nil {
 				return it, err
 			}
+		case "definitionIdMin":
+			var err error
+			it.DefinitionIDMin, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "definitionIdMax":
+			var err error
+			it.DefinitionIDMax, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "definitionId_ne":
 			var err error
 			it.DefinitionIDNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "definitionIdMin_ne":
+			var err error
+			it.DefinitionIDMinNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "definitionIdMax_ne":
+			var err error
+			it.DefinitionIDMaxNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -12700,9 +16393,33 @@ func (ec *executionContext) unmarshalInputConfiguratorAttributeFilterType(ctx co
 			if err != nil {
 				return it, err
 			}
+		case "definitionIdMin_gt":
+			var err error
+			it.DefinitionIDMinGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "definitionIdMax_gt":
+			var err error
+			it.DefinitionIDMaxGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "definitionId_lt":
 			var err error
 			it.DefinitionIDLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "definitionIdMin_lt":
+			var err error
+			it.DefinitionIDMinLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "definitionIdMax_lt":
+			var err error
+			it.DefinitionIDMaxLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -12712,15 +16429,51 @@ func (ec *executionContext) unmarshalInputConfiguratorAttributeFilterType(ctx co
 			if err != nil {
 				return it, err
 			}
+		case "definitionIdMin_gte":
+			var err error
+			it.DefinitionIDMinGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "definitionIdMax_gte":
+			var err error
+			it.DefinitionIDMaxGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "definitionId_lte":
 			var err error
 			it.DefinitionIDLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
+		case "definitionIdMin_lte":
+			var err error
+			it.DefinitionIDMinLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "definitionIdMax_lte":
+			var err error
+			it.DefinitionIDMaxLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "definitionId_in":
 			var err error
 			it.DefinitionIDIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "definitionIdMin_in":
+			var err error
+			it.DefinitionIDMinIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "definitionIdMax_in":
+			var err error
+			it.DefinitionIDMaxIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -12736,9 +16489,33 @@ func (ec *executionContext) unmarshalInputConfiguratorAttributeFilterType(ctx co
 			if err != nil {
 				return it, err
 			}
+		case "itemIdMin":
+			var err error
+			it.ItemIDMin, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "itemIdMax":
+			var err error
+			it.ItemIDMax, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "itemId_ne":
 			var err error
 			it.ItemIDNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "itemIdMin_ne":
+			var err error
+			it.ItemIDMinNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "itemIdMax_ne":
+			var err error
+			it.ItemIDMaxNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -12748,9 +16525,33 @@ func (ec *executionContext) unmarshalInputConfiguratorAttributeFilterType(ctx co
 			if err != nil {
 				return it, err
 			}
+		case "itemIdMin_gt":
+			var err error
+			it.ItemIDMinGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "itemIdMax_gt":
+			var err error
+			it.ItemIDMaxGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "itemId_lt":
 			var err error
 			it.ItemIDLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "itemIdMin_lt":
+			var err error
+			it.ItemIDMinLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "itemIdMax_lt":
+			var err error
+			it.ItemIDMaxLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -12760,15 +16561,51 @@ func (ec *executionContext) unmarshalInputConfiguratorAttributeFilterType(ctx co
 			if err != nil {
 				return it, err
 			}
+		case "itemIdMin_gte":
+			var err error
+			it.ItemIDMinGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "itemIdMax_gte":
+			var err error
+			it.ItemIDMaxGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "itemId_lte":
 			var err error
 			it.ItemIDLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
+		case "itemIdMin_lte":
+			var err error
+			it.ItemIDMinLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "itemIdMax_lte":
+			var err error
+			it.ItemIDMaxLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "itemId_in":
 			var err error
 			it.ItemIDIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "itemIdMin_in":
+			var err error
+			it.ItemIDMinIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "itemIdMax_in":
+			var err error
+			it.ItemIDMaxIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -12784,9 +16621,33 @@ func (ec *executionContext) unmarshalInputConfiguratorAttributeFilterType(ctx co
 			if err != nil {
 				return it, err
 			}
+		case "updatedAtMin":
+			var err error
+			it.UpdatedAtMin, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedAtMax":
+			var err error
+			it.UpdatedAtMax, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "updatedAt_ne":
 			var err error
 			it.UpdatedAtNe, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedAtMin_ne":
+			var err error
+			it.UpdatedAtMinNe, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedAtMax_ne":
+			var err error
+			it.UpdatedAtMaxNe, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -12796,9 +16657,33 @@ func (ec *executionContext) unmarshalInputConfiguratorAttributeFilterType(ctx co
 			if err != nil {
 				return it, err
 			}
+		case "updatedAtMin_gt":
+			var err error
+			it.UpdatedAtMinGt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedAtMax_gt":
+			var err error
+			it.UpdatedAtMaxGt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "updatedAt_lt":
 			var err error
 			it.UpdatedAtLt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedAtMin_lt":
+			var err error
+			it.UpdatedAtMinLt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedAtMax_lt":
+			var err error
+			it.UpdatedAtMaxLt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -12808,15 +16693,51 @@ func (ec *executionContext) unmarshalInputConfiguratorAttributeFilterType(ctx co
 			if err != nil {
 				return it, err
 			}
+		case "updatedAtMin_gte":
+			var err error
+			it.UpdatedAtMinGte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedAtMax_gte":
+			var err error
+			it.UpdatedAtMaxGte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "updatedAt_lte":
 			var err error
 			it.UpdatedAtLte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
+		case "updatedAtMin_lte":
+			var err error
+			it.UpdatedAtMinLte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedAtMax_lte":
+			var err error
+			it.UpdatedAtMaxLte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "updatedAt_in":
 			var err error
 			it.UpdatedAtIn, err = ec.unmarshalOTime2ᚕᚖtimeᚐTimeᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedAtMin_in":
+			var err error
+			it.UpdatedAtMinIn, err = ec.unmarshalOTime2ᚕᚖtimeᚐTimeᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedAtMax_in":
+			var err error
+			it.UpdatedAtMaxIn, err = ec.unmarshalOTime2ᚕᚖtimeᚐTimeᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -12832,9 +16753,33 @@ func (ec *executionContext) unmarshalInputConfiguratorAttributeFilterType(ctx co
 			if err != nil {
 				return it, err
 			}
+		case "createdAtMin":
+			var err error
+			it.CreatedAtMin, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdAtMax":
+			var err error
+			it.CreatedAtMax, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "createdAt_ne":
 			var err error
 			it.CreatedAtNe, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdAtMin_ne":
+			var err error
+			it.CreatedAtMinNe, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdAtMax_ne":
+			var err error
+			it.CreatedAtMaxNe, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -12844,9 +16789,33 @@ func (ec *executionContext) unmarshalInputConfiguratorAttributeFilterType(ctx co
 			if err != nil {
 				return it, err
 			}
+		case "createdAtMin_gt":
+			var err error
+			it.CreatedAtMinGt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdAtMax_gt":
+			var err error
+			it.CreatedAtMaxGt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "createdAt_lt":
 			var err error
 			it.CreatedAtLt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdAtMin_lt":
+			var err error
+			it.CreatedAtMinLt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdAtMax_lt":
+			var err error
+			it.CreatedAtMaxLt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -12856,15 +16825,51 @@ func (ec *executionContext) unmarshalInputConfiguratorAttributeFilterType(ctx co
 			if err != nil {
 				return it, err
 			}
+		case "createdAtMin_gte":
+			var err error
+			it.CreatedAtMinGte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdAtMax_gte":
+			var err error
+			it.CreatedAtMaxGte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "createdAt_lte":
 			var err error
 			it.CreatedAtLte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
+		case "createdAtMin_lte":
+			var err error
+			it.CreatedAtMinLte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdAtMax_lte":
+			var err error
+			it.CreatedAtMaxLte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "createdAt_in":
 			var err error
 			it.CreatedAtIn, err = ec.unmarshalOTime2ᚕᚖtimeᚐTimeᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdAtMin_in":
+			var err error
+			it.CreatedAtMinIn, err = ec.unmarshalOTime2ᚕᚖtimeᚐTimeᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdAtMax_in":
+			var err error
+			it.CreatedAtMaxIn, err = ec.unmarshalOTime2ᚕᚖtimeᚐTimeᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -12880,9 +16885,33 @@ func (ec *executionContext) unmarshalInputConfiguratorAttributeFilterType(ctx co
 			if err != nil {
 				return it, err
 			}
+		case "updatedByMin":
+			var err error
+			it.UpdatedByMin, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedByMax":
+			var err error
+			it.UpdatedByMax, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "updatedBy_ne":
 			var err error
 			it.UpdatedByNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedByMin_ne":
+			var err error
+			it.UpdatedByMinNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedByMax_ne":
+			var err error
+			it.UpdatedByMaxNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -12892,9 +16921,33 @@ func (ec *executionContext) unmarshalInputConfiguratorAttributeFilterType(ctx co
 			if err != nil {
 				return it, err
 			}
+		case "updatedByMin_gt":
+			var err error
+			it.UpdatedByMinGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedByMax_gt":
+			var err error
+			it.UpdatedByMaxGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "updatedBy_lt":
 			var err error
 			it.UpdatedByLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedByMin_lt":
+			var err error
+			it.UpdatedByMinLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedByMax_lt":
+			var err error
+			it.UpdatedByMaxLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -12904,15 +16957,51 @@ func (ec *executionContext) unmarshalInputConfiguratorAttributeFilterType(ctx co
 			if err != nil {
 				return it, err
 			}
+		case "updatedByMin_gte":
+			var err error
+			it.UpdatedByMinGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedByMax_gte":
+			var err error
+			it.UpdatedByMaxGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "updatedBy_lte":
 			var err error
 			it.UpdatedByLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
+		case "updatedByMin_lte":
+			var err error
+			it.UpdatedByMinLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedByMax_lte":
+			var err error
+			it.UpdatedByMaxLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "updatedBy_in":
 			var err error
 			it.UpdatedByIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedByMin_in":
+			var err error
+			it.UpdatedByMinIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedByMax_in":
+			var err error
+			it.UpdatedByMaxIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -12928,9 +17017,33 @@ func (ec *executionContext) unmarshalInputConfiguratorAttributeFilterType(ctx co
 			if err != nil {
 				return it, err
 			}
+		case "createdByMin":
+			var err error
+			it.CreatedByMin, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdByMax":
+			var err error
+			it.CreatedByMax, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "createdBy_ne":
 			var err error
 			it.CreatedByNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdByMin_ne":
+			var err error
+			it.CreatedByMinNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdByMax_ne":
+			var err error
+			it.CreatedByMaxNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -12940,9 +17053,33 @@ func (ec *executionContext) unmarshalInputConfiguratorAttributeFilterType(ctx co
 			if err != nil {
 				return it, err
 			}
+		case "createdByMin_gt":
+			var err error
+			it.CreatedByMinGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdByMax_gt":
+			var err error
+			it.CreatedByMaxGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "createdBy_lt":
 			var err error
 			it.CreatedByLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdByMin_lt":
+			var err error
+			it.CreatedByMinLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdByMax_lt":
+			var err error
+			it.CreatedByMaxLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -12952,15 +17089,51 @@ func (ec *executionContext) unmarshalInputConfiguratorAttributeFilterType(ctx co
 			if err != nil {
 				return it, err
 			}
+		case "createdByMin_gte":
+			var err error
+			it.CreatedByMinGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdByMax_gte":
+			var err error
+			it.CreatedByMaxGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "createdBy_lte":
 			var err error
 			it.CreatedByLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
+		case "createdByMin_lte":
+			var err error
+			it.CreatedByMinLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdByMax_lte":
+			var err error
+			it.CreatedByMaxLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "createdBy_in":
 			var err error
 			it.CreatedByIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdByMin_in":
+			var err error
+			it.CreatedByMinIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdByMax_in":
+			var err error
+			it.CreatedByMaxIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -13000,9 +17173,33 @@ func (ec *executionContext) unmarshalInputConfiguratorAttributeSortType(ctx cont
 			if err != nil {
 				return it, err
 			}
+		case "idMin":
+			var err error
+			it.IDMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "idMax":
+			var err error
+			it.IDMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "stringValue":
 			var err error
 			it.StringValue, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "stringValueMin":
+			var err error
+			it.StringValueMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "stringValueMax":
+			var err error
+			it.StringValueMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -13012,9 +17209,45 @@ func (ec *executionContext) unmarshalInputConfiguratorAttributeSortType(ctx cont
 			if err != nil {
 				return it, err
 			}
+		case "floatValueMin":
+			var err error
+			it.FloatValueMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "floatValueMax":
+			var err error
+			it.FloatValueMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "floatValueAvg":
+			var err error
+			it.FloatValueAvg, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "intValue":
 			var err error
 			it.IntValue, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "intValueMin":
+			var err error
+			it.IntValueMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "intValueMax":
+			var err error
+			it.IntValueMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "intValueAvg":
+			var err error
+			it.IntValueAvg, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -13024,9 +17257,33 @@ func (ec *executionContext) unmarshalInputConfiguratorAttributeSortType(ctx cont
 			if err != nil {
 				return it, err
 			}
+		case "definitionIdMin":
+			var err error
+			it.DefinitionIDMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "definitionIdMax":
+			var err error
+			it.DefinitionIDMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "itemId":
 			var err error
 			it.ItemID, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "itemIdMin":
+			var err error
+			it.ItemIDMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "itemIdMax":
+			var err error
+			it.ItemIDMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -13036,9 +17293,33 @@ func (ec *executionContext) unmarshalInputConfiguratorAttributeSortType(ctx cont
 			if err != nil {
 				return it, err
 			}
+		case "updatedAtMin":
+			var err error
+			it.UpdatedAtMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedAtMax":
+			var err error
+			it.UpdatedAtMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "createdAt":
 			var err error
 			it.CreatedAt, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdAtMin":
+			var err error
+			it.CreatedAtMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdAtMax":
+			var err error
+			it.CreatedAtMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -13048,9 +17329,33 @@ func (ec *executionContext) unmarshalInputConfiguratorAttributeSortType(ctx cont
 			if err != nil {
 				return it, err
 			}
+		case "updatedByMin":
+			var err error
+			it.UpdatedByMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedByMax":
+			var err error
+			it.UpdatedByMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "createdBy":
 			var err error
 			it.CreatedBy, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdByMin":
+			var err error
+			it.CreatedByMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdByMax":
+			var err error
+			it.CreatedByMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -13096,9 +17401,33 @@ func (ec *executionContext) unmarshalInputConfiguratorItemDefinitionCategoryFilt
 			if err != nil {
 				return it, err
 			}
+		case "idMin":
+			var err error
+			it.IDMin, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "idMax":
+			var err error
+			it.IDMax, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "id_ne":
 			var err error
 			it.IDNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "idMin_ne":
+			var err error
+			it.IDMinNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "idMax_ne":
+			var err error
+			it.IDMaxNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -13108,9 +17437,33 @@ func (ec *executionContext) unmarshalInputConfiguratorItemDefinitionCategoryFilt
 			if err != nil {
 				return it, err
 			}
+		case "idMin_gt":
+			var err error
+			it.IDMinGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "idMax_gt":
+			var err error
+			it.IDMaxGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "id_lt":
 			var err error
 			it.IDLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "idMin_lt":
+			var err error
+			it.IDMinLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "idMax_lt":
+			var err error
+			it.IDMaxLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -13120,15 +17473,51 @@ func (ec *executionContext) unmarshalInputConfiguratorItemDefinitionCategoryFilt
 			if err != nil {
 				return it, err
 			}
+		case "idMin_gte":
+			var err error
+			it.IDMinGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "idMax_gte":
+			var err error
+			it.IDMaxGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "id_lte":
 			var err error
 			it.IDLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
+		case "idMin_lte":
+			var err error
+			it.IDMinLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "idMax_lte":
+			var err error
+			it.IDMaxLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "id_in":
 			var err error
 			it.IDIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "idMin_in":
+			var err error
+			it.IDMinIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "idMax_in":
+			var err error
+			it.IDMaxIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -13144,9 +17533,33 @@ func (ec *executionContext) unmarshalInputConfiguratorItemDefinitionCategoryFilt
 			if err != nil {
 				return it, err
 			}
+		case "codeMin":
+			var err error
+			it.CodeMin, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "codeMax":
+			var err error
+			it.CodeMax, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "code_ne":
 			var err error
 			it.CodeNe, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "codeMin_ne":
+			var err error
+			it.CodeMinNe, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "codeMax_ne":
+			var err error
+			it.CodeMaxNe, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -13156,9 +17569,33 @@ func (ec *executionContext) unmarshalInputConfiguratorItemDefinitionCategoryFilt
 			if err != nil {
 				return it, err
 			}
+		case "codeMin_gt":
+			var err error
+			it.CodeMinGt, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "codeMax_gt":
+			var err error
+			it.CodeMaxGt, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "code_lt":
 			var err error
 			it.CodeLt, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "codeMin_lt":
+			var err error
+			it.CodeMinLt, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "codeMax_lt":
+			var err error
+			it.CodeMaxLt, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -13168,9 +17605,33 @@ func (ec *executionContext) unmarshalInputConfiguratorItemDefinitionCategoryFilt
 			if err != nil {
 				return it, err
 			}
+		case "codeMin_gte":
+			var err error
+			it.CodeMinGte, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "codeMax_gte":
+			var err error
+			it.CodeMaxGte, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "code_lte":
 			var err error
 			it.CodeLte, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "codeMin_lte":
+			var err error
+			it.CodeMinLte, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "codeMax_lte":
+			var err error
+			it.CodeMaxLte, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -13180,9 +17641,33 @@ func (ec *executionContext) unmarshalInputConfiguratorItemDefinitionCategoryFilt
 			if err != nil {
 				return it, err
 			}
+		case "codeMin_in":
+			var err error
+			it.CodeMinIn, err = ec.unmarshalOString2ᚕstringᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "codeMax_in":
+			var err error
+			it.CodeMaxIn, err = ec.unmarshalOString2ᚕstringᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "code_like":
 			var err error
 			it.CodeLike, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "codeMin_like":
+			var err error
+			it.CodeMinLike, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "codeMax_like":
+			var err error
+			it.CodeMaxLike, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -13192,9 +17677,33 @@ func (ec *executionContext) unmarshalInputConfiguratorItemDefinitionCategoryFilt
 			if err != nil {
 				return it, err
 			}
+		case "codeMin_prefix":
+			var err error
+			it.CodeMinPrefix, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "codeMax_prefix":
+			var err error
+			it.CodeMaxPrefix, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "code_suffix":
 			var err error
 			it.CodeSuffix, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "codeMin_suffix":
+			var err error
+			it.CodeMinSuffix, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "codeMax_suffix":
+			var err error
+			it.CodeMaxSuffix, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -13210,9 +17719,33 @@ func (ec *executionContext) unmarshalInputConfiguratorItemDefinitionCategoryFilt
 			if err != nil {
 				return it, err
 			}
+		case "nameMin":
+			var err error
+			it.NameMin, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "nameMax":
+			var err error
+			it.NameMax, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "name_ne":
 			var err error
 			it.NameNe, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "nameMin_ne":
+			var err error
+			it.NameMinNe, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "nameMax_ne":
+			var err error
+			it.NameMaxNe, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -13222,9 +17755,33 @@ func (ec *executionContext) unmarshalInputConfiguratorItemDefinitionCategoryFilt
 			if err != nil {
 				return it, err
 			}
+		case "nameMin_gt":
+			var err error
+			it.NameMinGt, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "nameMax_gt":
+			var err error
+			it.NameMaxGt, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "name_lt":
 			var err error
 			it.NameLt, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "nameMin_lt":
+			var err error
+			it.NameMinLt, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "nameMax_lt":
+			var err error
+			it.NameMaxLt, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -13234,9 +17791,33 @@ func (ec *executionContext) unmarshalInputConfiguratorItemDefinitionCategoryFilt
 			if err != nil {
 				return it, err
 			}
+		case "nameMin_gte":
+			var err error
+			it.NameMinGte, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "nameMax_gte":
+			var err error
+			it.NameMaxGte, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "name_lte":
 			var err error
 			it.NameLte, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "nameMin_lte":
+			var err error
+			it.NameMinLte, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "nameMax_lte":
+			var err error
+			it.NameMaxLte, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -13246,9 +17827,33 @@ func (ec *executionContext) unmarshalInputConfiguratorItemDefinitionCategoryFilt
 			if err != nil {
 				return it, err
 			}
+		case "nameMin_in":
+			var err error
+			it.NameMinIn, err = ec.unmarshalOString2ᚕstringᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "nameMax_in":
+			var err error
+			it.NameMaxIn, err = ec.unmarshalOString2ᚕstringᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "name_like":
 			var err error
 			it.NameLike, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "nameMin_like":
+			var err error
+			it.NameMinLike, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "nameMax_like":
+			var err error
+			it.NameMaxLike, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -13258,9 +17863,33 @@ func (ec *executionContext) unmarshalInputConfiguratorItemDefinitionCategoryFilt
 			if err != nil {
 				return it, err
 			}
+		case "nameMin_prefix":
+			var err error
+			it.NameMinPrefix, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "nameMax_prefix":
+			var err error
+			it.NameMaxPrefix, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "name_suffix":
 			var err error
 			it.NameSuffix, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "nameMin_suffix":
+			var err error
+			it.NameMinSuffix, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "nameMax_suffix":
+			var err error
+			it.NameMaxSuffix, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -13276,9 +17905,33 @@ func (ec *executionContext) unmarshalInputConfiguratorItemDefinitionCategoryFilt
 			if err != nil {
 				return it, err
 			}
+		case "typeMin":
+			var err error
+			it.TypeMin, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "typeMax":
+			var err error
+			it.TypeMax, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "type_ne":
 			var err error
 			it.TypeNe, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "typeMin_ne":
+			var err error
+			it.TypeMinNe, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "typeMax_ne":
+			var err error
+			it.TypeMaxNe, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -13288,9 +17941,33 @@ func (ec *executionContext) unmarshalInputConfiguratorItemDefinitionCategoryFilt
 			if err != nil {
 				return it, err
 			}
+		case "typeMin_gt":
+			var err error
+			it.TypeMinGt, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "typeMax_gt":
+			var err error
+			it.TypeMaxGt, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "type_lt":
 			var err error
 			it.TypeLt, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "typeMin_lt":
+			var err error
+			it.TypeMinLt, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "typeMax_lt":
+			var err error
+			it.TypeMaxLt, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -13300,9 +17977,33 @@ func (ec *executionContext) unmarshalInputConfiguratorItemDefinitionCategoryFilt
 			if err != nil {
 				return it, err
 			}
+		case "typeMin_gte":
+			var err error
+			it.TypeMinGte, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "typeMax_gte":
+			var err error
+			it.TypeMaxGte, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "type_lte":
 			var err error
 			it.TypeLte, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "typeMin_lte":
+			var err error
+			it.TypeMinLte, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "typeMax_lte":
+			var err error
+			it.TypeMaxLte, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -13312,9 +18013,33 @@ func (ec *executionContext) unmarshalInputConfiguratorItemDefinitionCategoryFilt
 			if err != nil {
 				return it, err
 			}
+		case "typeMin_in":
+			var err error
+			it.TypeMinIn, err = ec.unmarshalOString2ᚕstringᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "typeMax_in":
+			var err error
+			it.TypeMaxIn, err = ec.unmarshalOString2ᚕstringᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "type_like":
 			var err error
 			it.TypeLike, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "typeMin_like":
+			var err error
+			it.TypeMinLike, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "typeMax_like":
+			var err error
+			it.TypeMaxLike, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -13324,9 +18049,33 @@ func (ec *executionContext) unmarshalInputConfiguratorItemDefinitionCategoryFilt
 			if err != nil {
 				return it, err
 			}
+		case "typeMin_prefix":
+			var err error
+			it.TypeMinPrefix, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "typeMax_prefix":
+			var err error
+			it.TypeMaxPrefix, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "type_suffix":
 			var err error
 			it.TypeSuffix, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "typeMin_suffix":
+			var err error
+			it.TypeMinSuffix, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "typeMax_suffix":
+			var err error
+			it.TypeMaxSuffix, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -13336,9 +18085,153 @@ func (ec *executionContext) unmarshalInputConfiguratorItemDefinitionCategoryFilt
 			if err != nil {
 				return it, err
 			}
+		case "primary":
+			var err error
+			it.Primary, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "primaryMin":
+			var err error
+			it.PrimaryMin, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "primaryMax":
+			var err error
+			it.PrimaryMax, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "primary_ne":
+			var err error
+			it.PrimaryNe, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "primaryMin_ne":
+			var err error
+			it.PrimaryMinNe, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "primaryMax_ne":
+			var err error
+			it.PrimaryMaxNe, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "primary_gt":
+			var err error
+			it.PrimaryGt, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "primaryMin_gt":
+			var err error
+			it.PrimaryMinGt, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "primaryMax_gt":
+			var err error
+			it.PrimaryMaxGt, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "primary_lt":
+			var err error
+			it.PrimaryLt, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "primaryMin_lt":
+			var err error
+			it.PrimaryMinLt, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "primaryMax_lt":
+			var err error
+			it.PrimaryMaxLt, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "primary_gte":
+			var err error
+			it.PrimaryGte, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "primaryMin_gte":
+			var err error
+			it.PrimaryMinGte, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "primaryMax_gte":
+			var err error
+			it.PrimaryMaxGte, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "primary_lte":
+			var err error
+			it.PrimaryLte, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "primaryMin_lte":
+			var err error
+			it.PrimaryMinLte, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "primaryMax_lte":
+			var err error
+			it.PrimaryMaxLte, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "primary_in":
+			var err error
+			it.PrimaryIn, err = ec.unmarshalOBoolean2ᚕboolᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "primaryMin_in":
+			var err error
+			it.PrimaryMinIn, err = ec.unmarshalOBoolean2ᚕboolᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "primaryMax_in":
+			var err error
+			it.PrimaryMaxIn, err = ec.unmarshalOBoolean2ᚕboolᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "primary_null":
+			var err error
+			it.PrimaryNull, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "updatedAt":
 			var err error
 			it.UpdatedAt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedAtMin":
+			var err error
+			it.UpdatedAtMin, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedAtMax":
+			var err error
+			it.UpdatedAtMax, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -13348,9 +18241,33 @@ func (ec *executionContext) unmarshalInputConfiguratorItemDefinitionCategoryFilt
 			if err != nil {
 				return it, err
 			}
+		case "updatedAtMin_ne":
+			var err error
+			it.UpdatedAtMinNe, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedAtMax_ne":
+			var err error
+			it.UpdatedAtMaxNe, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "updatedAt_gt":
 			var err error
 			it.UpdatedAtGt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedAtMin_gt":
+			var err error
+			it.UpdatedAtMinGt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedAtMax_gt":
+			var err error
+			it.UpdatedAtMaxGt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -13360,9 +18277,33 @@ func (ec *executionContext) unmarshalInputConfiguratorItemDefinitionCategoryFilt
 			if err != nil {
 				return it, err
 			}
+		case "updatedAtMin_lt":
+			var err error
+			it.UpdatedAtMinLt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedAtMax_lt":
+			var err error
+			it.UpdatedAtMaxLt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "updatedAt_gte":
 			var err error
 			it.UpdatedAtGte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedAtMin_gte":
+			var err error
+			it.UpdatedAtMinGte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedAtMax_gte":
+			var err error
+			it.UpdatedAtMaxGte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -13372,9 +18313,33 @@ func (ec *executionContext) unmarshalInputConfiguratorItemDefinitionCategoryFilt
 			if err != nil {
 				return it, err
 			}
+		case "updatedAtMin_lte":
+			var err error
+			it.UpdatedAtMinLte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedAtMax_lte":
+			var err error
+			it.UpdatedAtMaxLte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "updatedAt_in":
 			var err error
 			it.UpdatedAtIn, err = ec.unmarshalOTime2ᚕᚖtimeᚐTimeᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedAtMin_in":
+			var err error
+			it.UpdatedAtMinIn, err = ec.unmarshalOTime2ᚕᚖtimeᚐTimeᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedAtMax_in":
+			var err error
+			it.UpdatedAtMaxIn, err = ec.unmarshalOTime2ᚕᚖtimeᚐTimeᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -13390,9 +18355,33 @@ func (ec *executionContext) unmarshalInputConfiguratorItemDefinitionCategoryFilt
 			if err != nil {
 				return it, err
 			}
+		case "createdAtMin":
+			var err error
+			it.CreatedAtMin, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdAtMax":
+			var err error
+			it.CreatedAtMax, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "createdAt_ne":
 			var err error
 			it.CreatedAtNe, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdAtMin_ne":
+			var err error
+			it.CreatedAtMinNe, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdAtMax_ne":
+			var err error
+			it.CreatedAtMaxNe, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -13402,9 +18391,33 @@ func (ec *executionContext) unmarshalInputConfiguratorItemDefinitionCategoryFilt
 			if err != nil {
 				return it, err
 			}
+		case "createdAtMin_gt":
+			var err error
+			it.CreatedAtMinGt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdAtMax_gt":
+			var err error
+			it.CreatedAtMaxGt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "createdAt_lt":
 			var err error
 			it.CreatedAtLt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdAtMin_lt":
+			var err error
+			it.CreatedAtMinLt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdAtMax_lt":
+			var err error
+			it.CreatedAtMaxLt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -13414,15 +18427,51 @@ func (ec *executionContext) unmarshalInputConfiguratorItemDefinitionCategoryFilt
 			if err != nil {
 				return it, err
 			}
+		case "createdAtMin_gte":
+			var err error
+			it.CreatedAtMinGte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdAtMax_gte":
+			var err error
+			it.CreatedAtMaxGte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "createdAt_lte":
 			var err error
 			it.CreatedAtLte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
+		case "createdAtMin_lte":
+			var err error
+			it.CreatedAtMinLte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdAtMax_lte":
+			var err error
+			it.CreatedAtMaxLte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "createdAt_in":
 			var err error
 			it.CreatedAtIn, err = ec.unmarshalOTime2ᚕᚖtimeᚐTimeᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdAtMin_in":
+			var err error
+			it.CreatedAtMinIn, err = ec.unmarshalOTime2ᚕᚖtimeᚐTimeᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdAtMax_in":
+			var err error
+			it.CreatedAtMaxIn, err = ec.unmarshalOTime2ᚕᚖtimeᚐTimeᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -13438,9 +18487,33 @@ func (ec *executionContext) unmarshalInputConfiguratorItemDefinitionCategoryFilt
 			if err != nil {
 				return it, err
 			}
+		case "updatedByMin":
+			var err error
+			it.UpdatedByMin, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedByMax":
+			var err error
+			it.UpdatedByMax, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "updatedBy_ne":
 			var err error
 			it.UpdatedByNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedByMin_ne":
+			var err error
+			it.UpdatedByMinNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedByMax_ne":
+			var err error
+			it.UpdatedByMaxNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -13450,9 +18523,33 @@ func (ec *executionContext) unmarshalInputConfiguratorItemDefinitionCategoryFilt
 			if err != nil {
 				return it, err
 			}
+		case "updatedByMin_gt":
+			var err error
+			it.UpdatedByMinGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedByMax_gt":
+			var err error
+			it.UpdatedByMaxGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "updatedBy_lt":
 			var err error
 			it.UpdatedByLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedByMin_lt":
+			var err error
+			it.UpdatedByMinLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedByMax_lt":
+			var err error
+			it.UpdatedByMaxLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -13462,15 +18559,51 @@ func (ec *executionContext) unmarshalInputConfiguratorItemDefinitionCategoryFilt
 			if err != nil {
 				return it, err
 			}
+		case "updatedByMin_gte":
+			var err error
+			it.UpdatedByMinGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedByMax_gte":
+			var err error
+			it.UpdatedByMaxGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "updatedBy_lte":
 			var err error
 			it.UpdatedByLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
+		case "updatedByMin_lte":
+			var err error
+			it.UpdatedByMinLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedByMax_lte":
+			var err error
+			it.UpdatedByMaxLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "updatedBy_in":
 			var err error
 			it.UpdatedByIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedByMin_in":
+			var err error
+			it.UpdatedByMinIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedByMax_in":
+			var err error
+			it.UpdatedByMaxIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -13486,9 +18619,33 @@ func (ec *executionContext) unmarshalInputConfiguratorItemDefinitionCategoryFilt
 			if err != nil {
 				return it, err
 			}
+		case "createdByMin":
+			var err error
+			it.CreatedByMin, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdByMax":
+			var err error
+			it.CreatedByMax, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "createdBy_ne":
 			var err error
 			it.CreatedByNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdByMin_ne":
+			var err error
+			it.CreatedByMinNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdByMax_ne":
+			var err error
+			it.CreatedByMaxNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -13498,9 +18655,33 @@ func (ec *executionContext) unmarshalInputConfiguratorItemDefinitionCategoryFilt
 			if err != nil {
 				return it, err
 			}
+		case "createdByMin_gt":
+			var err error
+			it.CreatedByMinGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdByMax_gt":
+			var err error
+			it.CreatedByMaxGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "createdBy_lt":
 			var err error
 			it.CreatedByLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdByMin_lt":
+			var err error
+			it.CreatedByMinLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdByMax_lt":
+			var err error
+			it.CreatedByMaxLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -13510,15 +18691,51 @@ func (ec *executionContext) unmarshalInputConfiguratorItemDefinitionCategoryFilt
 			if err != nil {
 				return it, err
 			}
+		case "createdByMin_gte":
+			var err error
+			it.CreatedByMinGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdByMax_gte":
+			var err error
+			it.CreatedByMaxGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "createdBy_lte":
 			var err error
 			it.CreatedByLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
+		case "createdByMin_lte":
+			var err error
+			it.CreatedByMinLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdByMax_lte":
+			var err error
+			it.CreatedByMaxLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "createdBy_in":
 			var err error
 			it.CreatedByIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdByMin_in":
+			var err error
+			it.CreatedByMinIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdByMax_in":
+			var err error
+			it.CreatedByMaxIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -13552,9 +18769,33 @@ func (ec *executionContext) unmarshalInputConfiguratorItemDefinitionCategorySort
 			if err != nil {
 				return it, err
 			}
+		case "idMin":
+			var err error
+			it.IDMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "idMax":
+			var err error
+			it.IDMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "code":
 			var err error
 			it.Code, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "codeMin":
+			var err error
+			it.CodeMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "codeMax":
+			var err error
+			it.CodeMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -13564,9 +18805,51 @@ func (ec *executionContext) unmarshalInputConfiguratorItemDefinitionCategorySort
 			if err != nil {
 				return it, err
 			}
+		case "nameMin":
+			var err error
+			it.NameMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "nameMax":
+			var err error
+			it.NameMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "type":
 			var err error
 			it.Type, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "typeMin":
+			var err error
+			it.TypeMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "typeMax":
+			var err error
+			it.TypeMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "primary":
+			var err error
+			it.Primary, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "primaryMin":
+			var err error
+			it.PrimaryMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "primaryMax":
+			var err error
+			it.PrimaryMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -13576,9 +18859,33 @@ func (ec *executionContext) unmarshalInputConfiguratorItemDefinitionCategorySort
 			if err != nil {
 				return it, err
 			}
+		case "updatedAtMin":
+			var err error
+			it.UpdatedAtMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedAtMax":
+			var err error
+			it.UpdatedAtMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "createdAt":
 			var err error
 			it.CreatedAt, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdAtMin":
+			var err error
+			it.CreatedAtMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdAtMax":
+			var err error
+			it.CreatedAtMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -13588,15 +18895,51 @@ func (ec *executionContext) unmarshalInputConfiguratorItemDefinitionCategorySort
 			if err != nil {
 				return it, err
 			}
+		case "updatedByMin":
+			var err error
+			it.UpdatedByMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedByMax":
+			var err error
+			it.UpdatedByMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "createdBy":
 			var err error
 			it.CreatedBy, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
+		case "createdByMin":
+			var err error
+			it.CreatedByMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdByMax":
+			var err error
+			it.CreatedByMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "definitionsIds":
 			var err error
 			it.DefinitionsIds, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "definitionsIdsMin":
+			var err error
+			it.DefinitionsIdsMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "definitionsIdsMax":
+			var err error
+			it.DefinitionsIdsMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -13636,9 +18979,33 @@ func (ec *executionContext) unmarshalInputConfiguratorItemDefinitionFilterType(c
 			if err != nil {
 				return it, err
 			}
+		case "idMin":
+			var err error
+			it.IDMin, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "idMax":
+			var err error
+			it.IDMax, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "id_ne":
 			var err error
 			it.IDNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "idMin_ne":
+			var err error
+			it.IDMinNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "idMax_ne":
+			var err error
+			it.IDMaxNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -13648,9 +19015,33 @@ func (ec *executionContext) unmarshalInputConfiguratorItemDefinitionFilterType(c
 			if err != nil {
 				return it, err
 			}
+		case "idMin_gt":
+			var err error
+			it.IDMinGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "idMax_gt":
+			var err error
+			it.IDMaxGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "id_lt":
 			var err error
 			it.IDLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "idMin_lt":
+			var err error
+			it.IDMinLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "idMax_lt":
+			var err error
+			it.IDMaxLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -13660,15 +19051,51 @@ func (ec *executionContext) unmarshalInputConfiguratorItemDefinitionFilterType(c
 			if err != nil {
 				return it, err
 			}
+		case "idMin_gte":
+			var err error
+			it.IDMinGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "idMax_gte":
+			var err error
+			it.IDMaxGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "id_lte":
 			var err error
 			it.IDLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
+		case "idMin_lte":
+			var err error
+			it.IDMinLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "idMax_lte":
+			var err error
+			it.IDMaxLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "id_in":
 			var err error
 			it.IDIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "idMin_in":
+			var err error
+			it.IDMinIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "idMax_in":
+			var err error
+			it.IDMaxIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -13684,9 +19111,33 @@ func (ec *executionContext) unmarshalInputConfiguratorItemDefinitionFilterType(c
 			if err != nil {
 				return it, err
 			}
+		case "codeMin":
+			var err error
+			it.CodeMin, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "codeMax":
+			var err error
+			it.CodeMax, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "code_ne":
 			var err error
 			it.CodeNe, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "codeMin_ne":
+			var err error
+			it.CodeMinNe, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "codeMax_ne":
+			var err error
+			it.CodeMaxNe, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -13696,9 +19147,33 @@ func (ec *executionContext) unmarshalInputConfiguratorItemDefinitionFilterType(c
 			if err != nil {
 				return it, err
 			}
+		case "codeMin_gt":
+			var err error
+			it.CodeMinGt, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "codeMax_gt":
+			var err error
+			it.CodeMaxGt, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "code_lt":
 			var err error
 			it.CodeLt, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "codeMin_lt":
+			var err error
+			it.CodeMinLt, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "codeMax_lt":
+			var err error
+			it.CodeMaxLt, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -13708,9 +19183,33 @@ func (ec *executionContext) unmarshalInputConfiguratorItemDefinitionFilterType(c
 			if err != nil {
 				return it, err
 			}
+		case "codeMin_gte":
+			var err error
+			it.CodeMinGte, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "codeMax_gte":
+			var err error
+			it.CodeMaxGte, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "code_lte":
 			var err error
 			it.CodeLte, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "codeMin_lte":
+			var err error
+			it.CodeMinLte, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "codeMax_lte":
+			var err error
+			it.CodeMaxLte, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -13720,9 +19219,33 @@ func (ec *executionContext) unmarshalInputConfiguratorItemDefinitionFilterType(c
 			if err != nil {
 				return it, err
 			}
+		case "codeMin_in":
+			var err error
+			it.CodeMinIn, err = ec.unmarshalOString2ᚕstringᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "codeMax_in":
+			var err error
+			it.CodeMaxIn, err = ec.unmarshalOString2ᚕstringᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "code_like":
 			var err error
 			it.CodeLike, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "codeMin_like":
+			var err error
+			it.CodeMinLike, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "codeMax_like":
+			var err error
+			it.CodeMaxLike, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -13732,9 +19255,33 @@ func (ec *executionContext) unmarshalInputConfiguratorItemDefinitionFilterType(c
 			if err != nil {
 				return it, err
 			}
+		case "codeMin_prefix":
+			var err error
+			it.CodeMinPrefix, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "codeMax_prefix":
+			var err error
+			it.CodeMaxPrefix, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "code_suffix":
 			var err error
 			it.CodeSuffix, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "codeMin_suffix":
+			var err error
+			it.CodeMinSuffix, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "codeMax_suffix":
+			var err error
+			it.CodeMaxSuffix, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -13750,9 +19297,33 @@ func (ec *executionContext) unmarshalInputConfiguratorItemDefinitionFilterType(c
 			if err != nil {
 				return it, err
 			}
+		case "nameMin":
+			var err error
+			it.NameMin, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "nameMax":
+			var err error
+			it.NameMax, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "name_ne":
 			var err error
 			it.NameNe, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "nameMin_ne":
+			var err error
+			it.NameMinNe, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "nameMax_ne":
+			var err error
+			it.NameMaxNe, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -13762,9 +19333,33 @@ func (ec *executionContext) unmarshalInputConfiguratorItemDefinitionFilterType(c
 			if err != nil {
 				return it, err
 			}
+		case "nameMin_gt":
+			var err error
+			it.NameMinGt, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "nameMax_gt":
+			var err error
+			it.NameMaxGt, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "name_lt":
 			var err error
 			it.NameLt, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "nameMin_lt":
+			var err error
+			it.NameMinLt, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "nameMax_lt":
+			var err error
+			it.NameMaxLt, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -13774,9 +19369,33 @@ func (ec *executionContext) unmarshalInputConfiguratorItemDefinitionFilterType(c
 			if err != nil {
 				return it, err
 			}
+		case "nameMin_gte":
+			var err error
+			it.NameMinGte, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "nameMax_gte":
+			var err error
+			it.NameMaxGte, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "name_lte":
 			var err error
 			it.NameLte, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "nameMin_lte":
+			var err error
+			it.NameMinLte, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "nameMax_lte":
+			var err error
+			it.NameMaxLte, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -13786,9 +19405,33 @@ func (ec *executionContext) unmarshalInputConfiguratorItemDefinitionFilterType(c
 			if err != nil {
 				return it, err
 			}
+		case "nameMin_in":
+			var err error
+			it.NameMinIn, err = ec.unmarshalOString2ᚕstringᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "nameMax_in":
+			var err error
+			it.NameMaxIn, err = ec.unmarshalOString2ᚕstringᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "name_like":
 			var err error
 			it.NameLike, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "nameMin_like":
+			var err error
+			it.NameMinLike, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "nameMax_like":
+			var err error
+			it.NameMaxLike, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -13798,9 +19441,33 @@ func (ec *executionContext) unmarshalInputConfiguratorItemDefinitionFilterType(c
 			if err != nil {
 				return it, err
 			}
+		case "nameMin_prefix":
+			var err error
+			it.NameMinPrefix, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "nameMax_prefix":
+			var err error
+			it.NameMaxPrefix, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "name_suffix":
 			var err error
 			it.NameSuffix, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "nameMin_suffix":
+			var err error
+			it.NameMinSuffix, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "nameMax_suffix":
+			var err error
+			it.NameMaxSuffix, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -13816,9 +19483,33 @@ func (ec *executionContext) unmarshalInputConfiguratorItemDefinitionFilterType(c
 			if err != nil {
 				return it, err
 			}
+		case "categoryIdMin":
+			var err error
+			it.CategoryIDMin, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "categoryIdMax":
+			var err error
+			it.CategoryIDMax, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "categoryId_ne":
 			var err error
 			it.CategoryIDNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "categoryIdMin_ne":
+			var err error
+			it.CategoryIDMinNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "categoryIdMax_ne":
+			var err error
+			it.CategoryIDMaxNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -13828,9 +19519,33 @@ func (ec *executionContext) unmarshalInputConfiguratorItemDefinitionFilterType(c
 			if err != nil {
 				return it, err
 			}
+		case "categoryIdMin_gt":
+			var err error
+			it.CategoryIDMinGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "categoryIdMax_gt":
+			var err error
+			it.CategoryIDMaxGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "categoryId_lt":
 			var err error
 			it.CategoryIDLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "categoryIdMin_lt":
+			var err error
+			it.CategoryIDMinLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "categoryIdMax_lt":
+			var err error
+			it.CategoryIDMaxLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -13840,15 +19555,51 @@ func (ec *executionContext) unmarshalInputConfiguratorItemDefinitionFilterType(c
 			if err != nil {
 				return it, err
 			}
+		case "categoryIdMin_gte":
+			var err error
+			it.CategoryIDMinGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "categoryIdMax_gte":
+			var err error
+			it.CategoryIDMaxGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "categoryId_lte":
 			var err error
 			it.CategoryIDLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
+		case "categoryIdMin_lte":
+			var err error
+			it.CategoryIDMinLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "categoryIdMax_lte":
+			var err error
+			it.CategoryIDMaxLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "categoryId_in":
 			var err error
 			it.CategoryIDIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "categoryIdMin_in":
+			var err error
+			it.CategoryIDMinIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "categoryIdMax_in":
+			var err error
+			it.CategoryIDMaxIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -13864,9 +19615,33 @@ func (ec *executionContext) unmarshalInputConfiguratorItemDefinitionFilterType(c
 			if err != nil {
 				return it, err
 			}
+		case "updatedAtMin":
+			var err error
+			it.UpdatedAtMin, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedAtMax":
+			var err error
+			it.UpdatedAtMax, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "updatedAt_ne":
 			var err error
 			it.UpdatedAtNe, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedAtMin_ne":
+			var err error
+			it.UpdatedAtMinNe, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedAtMax_ne":
+			var err error
+			it.UpdatedAtMaxNe, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -13876,9 +19651,33 @@ func (ec *executionContext) unmarshalInputConfiguratorItemDefinitionFilterType(c
 			if err != nil {
 				return it, err
 			}
+		case "updatedAtMin_gt":
+			var err error
+			it.UpdatedAtMinGt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedAtMax_gt":
+			var err error
+			it.UpdatedAtMaxGt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "updatedAt_lt":
 			var err error
 			it.UpdatedAtLt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedAtMin_lt":
+			var err error
+			it.UpdatedAtMinLt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedAtMax_lt":
+			var err error
+			it.UpdatedAtMaxLt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -13888,15 +19687,51 @@ func (ec *executionContext) unmarshalInputConfiguratorItemDefinitionFilterType(c
 			if err != nil {
 				return it, err
 			}
+		case "updatedAtMin_gte":
+			var err error
+			it.UpdatedAtMinGte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedAtMax_gte":
+			var err error
+			it.UpdatedAtMaxGte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "updatedAt_lte":
 			var err error
 			it.UpdatedAtLte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
+		case "updatedAtMin_lte":
+			var err error
+			it.UpdatedAtMinLte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedAtMax_lte":
+			var err error
+			it.UpdatedAtMaxLte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "updatedAt_in":
 			var err error
 			it.UpdatedAtIn, err = ec.unmarshalOTime2ᚕᚖtimeᚐTimeᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedAtMin_in":
+			var err error
+			it.UpdatedAtMinIn, err = ec.unmarshalOTime2ᚕᚖtimeᚐTimeᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedAtMax_in":
+			var err error
+			it.UpdatedAtMaxIn, err = ec.unmarshalOTime2ᚕᚖtimeᚐTimeᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -13912,9 +19747,33 @@ func (ec *executionContext) unmarshalInputConfiguratorItemDefinitionFilterType(c
 			if err != nil {
 				return it, err
 			}
+		case "createdAtMin":
+			var err error
+			it.CreatedAtMin, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdAtMax":
+			var err error
+			it.CreatedAtMax, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "createdAt_ne":
 			var err error
 			it.CreatedAtNe, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdAtMin_ne":
+			var err error
+			it.CreatedAtMinNe, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdAtMax_ne":
+			var err error
+			it.CreatedAtMaxNe, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -13924,9 +19783,33 @@ func (ec *executionContext) unmarshalInputConfiguratorItemDefinitionFilterType(c
 			if err != nil {
 				return it, err
 			}
+		case "createdAtMin_gt":
+			var err error
+			it.CreatedAtMinGt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdAtMax_gt":
+			var err error
+			it.CreatedAtMaxGt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "createdAt_lt":
 			var err error
 			it.CreatedAtLt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdAtMin_lt":
+			var err error
+			it.CreatedAtMinLt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdAtMax_lt":
+			var err error
+			it.CreatedAtMaxLt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -13936,15 +19819,51 @@ func (ec *executionContext) unmarshalInputConfiguratorItemDefinitionFilterType(c
 			if err != nil {
 				return it, err
 			}
+		case "createdAtMin_gte":
+			var err error
+			it.CreatedAtMinGte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdAtMax_gte":
+			var err error
+			it.CreatedAtMaxGte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "createdAt_lte":
 			var err error
 			it.CreatedAtLte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
+		case "createdAtMin_lte":
+			var err error
+			it.CreatedAtMinLte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdAtMax_lte":
+			var err error
+			it.CreatedAtMaxLte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "createdAt_in":
 			var err error
 			it.CreatedAtIn, err = ec.unmarshalOTime2ᚕᚖtimeᚐTimeᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdAtMin_in":
+			var err error
+			it.CreatedAtMinIn, err = ec.unmarshalOTime2ᚕᚖtimeᚐTimeᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdAtMax_in":
+			var err error
+			it.CreatedAtMaxIn, err = ec.unmarshalOTime2ᚕᚖtimeᚐTimeᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -13960,9 +19879,33 @@ func (ec *executionContext) unmarshalInputConfiguratorItemDefinitionFilterType(c
 			if err != nil {
 				return it, err
 			}
+		case "updatedByMin":
+			var err error
+			it.UpdatedByMin, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedByMax":
+			var err error
+			it.UpdatedByMax, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "updatedBy_ne":
 			var err error
 			it.UpdatedByNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedByMin_ne":
+			var err error
+			it.UpdatedByMinNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedByMax_ne":
+			var err error
+			it.UpdatedByMaxNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -13972,9 +19915,33 @@ func (ec *executionContext) unmarshalInputConfiguratorItemDefinitionFilterType(c
 			if err != nil {
 				return it, err
 			}
+		case "updatedByMin_gt":
+			var err error
+			it.UpdatedByMinGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedByMax_gt":
+			var err error
+			it.UpdatedByMaxGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "updatedBy_lt":
 			var err error
 			it.UpdatedByLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedByMin_lt":
+			var err error
+			it.UpdatedByMinLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedByMax_lt":
+			var err error
+			it.UpdatedByMaxLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -13984,15 +19951,51 @@ func (ec *executionContext) unmarshalInputConfiguratorItemDefinitionFilterType(c
 			if err != nil {
 				return it, err
 			}
+		case "updatedByMin_gte":
+			var err error
+			it.UpdatedByMinGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedByMax_gte":
+			var err error
+			it.UpdatedByMaxGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "updatedBy_lte":
 			var err error
 			it.UpdatedByLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
+		case "updatedByMin_lte":
+			var err error
+			it.UpdatedByMinLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedByMax_lte":
+			var err error
+			it.UpdatedByMaxLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "updatedBy_in":
 			var err error
 			it.UpdatedByIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedByMin_in":
+			var err error
+			it.UpdatedByMinIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedByMax_in":
+			var err error
+			it.UpdatedByMaxIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -14008,9 +20011,33 @@ func (ec *executionContext) unmarshalInputConfiguratorItemDefinitionFilterType(c
 			if err != nil {
 				return it, err
 			}
+		case "createdByMin":
+			var err error
+			it.CreatedByMin, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdByMax":
+			var err error
+			it.CreatedByMax, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "createdBy_ne":
 			var err error
 			it.CreatedByNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdByMin_ne":
+			var err error
+			it.CreatedByMinNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdByMax_ne":
+			var err error
+			it.CreatedByMaxNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -14020,9 +20047,33 @@ func (ec *executionContext) unmarshalInputConfiguratorItemDefinitionFilterType(c
 			if err != nil {
 				return it, err
 			}
+		case "createdByMin_gt":
+			var err error
+			it.CreatedByMinGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdByMax_gt":
+			var err error
+			it.CreatedByMaxGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "createdBy_lt":
 			var err error
 			it.CreatedByLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdByMin_lt":
+			var err error
+			it.CreatedByMinLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdByMax_lt":
+			var err error
+			it.CreatedByMaxLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -14032,15 +20083,51 @@ func (ec *executionContext) unmarshalInputConfiguratorItemDefinitionFilterType(c
 			if err != nil {
 				return it, err
 			}
+		case "createdByMin_gte":
+			var err error
+			it.CreatedByMinGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdByMax_gte":
+			var err error
+			it.CreatedByMaxGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "createdBy_lte":
 			var err error
 			it.CreatedByLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
+		case "createdByMin_lte":
+			var err error
+			it.CreatedByMinLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdByMax_lte":
+			var err error
+			it.CreatedByMaxLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "createdBy_in":
 			var err error
 			it.CreatedByIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdByMin_in":
+			var err error
+			it.CreatedByMinIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdByMax_in":
+			var err error
+			it.CreatedByMaxIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -14098,9 +20185,33 @@ func (ec *executionContext) unmarshalInputConfiguratorItemDefinitionSortType(ctx
 			if err != nil {
 				return it, err
 			}
+		case "idMin":
+			var err error
+			it.IDMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "idMax":
+			var err error
+			it.IDMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "code":
 			var err error
 			it.Code, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "codeMin":
+			var err error
+			it.CodeMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "codeMax":
+			var err error
+			it.CodeMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -14110,9 +20221,33 @@ func (ec *executionContext) unmarshalInputConfiguratorItemDefinitionSortType(ctx
 			if err != nil {
 				return it, err
 			}
+		case "nameMin":
+			var err error
+			it.NameMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "nameMax":
+			var err error
+			it.NameMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "categoryId":
 			var err error
 			it.CategoryID, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "categoryIdMin":
+			var err error
+			it.CategoryIDMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "categoryIdMax":
+			var err error
+			it.CategoryIDMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -14122,9 +20257,33 @@ func (ec *executionContext) unmarshalInputConfiguratorItemDefinitionSortType(ctx
 			if err != nil {
 				return it, err
 			}
+		case "updatedAtMin":
+			var err error
+			it.UpdatedAtMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedAtMax":
+			var err error
+			it.UpdatedAtMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "createdAt":
 			var err error
 			it.CreatedAt, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdAtMin":
+			var err error
+			it.CreatedAtMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdAtMax":
+			var err error
+			it.CreatedAtMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -14134,9 +20293,33 @@ func (ec *executionContext) unmarshalInputConfiguratorItemDefinitionSortType(ctx
 			if err != nil {
 				return it, err
 			}
+		case "updatedByMin":
+			var err error
+			it.UpdatedByMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedByMax":
+			var err error
+			it.UpdatedByMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "createdBy":
 			var err error
 			it.CreatedBy, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdByMin":
+			var err error
+			it.CreatedByMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdByMax":
+			var err error
+			it.CreatedByMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -14146,9 +20329,33 @@ func (ec *executionContext) unmarshalInputConfiguratorItemDefinitionSortType(ctx
 			if err != nil {
 				return it, err
 			}
+		case "attributesIdsMin":
+			var err error
+			it.AttributesIdsMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "attributesIdsMax":
+			var err error
+			it.AttributesIdsMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "slotsIds":
 			var err error
 			it.SlotsIds, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "slotsIdsMin":
+			var err error
+			it.SlotsIdsMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "slotsIdsMax":
+			var err error
+			it.SlotsIdsMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -14158,9 +20365,33 @@ func (ec *executionContext) unmarshalInputConfiguratorItemDefinitionSortType(ctx
 			if err != nil {
 				return it, err
 			}
+		case "itemsIdsMin":
+			var err error
+			it.ItemsIdsMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "itemsIdsMax":
+			var err error
+			it.ItemsIdsMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "allowedInSlotsIds":
 			var err error
 			it.AllowedInSlotsIds, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "allowedInSlotsIdsMin":
+			var err error
+			it.AllowedInSlotsIdsMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "allowedInSlotsIdsMax":
+			var err error
+			it.AllowedInSlotsIdsMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -14224,9 +20455,33 @@ func (ec *executionContext) unmarshalInputConfiguratorItemFilterType(ctx context
 			if err != nil {
 				return it, err
 			}
+		case "idMin":
+			var err error
+			it.IDMin, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "idMax":
+			var err error
+			it.IDMax, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "id_ne":
 			var err error
 			it.IDNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "idMin_ne":
+			var err error
+			it.IDMinNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "idMax_ne":
+			var err error
+			it.IDMaxNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -14236,9 +20491,33 @@ func (ec *executionContext) unmarshalInputConfiguratorItemFilterType(ctx context
 			if err != nil {
 				return it, err
 			}
+		case "idMin_gt":
+			var err error
+			it.IDMinGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "idMax_gt":
+			var err error
+			it.IDMaxGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "id_lt":
 			var err error
 			it.IDLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "idMin_lt":
+			var err error
+			it.IDMinLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "idMax_lt":
+			var err error
+			it.IDMaxLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -14248,15 +20527,51 @@ func (ec *executionContext) unmarshalInputConfiguratorItemFilterType(ctx context
 			if err != nil {
 				return it, err
 			}
+		case "idMin_gte":
+			var err error
+			it.IDMinGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "idMax_gte":
+			var err error
+			it.IDMaxGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "id_lte":
 			var err error
 			it.IDLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
+		case "idMin_lte":
+			var err error
+			it.IDMinLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "idMax_lte":
+			var err error
+			it.IDMaxLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "id_in":
 			var err error
 			it.IDIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "idMin_in":
+			var err error
+			it.IDMinIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "idMax_in":
+			var err error
+			it.IDMaxIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -14272,9 +20587,33 @@ func (ec *executionContext) unmarshalInputConfiguratorItemFilterType(ctx context
 			if err != nil {
 				return it, err
 			}
+		case "codeMin":
+			var err error
+			it.CodeMin, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "codeMax":
+			var err error
+			it.CodeMax, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "code_ne":
 			var err error
 			it.CodeNe, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "codeMin_ne":
+			var err error
+			it.CodeMinNe, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "codeMax_ne":
+			var err error
+			it.CodeMaxNe, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -14284,9 +20623,33 @@ func (ec *executionContext) unmarshalInputConfiguratorItemFilterType(ctx context
 			if err != nil {
 				return it, err
 			}
+		case "codeMin_gt":
+			var err error
+			it.CodeMinGt, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "codeMax_gt":
+			var err error
+			it.CodeMaxGt, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "code_lt":
 			var err error
 			it.CodeLt, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "codeMin_lt":
+			var err error
+			it.CodeMinLt, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "codeMax_lt":
+			var err error
+			it.CodeMaxLt, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -14296,9 +20659,33 @@ func (ec *executionContext) unmarshalInputConfiguratorItemFilterType(ctx context
 			if err != nil {
 				return it, err
 			}
+		case "codeMin_gte":
+			var err error
+			it.CodeMinGte, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "codeMax_gte":
+			var err error
+			it.CodeMaxGte, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "code_lte":
 			var err error
 			it.CodeLte, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "codeMin_lte":
+			var err error
+			it.CodeMinLte, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "codeMax_lte":
+			var err error
+			it.CodeMaxLte, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -14308,9 +20695,33 @@ func (ec *executionContext) unmarshalInputConfiguratorItemFilterType(ctx context
 			if err != nil {
 				return it, err
 			}
+		case "codeMin_in":
+			var err error
+			it.CodeMinIn, err = ec.unmarshalOString2ᚕstringᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "codeMax_in":
+			var err error
+			it.CodeMaxIn, err = ec.unmarshalOString2ᚕstringᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "code_like":
 			var err error
 			it.CodeLike, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "codeMin_like":
+			var err error
+			it.CodeMinLike, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "codeMax_like":
+			var err error
+			it.CodeMaxLike, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -14320,9 +20731,33 @@ func (ec *executionContext) unmarshalInputConfiguratorItemFilterType(ctx context
 			if err != nil {
 				return it, err
 			}
+		case "codeMin_prefix":
+			var err error
+			it.CodeMinPrefix, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "codeMax_prefix":
+			var err error
+			it.CodeMaxPrefix, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "code_suffix":
 			var err error
 			it.CodeSuffix, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "codeMin_suffix":
+			var err error
+			it.CodeMinSuffix, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "codeMax_suffix":
+			var err error
+			it.CodeMaxSuffix, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -14338,9 +20773,33 @@ func (ec *executionContext) unmarshalInputConfiguratorItemFilterType(ctx context
 			if err != nil {
 				return it, err
 			}
+		case "nameMin":
+			var err error
+			it.NameMin, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "nameMax":
+			var err error
+			it.NameMax, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "name_ne":
 			var err error
 			it.NameNe, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "nameMin_ne":
+			var err error
+			it.NameMinNe, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "nameMax_ne":
+			var err error
+			it.NameMaxNe, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -14350,9 +20809,33 @@ func (ec *executionContext) unmarshalInputConfiguratorItemFilterType(ctx context
 			if err != nil {
 				return it, err
 			}
+		case "nameMin_gt":
+			var err error
+			it.NameMinGt, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "nameMax_gt":
+			var err error
+			it.NameMaxGt, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "name_lt":
 			var err error
 			it.NameLt, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "nameMin_lt":
+			var err error
+			it.NameMinLt, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "nameMax_lt":
+			var err error
+			it.NameMaxLt, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -14362,9 +20845,33 @@ func (ec *executionContext) unmarshalInputConfiguratorItemFilterType(ctx context
 			if err != nil {
 				return it, err
 			}
+		case "nameMin_gte":
+			var err error
+			it.NameMinGte, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "nameMax_gte":
+			var err error
+			it.NameMaxGte, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "name_lte":
 			var err error
 			it.NameLte, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "nameMin_lte":
+			var err error
+			it.NameMinLte, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "nameMax_lte":
+			var err error
+			it.NameMaxLte, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -14374,9 +20881,33 @@ func (ec *executionContext) unmarshalInputConfiguratorItemFilterType(ctx context
 			if err != nil {
 				return it, err
 			}
+		case "nameMin_in":
+			var err error
+			it.NameMinIn, err = ec.unmarshalOString2ᚕstringᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "nameMax_in":
+			var err error
+			it.NameMaxIn, err = ec.unmarshalOString2ᚕstringᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "name_like":
 			var err error
 			it.NameLike, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "nameMin_like":
+			var err error
+			it.NameMinLike, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "nameMax_like":
+			var err error
+			it.NameMaxLike, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -14386,9 +20917,33 @@ func (ec *executionContext) unmarshalInputConfiguratorItemFilterType(ctx context
 			if err != nil {
 				return it, err
 			}
+		case "nameMin_prefix":
+			var err error
+			it.NameMinPrefix, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "nameMax_prefix":
+			var err error
+			it.NameMaxPrefix, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "name_suffix":
 			var err error
 			it.NameSuffix, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "nameMin_suffix":
+			var err error
+			it.NameMinSuffix, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "nameMax_suffix":
+			var err error
+			it.NameMaxSuffix, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -14404,9 +20959,33 @@ func (ec *executionContext) unmarshalInputConfiguratorItemFilterType(ctx context
 			if err != nil {
 				return it, err
 			}
+		case "stockItemIdMin":
+			var err error
+			it.StockItemIDMin, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "stockItemIdMax":
+			var err error
+			it.StockItemIDMax, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "stockItemId_ne":
 			var err error
 			it.StockItemIDNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "stockItemIdMin_ne":
+			var err error
+			it.StockItemIDMinNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "stockItemIdMax_ne":
+			var err error
+			it.StockItemIDMaxNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -14416,9 +20995,33 @@ func (ec *executionContext) unmarshalInputConfiguratorItemFilterType(ctx context
 			if err != nil {
 				return it, err
 			}
+		case "stockItemIdMin_gt":
+			var err error
+			it.StockItemIDMinGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "stockItemIdMax_gt":
+			var err error
+			it.StockItemIDMaxGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "stockItemId_lt":
 			var err error
 			it.StockItemIDLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "stockItemIdMin_lt":
+			var err error
+			it.StockItemIDMinLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "stockItemIdMax_lt":
+			var err error
+			it.StockItemIDMaxLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -14428,15 +21031,51 @@ func (ec *executionContext) unmarshalInputConfiguratorItemFilterType(ctx context
 			if err != nil {
 				return it, err
 			}
+		case "stockItemIdMin_gte":
+			var err error
+			it.StockItemIDMinGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "stockItemIdMax_gte":
+			var err error
+			it.StockItemIDMaxGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "stockItemId_lte":
 			var err error
 			it.StockItemIDLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
+		case "stockItemIdMin_lte":
+			var err error
+			it.StockItemIDMinLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "stockItemIdMax_lte":
+			var err error
+			it.StockItemIDMaxLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "stockItemId_in":
 			var err error
 			it.StockItemIDIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "stockItemIdMin_in":
+			var err error
+			it.StockItemIDMinIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "stockItemIdMax_in":
+			var err error
+			it.StockItemIDMaxIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -14452,9 +21091,33 @@ func (ec *executionContext) unmarshalInputConfiguratorItemFilterType(ctx context
 			if err != nil {
 				return it, err
 			}
+		case "rawDataMin":
+			var err error
+			it.RawDataMin, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "rawDataMax":
+			var err error
+			it.RawDataMax, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "rawData_ne":
 			var err error
 			it.RawDataNe, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "rawDataMin_ne":
+			var err error
+			it.RawDataMinNe, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "rawDataMax_ne":
+			var err error
+			it.RawDataMaxNe, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -14464,9 +21127,33 @@ func (ec *executionContext) unmarshalInputConfiguratorItemFilterType(ctx context
 			if err != nil {
 				return it, err
 			}
+		case "rawDataMin_gt":
+			var err error
+			it.RawDataMinGt, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "rawDataMax_gt":
+			var err error
+			it.RawDataMaxGt, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "rawData_lt":
 			var err error
 			it.RawDataLt, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "rawDataMin_lt":
+			var err error
+			it.RawDataMinLt, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "rawDataMax_lt":
+			var err error
+			it.RawDataMaxLt, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -14476,9 +21163,33 @@ func (ec *executionContext) unmarshalInputConfiguratorItemFilterType(ctx context
 			if err != nil {
 				return it, err
 			}
+		case "rawDataMin_gte":
+			var err error
+			it.RawDataMinGte, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "rawDataMax_gte":
+			var err error
+			it.RawDataMaxGte, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "rawData_lte":
 			var err error
 			it.RawDataLte, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "rawDataMin_lte":
+			var err error
+			it.RawDataMinLte, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "rawDataMax_lte":
+			var err error
+			it.RawDataMaxLte, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -14488,9 +21199,33 @@ func (ec *executionContext) unmarshalInputConfiguratorItemFilterType(ctx context
 			if err != nil {
 				return it, err
 			}
+		case "rawDataMin_in":
+			var err error
+			it.RawDataMinIn, err = ec.unmarshalOString2ᚕstringᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "rawDataMax_in":
+			var err error
+			it.RawDataMaxIn, err = ec.unmarshalOString2ᚕstringᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "rawData_like":
 			var err error
 			it.RawDataLike, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "rawDataMin_like":
+			var err error
+			it.RawDataMinLike, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "rawDataMax_like":
+			var err error
+			it.RawDataMaxLike, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -14500,9 +21235,33 @@ func (ec *executionContext) unmarshalInputConfiguratorItemFilterType(ctx context
 			if err != nil {
 				return it, err
 			}
+		case "rawDataMin_prefix":
+			var err error
+			it.RawDataMinPrefix, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "rawDataMax_prefix":
+			var err error
+			it.RawDataMaxPrefix, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "rawData_suffix":
 			var err error
 			it.RawDataSuffix, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "rawDataMin_suffix":
+			var err error
+			it.RawDataMinSuffix, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "rawDataMax_suffix":
+			var err error
+			it.RawDataMaxSuffix, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -14518,9 +21277,33 @@ func (ec *executionContext) unmarshalInputConfiguratorItemFilterType(ctx context
 			if err != nil {
 				return it, err
 			}
+		case "definitionIdMin":
+			var err error
+			it.DefinitionIDMin, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "definitionIdMax":
+			var err error
+			it.DefinitionIDMax, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "definitionId_ne":
 			var err error
 			it.DefinitionIDNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "definitionIdMin_ne":
+			var err error
+			it.DefinitionIDMinNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "definitionIdMax_ne":
+			var err error
+			it.DefinitionIDMaxNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -14530,9 +21313,33 @@ func (ec *executionContext) unmarshalInputConfiguratorItemFilterType(ctx context
 			if err != nil {
 				return it, err
 			}
+		case "definitionIdMin_gt":
+			var err error
+			it.DefinitionIDMinGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "definitionIdMax_gt":
+			var err error
+			it.DefinitionIDMaxGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "definitionId_lt":
 			var err error
 			it.DefinitionIDLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "definitionIdMin_lt":
+			var err error
+			it.DefinitionIDMinLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "definitionIdMax_lt":
+			var err error
+			it.DefinitionIDMaxLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -14542,15 +21349,51 @@ func (ec *executionContext) unmarshalInputConfiguratorItemFilterType(ctx context
 			if err != nil {
 				return it, err
 			}
+		case "definitionIdMin_gte":
+			var err error
+			it.DefinitionIDMinGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "definitionIdMax_gte":
+			var err error
+			it.DefinitionIDMaxGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "definitionId_lte":
 			var err error
 			it.DefinitionIDLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
+		case "definitionIdMin_lte":
+			var err error
+			it.DefinitionIDMinLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "definitionIdMax_lte":
+			var err error
+			it.DefinitionIDMaxLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "definitionId_in":
 			var err error
 			it.DefinitionIDIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "definitionIdMin_in":
+			var err error
+			it.DefinitionIDMinIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "definitionIdMax_in":
+			var err error
+			it.DefinitionIDMaxIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -14566,9 +21409,33 @@ func (ec *executionContext) unmarshalInputConfiguratorItemFilterType(ctx context
 			if err != nil {
 				return it, err
 			}
+		case "updatedAtMin":
+			var err error
+			it.UpdatedAtMin, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedAtMax":
+			var err error
+			it.UpdatedAtMax, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "updatedAt_ne":
 			var err error
 			it.UpdatedAtNe, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedAtMin_ne":
+			var err error
+			it.UpdatedAtMinNe, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedAtMax_ne":
+			var err error
+			it.UpdatedAtMaxNe, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -14578,9 +21445,33 @@ func (ec *executionContext) unmarshalInputConfiguratorItemFilterType(ctx context
 			if err != nil {
 				return it, err
 			}
+		case "updatedAtMin_gt":
+			var err error
+			it.UpdatedAtMinGt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedAtMax_gt":
+			var err error
+			it.UpdatedAtMaxGt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "updatedAt_lt":
 			var err error
 			it.UpdatedAtLt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedAtMin_lt":
+			var err error
+			it.UpdatedAtMinLt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedAtMax_lt":
+			var err error
+			it.UpdatedAtMaxLt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -14590,15 +21481,51 @@ func (ec *executionContext) unmarshalInputConfiguratorItemFilterType(ctx context
 			if err != nil {
 				return it, err
 			}
+		case "updatedAtMin_gte":
+			var err error
+			it.UpdatedAtMinGte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedAtMax_gte":
+			var err error
+			it.UpdatedAtMaxGte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "updatedAt_lte":
 			var err error
 			it.UpdatedAtLte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
+		case "updatedAtMin_lte":
+			var err error
+			it.UpdatedAtMinLte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedAtMax_lte":
+			var err error
+			it.UpdatedAtMaxLte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "updatedAt_in":
 			var err error
 			it.UpdatedAtIn, err = ec.unmarshalOTime2ᚕᚖtimeᚐTimeᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedAtMin_in":
+			var err error
+			it.UpdatedAtMinIn, err = ec.unmarshalOTime2ᚕᚖtimeᚐTimeᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedAtMax_in":
+			var err error
+			it.UpdatedAtMaxIn, err = ec.unmarshalOTime2ᚕᚖtimeᚐTimeᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -14614,9 +21541,33 @@ func (ec *executionContext) unmarshalInputConfiguratorItemFilterType(ctx context
 			if err != nil {
 				return it, err
 			}
+		case "createdAtMin":
+			var err error
+			it.CreatedAtMin, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdAtMax":
+			var err error
+			it.CreatedAtMax, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "createdAt_ne":
 			var err error
 			it.CreatedAtNe, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdAtMin_ne":
+			var err error
+			it.CreatedAtMinNe, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdAtMax_ne":
+			var err error
+			it.CreatedAtMaxNe, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -14626,9 +21577,33 @@ func (ec *executionContext) unmarshalInputConfiguratorItemFilterType(ctx context
 			if err != nil {
 				return it, err
 			}
+		case "createdAtMin_gt":
+			var err error
+			it.CreatedAtMinGt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdAtMax_gt":
+			var err error
+			it.CreatedAtMaxGt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "createdAt_lt":
 			var err error
 			it.CreatedAtLt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdAtMin_lt":
+			var err error
+			it.CreatedAtMinLt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdAtMax_lt":
+			var err error
+			it.CreatedAtMaxLt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -14638,15 +21613,51 @@ func (ec *executionContext) unmarshalInputConfiguratorItemFilterType(ctx context
 			if err != nil {
 				return it, err
 			}
+		case "createdAtMin_gte":
+			var err error
+			it.CreatedAtMinGte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdAtMax_gte":
+			var err error
+			it.CreatedAtMaxGte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "createdAt_lte":
 			var err error
 			it.CreatedAtLte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
+		case "createdAtMin_lte":
+			var err error
+			it.CreatedAtMinLte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdAtMax_lte":
+			var err error
+			it.CreatedAtMaxLte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "createdAt_in":
 			var err error
 			it.CreatedAtIn, err = ec.unmarshalOTime2ᚕᚖtimeᚐTimeᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdAtMin_in":
+			var err error
+			it.CreatedAtMinIn, err = ec.unmarshalOTime2ᚕᚖtimeᚐTimeᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdAtMax_in":
+			var err error
+			it.CreatedAtMaxIn, err = ec.unmarshalOTime2ᚕᚖtimeᚐTimeᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -14662,9 +21673,33 @@ func (ec *executionContext) unmarshalInputConfiguratorItemFilterType(ctx context
 			if err != nil {
 				return it, err
 			}
+		case "updatedByMin":
+			var err error
+			it.UpdatedByMin, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedByMax":
+			var err error
+			it.UpdatedByMax, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "updatedBy_ne":
 			var err error
 			it.UpdatedByNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedByMin_ne":
+			var err error
+			it.UpdatedByMinNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedByMax_ne":
+			var err error
+			it.UpdatedByMaxNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -14674,9 +21709,33 @@ func (ec *executionContext) unmarshalInputConfiguratorItemFilterType(ctx context
 			if err != nil {
 				return it, err
 			}
+		case "updatedByMin_gt":
+			var err error
+			it.UpdatedByMinGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedByMax_gt":
+			var err error
+			it.UpdatedByMaxGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "updatedBy_lt":
 			var err error
 			it.UpdatedByLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedByMin_lt":
+			var err error
+			it.UpdatedByMinLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedByMax_lt":
+			var err error
+			it.UpdatedByMaxLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -14686,15 +21745,51 @@ func (ec *executionContext) unmarshalInputConfiguratorItemFilterType(ctx context
 			if err != nil {
 				return it, err
 			}
+		case "updatedByMin_gte":
+			var err error
+			it.UpdatedByMinGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedByMax_gte":
+			var err error
+			it.UpdatedByMaxGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "updatedBy_lte":
 			var err error
 			it.UpdatedByLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
+		case "updatedByMin_lte":
+			var err error
+			it.UpdatedByMinLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedByMax_lte":
+			var err error
+			it.UpdatedByMaxLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "updatedBy_in":
 			var err error
 			it.UpdatedByIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedByMin_in":
+			var err error
+			it.UpdatedByMinIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedByMax_in":
+			var err error
+			it.UpdatedByMaxIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -14710,9 +21805,33 @@ func (ec *executionContext) unmarshalInputConfiguratorItemFilterType(ctx context
 			if err != nil {
 				return it, err
 			}
+		case "createdByMin":
+			var err error
+			it.CreatedByMin, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdByMax":
+			var err error
+			it.CreatedByMax, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "createdBy_ne":
 			var err error
 			it.CreatedByNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdByMin_ne":
+			var err error
+			it.CreatedByMinNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdByMax_ne":
+			var err error
+			it.CreatedByMaxNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -14722,9 +21841,33 @@ func (ec *executionContext) unmarshalInputConfiguratorItemFilterType(ctx context
 			if err != nil {
 				return it, err
 			}
+		case "createdByMin_gt":
+			var err error
+			it.CreatedByMinGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdByMax_gt":
+			var err error
+			it.CreatedByMaxGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "createdBy_lt":
 			var err error
 			it.CreatedByLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdByMin_lt":
+			var err error
+			it.CreatedByMinLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdByMax_lt":
+			var err error
+			it.CreatedByMaxLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -14734,15 +21877,51 @@ func (ec *executionContext) unmarshalInputConfiguratorItemFilterType(ctx context
 			if err != nil {
 				return it, err
 			}
+		case "createdByMin_gte":
+			var err error
+			it.CreatedByMinGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdByMax_gte":
+			var err error
+			it.CreatedByMaxGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "createdBy_lte":
 			var err error
 			it.CreatedByLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
+		case "createdByMin_lte":
+			var err error
+			it.CreatedByMinLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdByMax_lte":
+			var err error
+			it.CreatedByMaxLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "createdBy_in":
 			var err error
 			it.CreatedByIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdByMin_in":
+			var err error
+			it.CreatedByMinIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdByMax_in":
+			var err error
+			it.CreatedByMaxIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -14794,9 +21973,33 @@ func (ec *executionContext) unmarshalInputConfiguratorItemSortType(ctx context.C
 			if err != nil {
 				return it, err
 			}
+		case "idMin":
+			var err error
+			it.IDMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "idMax":
+			var err error
+			it.IDMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "code":
 			var err error
 			it.Code, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "codeMin":
+			var err error
+			it.CodeMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "codeMax":
+			var err error
+			it.CodeMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -14806,9 +22009,33 @@ func (ec *executionContext) unmarshalInputConfiguratorItemSortType(ctx context.C
 			if err != nil {
 				return it, err
 			}
+		case "nameMin":
+			var err error
+			it.NameMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "nameMax":
+			var err error
+			it.NameMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "stockItemId":
 			var err error
 			it.StockItemID, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "stockItemIdMin":
+			var err error
+			it.StockItemIDMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "stockItemIdMax":
+			var err error
+			it.StockItemIDMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -14818,9 +22045,33 @@ func (ec *executionContext) unmarshalInputConfiguratorItemSortType(ctx context.C
 			if err != nil {
 				return it, err
 			}
+		case "rawDataMin":
+			var err error
+			it.RawDataMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "rawDataMax":
+			var err error
+			it.RawDataMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "definitionId":
 			var err error
 			it.DefinitionID, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "definitionIdMin":
+			var err error
+			it.DefinitionIDMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "definitionIdMax":
+			var err error
+			it.DefinitionIDMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -14830,9 +22081,33 @@ func (ec *executionContext) unmarshalInputConfiguratorItemSortType(ctx context.C
 			if err != nil {
 				return it, err
 			}
+		case "updatedAtMin":
+			var err error
+			it.UpdatedAtMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedAtMax":
+			var err error
+			it.UpdatedAtMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "createdAt":
 			var err error
 			it.CreatedAt, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdAtMin":
+			var err error
+			it.CreatedAtMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdAtMax":
+			var err error
+			it.CreatedAtMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -14842,9 +22117,33 @@ func (ec *executionContext) unmarshalInputConfiguratorItemSortType(ctx context.C
 			if err != nil {
 				return it, err
 			}
+		case "updatedByMin":
+			var err error
+			it.UpdatedByMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedByMax":
+			var err error
+			it.UpdatedByMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "createdBy":
 			var err error
 			it.CreatedBy, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdByMin":
+			var err error
+			it.CreatedByMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdByMax":
+			var err error
+			it.CreatedByMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -14854,15 +22153,51 @@ func (ec *executionContext) unmarshalInputConfiguratorItemSortType(ctx context.C
 			if err != nil {
 				return it, err
 			}
+		case "attributesIdsMin":
+			var err error
+			it.AttributesIdsMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "attributesIdsMax":
+			var err error
+			it.AttributesIdsMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "slotsIds":
 			var err error
 			it.SlotsIds, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
+		case "slotsIdsMin":
+			var err error
+			it.SlotsIdsMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "slotsIdsMax":
+			var err error
+			it.SlotsIdsMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "parentSlotsIds":
 			var err error
 			it.ParentSlotsIds, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "parentSlotsIdsMin":
+			var err error
+			it.ParentSlotsIdsMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "parentSlotsIdsMax":
+			var err error
+			it.ParentSlotsIdsMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -14920,9 +22255,33 @@ func (ec *executionContext) unmarshalInputConfiguratorSlotDefinitionFilterType(c
 			if err != nil {
 				return it, err
 			}
+		case "idMin":
+			var err error
+			it.IDMin, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "idMax":
+			var err error
+			it.IDMax, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "id_ne":
 			var err error
 			it.IDNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "idMin_ne":
+			var err error
+			it.IDMinNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "idMax_ne":
+			var err error
+			it.IDMaxNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -14932,9 +22291,33 @@ func (ec *executionContext) unmarshalInputConfiguratorSlotDefinitionFilterType(c
 			if err != nil {
 				return it, err
 			}
+		case "idMin_gt":
+			var err error
+			it.IDMinGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "idMax_gt":
+			var err error
+			it.IDMaxGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "id_lt":
 			var err error
 			it.IDLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "idMin_lt":
+			var err error
+			it.IDMinLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "idMax_lt":
+			var err error
+			it.IDMaxLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -14944,15 +22327,51 @@ func (ec *executionContext) unmarshalInputConfiguratorSlotDefinitionFilterType(c
 			if err != nil {
 				return it, err
 			}
+		case "idMin_gte":
+			var err error
+			it.IDMinGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "idMax_gte":
+			var err error
+			it.IDMaxGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "id_lte":
 			var err error
 			it.IDLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
+		case "idMin_lte":
+			var err error
+			it.IDMinLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "idMax_lte":
+			var err error
+			it.IDMaxLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "id_in":
 			var err error
 			it.IDIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "idMin_in":
+			var err error
+			it.IDMinIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "idMax_in":
+			var err error
+			it.IDMaxIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -14968,9 +22387,33 @@ func (ec *executionContext) unmarshalInputConfiguratorSlotDefinitionFilterType(c
 			if err != nil {
 				return it, err
 			}
+		case "nameMin":
+			var err error
+			it.NameMin, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "nameMax":
+			var err error
+			it.NameMax, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "name_ne":
 			var err error
 			it.NameNe, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "nameMin_ne":
+			var err error
+			it.NameMinNe, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "nameMax_ne":
+			var err error
+			it.NameMaxNe, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -14980,9 +22423,33 @@ func (ec *executionContext) unmarshalInputConfiguratorSlotDefinitionFilterType(c
 			if err != nil {
 				return it, err
 			}
+		case "nameMin_gt":
+			var err error
+			it.NameMinGt, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "nameMax_gt":
+			var err error
+			it.NameMaxGt, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "name_lt":
 			var err error
 			it.NameLt, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "nameMin_lt":
+			var err error
+			it.NameMinLt, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "nameMax_lt":
+			var err error
+			it.NameMaxLt, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -14992,9 +22459,33 @@ func (ec *executionContext) unmarshalInputConfiguratorSlotDefinitionFilterType(c
 			if err != nil {
 				return it, err
 			}
+		case "nameMin_gte":
+			var err error
+			it.NameMinGte, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "nameMax_gte":
+			var err error
+			it.NameMaxGte, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "name_lte":
 			var err error
 			it.NameLte, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "nameMin_lte":
+			var err error
+			it.NameMinLte, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "nameMax_lte":
+			var err error
+			it.NameMaxLte, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -15004,9 +22495,33 @@ func (ec *executionContext) unmarshalInputConfiguratorSlotDefinitionFilterType(c
 			if err != nil {
 				return it, err
 			}
+		case "nameMin_in":
+			var err error
+			it.NameMinIn, err = ec.unmarshalOString2ᚕstringᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "nameMax_in":
+			var err error
+			it.NameMaxIn, err = ec.unmarshalOString2ᚕstringᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "name_like":
 			var err error
 			it.NameLike, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "nameMin_like":
+			var err error
+			it.NameMinLike, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "nameMax_like":
+			var err error
+			it.NameMaxLike, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -15016,9 +22531,33 @@ func (ec *executionContext) unmarshalInputConfiguratorSlotDefinitionFilterType(c
 			if err != nil {
 				return it, err
 			}
+		case "nameMin_prefix":
+			var err error
+			it.NameMinPrefix, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "nameMax_prefix":
+			var err error
+			it.NameMaxPrefix, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "name_suffix":
 			var err error
 			it.NameSuffix, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "nameMin_suffix":
+			var err error
+			it.NameMinSuffix, err = ec.unmarshalOString2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "nameMax_suffix":
+			var err error
+			it.NameMaxSuffix, err = ec.unmarshalOString2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -15034,9 +22573,45 @@ func (ec *executionContext) unmarshalInputConfiguratorSlotDefinitionFilterType(c
 			if err != nil {
 				return it, err
 			}
+		case "minCountMin":
+			var err error
+			it.MinCountMin, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "minCountMax":
+			var err error
+			it.MinCountMax, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "minCountAvg":
+			var err error
+			it.MinCountAvg, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "minCount_ne":
 			var err error
 			it.MinCountNe, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "minCountMin_ne":
+			var err error
+			it.MinCountMinNe, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "minCountMax_ne":
+			var err error
+			it.MinCountMaxNe, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "minCountAvg_ne":
+			var err error
+			it.MinCountAvgNe, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -15046,9 +22621,45 @@ func (ec *executionContext) unmarshalInputConfiguratorSlotDefinitionFilterType(c
 			if err != nil {
 				return it, err
 			}
+		case "minCountMin_gt":
+			var err error
+			it.MinCountMinGt, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "minCountMax_gt":
+			var err error
+			it.MinCountMaxGt, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "minCountAvg_gt":
+			var err error
+			it.MinCountAvgGt, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "minCount_lt":
 			var err error
 			it.MinCountLt, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "minCountMin_lt":
+			var err error
+			it.MinCountMinLt, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "minCountMax_lt":
+			var err error
+			it.MinCountMaxLt, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "minCountAvg_lt":
+			var err error
+			it.MinCountAvgLt, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -15058,15 +22669,69 @@ func (ec *executionContext) unmarshalInputConfiguratorSlotDefinitionFilterType(c
 			if err != nil {
 				return it, err
 			}
+		case "minCountMin_gte":
+			var err error
+			it.MinCountMinGte, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "minCountMax_gte":
+			var err error
+			it.MinCountMaxGte, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "minCountAvg_gte":
+			var err error
+			it.MinCountAvgGte, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "minCount_lte":
 			var err error
 			it.MinCountLte, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
 			if err != nil {
 				return it, err
 			}
+		case "minCountMin_lte":
+			var err error
+			it.MinCountMinLte, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "minCountMax_lte":
+			var err error
+			it.MinCountMaxLte, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "minCountAvg_lte":
+			var err error
+			it.MinCountAvgLte, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "minCount_in":
 			var err error
 			it.MinCountIn, err = ec.unmarshalOFloat2ᚕfloat64ᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "minCountMin_in":
+			var err error
+			it.MinCountMinIn, err = ec.unmarshalOFloat2ᚕfloat64ᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "minCountMax_in":
+			var err error
+			it.MinCountMaxIn, err = ec.unmarshalOFloat2ᚕfloat64ᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "minCountAvg_in":
+			var err error
+			it.MinCountAvgIn, err = ec.unmarshalOFloat2ᚕfloat64ᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -15082,9 +22747,45 @@ func (ec *executionContext) unmarshalInputConfiguratorSlotDefinitionFilterType(c
 			if err != nil {
 				return it, err
 			}
+		case "maxCountMin":
+			var err error
+			it.MaxCountMin, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "maxCountMax":
+			var err error
+			it.MaxCountMax, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "maxCountAvg":
+			var err error
+			it.MaxCountAvg, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "maxCount_ne":
 			var err error
 			it.MaxCountNe, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "maxCountMin_ne":
+			var err error
+			it.MaxCountMinNe, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "maxCountMax_ne":
+			var err error
+			it.MaxCountMaxNe, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "maxCountAvg_ne":
+			var err error
+			it.MaxCountAvgNe, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -15094,9 +22795,45 @@ func (ec *executionContext) unmarshalInputConfiguratorSlotDefinitionFilterType(c
 			if err != nil {
 				return it, err
 			}
+		case "maxCountMin_gt":
+			var err error
+			it.MaxCountMinGt, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "maxCountMax_gt":
+			var err error
+			it.MaxCountMaxGt, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "maxCountAvg_gt":
+			var err error
+			it.MaxCountAvgGt, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "maxCount_lt":
 			var err error
 			it.MaxCountLt, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "maxCountMin_lt":
+			var err error
+			it.MaxCountMinLt, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "maxCountMax_lt":
+			var err error
+			it.MaxCountMaxLt, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "maxCountAvg_lt":
+			var err error
+			it.MaxCountAvgLt, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -15106,15 +22843,69 @@ func (ec *executionContext) unmarshalInputConfiguratorSlotDefinitionFilterType(c
 			if err != nil {
 				return it, err
 			}
+		case "maxCountMin_gte":
+			var err error
+			it.MaxCountMinGte, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "maxCountMax_gte":
+			var err error
+			it.MaxCountMaxGte, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "maxCountAvg_gte":
+			var err error
+			it.MaxCountAvgGte, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "maxCount_lte":
 			var err error
 			it.MaxCountLte, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
 			if err != nil {
 				return it, err
 			}
+		case "maxCountMin_lte":
+			var err error
+			it.MaxCountMinLte, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "maxCountMax_lte":
+			var err error
+			it.MaxCountMaxLte, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "maxCountAvg_lte":
+			var err error
+			it.MaxCountAvgLte, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "maxCount_in":
 			var err error
 			it.MaxCountIn, err = ec.unmarshalOFloat2ᚕfloat64ᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "maxCountMin_in":
+			var err error
+			it.MaxCountMinIn, err = ec.unmarshalOFloat2ᚕfloat64ᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "maxCountMax_in":
+			var err error
+			it.MaxCountMaxIn, err = ec.unmarshalOFloat2ᚕfloat64ᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "maxCountAvg_in":
+			var err error
+			it.MaxCountAvgIn, err = ec.unmarshalOFloat2ᚕfloat64ᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -15130,9 +22921,45 @@ func (ec *executionContext) unmarshalInputConfiguratorSlotDefinitionFilterType(c
 			if err != nil {
 				return it, err
 			}
+		case "defaultCountMin":
+			var err error
+			it.DefaultCountMin, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "defaultCountMax":
+			var err error
+			it.DefaultCountMax, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "defaultCountAvg":
+			var err error
+			it.DefaultCountAvg, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "defaultCount_ne":
 			var err error
 			it.DefaultCountNe, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "defaultCountMin_ne":
+			var err error
+			it.DefaultCountMinNe, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "defaultCountMax_ne":
+			var err error
+			it.DefaultCountMaxNe, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "defaultCountAvg_ne":
+			var err error
+			it.DefaultCountAvgNe, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -15142,9 +22969,45 @@ func (ec *executionContext) unmarshalInputConfiguratorSlotDefinitionFilterType(c
 			if err != nil {
 				return it, err
 			}
+		case "defaultCountMin_gt":
+			var err error
+			it.DefaultCountMinGt, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "defaultCountMax_gt":
+			var err error
+			it.DefaultCountMaxGt, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "defaultCountAvg_gt":
+			var err error
+			it.DefaultCountAvgGt, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "defaultCount_lt":
 			var err error
 			it.DefaultCountLt, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "defaultCountMin_lt":
+			var err error
+			it.DefaultCountMinLt, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "defaultCountMax_lt":
+			var err error
+			it.DefaultCountMaxLt, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "defaultCountAvg_lt":
+			var err error
+			it.DefaultCountAvgLt, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -15154,15 +23017,69 @@ func (ec *executionContext) unmarshalInputConfiguratorSlotDefinitionFilterType(c
 			if err != nil {
 				return it, err
 			}
+		case "defaultCountMin_gte":
+			var err error
+			it.DefaultCountMinGte, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "defaultCountMax_gte":
+			var err error
+			it.DefaultCountMaxGte, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "defaultCountAvg_gte":
+			var err error
+			it.DefaultCountAvgGte, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "defaultCount_lte":
 			var err error
 			it.DefaultCountLte, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
 			if err != nil {
 				return it, err
 			}
+		case "defaultCountMin_lte":
+			var err error
+			it.DefaultCountMinLte, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "defaultCountMax_lte":
+			var err error
+			it.DefaultCountMaxLte, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "defaultCountAvg_lte":
+			var err error
+			it.DefaultCountAvgLte, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "defaultCount_in":
 			var err error
 			it.DefaultCountIn, err = ec.unmarshalOFloat2ᚕfloat64ᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "defaultCountMin_in":
+			var err error
+			it.DefaultCountMinIn, err = ec.unmarshalOFloat2ᚕfloat64ᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "defaultCountMax_in":
+			var err error
+			it.DefaultCountMaxIn, err = ec.unmarshalOFloat2ᚕfloat64ᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "defaultCountAvg_in":
+			var err error
+			it.DefaultCountAvgIn, err = ec.unmarshalOFloat2ᚕfloat64ᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -15178,9 +23095,33 @@ func (ec *executionContext) unmarshalInputConfiguratorSlotDefinitionFilterType(c
 			if err != nil {
 				return it, err
 			}
+		case "definitionIdMin":
+			var err error
+			it.DefinitionIDMin, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "definitionIdMax":
+			var err error
+			it.DefinitionIDMax, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "definitionId_ne":
 			var err error
 			it.DefinitionIDNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "definitionIdMin_ne":
+			var err error
+			it.DefinitionIDMinNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "definitionIdMax_ne":
+			var err error
+			it.DefinitionIDMaxNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -15190,9 +23131,33 @@ func (ec *executionContext) unmarshalInputConfiguratorSlotDefinitionFilterType(c
 			if err != nil {
 				return it, err
 			}
+		case "definitionIdMin_gt":
+			var err error
+			it.DefinitionIDMinGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "definitionIdMax_gt":
+			var err error
+			it.DefinitionIDMaxGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "definitionId_lt":
 			var err error
 			it.DefinitionIDLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "definitionIdMin_lt":
+			var err error
+			it.DefinitionIDMinLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "definitionIdMax_lt":
+			var err error
+			it.DefinitionIDMaxLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -15202,15 +23167,51 @@ func (ec *executionContext) unmarshalInputConfiguratorSlotDefinitionFilterType(c
 			if err != nil {
 				return it, err
 			}
+		case "definitionIdMin_gte":
+			var err error
+			it.DefinitionIDMinGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "definitionIdMax_gte":
+			var err error
+			it.DefinitionIDMaxGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "definitionId_lte":
 			var err error
 			it.DefinitionIDLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
+		case "definitionIdMin_lte":
+			var err error
+			it.DefinitionIDMinLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "definitionIdMax_lte":
+			var err error
+			it.DefinitionIDMaxLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "definitionId_in":
 			var err error
 			it.DefinitionIDIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "definitionIdMin_in":
+			var err error
+			it.DefinitionIDMinIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "definitionIdMax_in":
+			var err error
+			it.DefinitionIDMaxIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -15226,9 +23227,33 @@ func (ec *executionContext) unmarshalInputConfiguratorSlotDefinitionFilterType(c
 			if err != nil {
 				return it, err
 			}
+		case "updatedAtMin":
+			var err error
+			it.UpdatedAtMin, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedAtMax":
+			var err error
+			it.UpdatedAtMax, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "updatedAt_ne":
 			var err error
 			it.UpdatedAtNe, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedAtMin_ne":
+			var err error
+			it.UpdatedAtMinNe, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedAtMax_ne":
+			var err error
+			it.UpdatedAtMaxNe, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -15238,9 +23263,33 @@ func (ec *executionContext) unmarshalInputConfiguratorSlotDefinitionFilterType(c
 			if err != nil {
 				return it, err
 			}
+		case "updatedAtMin_gt":
+			var err error
+			it.UpdatedAtMinGt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedAtMax_gt":
+			var err error
+			it.UpdatedAtMaxGt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "updatedAt_lt":
 			var err error
 			it.UpdatedAtLt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedAtMin_lt":
+			var err error
+			it.UpdatedAtMinLt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedAtMax_lt":
+			var err error
+			it.UpdatedAtMaxLt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -15250,15 +23299,51 @@ func (ec *executionContext) unmarshalInputConfiguratorSlotDefinitionFilterType(c
 			if err != nil {
 				return it, err
 			}
+		case "updatedAtMin_gte":
+			var err error
+			it.UpdatedAtMinGte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedAtMax_gte":
+			var err error
+			it.UpdatedAtMaxGte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "updatedAt_lte":
 			var err error
 			it.UpdatedAtLte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
+		case "updatedAtMin_lte":
+			var err error
+			it.UpdatedAtMinLte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedAtMax_lte":
+			var err error
+			it.UpdatedAtMaxLte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "updatedAt_in":
 			var err error
 			it.UpdatedAtIn, err = ec.unmarshalOTime2ᚕᚖtimeᚐTimeᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedAtMin_in":
+			var err error
+			it.UpdatedAtMinIn, err = ec.unmarshalOTime2ᚕᚖtimeᚐTimeᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedAtMax_in":
+			var err error
+			it.UpdatedAtMaxIn, err = ec.unmarshalOTime2ᚕᚖtimeᚐTimeᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -15274,9 +23359,33 @@ func (ec *executionContext) unmarshalInputConfiguratorSlotDefinitionFilterType(c
 			if err != nil {
 				return it, err
 			}
+		case "createdAtMin":
+			var err error
+			it.CreatedAtMin, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdAtMax":
+			var err error
+			it.CreatedAtMax, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "createdAt_ne":
 			var err error
 			it.CreatedAtNe, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdAtMin_ne":
+			var err error
+			it.CreatedAtMinNe, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdAtMax_ne":
+			var err error
+			it.CreatedAtMaxNe, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -15286,9 +23395,33 @@ func (ec *executionContext) unmarshalInputConfiguratorSlotDefinitionFilterType(c
 			if err != nil {
 				return it, err
 			}
+		case "createdAtMin_gt":
+			var err error
+			it.CreatedAtMinGt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdAtMax_gt":
+			var err error
+			it.CreatedAtMaxGt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "createdAt_lt":
 			var err error
 			it.CreatedAtLt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdAtMin_lt":
+			var err error
+			it.CreatedAtMinLt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdAtMax_lt":
+			var err error
+			it.CreatedAtMaxLt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -15298,15 +23431,51 @@ func (ec *executionContext) unmarshalInputConfiguratorSlotDefinitionFilterType(c
 			if err != nil {
 				return it, err
 			}
+		case "createdAtMin_gte":
+			var err error
+			it.CreatedAtMinGte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdAtMax_gte":
+			var err error
+			it.CreatedAtMaxGte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "createdAt_lte":
 			var err error
 			it.CreatedAtLte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
+		case "createdAtMin_lte":
+			var err error
+			it.CreatedAtMinLte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdAtMax_lte":
+			var err error
+			it.CreatedAtMaxLte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "createdAt_in":
 			var err error
 			it.CreatedAtIn, err = ec.unmarshalOTime2ᚕᚖtimeᚐTimeᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdAtMin_in":
+			var err error
+			it.CreatedAtMinIn, err = ec.unmarshalOTime2ᚕᚖtimeᚐTimeᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdAtMax_in":
+			var err error
+			it.CreatedAtMaxIn, err = ec.unmarshalOTime2ᚕᚖtimeᚐTimeᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -15322,9 +23491,33 @@ func (ec *executionContext) unmarshalInputConfiguratorSlotDefinitionFilterType(c
 			if err != nil {
 				return it, err
 			}
+		case "updatedByMin":
+			var err error
+			it.UpdatedByMin, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedByMax":
+			var err error
+			it.UpdatedByMax, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "updatedBy_ne":
 			var err error
 			it.UpdatedByNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedByMin_ne":
+			var err error
+			it.UpdatedByMinNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedByMax_ne":
+			var err error
+			it.UpdatedByMaxNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -15334,9 +23527,33 @@ func (ec *executionContext) unmarshalInputConfiguratorSlotDefinitionFilterType(c
 			if err != nil {
 				return it, err
 			}
+		case "updatedByMin_gt":
+			var err error
+			it.UpdatedByMinGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedByMax_gt":
+			var err error
+			it.UpdatedByMaxGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "updatedBy_lt":
 			var err error
 			it.UpdatedByLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedByMin_lt":
+			var err error
+			it.UpdatedByMinLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedByMax_lt":
+			var err error
+			it.UpdatedByMaxLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -15346,15 +23563,51 @@ func (ec *executionContext) unmarshalInputConfiguratorSlotDefinitionFilterType(c
 			if err != nil {
 				return it, err
 			}
+		case "updatedByMin_gte":
+			var err error
+			it.UpdatedByMinGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedByMax_gte":
+			var err error
+			it.UpdatedByMaxGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "updatedBy_lte":
 			var err error
 			it.UpdatedByLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
+		case "updatedByMin_lte":
+			var err error
+			it.UpdatedByMinLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedByMax_lte":
+			var err error
+			it.UpdatedByMaxLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "updatedBy_in":
 			var err error
 			it.UpdatedByIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedByMin_in":
+			var err error
+			it.UpdatedByMinIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedByMax_in":
+			var err error
+			it.UpdatedByMaxIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -15370,9 +23623,33 @@ func (ec *executionContext) unmarshalInputConfiguratorSlotDefinitionFilterType(c
 			if err != nil {
 				return it, err
 			}
+		case "createdByMin":
+			var err error
+			it.CreatedByMin, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdByMax":
+			var err error
+			it.CreatedByMax, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "createdBy_ne":
 			var err error
 			it.CreatedByNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdByMin_ne":
+			var err error
+			it.CreatedByMinNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdByMax_ne":
+			var err error
+			it.CreatedByMaxNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -15382,9 +23659,33 @@ func (ec *executionContext) unmarshalInputConfiguratorSlotDefinitionFilterType(c
 			if err != nil {
 				return it, err
 			}
+		case "createdByMin_gt":
+			var err error
+			it.CreatedByMinGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdByMax_gt":
+			var err error
+			it.CreatedByMaxGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "createdBy_lt":
 			var err error
 			it.CreatedByLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdByMin_lt":
+			var err error
+			it.CreatedByMinLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdByMax_lt":
+			var err error
+			it.CreatedByMaxLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -15394,15 +23695,51 @@ func (ec *executionContext) unmarshalInputConfiguratorSlotDefinitionFilterType(c
 			if err != nil {
 				return it, err
 			}
+		case "createdByMin_gte":
+			var err error
+			it.CreatedByMinGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdByMax_gte":
+			var err error
+			it.CreatedByMaxGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "createdBy_lte":
 			var err error
 			it.CreatedByLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
+		case "createdByMin_lte":
+			var err error
+			it.CreatedByMinLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdByMax_lte":
+			var err error
+			it.CreatedByMaxLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "createdBy_in":
 			var err error
 			it.CreatedByIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdByMin_in":
+			var err error
+			it.CreatedByMinIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdByMax_in":
+			var err error
+			it.CreatedByMaxIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -15448,9 +23785,33 @@ func (ec *executionContext) unmarshalInputConfiguratorSlotDefinitionSortType(ctx
 			if err != nil {
 				return it, err
 			}
+		case "idMin":
+			var err error
+			it.IDMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "idMax":
+			var err error
+			it.IDMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "name":
 			var err error
 			it.Name, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "nameMin":
+			var err error
+			it.NameMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "nameMax":
+			var err error
+			it.NameMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -15460,9 +23821,45 @@ func (ec *executionContext) unmarshalInputConfiguratorSlotDefinitionSortType(ctx
 			if err != nil {
 				return it, err
 			}
+		case "minCountMin":
+			var err error
+			it.MinCountMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "minCountMax":
+			var err error
+			it.MinCountMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "minCountAvg":
+			var err error
+			it.MinCountAvg, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "maxCount":
 			var err error
 			it.MaxCount, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "maxCountMin":
+			var err error
+			it.MaxCountMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "maxCountMax":
+			var err error
+			it.MaxCountMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "maxCountAvg":
+			var err error
+			it.MaxCountAvg, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -15472,9 +23869,39 @@ func (ec *executionContext) unmarshalInputConfiguratorSlotDefinitionSortType(ctx
 			if err != nil {
 				return it, err
 			}
+		case "defaultCountMin":
+			var err error
+			it.DefaultCountMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "defaultCountMax":
+			var err error
+			it.DefaultCountMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "defaultCountAvg":
+			var err error
+			it.DefaultCountAvg, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "definitionId":
 			var err error
 			it.DefinitionID, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "definitionIdMin":
+			var err error
+			it.DefinitionIDMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "definitionIdMax":
+			var err error
+			it.DefinitionIDMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -15484,9 +23911,33 @@ func (ec *executionContext) unmarshalInputConfiguratorSlotDefinitionSortType(ctx
 			if err != nil {
 				return it, err
 			}
+		case "updatedAtMin":
+			var err error
+			it.UpdatedAtMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedAtMax":
+			var err error
+			it.UpdatedAtMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "createdAt":
 			var err error
 			it.CreatedAt, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdAtMin":
+			var err error
+			it.CreatedAtMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdAtMax":
+			var err error
+			it.CreatedAtMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -15496,9 +23947,33 @@ func (ec *executionContext) unmarshalInputConfiguratorSlotDefinitionSortType(ctx
 			if err != nil {
 				return it, err
 			}
+		case "updatedByMin":
+			var err error
+			it.UpdatedByMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedByMax":
+			var err error
+			it.UpdatedByMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "createdBy":
 			var err error
 			it.CreatedBy, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdByMin":
+			var err error
+			it.CreatedByMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdByMax":
+			var err error
+			it.CreatedByMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -15508,9 +23983,33 @@ func (ec *executionContext) unmarshalInputConfiguratorSlotDefinitionSortType(ctx
 			if err != nil {
 				return it, err
 			}
+		case "slotsIdsMin":
+			var err error
+			it.SlotsIdsMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "slotsIdsMax":
+			var err error
+			it.SlotsIdsMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "allowedItemDefinitionsIds":
 			var err error
 			it.AllowedItemDefinitionsIds, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "allowedItemDefinitionsIdsMin":
+			var err error
+			it.AllowedItemDefinitionsIdsMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "allowedItemDefinitionsIdsMax":
+			var err error
+			it.AllowedItemDefinitionsIdsMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -15562,9 +24061,33 @@ func (ec *executionContext) unmarshalInputConfiguratorSlotFilterType(ctx context
 			if err != nil {
 				return it, err
 			}
+		case "idMin":
+			var err error
+			it.IDMin, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "idMax":
+			var err error
+			it.IDMax, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "id_ne":
 			var err error
 			it.IDNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "idMin_ne":
+			var err error
+			it.IDMinNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "idMax_ne":
+			var err error
+			it.IDMaxNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -15574,9 +24097,33 @@ func (ec *executionContext) unmarshalInputConfiguratorSlotFilterType(ctx context
 			if err != nil {
 				return it, err
 			}
+		case "idMin_gt":
+			var err error
+			it.IDMinGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "idMax_gt":
+			var err error
+			it.IDMaxGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "id_lt":
 			var err error
 			it.IDLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "idMin_lt":
+			var err error
+			it.IDMinLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "idMax_lt":
+			var err error
+			it.IDMaxLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -15586,15 +24133,51 @@ func (ec *executionContext) unmarshalInputConfiguratorSlotFilterType(ctx context
 			if err != nil {
 				return it, err
 			}
+		case "idMin_gte":
+			var err error
+			it.IDMinGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "idMax_gte":
+			var err error
+			it.IDMaxGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "id_lte":
 			var err error
 			it.IDLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
+		case "idMin_lte":
+			var err error
+			it.IDMinLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "idMax_lte":
+			var err error
+			it.IDMaxLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "id_in":
 			var err error
 			it.IDIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "idMin_in":
+			var err error
+			it.IDMinIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "idMax_in":
+			var err error
+			it.IDMaxIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -15610,9 +24193,45 @@ func (ec *executionContext) unmarshalInputConfiguratorSlotFilterType(ctx context
 			if err != nil {
 				return it, err
 			}
+		case "countMin":
+			var err error
+			it.CountMin, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "countMax":
+			var err error
+			it.CountMax, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "countAvg":
+			var err error
+			it.CountAvg, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "count_ne":
 			var err error
 			it.CountNe, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "countMin_ne":
+			var err error
+			it.CountMinNe, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "countMax_ne":
+			var err error
+			it.CountMaxNe, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "countAvg_ne":
+			var err error
+			it.CountAvgNe, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -15622,9 +24241,45 @@ func (ec *executionContext) unmarshalInputConfiguratorSlotFilterType(ctx context
 			if err != nil {
 				return it, err
 			}
+		case "countMin_gt":
+			var err error
+			it.CountMinGt, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "countMax_gt":
+			var err error
+			it.CountMaxGt, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "countAvg_gt":
+			var err error
+			it.CountAvgGt, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "count_lt":
 			var err error
 			it.CountLt, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "countMin_lt":
+			var err error
+			it.CountMinLt, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "countMax_lt":
+			var err error
+			it.CountMaxLt, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "countAvg_lt":
+			var err error
+			it.CountAvgLt, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -15634,15 +24289,69 @@ func (ec *executionContext) unmarshalInputConfiguratorSlotFilterType(ctx context
 			if err != nil {
 				return it, err
 			}
+		case "countMin_gte":
+			var err error
+			it.CountMinGte, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "countMax_gte":
+			var err error
+			it.CountMaxGte, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "countAvg_gte":
+			var err error
+			it.CountAvgGte, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "count_lte":
 			var err error
 			it.CountLte, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
 			if err != nil {
 				return it, err
 			}
+		case "countMin_lte":
+			var err error
+			it.CountMinLte, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "countMax_lte":
+			var err error
+			it.CountMaxLte, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "countAvg_lte":
+			var err error
+			it.CountAvgLte, err = ec.unmarshalOFloat2ᚖfloat64(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "count_in":
 			var err error
 			it.CountIn, err = ec.unmarshalOFloat2ᚕfloat64ᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "countMin_in":
+			var err error
+			it.CountMinIn, err = ec.unmarshalOFloat2ᚕfloat64ᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "countMax_in":
+			var err error
+			it.CountMaxIn, err = ec.unmarshalOFloat2ᚕfloat64ᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "countAvg_in":
+			var err error
+			it.CountAvgIn, err = ec.unmarshalOFloat2ᚕfloat64ᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -15658,9 +24367,33 @@ func (ec *executionContext) unmarshalInputConfiguratorSlotFilterType(ctx context
 			if err != nil {
 				return it, err
 			}
+		case "itemIdMin":
+			var err error
+			it.ItemIDMin, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "itemIdMax":
+			var err error
+			it.ItemIDMax, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "itemId_ne":
 			var err error
 			it.ItemIDNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "itemIdMin_ne":
+			var err error
+			it.ItemIDMinNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "itemIdMax_ne":
+			var err error
+			it.ItemIDMaxNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -15670,9 +24403,33 @@ func (ec *executionContext) unmarshalInputConfiguratorSlotFilterType(ctx context
 			if err != nil {
 				return it, err
 			}
+		case "itemIdMin_gt":
+			var err error
+			it.ItemIDMinGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "itemIdMax_gt":
+			var err error
+			it.ItemIDMaxGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "itemId_lt":
 			var err error
 			it.ItemIDLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "itemIdMin_lt":
+			var err error
+			it.ItemIDMinLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "itemIdMax_lt":
+			var err error
+			it.ItemIDMaxLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -15682,15 +24439,51 @@ func (ec *executionContext) unmarshalInputConfiguratorSlotFilterType(ctx context
 			if err != nil {
 				return it, err
 			}
+		case "itemIdMin_gte":
+			var err error
+			it.ItemIDMinGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "itemIdMax_gte":
+			var err error
+			it.ItemIDMaxGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "itemId_lte":
 			var err error
 			it.ItemIDLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
+		case "itemIdMin_lte":
+			var err error
+			it.ItemIDMinLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "itemIdMax_lte":
+			var err error
+			it.ItemIDMaxLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "itemId_in":
 			var err error
 			it.ItemIDIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "itemIdMin_in":
+			var err error
+			it.ItemIDMinIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "itemIdMax_in":
+			var err error
+			it.ItemIDMaxIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -15706,9 +24499,33 @@ func (ec *executionContext) unmarshalInputConfiguratorSlotFilterType(ctx context
 			if err != nil {
 				return it, err
 			}
+		case "definitionIdMin":
+			var err error
+			it.DefinitionIDMin, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "definitionIdMax":
+			var err error
+			it.DefinitionIDMax, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "definitionId_ne":
 			var err error
 			it.DefinitionIDNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "definitionIdMin_ne":
+			var err error
+			it.DefinitionIDMinNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "definitionIdMax_ne":
+			var err error
+			it.DefinitionIDMaxNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -15718,9 +24535,33 @@ func (ec *executionContext) unmarshalInputConfiguratorSlotFilterType(ctx context
 			if err != nil {
 				return it, err
 			}
+		case "definitionIdMin_gt":
+			var err error
+			it.DefinitionIDMinGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "definitionIdMax_gt":
+			var err error
+			it.DefinitionIDMaxGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "definitionId_lt":
 			var err error
 			it.DefinitionIDLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "definitionIdMin_lt":
+			var err error
+			it.DefinitionIDMinLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "definitionIdMax_lt":
+			var err error
+			it.DefinitionIDMaxLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -15730,15 +24571,51 @@ func (ec *executionContext) unmarshalInputConfiguratorSlotFilterType(ctx context
 			if err != nil {
 				return it, err
 			}
+		case "definitionIdMin_gte":
+			var err error
+			it.DefinitionIDMinGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "definitionIdMax_gte":
+			var err error
+			it.DefinitionIDMaxGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "definitionId_lte":
 			var err error
 			it.DefinitionIDLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
+		case "definitionIdMin_lte":
+			var err error
+			it.DefinitionIDMinLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "definitionIdMax_lte":
+			var err error
+			it.DefinitionIDMaxLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "definitionId_in":
 			var err error
 			it.DefinitionIDIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "definitionIdMin_in":
+			var err error
+			it.DefinitionIDMinIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "definitionIdMax_in":
+			var err error
+			it.DefinitionIDMaxIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -15754,9 +24631,33 @@ func (ec *executionContext) unmarshalInputConfiguratorSlotFilterType(ctx context
 			if err != nil {
 				return it, err
 			}
+		case "parentItemIdMin":
+			var err error
+			it.ParentItemIDMin, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "parentItemIdMax":
+			var err error
+			it.ParentItemIDMax, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "parentItemId_ne":
 			var err error
 			it.ParentItemIDNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "parentItemIdMin_ne":
+			var err error
+			it.ParentItemIDMinNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "parentItemIdMax_ne":
+			var err error
+			it.ParentItemIDMaxNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -15766,9 +24667,33 @@ func (ec *executionContext) unmarshalInputConfiguratorSlotFilterType(ctx context
 			if err != nil {
 				return it, err
 			}
+		case "parentItemIdMin_gt":
+			var err error
+			it.ParentItemIDMinGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "parentItemIdMax_gt":
+			var err error
+			it.ParentItemIDMaxGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "parentItemId_lt":
 			var err error
 			it.ParentItemIDLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "parentItemIdMin_lt":
+			var err error
+			it.ParentItemIDMinLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "parentItemIdMax_lt":
+			var err error
+			it.ParentItemIDMaxLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -15778,15 +24703,51 @@ func (ec *executionContext) unmarshalInputConfiguratorSlotFilterType(ctx context
 			if err != nil {
 				return it, err
 			}
+		case "parentItemIdMin_gte":
+			var err error
+			it.ParentItemIDMinGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "parentItemIdMax_gte":
+			var err error
+			it.ParentItemIDMaxGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "parentItemId_lte":
 			var err error
 			it.ParentItemIDLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
+		case "parentItemIdMin_lte":
+			var err error
+			it.ParentItemIDMinLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "parentItemIdMax_lte":
+			var err error
+			it.ParentItemIDMaxLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "parentItemId_in":
 			var err error
 			it.ParentItemIDIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "parentItemIdMin_in":
+			var err error
+			it.ParentItemIDMinIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "parentItemIdMax_in":
+			var err error
+			it.ParentItemIDMaxIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -15802,9 +24763,33 @@ func (ec *executionContext) unmarshalInputConfiguratorSlotFilterType(ctx context
 			if err != nil {
 				return it, err
 			}
+		case "updatedAtMin":
+			var err error
+			it.UpdatedAtMin, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedAtMax":
+			var err error
+			it.UpdatedAtMax, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "updatedAt_ne":
 			var err error
 			it.UpdatedAtNe, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedAtMin_ne":
+			var err error
+			it.UpdatedAtMinNe, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedAtMax_ne":
+			var err error
+			it.UpdatedAtMaxNe, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -15814,9 +24799,33 @@ func (ec *executionContext) unmarshalInputConfiguratorSlotFilterType(ctx context
 			if err != nil {
 				return it, err
 			}
+		case "updatedAtMin_gt":
+			var err error
+			it.UpdatedAtMinGt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedAtMax_gt":
+			var err error
+			it.UpdatedAtMaxGt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "updatedAt_lt":
 			var err error
 			it.UpdatedAtLt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedAtMin_lt":
+			var err error
+			it.UpdatedAtMinLt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedAtMax_lt":
+			var err error
+			it.UpdatedAtMaxLt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -15826,15 +24835,51 @@ func (ec *executionContext) unmarshalInputConfiguratorSlotFilterType(ctx context
 			if err != nil {
 				return it, err
 			}
+		case "updatedAtMin_gte":
+			var err error
+			it.UpdatedAtMinGte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedAtMax_gte":
+			var err error
+			it.UpdatedAtMaxGte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "updatedAt_lte":
 			var err error
 			it.UpdatedAtLte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
+		case "updatedAtMin_lte":
+			var err error
+			it.UpdatedAtMinLte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedAtMax_lte":
+			var err error
+			it.UpdatedAtMaxLte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "updatedAt_in":
 			var err error
 			it.UpdatedAtIn, err = ec.unmarshalOTime2ᚕᚖtimeᚐTimeᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedAtMin_in":
+			var err error
+			it.UpdatedAtMinIn, err = ec.unmarshalOTime2ᚕᚖtimeᚐTimeᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedAtMax_in":
+			var err error
+			it.UpdatedAtMaxIn, err = ec.unmarshalOTime2ᚕᚖtimeᚐTimeᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -15850,9 +24895,33 @@ func (ec *executionContext) unmarshalInputConfiguratorSlotFilterType(ctx context
 			if err != nil {
 				return it, err
 			}
+		case "createdAtMin":
+			var err error
+			it.CreatedAtMin, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdAtMax":
+			var err error
+			it.CreatedAtMax, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "createdAt_ne":
 			var err error
 			it.CreatedAtNe, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdAtMin_ne":
+			var err error
+			it.CreatedAtMinNe, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdAtMax_ne":
+			var err error
+			it.CreatedAtMaxNe, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -15862,9 +24931,33 @@ func (ec *executionContext) unmarshalInputConfiguratorSlotFilterType(ctx context
 			if err != nil {
 				return it, err
 			}
+		case "createdAtMin_gt":
+			var err error
+			it.CreatedAtMinGt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdAtMax_gt":
+			var err error
+			it.CreatedAtMaxGt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "createdAt_lt":
 			var err error
 			it.CreatedAtLt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdAtMin_lt":
+			var err error
+			it.CreatedAtMinLt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdAtMax_lt":
+			var err error
+			it.CreatedAtMaxLt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -15874,15 +24967,51 @@ func (ec *executionContext) unmarshalInputConfiguratorSlotFilterType(ctx context
 			if err != nil {
 				return it, err
 			}
+		case "createdAtMin_gte":
+			var err error
+			it.CreatedAtMinGte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdAtMax_gte":
+			var err error
+			it.CreatedAtMaxGte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "createdAt_lte":
 			var err error
 			it.CreatedAtLte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
 			if err != nil {
 				return it, err
 			}
+		case "createdAtMin_lte":
+			var err error
+			it.CreatedAtMinLte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdAtMax_lte":
+			var err error
+			it.CreatedAtMaxLte, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "createdAt_in":
 			var err error
 			it.CreatedAtIn, err = ec.unmarshalOTime2ᚕᚖtimeᚐTimeᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdAtMin_in":
+			var err error
+			it.CreatedAtMinIn, err = ec.unmarshalOTime2ᚕᚖtimeᚐTimeᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdAtMax_in":
+			var err error
+			it.CreatedAtMaxIn, err = ec.unmarshalOTime2ᚕᚖtimeᚐTimeᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -15898,9 +25027,33 @@ func (ec *executionContext) unmarshalInputConfiguratorSlotFilterType(ctx context
 			if err != nil {
 				return it, err
 			}
+		case "updatedByMin":
+			var err error
+			it.UpdatedByMin, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedByMax":
+			var err error
+			it.UpdatedByMax, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "updatedBy_ne":
 			var err error
 			it.UpdatedByNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedByMin_ne":
+			var err error
+			it.UpdatedByMinNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedByMax_ne":
+			var err error
+			it.UpdatedByMaxNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -15910,9 +25063,33 @@ func (ec *executionContext) unmarshalInputConfiguratorSlotFilterType(ctx context
 			if err != nil {
 				return it, err
 			}
+		case "updatedByMin_gt":
+			var err error
+			it.UpdatedByMinGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedByMax_gt":
+			var err error
+			it.UpdatedByMaxGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "updatedBy_lt":
 			var err error
 			it.UpdatedByLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedByMin_lt":
+			var err error
+			it.UpdatedByMinLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedByMax_lt":
+			var err error
+			it.UpdatedByMaxLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -15922,15 +25099,51 @@ func (ec *executionContext) unmarshalInputConfiguratorSlotFilterType(ctx context
 			if err != nil {
 				return it, err
 			}
+		case "updatedByMin_gte":
+			var err error
+			it.UpdatedByMinGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedByMax_gte":
+			var err error
+			it.UpdatedByMaxGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "updatedBy_lte":
 			var err error
 			it.UpdatedByLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
+		case "updatedByMin_lte":
+			var err error
+			it.UpdatedByMinLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedByMax_lte":
+			var err error
+			it.UpdatedByMaxLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "updatedBy_in":
 			var err error
 			it.UpdatedByIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedByMin_in":
+			var err error
+			it.UpdatedByMinIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedByMax_in":
+			var err error
+			it.UpdatedByMaxIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -15946,9 +25159,33 @@ func (ec *executionContext) unmarshalInputConfiguratorSlotFilterType(ctx context
 			if err != nil {
 				return it, err
 			}
+		case "createdByMin":
+			var err error
+			it.CreatedByMin, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdByMax":
+			var err error
+			it.CreatedByMax, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "createdBy_ne":
 			var err error
 			it.CreatedByNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdByMin_ne":
+			var err error
+			it.CreatedByMinNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdByMax_ne":
+			var err error
+			it.CreatedByMaxNe, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -15958,9 +25195,33 @@ func (ec *executionContext) unmarshalInputConfiguratorSlotFilterType(ctx context
 			if err != nil {
 				return it, err
 			}
+		case "createdByMin_gt":
+			var err error
+			it.CreatedByMinGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdByMax_gt":
+			var err error
+			it.CreatedByMaxGt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "createdBy_lt":
 			var err error
 			it.CreatedByLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdByMin_lt":
+			var err error
+			it.CreatedByMinLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdByMax_lt":
+			var err error
+			it.CreatedByMaxLt, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -15970,15 +25231,51 @@ func (ec *executionContext) unmarshalInputConfiguratorSlotFilterType(ctx context
 			if err != nil {
 				return it, err
 			}
+		case "createdByMin_gte":
+			var err error
+			it.CreatedByMinGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdByMax_gte":
+			var err error
+			it.CreatedByMaxGte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "createdBy_lte":
 			var err error
 			it.CreatedByLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
 			if err != nil {
 				return it, err
 			}
+		case "createdByMin_lte":
+			var err error
+			it.CreatedByMinLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdByMax_lte":
+			var err error
+			it.CreatedByMaxLte, err = ec.unmarshalOID2ᚖstring(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "createdBy_in":
 			var err error
 			it.CreatedByIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdByMin_in":
+			var err error
+			it.CreatedByMinIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdByMax_in":
+			var err error
+			it.CreatedByMaxIn, err = ec.unmarshalOID2ᚕstringᚄ(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -16024,9 +25321,39 @@ func (ec *executionContext) unmarshalInputConfiguratorSlotSortType(ctx context.C
 			if err != nil {
 				return it, err
 			}
+		case "idMin":
+			var err error
+			it.IDMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "idMax":
+			var err error
+			it.IDMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "count":
 			var err error
 			it.Count, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "countMin":
+			var err error
+			it.CountMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "countMax":
+			var err error
+			it.CountMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "countAvg":
+			var err error
+			it.CountAvg, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -16036,9 +25363,33 @@ func (ec *executionContext) unmarshalInputConfiguratorSlotSortType(ctx context.C
 			if err != nil {
 				return it, err
 			}
+		case "itemIdMin":
+			var err error
+			it.ItemIDMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "itemIdMax":
+			var err error
+			it.ItemIDMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "definitionId":
 			var err error
 			it.DefinitionID, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "definitionIdMin":
+			var err error
+			it.DefinitionIDMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "definitionIdMax":
+			var err error
+			it.DefinitionIDMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -16048,9 +25399,33 @@ func (ec *executionContext) unmarshalInputConfiguratorSlotSortType(ctx context.C
 			if err != nil {
 				return it, err
 			}
+		case "parentItemIdMin":
+			var err error
+			it.ParentItemIDMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "parentItemIdMax":
+			var err error
+			it.ParentItemIDMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "updatedAt":
 			var err error
 			it.UpdatedAt, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedAtMin":
+			var err error
+			it.UpdatedAtMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedAtMax":
+			var err error
+			it.UpdatedAtMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -16060,15 +25435,51 @@ func (ec *executionContext) unmarshalInputConfiguratorSlotSortType(ctx context.C
 			if err != nil {
 				return it, err
 			}
+		case "createdAtMin":
+			var err error
+			it.CreatedAtMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdAtMax":
+			var err error
+			it.CreatedAtMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "updatedBy":
 			var err error
 			it.UpdatedBy, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
+		case "updatedByMin":
+			var err error
+			it.UpdatedByMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "updatedByMax":
+			var err error
+			it.UpdatedByMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "createdBy":
 			var err error
 			it.CreatedBy, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdByMin":
+			var err error
+			it.CreatedByMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "createdByMax":
+			var err error
+			it.CreatedByMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -16400,6 +25811,20 @@ func (ec *executionContext) _ConfiguratorAttributeDefinition(ctx context.Context
 				}
 				return res
 			})
+		case "definitionsConnection":
+			field := field
+			out.Concurrently(i, func() (res graphql.Marshaler) {
+				defer func() {
+					if r := recover(); r != nil {
+						ec.Error(ctx, ec.Recover(ctx, r))
+					}
+				}()
+				res = ec._ConfiguratorAttributeDefinition_definitionsConnection(ctx, field, obj)
+				if res == graphql.Null {
+					atomic.AddUint32(&invalids, 1)
+				}
+				return res
+			})
 		case "attributesIds":
 			field := field
 			out.Concurrently(i, func() (res graphql.Marshaler) {
@@ -16409,6 +25834,20 @@ func (ec *executionContext) _ConfiguratorAttributeDefinition(ctx context.Context
 					}
 				}()
 				res = ec._ConfiguratorAttributeDefinition_attributesIds(ctx, field, obj)
+				if res == graphql.Null {
+					atomic.AddUint32(&invalids, 1)
+				}
+				return res
+			})
+		case "attributesConnection":
+			field := field
+			out.Concurrently(i, func() (res graphql.Marshaler) {
+				defer func() {
+					if r := recover(); r != nil {
+						ec.Error(ctx, ec.Recover(ctx, r))
+					}
+				}()
+				res = ec._ConfiguratorAttributeDefinition_attributesConnection(ctx, field, obj)
 				if res == graphql.Null {
 					atomic.AddUint32(&invalids, 1)
 				}
@@ -16640,6 +26079,20 @@ func (ec *executionContext) _ConfiguratorItem(ctx context.Context, sel ast.Selec
 				}
 				return res
 			})
+		case "attributesConnection":
+			field := field
+			out.Concurrently(i, func() (res graphql.Marshaler) {
+				defer func() {
+					if r := recover(); r != nil {
+						ec.Error(ctx, ec.Recover(ctx, r))
+					}
+				}()
+				res = ec._ConfiguratorItem_attributesConnection(ctx, field, obj)
+				if res == graphql.Null {
+					atomic.AddUint32(&invalids, 1)
+				}
+				return res
+			})
 		case "slotsIds":
 			field := field
 			out.Concurrently(i, func() (res graphql.Marshaler) {
@@ -16654,6 +26107,20 @@ func (ec *executionContext) _ConfiguratorItem(ctx context.Context, sel ast.Selec
 				}
 				return res
 			})
+		case "slotsConnection":
+			field := field
+			out.Concurrently(i, func() (res graphql.Marshaler) {
+				defer func() {
+					if r := recover(); r != nil {
+						ec.Error(ctx, ec.Recover(ctx, r))
+					}
+				}()
+				res = ec._ConfiguratorItem_slotsConnection(ctx, field, obj)
+				if res == graphql.Null {
+					atomic.AddUint32(&invalids, 1)
+				}
+				return res
+			})
 		case "parentSlotsIds":
 			field := field
 			out.Concurrently(i, func() (res graphql.Marshaler) {
@@ -16663,6 +26130,20 @@ func (ec *executionContext) _ConfiguratorItem(ctx context.Context, sel ast.Selec
 					}
 				}()
 				res = ec._ConfiguratorItem_parentSlotsIds(ctx, field, obj)
+				if res == graphql.Null {
+					atomic.AddUint32(&invalids, 1)
+				}
+				return res
+			})
+		case "parentSlotsConnection":
+			field := field
+			out.Concurrently(i, func() (res graphql.Marshaler) {
+				defer func() {
+					if r := recover(); r != nil {
+						ec.Error(ctx, ec.Recover(ctx, r))
+					}
+				}()
+				res = ec._ConfiguratorItem_parentSlotsConnection(ctx, field, obj)
 				if res == graphql.Null {
 					atomic.AddUint32(&invalids, 1)
 				}
@@ -16793,6 +26274,20 @@ func (ec *executionContext) _ConfiguratorItemDefinition(ctx context.Context, sel
 				}
 				return res
 			})
+		case "attributesConnection":
+			field := field
+			out.Concurrently(i, func() (res graphql.Marshaler) {
+				defer func() {
+					if r := recover(); r != nil {
+						ec.Error(ctx, ec.Recover(ctx, r))
+					}
+				}()
+				res = ec._ConfiguratorItemDefinition_attributesConnection(ctx, field, obj)
+				if res == graphql.Null {
+					atomic.AddUint32(&invalids, 1)
+				}
+				return res
+			})
 		case "slotsIds":
 			field := field
 			out.Concurrently(i, func() (res graphql.Marshaler) {
@@ -16802,6 +26297,20 @@ func (ec *executionContext) _ConfiguratorItemDefinition(ctx context.Context, sel
 					}
 				}()
 				res = ec._ConfiguratorItemDefinition_slotsIds(ctx, field, obj)
+				if res == graphql.Null {
+					atomic.AddUint32(&invalids, 1)
+				}
+				return res
+			})
+		case "slotsConnection":
+			field := field
+			out.Concurrently(i, func() (res graphql.Marshaler) {
+				defer func() {
+					if r := recover(); r != nil {
+						ec.Error(ctx, ec.Recover(ctx, r))
+					}
+				}()
+				res = ec._ConfiguratorItemDefinition_slotsConnection(ctx, field, obj)
 				if res == graphql.Null {
 					atomic.AddUint32(&invalids, 1)
 				}
@@ -16821,6 +26330,20 @@ func (ec *executionContext) _ConfiguratorItemDefinition(ctx context.Context, sel
 				}
 				return res
 			})
+		case "itemsConnection":
+			field := field
+			out.Concurrently(i, func() (res graphql.Marshaler) {
+				defer func() {
+					if r := recover(); r != nil {
+						ec.Error(ctx, ec.Recover(ctx, r))
+					}
+				}()
+				res = ec._ConfiguratorItemDefinition_itemsConnection(ctx, field, obj)
+				if res == graphql.Null {
+					atomic.AddUint32(&invalids, 1)
+				}
+				return res
+			})
 		case "allowedInSlotsIds":
 			field := field
 			out.Concurrently(i, func() (res graphql.Marshaler) {
@@ -16830,6 +26353,20 @@ func (ec *executionContext) _ConfiguratorItemDefinition(ctx context.Context, sel
 					}
 				}()
 				res = ec._ConfiguratorItemDefinition_allowedInSlotsIds(ctx, field, obj)
+				if res == graphql.Null {
+					atomic.AddUint32(&invalids, 1)
+				}
+				return res
+			})
+		case "allowedInSlotsConnection":
+			field := field
+			out.Concurrently(i, func() (res graphql.Marshaler) {
+				defer func() {
+					if r := recover(); r != nil {
+						ec.Error(ctx, ec.Recover(ctx, r))
+					}
+				}()
+				res = ec._ConfiguratorItemDefinition_allowedInSlotsConnection(ctx, field, obj)
 				if res == graphql.Null {
 					atomic.AddUint32(&invalids, 1)
 				}
@@ -16868,6 +26405,8 @@ func (ec *executionContext) _ConfiguratorItemDefinitionCategory(ctx context.Cont
 			out.Values[i] = ec._ConfiguratorItemDefinitionCategory_name(ctx, field, obj)
 		case "type":
 			out.Values[i] = ec._ConfiguratorItemDefinitionCategory_type(ctx, field, obj)
+		case "primary":
+			out.Values[i] = ec._ConfiguratorItemDefinitionCategory_primary(ctx, field, obj)
 		case "definitions":
 			field := field
 			out.Concurrently(i, func() (res graphql.Marshaler) {
@@ -16902,6 +26441,20 @@ func (ec *executionContext) _ConfiguratorItemDefinitionCategory(ctx context.Cont
 					}
 				}()
 				res = ec._ConfiguratorItemDefinitionCategory_definitionsIds(ctx, field, obj)
+				if res == graphql.Null {
+					atomic.AddUint32(&invalids, 1)
+				}
+				return res
+			})
+		case "definitionsConnection":
+			field := field
+			out.Concurrently(i, func() (res graphql.Marshaler) {
+				defer func() {
+					if r := recover(); r != nil {
+						ec.Error(ctx, ec.Recover(ctx, r))
+					}
+				}()
+				res = ec._ConfiguratorItemDefinitionCategory_definitionsConnection(ctx, field, obj)
 				if res == graphql.Null {
 					atomic.AddUint32(&invalids, 1)
 				}
@@ -17237,6 +26790,20 @@ func (ec *executionContext) _ConfiguratorSlotDefinition(ctx context.Context, sel
 				}
 				return res
 			})
+		case "slotsConnection":
+			field := field
+			out.Concurrently(i, func() (res graphql.Marshaler) {
+				defer func() {
+					if r := recover(); r != nil {
+						ec.Error(ctx, ec.Recover(ctx, r))
+					}
+				}()
+				res = ec._ConfiguratorSlotDefinition_slotsConnection(ctx, field, obj)
+				if res == graphql.Null {
+					atomic.AddUint32(&invalids, 1)
+				}
+				return res
+			})
 		case "allowedItemDefinitionsIds":
 			field := field
 			out.Concurrently(i, func() (res graphql.Marshaler) {
@@ -17246,6 +26813,20 @@ func (ec *executionContext) _ConfiguratorSlotDefinition(ctx context.Context, sel
 					}
 				}()
 				res = ec._ConfiguratorSlotDefinition_allowedItemDefinitionsIds(ctx, field, obj)
+				if res == graphql.Null {
+					atomic.AddUint32(&invalids, 1)
+				}
+				return res
+			})
+		case "allowedItemDefinitionsConnection":
+			field := field
+			out.Concurrently(i, func() (res graphql.Marshaler) {
+				defer func() {
+					if r := recover(); r != nil {
+						ec.Error(ctx, ec.Recover(ctx, r))
+					}
+				}()
+				res = ec._ConfiguratorSlotDefinition_allowedItemDefinitionsConnection(ctx, field, obj)
 				if res == graphql.Null {
 					atomic.AddUint32(&invalids, 1)
 				}
@@ -17595,6 +27176,9 @@ func (ec *executionContext) _Query(ctx context.Context, sel ast.SelectionSet) gr
 					}
 				}()
 				res = ec._Query_configuratorItemDefinitionCategories(ctx, field)
+				if res == graphql.Null {
+					atomic.AddUint32(&invalids, 1)
+				}
 				return res
 			})
 		case "configuratorItemDefinition":
@@ -17617,6 +27201,9 @@ func (ec *executionContext) _Query(ctx context.Context, sel ast.SelectionSet) gr
 					}
 				}()
 				res = ec._Query_configuratorItemDefinitions(ctx, field)
+				if res == graphql.Null {
+					atomic.AddUint32(&invalids, 1)
+				}
 				return res
 			})
 		case "configuratorAttributeDefinition":
@@ -17639,6 +27226,9 @@ func (ec *executionContext) _Query(ctx context.Context, sel ast.SelectionSet) gr
 					}
 				}()
 				res = ec._Query_configuratorAttributeDefinitions(ctx, field)
+				if res == graphql.Null {
+					atomic.AddUint32(&invalids, 1)
+				}
 				return res
 			})
 		case "configuratorSlotDefinition":
@@ -17661,6 +27251,9 @@ func (ec *executionContext) _Query(ctx context.Context, sel ast.SelectionSet) gr
 					}
 				}()
 				res = ec._Query_configuratorSlotDefinitions(ctx, field)
+				if res == graphql.Null {
+					atomic.AddUint32(&invalids, 1)
+				}
 				return res
 			})
 		case "configuratorItem":
@@ -17683,6 +27276,9 @@ func (ec *executionContext) _Query(ctx context.Context, sel ast.SelectionSet) gr
 					}
 				}()
 				res = ec._Query_configuratorItems(ctx, field)
+				if res == graphql.Null {
+					atomic.AddUint32(&invalids, 1)
+				}
 				return res
 			})
 		case "configuratorAttribute":
@@ -17705,6 +27301,9 @@ func (ec *executionContext) _Query(ctx context.Context, sel ast.SelectionSet) gr
 					}
 				}()
 				res = ec._Query_configuratorAttributes(ctx, field)
+				if res == graphql.Null {
+					atomic.AddUint32(&invalids, 1)
+				}
 				return res
 			})
 		case "configuratorSlot":
@@ -17727,6 +27326,9 @@ func (ec *executionContext) _Query(ctx context.Context, sel ast.SelectionSet) gr
 					}
 				}()
 				res = ec._Query_configuratorSlots(ctx, field)
+				if res == graphql.Null {
+					atomic.AddUint32(&invalids, 1)
+				}
 				return res
 			})
 		case "configuratorAssembly":
@@ -18327,6 +27929,20 @@ func (ec *executionContext) unmarshalNConfiguratorAttributeDefinitionFilterType2
 	return &res, err
 }
 
+func (ec *executionContext) marshalNConfiguratorAttributeDefinitionResultType2githubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorAttributeDefinitionResultType(ctx context.Context, sel ast.SelectionSet, v ConfiguratorAttributeDefinitionResultType) graphql.Marshaler {
+	return ec._ConfiguratorAttributeDefinitionResultType(ctx, sel, &v)
+}
+
+func (ec *executionContext) marshalNConfiguratorAttributeDefinitionResultType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorAttributeDefinitionResultType(ctx context.Context, sel ast.SelectionSet, v *ConfiguratorAttributeDefinitionResultType) graphql.Marshaler {
+	if v == nil {
+		if !ec.HasError(graphql.GetResolverContext(ctx)) {
+			ec.Errorf(ctx, "must not be null")
+		}
+		return graphql.Null
+	}
+	return ec._ConfiguratorAttributeDefinitionResultType(ctx, sel, v)
+}
+
 func (ec *executionContext) unmarshalNConfiguratorAttributeDefinitionSortType2githubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorAttributeDefinitionSortType(ctx context.Context, v interface{}) (ConfiguratorAttributeDefinitionSortType, error) {
 	return ec.unmarshalInputConfiguratorAttributeDefinitionSortType(ctx, v)
 }
@@ -18356,6 +27972,20 @@ func (ec *executionContext) unmarshalNConfiguratorAttributeFilterType2ᚖgithub�
 	}
 	res, err := ec.unmarshalNConfiguratorAttributeFilterType2githubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorAttributeFilterType(ctx, v)
 	return &res, err
+}
+
+func (ec *executionContext) marshalNConfiguratorAttributeResultType2githubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorAttributeResultType(ctx context.Context, sel ast.SelectionSet, v ConfiguratorAttributeResultType) graphql.Marshaler {
+	return ec._ConfiguratorAttributeResultType(ctx, sel, &v)
+}
+
+func (ec *executionContext) marshalNConfiguratorAttributeResultType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorAttributeResultType(ctx context.Context, sel ast.SelectionSet, v *ConfiguratorAttributeResultType) graphql.Marshaler {
+	if v == nil {
+		if !ec.HasError(graphql.GetResolverContext(ctx)) {
+			ec.Errorf(ctx, "must not be null")
+		}
+		return graphql.Null
+	}
+	return ec._ConfiguratorAttributeResultType(ctx, sel, v)
 }
 
 func (ec *executionContext) unmarshalNConfiguratorAttributeSortType2githubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorAttributeSortType(ctx context.Context, v interface{}) (ConfiguratorAttributeSortType, error) {
@@ -18565,6 +28195,20 @@ func (ec *executionContext) unmarshalNConfiguratorItemDefinitionCategoryFilterTy
 	return &res, err
 }
 
+func (ec *executionContext) marshalNConfiguratorItemDefinitionCategoryResultType2githubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemDefinitionCategoryResultType(ctx context.Context, sel ast.SelectionSet, v ConfiguratorItemDefinitionCategoryResultType) graphql.Marshaler {
+	return ec._ConfiguratorItemDefinitionCategoryResultType(ctx, sel, &v)
+}
+
+func (ec *executionContext) marshalNConfiguratorItemDefinitionCategoryResultType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemDefinitionCategoryResultType(ctx context.Context, sel ast.SelectionSet, v *ConfiguratorItemDefinitionCategoryResultType) graphql.Marshaler {
+	if v == nil {
+		if !ec.HasError(graphql.GetResolverContext(ctx)) {
+			ec.Errorf(ctx, "must not be null")
+		}
+		return graphql.Null
+	}
+	return ec._ConfiguratorItemDefinitionCategoryResultType(ctx, sel, v)
+}
+
 func (ec *executionContext) unmarshalNConfiguratorItemDefinitionCategorySortType2githubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemDefinitionCategorySortType(ctx context.Context, v interface{}) (ConfiguratorItemDefinitionCategorySortType, error) {
 	return ec.unmarshalInputConfiguratorItemDefinitionCategorySortType(ctx, v)
 }
@@ -18603,6 +28247,20 @@ func (ec *executionContext) unmarshalNConfiguratorItemDefinitionFilterType2ᚖgi
 	return &res, err
 }
 
+func (ec *executionContext) marshalNConfiguratorItemDefinitionResultType2githubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemDefinitionResultType(ctx context.Context, sel ast.SelectionSet, v ConfiguratorItemDefinitionResultType) graphql.Marshaler {
+	return ec._ConfiguratorItemDefinitionResultType(ctx, sel, &v)
+}
+
+func (ec *executionContext) marshalNConfiguratorItemDefinitionResultType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemDefinitionResultType(ctx context.Context, sel ast.SelectionSet, v *ConfiguratorItemDefinitionResultType) graphql.Marshaler {
+	if v == nil {
+		if !ec.HasError(graphql.GetResolverContext(ctx)) {
+			ec.Errorf(ctx, "must not be null")
+		}
+		return graphql.Null
+	}
+	return ec._ConfiguratorItemDefinitionResultType(ctx, sel, v)
+}
+
 func (ec *executionContext) unmarshalNConfiguratorItemDefinitionSortType2githubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemDefinitionSortType(ctx context.Context, v interface{}) (ConfiguratorItemDefinitionSortType, error) {
 	return ec.unmarshalInputConfiguratorItemDefinitionSortType(ctx, v)
 }
@@ -18632,6 +28290,20 @@ func (ec *executionContext) unmarshalNConfiguratorItemFilterType2ᚖgithubᚗcom
 	}
 	res, err := ec.unmarshalNConfiguratorItemFilterType2githubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemFilterType(ctx, v)
 	return &res, err
+}
+
+func (ec *executionContext) marshalNConfiguratorItemResultType2githubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemResultType(ctx context.Context, sel ast.SelectionSet, v ConfiguratorItemResultType) graphql.Marshaler {
+	return ec._ConfiguratorItemResultType(ctx, sel, &v)
+}
+
+func (ec *executionContext) marshalNConfiguratorItemResultType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemResultType(ctx context.Context, sel ast.SelectionSet, v *ConfiguratorItemResultType) graphql.Marshaler {
+	if v == nil {
+		if !ec.HasError(graphql.GetResolverContext(ctx)) {
+			ec.Errorf(ctx, "must not be null")
+		}
+		return graphql.Null
+	}
+	return ec._ConfiguratorItemResultType(ctx, sel, v)
 }
 
 func (ec *executionContext) unmarshalNConfiguratorItemSortType2githubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemSortType(ctx context.Context, v interface{}) (ConfiguratorItemSortType, error) {
@@ -18781,6 +28453,20 @@ func (ec *executionContext) unmarshalNConfiguratorSlotDefinitionFilterType2ᚖgi
 	return &res, err
 }
 
+func (ec *executionContext) marshalNConfiguratorSlotDefinitionResultType2githubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorSlotDefinitionResultType(ctx context.Context, sel ast.SelectionSet, v ConfiguratorSlotDefinitionResultType) graphql.Marshaler {
+	return ec._ConfiguratorSlotDefinitionResultType(ctx, sel, &v)
+}
+
+func (ec *executionContext) marshalNConfiguratorSlotDefinitionResultType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorSlotDefinitionResultType(ctx context.Context, sel ast.SelectionSet, v *ConfiguratorSlotDefinitionResultType) graphql.Marshaler {
+	if v == nil {
+		if !ec.HasError(graphql.GetResolverContext(ctx)) {
+			ec.Errorf(ctx, "must not be null")
+		}
+		return graphql.Null
+	}
+	return ec._ConfiguratorSlotDefinitionResultType(ctx, sel, v)
+}
+
 func (ec *executionContext) unmarshalNConfiguratorSlotDefinitionSortType2githubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorSlotDefinitionSortType(ctx context.Context, v interface{}) (ConfiguratorSlotDefinitionSortType, error) {
 	return ec.unmarshalInputConfiguratorSlotDefinitionSortType(ctx, v)
 }
@@ -18810,6 +28496,20 @@ func (ec *executionContext) unmarshalNConfiguratorSlotFilterType2ᚖgithubᚗcom
 	}
 	res, err := ec.unmarshalNConfiguratorSlotFilterType2githubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorSlotFilterType(ctx, v)
 	return &res, err
+}
+
+func (ec *executionContext) marshalNConfiguratorSlotResultType2githubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorSlotResultType(ctx context.Context, sel ast.SelectionSet, v ConfiguratorSlotResultType) graphql.Marshaler {
+	return ec._ConfiguratorSlotResultType(ctx, sel, &v)
+}
+
+func (ec *executionContext) marshalNConfiguratorSlotResultType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorSlotResultType(ctx context.Context, sel ast.SelectionSet, v *ConfiguratorSlotResultType) graphql.Marshaler {
+	if v == nil {
+		if !ec.HasError(graphql.GetResolverContext(ctx)) {
+			ec.Errorf(ctx, "must not be null")
+		}
+		return graphql.Null
+	}
+	return ec._ConfiguratorSlotResultType(ctx, sel, v)
 }
 
 func (ec *executionContext) unmarshalNConfiguratorSlotSortType2githubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorSlotSortType(ctx context.Context, v interface{}) (ConfiguratorSlotSortType, error) {
@@ -19285,6 +28985,38 @@ func (ec *executionContext) marshalOBoolean2bool(ctx context.Context, sel ast.Se
 	return graphql.MarshalBoolean(v)
 }
 
+func (ec *executionContext) unmarshalOBoolean2ᚕboolᚄ(ctx context.Context, v interface{}) ([]bool, error) {
+	var vSlice []interface{}
+	if v != nil {
+		if tmp1, ok := v.([]interface{}); ok {
+			vSlice = tmp1
+		} else {
+			vSlice = []interface{}{v}
+		}
+	}
+	var err error
+	res := make([]bool, len(vSlice))
+	for i := range vSlice {
+		res[i], err = ec.unmarshalNBoolean2bool(ctx, vSlice[i])
+		if err != nil {
+			return nil, err
+		}
+	}
+	return res, nil
+}
+
+func (ec *executionContext) marshalOBoolean2ᚕboolᚄ(ctx context.Context, sel ast.SelectionSet, v []bool) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	ret := make(graphql.Array, len(v))
+	for i := range v {
+		ret[i] = ec.marshalNBoolean2bool(ctx, sel, v[i])
+	}
+
+	return ret
+}
+
 func (ec *executionContext) unmarshalOBoolean2ᚖbool(ctx context.Context, v interface{}) (*bool, error) {
 	if v == nil {
 		return nil, nil
@@ -19428,17 +29160,6 @@ func (ec *executionContext) unmarshalOConfiguratorAttributeDefinitionFilterType2
 	return &res, err
 }
 
-func (ec *executionContext) marshalOConfiguratorAttributeDefinitionResultType2githubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorAttributeDefinitionResultType(ctx context.Context, sel ast.SelectionSet, v ConfiguratorAttributeDefinitionResultType) graphql.Marshaler {
-	return ec._ConfiguratorAttributeDefinitionResultType(ctx, sel, &v)
-}
-
-func (ec *executionContext) marshalOConfiguratorAttributeDefinitionResultType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorAttributeDefinitionResultType(ctx context.Context, sel ast.SelectionSet, v *ConfiguratorAttributeDefinitionResultType) graphql.Marshaler {
-	if v == nil {
-		return graphql.Null
-	}
-	return ec._ConfiguratorAttributeDefinitionResultType(ctx, sel, v)
-}
-
 func (ec *executionContext) unmarshalOConfiguratorAttributeDefinitionSortType2githubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorAttributeDefinitionSortType(ctx context.Context, v interface{}) (ConfiguratorAttributeDefinitionSortType, error) {
 	return ec.unmarshalInputConfiguratorAttributeDefinitionSortType(ctx, v)
 }
@@ -19501,17 +29222,6 @@ func (ec *executionContext) unmarshalOConfiguratorAttributeFilterType2ᚖgithub�
 	}
 	res, err := ec.unmarshalOConfiguratorAttributeFilterType2githubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorAttributeFilterType(ctx, v)
 	return &res, err
-}
-
-func (ec *executionContext) marshalOConfiguratorAttributeResultType2githubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorAttributeResultType(ctx context.Context, sel ast.SelectionSet, v ConfiguratorAttributeResultType) graphql.Marshaler {
-	return ec._ConfiguratorAttributeResultType(ctx, sel, &v)
-}
-
-func (ec *executionContext) marshalOConfiguratorAttributeResultType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorAttributeResultType(ctx context.Context, sel ast.SelectionSet, v *ConfiguratorAttributeResultType) graphql.Marshaler {
-	if v == nil {
-		return graphql.Null
-	}
-	return ec._ConfiguratorAttributeResultType(ctx, sel, v)
 }
 
 func (ec *executionContext) unmarshalOConfiguratorAttributeSortType2githubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorAttributeSortType(ctx context.Context, v interface{}) (ConfiguratorAttributeSortType, error) {
@@ -19695,17 +29405,6 @@ func (ec *executionContext) unmarshalOConfiguratorItemDefinitionCategoryFilterTy
 	return &res, err
 }
 
-func (ec *executionContext) marshalOConfiguratorItemDefinitionCategoryResultType2githubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemDefinitionCategoryResultType(ctx context.Context, sel ast.SelectionSet, v ConfiguratorItemDefinitionCategoryResultType) graphql.Marshaler {
-	return ec._ConfiguratorItemDefinitionCategoryResultType(ctx, sel, &v)
-}
-
-func (ec *executionContext) marshalOConfiguratorItemDefinitionCategoryResultType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemDefinitionCategoryResultType(ctx context.Context, sel ast.SelectionSet, v *ConfiguratorItemDefinitionCategoryResultType) graphql.Marshaler {
-	if v == nil {
-		return graphql.Null
-	}
-	return ec._ConfiguratorItemDefinitionCategoryResultType(ctx, sel, v)
-}
-
 func (ec *executionContext) unmarshalOConfiguratorItemDefinitionCategorySortType2githubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemDefinitionCategorySortType(ctx context.Context, v interface{}) (ConfiguratorItemDefinitionCategorySortType, error) {
 	return ec.unmarshalInputConfiguratorItemDefinitionCategorySortType(ctx, v)
 }
@@ -19770,17 +29469,6 @@ func (ec *executionContext) unmarshalOConfiguratorItemDefinitionFilterType2ᚖgi
 	return &res, err
 }
 
-func (ec *executionContext) marshalOConfiguratorItemDefinitionResultType2githubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemDefinitionResultType(ctx context.Context, sel ast.SelectionSet, v ConfiguratorItemDefinitionResultType) graphql.Marshaler {
-	return ec._ConfiguratorItemDefinitionResultType(ctx, sel, &v)
-}
-
-func (ec *executionContext) marshalOConfiguratorItemDefinitionResultType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemDefinitionResultType(ctx context.Context, sel ast.SelectionSet, v *ConfiguratorItemDefinitionResultType) graphql.Marshaler {
-	if v == nil {
-		return graphql.Null
-	}
-	return ec._ConfiguratorItemDefinitionResultType(ctx, sel, v)
-}
-
 func (ec *executionContext) unmarshalOConfiguratorItemDefinitionSortType2githubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemDefinitionSortType(ctx context.Context, v interface{}) (ConfiguratorItemDefinitionSortType, error) {
 	return ec.unmarshalInputConfiguratorItemDefinitionSortType(ctx, v)
 }
@@ -19843,17 +29531,6 @@ func (ec *executionContext) unmarshalOConfiguratorItemFilterType2ᚖgithubᚗcom
 	}
 	res, err := ec.unmarshalOConfiguratorItemFilterType2githubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemFilterType(ctx, v)
 	return &res, err
-}
-
-func (ec *executionContext) marshalOConfiguratorItemResultType2githubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemResultType(ctx context.Context, sel ast.SelectionSet, v ConfiguratorItemResultType) graphql.Marshaler {
-	return ec._ConfiguratorItemResultType(ctx, sel, &v)
-}
-
-func (ec *executionContext) marshalOConfiguratorItemResultType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemResultType(ctx context.Context, sel ast.SelectionSet, v *ConfiguratorItemResultType) graphql.Marshaler {
-	if v == nil {
-		return graphql.Null
-	}
-	return ec._ConfiguratorItemResultType(ctx, sel, v)
 }
 
 func (ec *executionContext) unmarshalOConfiguratorItemSortType2githubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorItemSortType(ctx context.Context, v interface{}) (ConfiguratorItemSortType, error) {
@@ -19942,17 +29619,6 @@ func (ec *executionContext) unmarshalOConfiguratorSlotDefinitionFilterType2ᚖgi
 	return &res, err
 }
 
-func (ec *executionContext) marshalOConfiguratorSlotDefinitionResultType2githubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorSlotDefinitionResultType(ctx context.Context, sel ast.SelectionSet, v ConfiguratorSlotDefinitionResultType) graphql.Marshaler {
-	return ec._ConfiguratorSlotDefinitionResultType(ctx, sel, &v)
-}
-
-func (ec *executionContext) marshalOConfiguratorSlotDefinitionResultType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorSlotDefinitionResultType(ctx context.Context, sel ast.SelectionSet, v *ConfiguratorSlotDefinitionResultType) graphql.Marshaler {
-	if v == nil {
-		return graphql.Null
-	}
-	return ec._ConfiguratorSlotDefinitionResultType(ctx, sel, v)
-}
-
 func (ec *executionContext) unmarshalOConfiguratorSlotDefinitionSortType2githubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorSlotDefinitionSortType(ctx context.Context, v interface{}) (ConfiguratorSlotDefinitionSortType, error) {
 	return ec.unmarshalInputConfiguratorSlotDefinitionSortType(ctx, v)
 }
@@ -20015,17 +29681,6 @@ func (ec *executionContext) unmarshalOConfiguratorSlotFilterType2ᚖgithubᚗcom
 	}
 	res, err := ec.unmarshalOConfiguratorSlotFilterType2githubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorSlotFilterType(ctx, v)
 	return &res, err
-}
-
-func (ec *executionContext) marshalOConfiguratorSlotResultType2githubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorSlotResultType(ctx context.Context, sel ast.SelectionSet, v ConfiguratorSlotResultType) graphql.Marshaler {
-	return ec._ConfiguratorSlotResultType(ctx, sel, &v)
-}
-
-func (ec *executionContext) marshalOConfiguratorSlotResultType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorSlotResultType(ctx context.Context, sel ast.SelectionSet, v *ConfiguratorSlotResultType) graphql.Marshaler {
-	if v == nil {
-		return graphql.Null
-	}
-	return ec._ConfiguratorSlotResultType(ctx, sel, v)
 }
 
 func (ec *executionContext) unmarshalOConfiguratorSlotSortType2githubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorSlotSortType(ctx context.Context, v interface{}) (ConfiguratorSlotSortType, error) {

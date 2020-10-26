@@ -47,12 +47,13 @@ func (r *GeneratedQueryResolver) _entities(ctx context.Context, representations 
 				continue
 			}
 
-			item, qerr := r.ConfiguratorItem(ctx, nil, nil, &f)
-			if qerr != nil {
-				if _, isNotFound := qerr.(*NotFoundError); !isNotFound {
-					err = qerr
-					return
-				}
+			item, _err := r.ConfiguratorItem(ctx, nil, nil, &f)
+			if _err != nil {
+				err = _err
+				return
+			}
+			if item == nil {
+				// append nil object without reflected interface
 				res = append(res, nil)
 			} else {
 				res = append(res, item)

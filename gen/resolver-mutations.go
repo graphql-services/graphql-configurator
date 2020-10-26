@@ -108,6 +108,12 @@ func CreateConfiguratorItemDefinitionCategoryHandler(ctx context.Context, r *Gen
 		event.AddNewValue("type", changes.Type)
 	}
 
+	if _, ok := input["primary"]; ok && (item.Primary != changes.Primary) && (item.Primary == nil || changes.Primary == nil || *item.Primary != *changes.Primary) {
+		item.Primary = changes.Primary
+
+		event.AddNewValue("primary", changes.Primary)
+	}
+
 	err = tx.Create(item).Error
 	if err != nil {
 		tx.Rollback()
@@ -121,9 +127,7 @@ func CreateConfiguratorItemDefinitionCategoryHandler(ctx context.Context, r *Gen
 		association.Replace(items)
 	}
 
-	if len(event.Changes) > 0 {
-		AddMutationEvent(ctx, event)
-	}
+	AddMutationEvent(ctx, event)
 
 	return
 }
@@ -184,6 +188,12 @@ func UpdateConfiguratorItemDefinitionCategoryHandler(ctx context.Context, r *Gen
 		item.Type = changes.Type
 	}
 
+	if _, ok := input["primary"]; ok && (item.Primary != changes.Primary) && (item.Primary == nil || changes.Primary == nil || *item.Primary != *changes.Primary) {
+		event.AddOldValue("primary", item.Primary)
+		event.AddNewValue("primary", changes.Primary)
+		item.Primary = changes.Primary
+	}
+
 	err = tx.Save(item).Error
 	if err != nil {
 		tx.Rollback()
@@ -239,9 +249,7 @@ func DeleteConfiguratorItemDefinitionCategoryHandler(ctx context.Context, r *Gen
 		return
 	}
 
-	if len(event.Changes) > 0 {
-		AddMutationEvent(ctx, event)
-	}
+	AddMutationEvent(ctx, event)
 
 	return
 }
@@ -353,9 +361,7 @@ func CreateConfiguratorItemDefinitionHandler(ctx context.Context, r *GeneratedRe
 		association.Replace(items)
 	}
 
-	if len(event.Changes) > 0 {
-		AddMutationEvent(ctx, event)
-	}
+	AddMutationEvent(ctx, event)
 
 	return
 }
@@ -492,9 +498,7 @@ func DeleteConfiguratorItemDefinitionHandler(ctx context.Context, r *GeneratedRe
 		return
 	}
 
-	if len(event.Changes) > 0 {
-		AddMutationEvent(ctx, event)
-	}
+	AddMutationEvent(ctx, event)
 
 	return
 }
@@ -586,9 +590,7 @@ func CreateConfiguratorAttributeDefinitionHandler(ctx context.Context, r *Genera
 		association.Replace(items)
 	}
 
-	if len(event.Changes) > 0 {
-		AddMutationEvent(ctx, event)
-	}
+	AddMutationEvent(ctx, event)
 
 	return
 }
@@ -705,9 +707,7 @@ func DeleteConfiguratorAttributeDefinitionHandler(ctx context.Context, r *Genera
 		return
 	}
 
-	if len(event.Changes) > 0 {
-		AddMutationEvent(ctx, event)
-	}
+	AddMutationEvent(ctx, event)
 
 	return
 }
@@ -817,9 +817,7 @@ func CreateConfiguratorSlotDefinitionHandler(ctx context.Context, r *GeneratedRe
 		association.Replace(items)
 	}
 
-	if len(event.Changes) > 0 {
-		AddMutationEvent(ctx, event)
-	}
+	AddMutationEvent(ctx, event)
 
 	return
 }
@@ -954,9 +952,7 @@ func DeleteConfiguratorSlotDefinitionHandler(ctx context.Context, r *GeneratedRe
 		return
 	}
 
-	if len(event.Changes) > 0 {
-		AddMutationEvent(ctx, event)
-	}
+	AddMutationEvent(ctx, event)
 
 	return
 }
@@ -1073,9 +1069,7 @@ func CreateConfiguratorItemHandler(ctx context.Context, r *GeneratedResolver, in
 		association.Replace(items)
 	}
 
-	if len(event.Changes) > 0 {
-		AddMutationEvent(ctx, event)
-	}
+	AddMutationEvent(ctx, event)
 
 	return
 }
@@ -1217,9 +1211,7 @@ func DeleteConfiguratorItemHandler(ctx context.Context, r *GeneratedResolver, id
 		return
 	}
 
-	if len(event.Changes) > 0 {
-		AddMutationEvent(ctx, event)
-	}
+	AddMutationEvent(ctx, event)
 
 	return
 }
@@ -1315,9 +1307,7 @@ func CreateConfiguratorAttributeHandler(ctx context.Context, r *GeneratedResolve
 		return
 	}
 
-	if len(event.Changes) > 0 {
-		AddMutationEvent(ctx, event)
-	}
+	AddMutationEvent(ctx, event)
 
 	return
 }
@@ -1438,9 +1428,7 @@ func DeleteConfiguratorAttributeHandler(ctx context.Context, r *GeneratedResolve
 		return
 	}
 
-	if len(event.Changes) > 0 {
-		AddMutationEvent(ctx, event)
-	}
+	AddMutationEvent(ctx, event)
 
 	return
 }
@@ -1530,9 +1518,7 @@ func CreateConfiguratorSlotHandler(ctx context.Context, r *GeneratedResolver, in
 		return
 	}
 
-	if len(event.Changes) > 0 {
-		AddMutationEvent(ctx, event)
-	}
+	AddMutationEvent(ctx, event)
 
 	return
 }
@@ -1647,9 +1633,7 @@ func DeleteConfiguratorSlotHandler(ctx context.Context, r *GeneratedResolver, id
 		return
 	}
 
-	if len(event.Changes) > 0 {
-		AddMutationEvent(ctx, event)
-	}
+	AddMutationEvent(ctx, event)
 
 	return
 }

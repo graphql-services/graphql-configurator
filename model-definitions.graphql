@@ -2,6 +2,7 @@ type ConfiguratorItemDefinitionCategory @entity {
   code: String @column(unique: true)
   name: String @column
   type: String @column
+  primary: Boolean @column
 
   definitions: [ConfiguratorItemDefinition!]! @relationship(inverse: category)
 }
