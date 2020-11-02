@@ -140,6 +140,11 @@ func (f *ConfiguratorItemDefinitionCategoryFilterType) WhereContent(dialect gorm
 		values = append(values, f.IDIn)
 	}
 
+	if f.IDNotIn != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("id")+" NOT IN (?)")
+		values = append(values, f.IDNotIn)
+	}
+
 	if f.IDNull != nil {
 		if *f.IDNull {
 			conditions = append(conditions, aliasPrefix+dialect.Quote("id")+" IS NULL")
@@ -181,6 +186,11 @@ func (f *ConfiguratorItemDefinitionCategoryFilterType) WhereContent(dialect gorm
 	if f.CodeIn != nil {
 		conditions = append(conditions, aliasPrefix+dialect.Quote("code")+" IN (?)")
 		values = append(values, f.CodeIn)
+	}
+
+	if f.CodeNotIn != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("code")+" NOT IN (?)")
+		values = append(values, f.CodeNotIn)
 	}
 
 	if f.CodeLike != nil {
@@ -241,6 +251,11 @@ func (f *ConfiguratorItemDefinitionCategoryFilterType) WhereContent(dialect gorm
 		values = append(values, f.NameIn)
 	}
 
+	if f.NameNotIn != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("name")+" NOT IN (?)")
+		values = append(values, f.NameNotIn)
+	}
+
 	if f.NameLike != nil {
 		conditions = append(conditions, aliasPrefix+dialect.Quote("name")+" LIKE ?")
 		values = append(values, strings.Replace(strings.Replace(*f.NameLike, "?", "_", -1), "*", "%", -1))
@@ -297,6 +312,11 @@ func (f *ConfiguratorItemDefinitionCategoryFilterType) WhereContent(dialect gorm
 	if f.TypeIn != nil {
 		conditions = append(conditions, aliasPrefix+dialect.Quote("type")+" IN (?)")
 		values = append(values, f.TypeIn)
+	}
+
+	if f.TypeNotIn != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("type")+" NOT IN (?)")
+		values = append(values, f.TypeNotIn)
 	}
 
 	if f.TypeLike != nil {
@@ -357,6 +377,11 @@ func (f *ConfiguratorItemDefinitionCategoryFilterType) WhereContent(dialect gorm
 		values = append(values, f.PrimaryIn)
 	}
 
+	if f.PrimaryNotIn != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("primary")+" NOT IN (?)")
+		values = append(values, f.PrimaryNotIn)
+	}
+
 	if f.PrimaryNull != nil {
 		if *f.PrimaryNull {
 			conditions = append(conditions, aliasPrefix+dialect.Quote("primary")+" IS NULL")
@@ -398,6 +423,11 @@ func (f *ConfiguratorItemDefinitionCategoryFilterType) WhereContent(dialect gorm
 	if f.UpdatedAtIn != nil {
 		conditions = append(conditions, aliasPrefix+dialect.Quote("updatedAt")+" IN (?)")
 		values = append(values, f.UpdatedAtIn)
+	}
+
+	if f.UpdatedAtNotIn != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("updatedAt")+" NOT IN (?)")
+		values = append(values, f.UpdatedAtNotIn)
 	}
 
 	if f.UpdatedAtNull != nil {
@@ -443,6 +473,11 @@ func (f *ConfiguratorItemDefinitionCategoryFilterType) WhereContent(dialect gorm
 		values = append(values, f.CreatedAtIn)
 	}
 
+	if f.CreatedAtNotIn != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("createdAt")+" NOT IN (?)")
+		values = append(values, f.CreatedAtNotIn)
+	}
+
 	if f.CreatedAtNull != nil {
 		if *f.CreatedAtNull {
 			conditions = append(conditions, aliasPrefix+dialect.Quote("createdAt")+" IS NULL")
@@ -486,6 +521,11 @@ func (f *ConfiguratorItemDefinitionCategoryFilterType) WhereContent(dialect gorm
 		values = append(values, f.UpdatedByIn)
 	}
 
+	if f.UpdatedByNotIn != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("updatedBy")+" NOT IN (?)")
+		values = append(values, f.UpdatedByNotIn)
+	}
+
 	if f.UpdatedByNull != nil {
 		if *f.UpdatedByNull {
 			conditions = append(conditions, aliasPrefix+dialect.Quote("updatedBy")+" IS NULL")
@@ -527,6 +567,11 @@ func (f *ConfiguratorItemDefinitionCategoryFilterType) WhereContent(dialect gorm
 	if f.CreatedByIn != nil {
 		conditions = append(conditions, aliasPrefix+dialect.Quote("createdBy")+" IN (?)")
 		values = append(values, f.CreatedByIn)
+	}
+
+	if f.CreatedByNotIn != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("createdBy")+" NOT IN (?)")
+		values = append(values, f.CreatedByNotIn)
 	}
 
 	if f.CreatedByNull != nil {
@@ -613,6 +658,16 @@ func (f *ConfiguratorItemDefinitionCategoryFilterType) HavingContent(dialect gor
 		values = append(values, f.IDMaxIn)
 	}
 
+	if f.IDMinNotIn != nil {
+		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("id")+") NOT IN (?)")
+		values = append(values, f.IDMinNotIn)
+	}
+
+	if f.IDMaxNotIn != nil {
+		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("id")+") NOT IN (?)")
+		values = append(values, f.IDMaxNotIn)
+	}
+
 	if f.CodeMin != nil {
 		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("code")+") = ?")
 		values = append(values, f.CodeMin)
@@ -681,6 +736,16 @@ func (f *ConfiguratorItemDefinitionCategoryFilterType) HavingContent(dialect gor
 	if f.CodeMaxIn != nil {
 		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("code")+") IN (?)")
 		values = append(values, f.CodeMaxIn)
+	}
+
+	if f.CodeMinNotIn != nil {
+		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("code")+") NOT IN (?)")
+		values = append(values, f.CodeMinNotIn)
+	}
+
+	if f.CodeMaxNotIn != nil {
+		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("code")+") NOT IN (?)")
+		values = append(values, f.CodeMaxNotIn)
 	}
 
 	if f.CodeMinLike != nil {
@@ -783,6 +848,16 @@ func (f *ConfiguratorItemDefinitionCategoryFilterType) HavingContent(dialect gor
 		values = append(values, f.NameMaxIn)
 	}
 
+	if f.NameMinNotIn != nil {
+		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("name")+") NOT IN (?)")
+		values = append(values, f.NameMinNotIn)
+	}
+
+	if f.NameMaxNotIn != nil {
+		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("name")+") NOT IN (?)")
+		values = append(values, f.NameMaxNotIn)
+	}
+
 	if f.NameMinLike != nil {
 		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("name")+") LIKE ?")
 		values = append(values, strings.Replace(strings.Replace(*f.NameMinLike, "?", "_", -1), "*", "%", -1))
@@ -881,6 +956,16 @@ func (f *ConfiguratorItemDefinitionCategoryFilterType) HavingContent(dialect gor
 	if f.TypeMaxIn != nil {
 		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("type")+") IN (?)")
 		values = append(values, f.TypeMaxIn)
+	}
+
+	if f.TypeMinNotIn != nil {
+		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("type")+") NOT IN (?)")
+		values = append(values, f.TypeMinNotIn)
+	}
+
+	if f.TypeMaxNotIn != nil {
+		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("type")+") NOT IN (?)")
+		values = append(values, f.TypeMaxNotIn)
 	}
 
 	if f.TypeMinLike != nil {
@@ -983,6 +1068,16 @@ func (f *ConfiguratorItemDefinitionCategoryFilterType) HavingContent(dialect gor
 		values = append(values, f.PrimaryMaxIn)
 	}
 
+	if f.PrimaryMinNotIn != nil {
+		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("primary")+") NOT IN (?)")
+		values = append(values, f.PrimaryMinNotIn)
+	}
+
+	if f.PrimaryMaxNotIn != nil {
+		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("primary")+") NOT IN (?)")
+		values = append(values, f.PrimaryMaxNotIn)
+	}
+
 	if f.UpdatedAtMin != nil {
 		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("updatedAt")+") = ?")
 		values = append(values, f.UpdatedAtMin)
@@ -1051,6 +1146,16 @@ func (f *ConfiguratorItemDefinitionCategoryFilterType) HavingContent(dialect gor
 	if f.UpdatedAtMaxIn != nil {
 		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("updatedAt")+") IN (?)")
 		values = append(values, f.UpdatedAtMaxIn)
+	}
+
+	if f.UpdatedAtMinNotIn != nil {
+		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("updatedAt")+") NOT IN (?)")
+		values = append(values, f.UpdatedAtMinNotIn)
+	}
+
+	if f.UpdatedAtMaxNotIn != nil {
+		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("updatedAt")+") NOT IN (?)")
+		values = append(values, f.UpdatedAtMaxNotIn)
 	}
 
 	if f.CreatedAtMin != nil {
@@ -1123,6 +1228,16 @@ func (f *ConfiguratorItemDefinitionCategoryFilterType) HavingContent(dialect gor
 		values = append(values, f.CreatedAtMaxIn)
 	}
 
+	if f.CreatedAtMinNotIn != nil {
+		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("createdAt")+") NOT IN (?)")
+		values = append(values, f.CreatedAtMinNotIn)
+	}
+
+	if f.CreatedAtMaxNotIn != nil {
+		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("createdAt")+") NOT IN (?)")
+		values = append(values, f.CreatedAtMaxNotIn)
+	}
+
 	if f.UpdatedByMin != nil {
 		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("updatedBy")+") = ?")
 		values = append(values, f.UpdatedByMin)
@@ -1193,6 +1308,16 @@ func (f *ConfiguratorItemDefinitionCategoryFilterType) HavingContent(dialect gor
 		values = append(values, f.UpdatedByMaxIn)
 	}
 
+	if f.UpdatedByMinNotIn != nil {
+		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("updatedBy")+") NOT IN (?)")
+		values = append(values, f.UpdatedByMinNotIn)
+	}
+
+	if f.UpdatedByMaxNotIn != nil {
+		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("updatedBy")+") NOT IN (?)")
+		values = append(values, f.UpdatedByMaxNotIn)
+	}
+
 	if f.CreatedByMin != nil {
 		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("createdBy")+") = ?")
 		values = append(values, f.CreatedByMin)
@@ -1261,6 +1386,16 @@ func (f *ConfiguratorItemDefinitionCategoryFilterType) HavingContent(dialect gor
 	if f.CreatedByMaxIn != nil {
 		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("createdBy")+") IN (?)")
 		values = append(values, f.CreatedByMaxIn)
+	}
+
+	if f.CreatedByMinNotIn != nil {
+		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("createdBy")+") NOT IN (?)")
+		values = append(values, f.CreatedByMinNotIn)
+	}
+
+	if f.CreatedByMaxNotIn != nil {
+		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("createdBy")+") NOT IN (?)")
+		values = append(values, f.CreatedByMaxNotIn)
 	}
 
 	return
@@ -1466,6 +1601,11 @@ func (f *ConfiguratorItemDefinitionFilterType) WhereContent(dialect gorm.Dialect
 		values = append(values, f.IDIn)
 	}
 
+	if f.IDNotIn != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("id")+" NOT IN (?)")
+		values = append(values, f.IDNotIn)
+	}
+
 	if f.IDNull != nil {
 		if *f.IDNull {
 			conditions = append(conditions, aliasPrefix+dialect.Quote("id")+" IS NULL")
@@ -1507,6 +1647,11 @@ func (f *ConfiguratorItemDefinitionFilterType) WhereContent(dialect gorm.Dialect
 	if f.CodeIn != nil {
 		conditions = append(conditions, aliasPrefix+dialect.Quote("code")+" IN (?)")
 		values = append(values, f.CodeIn)
+	}
+
+	if f.CodeNotIn != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("code")+" NOT IN (?)")
+		values = append(values, f.CodeNotIn)
 	}
 
 	if f.CodeLike != nil {
@@ -1567,6 +1712,11 @@ func (f *ConfiguratorItemDefinitionFilterType) WhereContent(dialect gorm.Dialect
 		values = append(values, f.NameIn)
 	}
 
+	if f.NameNotIn != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("name")+" NOT IN (?)")
+		values = append(values, f.NameNotIn)
+	}
+
 	if f.NameLike != nil {
 		conditions = append(conditions, aliasPrefix+dialect.Quote("name")+" LIKE ?")
 		values = append(values, strings.Replace(strings.Replace(*f.NameLike, "?", "_", -1), "*", "%", -1))
@@ -1625,6 +1775,11 @@ func (f *ConfiguratorItemDefinitionFilterType) WhereContent(dialect gorm.Dialect
 		values = append(values, f.CategoryIDIn)
 	}
 
+	if f.CategoryIDNotIn != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("categoryId")+" NOT IN (?)")
+		values = append(values, f.CategoryIDNotIn)
+	}
+
 	if f.CategoryIDNull != nil {
 		if *f.CategoryIDNull {
 			conditions = append(conditions, aliasPrefix+dialect.Quote("categoryId")+" IS NULL")
@@ -1666,6 +1821,11 @@ func (f *ConfiguratorItemDefinitionFilterType) WhereContent(dialect gorm.Dialect
 	if f.UpdatedAtIn != nil {
 		conditions = append(conditions, aliasPrefix+dialect.Quote("updatedAt")+" IN (?)")
 		values = append(values, f.UpdatedAtIn)
+	}
+
+	if f.UpdatedAtNotIn != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("updatedAt")+" NOT IN (?)")
+		values = append(values, f.UpdatedAtNotIn)
 	}
 
 	if f.UpdatedAtNull != nil {
@@ -1711,6 +1871,11 @@ func (f *ConfiguratorItemDefinitionFilterType) WhereContent(dialect gorm.Dialect
 		values = append(values, f.CreatedAtIn)
 	}
 
+	if f.CreatedAtNotIn != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("createdAt")+" NOT IN (?)")
+		values = append(values, f.CreatedAtNotIn)
+	}
+
 	if f.CreatedAtNull != nil {
 		if *f.CreatedAtNull {
 			conditions = append(conditions, aliasPrefix+dialect.Quote("createdAt")+" IS NULL")
@@ -1754,6 +1919,11 @@ func (f *ConfiguratorItemDefinitionFilterType) WhereContent(dialect gorm.Dialect
 		values = append(values, f.UpdatedByIn)
 	}
 
+	if f.UpdatedByNotIn != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("updatedBy")+" NOT IN (?)")
+		values = append(values, f.UpdatedByNotIn)
+	}
+
 	if f.UpdatedByNull != nil {
 		if *f.UpdatedByNull {
 			conditions = append(conditions, aliasPrefix+dialect.Quote("updatedBy")+" IS NULL")
@@ -1795,6 +1965,11 @@ func (f *ConfiguratorItemDefinitionFilterType) WhereContent(dialect gorm.Dialect
 	if f.CreatedByIn != nil {
 		conditions = append(conditions, aliasPrefix+dialect.Quote("createdBy")+" IN (?)")
 		values = append(values, f.CreatedByIn)
+	}
+
+	if f.CreatedByNotIn != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("createdBy")+" NOT IN (?)")
+		values = append(values, f.CreatedByNotIn)
 	}
 
 	if f.CreatedByNull != nil {
@@ -1881,6 +2056,16 @@ func (f *ConfiguratorItemDefinitionFilterType) HavingContent(dialect gorm.Dialec
 		values = append(values, f.IDMaxIn)
 	}
 
+	if f.IDMinNotIn != nil {
+		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("id")+") NOT IN (?)")
+		values = append(values, f.IDMinNotIn)
+	}
+
+	if f.IDMaxNotIn != nil {
+		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("id")+") NOT IN (?)")
+		values = append(values, f.IDMaxNotIn)
+	}
+
 	if f.CodeMin != nil {
 		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("code")+") = ?")
 		values = append(values, f.CodeMin)
@@ -1949,6 +2134,16 @@ func (f *ConfiguratorItemDefinitionFilterType) HavingContent(dialect gorm.Dialec
 	if f.CodeMaxIn != nil {
 		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("code")+") IN (?)")
 		values = append(values, f.CodeMaxIn)
+	}
+
+	if f.CodeMinNotIn != nil {
+		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("code")+") NOT IN (?)")
+		values = append(values, f.CodeMinNotIn)
+	}
+
+	if f.CodeMaxNotIn != nil {
+		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("code")+") NOT IN (?)")
+		values = append(values, f.CodeMaxNotIn)
 	}
 
 	if f.CodeMinLike != nil {
@@ -2051,6 +2246,16 @@ func (f *ConfiguratorItemDefinitionFilterType) HavingContent(dialect gorm.Dialec
 		values = append(values, f.NameMaxIn)
 	}
 
+	if f.NameMinNotIn != nil {
+		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("name")+") NOT IN (?)")
+		values = append(values, f.NameMinNotIn)
+	}
+
+	if f.NameMaxNotIn != nil {
+		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("name")+") NOT IN (?)")
+		values = append(values, f.NameMaxNotIn)
+	}
+
 	if f.NameMinLike != nil {
 		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("name")+") LIKE ?")
 		values = append(values, strings.Replace(strings.Replace(*f.NameMinLike, "?", "_", -1), "*", "%", -1))
@@ -2151,6 +2356,16 @@ func (f *ConfiguratorItemDefinitionFilterType) HavingContent(dialect gorm.Dialec
 		values = append(values, f.CategoryIDMaxIn)
 	}
 
+	if f.CategoryIDMinNotIn != nil {
+		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("categoryId")+") NOT IN (?)")
+		values = append(values, f.CategoryIDMinNotIn)
+	}
+
+	if f.CategoryIDMaxNotIn != nil {
+		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("categoryId")+") NOT IN (?)")
+		values = append(values, f.CategoryIDMaxNotIn)
+	}
+
 	if f.UpdatedAtMin != nil {
 		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("updatedAt")+") = ?")
 		values = append(values, f.UpdatedAtMin)
@@ -2219,6 +2434,16 @@ func (f *ConfiguratorItemDefinitionFilterType) HavingContent(dialect gorm.Dialec
 	if f.UpdatedAtMaxIn != nil {
 		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("updatedAt")+") IN (?)")
 		values = append(values, f.UpdatedAtMaxIn)
+	}
+
+	if f.UpdatedAtMinNotIn != nil {
+		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("updatedAt")+") NOT IN (?)")
+		values = append(values, f.UpdatedAtMinNotIn)
+	}
+
+	if f.UpdatedAtMaxNotIn != nil {
+		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("updatedAt")+") NOT IN (?)")
+		values = append(values, f.UpdatedAtMaxNotIn)
 	}
 
 	if f.CreatedAtMin != nil {
@@ -2291,6 +2516,16 @@ func (f *ConfiguratorItemDefinitionFilterType) HavingContent(dialect gorm.Dialec
 		values = append(values, f.CreatedAtMaxIn)
 	}
 
+	if f.CreatedAtMinNotIn != nil {
+		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("createdAt")+") NOT IN (?)")
+		values = append(values, f.CreatedAtMinNotIn)
+	}
+
+	if f.CreatedAtMaxNotIn != nil {
+		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("createdAt")+") NOT IN (?)")
+		values = append(values, f.CreatedAtMaxNotIn)
+	}
+
 	if f.UpdatedByMin != nil {
 		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("updatedBy")+") = ?")
 		values = append(values, f.UpdatedByMin)
@@ -2361,6 +2596,16 @@ func (f *ConfiguratorItemDefinitionFilterType) HavingContent(dialect gorm.Dialec
 		values = append(values, f.UpdatedByMaxIn)
 	}
 
+	if f.UpdatedByMinNotIn != nil {
+		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("updatedBy")+") NOT IN (?)")
+		values = append(values, f.UpdatedByMinNotIn)
+	}
+
+	if f.UpdatedByMaxNotIn != nil {
+		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("updatedBy")+") NOT IN (?)")
+		values = append(values, f.UpdatedByMaxNotIn)
+	}
+
 	if f.CreatedByMin != nil {
 		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("createdBy")+") = ?")
 		values = append(values, f.CreatedByMin)
@@ -2429,6 +2674,16 @@ func (f *ConfiguratorItemDefinitionFilterType) HavingContent(dialect gorm.Dialec
 	if f.CreatedByMaxIn != nil {
 		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("createdBy")+") IN (?)")
 		values = append(values, f.CreatedByMaxIn)
+	}
+
+	if f.CreatedByMinNotIn != nil {
+		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("createdBy")+") NOT IN (?)")
+		values = append(values, f.CreatedByMinNotIn)
+	}
+
+	if f.CreatedByMaxNotIn != nil {
+		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("createdBy")+") NOT IN (?)")
+		values = append(values, f.CreatedByMaxNotIn)
 	}
 
 	return
@@ -2607,6 +2862,11 @@ func (f *ConfiguratorAttributeDefinitionFilterType) WhereContent(dialect gorm.Di
 		values = append(values, f.IDIn)
 	}
 
+	if f.IDNotIn != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("id")+" NOT IN (?)")
+		values = append(values, f.IDNotIn)
+	}
+
 	if f.IDNull != nil {
 		if *f.IDNull {
 			conditions = append(conditions, aliasPrefix+dialect.Quote("id")+" IS NULL")
@@ -2648,6 +2908,11 @@ func (f *ConfiguratorAttributeDefinitionFilterType) WhereContent(dialect gorm.Di
 	if f.NameIn != nil {
 		conditions = append(conditions, aliasPrefix+dialect.Quote("name")+" IN (?)")
 		values = append(values, f.NameIn)
+	}
+
+	if f.NameNotIn != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("name")+" NOT IN (?)")
+		values = append(values, f.NameNotIn)
 	}
 
 	if f.NameLike != nil {
@@ -2708,6 +2973,11 @@ func (f *ConfiguratorAttributeDefinitionFilterType) WhereContent(dialect gorm.Di
 		values = append(values, f.TypeIn)
 	}
 
+	if f.TypeNotIn != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("type")+" NOT IN (?)")
+		values = append(values, f.TypeNotIn)
+	}
+
 	if f.TypeNull != nil {
 		if *f.TypeNull {
 			conditions = append(conditions, aliasPrefix+dialect.Quote("type")+" IS NULL")
@@ -2749,6 +3019,11 @@ func (f *ConfiguratorAttributeDefinitionFilterType) WhereContent(dialect gorm.Di
 	if f.UpdatedAtIn != nil {
 		conditions = append(conditions, aliasPrefix+dialect.Quote("updatedAt")+" IN (?)")
 		values = append(values, f.UpdatedAtIn)
+	}
+
+	if f.UpdatedAtNotIn != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("updatedAt")+" NOT IN (?)")
+		values = append(values, f.UpdatedAtNotIn)
 	}
 
 	if f.UpdatedAtNull != nil {
@@ -2794,6 +3069,11 @@ func (f *ConfiguratorAttributeDefinitionFilterType) WhereContent(dialect gorm.Di
 		values = append(values, f.CreatedAtIn)
 	}
 
+	if f.CreatedAtNotIn != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("createdAt")+" NOT IN (?)")
+		values = append(values, f.CreatedAtNotIn)
+	}
+
 	if f.CreatedAtNull != nil {
 		if *f.CreatedAtNull {
 			conditions = append(conditions, aliasPrefix+dialect.Quote("createdAt")+" IS NULL")
@@ -2837,6 +3117,11 @@ func (f *ConfiguratorAttributeDefinitionFilterType) WhereContent(dialect gorm.Di
 		values = append(values, f.UpdatedByIn)
 	}
 
+	if f.UpdatedByNotIn != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("updatedBy")+" NOT IN (?)")
+		values = append(values, f.UpdatedByNotIn)
+	}
+
 	if f.UpdatedByNull != nil {
 		if *f.UpdatedByNull {
 			conditions = append(conditions, aliasPrefix+dialect.Quote("updatedBy")+" IS NULL")
@@ -2878,6 +3163,11 @@ func (f *ConfiguratorAttributeDefinitionFilterType) WhereContent(dialect gorm.Di
 	if f.CreatedByIn != nil {
 		conditions = append(conditions, aliasPrefix+dialect.Quote("createdBy")+" IN (?)")
 		values = append(values, f.CreatedByIn)
+	}
+
+	if f.CreatedByNotIn != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("createdBy")+" NOT IN (?)")
+		values = append(values, f.CreatedByNotIn)
 	}
 
 	if f.CreatedByNull != nil {
@@ -2964,6 +3254,16 @@ func (f *ConfiguratorAttributeDefinitionFilterType) HavingContent(dialect gorm.D
 		values = append(values, f.IDMaxIn)
 	}
 
+	if f.IDMinNotIn != nil {
+		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("id")+") NOT IN (?)")
+		values = append(values, f.IDMinNotIn)
+	}
+
+	if f.IDMaxNotIn != nil {
+		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("id")+") NOT IN (?)")
+		values = append(values, f.IDMaxNotIn)
+	}
+
 	if f.NameMin != nil {
 		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("name")+") = ?")
 		values = append(values, f.NameMin)
@@ -3032,6 +3332,16 @@ func (f *ConfiguratorAttributeDefinitionFilterType) HavingContent(dialect gorm.D
 	if f.NameMaxIn != nil {
 		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("name")+") IN (?)")
 		values = append(values, f.NameMaxIn)
+	}
+
+	if f.NameMinNotIn != nil {
+		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("name")+") NOT IN (?)")
+		values = append(values, f.NameMinNotIn)
+	}
+
+	if f.NameMaxNotIn != nil {
+		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("name")+") NOT IN (?)")
+		values = append(values, f.NameMaxNotIn)
 	}
 
 	if f.NameMinLike != nil {
@@ -3134,6 +3444,16 @@ func (f *ConfiguratorAttributeDefinitionFilterType) HavingContent(dialect gorm.D
 		values = append(values, f.TypeMaxIn)
 	}
 
+	if f.TypeMinNotIn != nil {
+		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("type")+") NOT IN (?)")
+		values = append(values, f.TypeMinNotIn)
+	}
+
+	if f.TypeMaxNotIn != nil {
+		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("type")+") NOT IN (?)")
+		values = append(values, f.TypeMaxNotIn)
+	}
+
 	if f.UpdatedAtMin != nil {
 		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("updatedAt")+") = ?")
 		values = append(values, f.UpdatedAtMin)
@@ -3202,6 +3522,16 @@ func (f *ConfiguratorAttributeDefinitionFilterType) HavingContent(dialect gorm.D
 	if f.UpdatedAtMaxIn != nil {
 		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("updatedAt")+") IN (?)")
 		values = append(values, f.UpdatedAtMaxIn)
+	}
+
+	if f.UpdatedAtMinNotIn != nil {
+		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("updatedAt")+") NOT IN (?)")
+		values = append(values, f.UpdatedAtMinNotIn)
+	}
+
+	if f.UpdatedAtMaxNotIn != nil {
+		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("updatedAt")+") NOT IN (?)")
+		values = append(values, f.UpdatedAtMaxNotIn)
 	}
 
 	if f.CreatedAtMin != nil {
@@ -3274,6 +3604,16 @@ func (f *ConfiguratorAttributeDefinitionFilterType) HavingContent(dialect gorm.D
 		values = append(values, f.CreatedAtMaxIn)
 	}
 
+	if f.CreatedAtMinNotIn != nil {
+		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("createdAt")+") NOT IN (?)")
+		values = append(values, f.CreatedAtMinNotIn)
+	}
+
+	if f.CreatedAtMaxNotIn != nil {
+		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("createdAt")+") NOT IN (?)")
+		values = append(values, f.CreatedAtMaxNotIn)
+	}
+
 	if f.UpdatedByMin != nil {
 		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("updatedBy")+") = ?")
 		values = append(values, f.UpdatedByMin)
@@ -3344,6 +3684,16 @@ func (f *ConfiguratorAttributeDefinitionFilterType) HavingContent(dialect gorm.D
 		values = append(values, f.UpdatedByMaxIn)
 	}
 
+	if f.UpdatedByMinNotIn != nil {
+		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("updatedBy")+") NOT IN (?)")
+		values = append(values, f.UpdatedByMinNotIn)
+	}
+
+	if f.UpdatedByMaxNotIn != nil {
+		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("updatedBy")+") NOT IN (?)")
+		values = append(values, f.UpdatedByMaxNotIn)
+	}
+
 	if f.CreatedByMin != nil {
 		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("createdBy")+") = ?")
 		values = append(values, f.CreatedByMin)
@@ -3412,6 +3762,16 @@ func (f *ConfiguratorAttributeDefinitionFilterType) HavingContent(dialect gorm.D
 	if f.CreatedByMaxIn != nil {
 		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("createdBy")+") IN (?)")
 		values = append(values, f.CreatedByMaxIn)
+	}
+
+	if f.CreatedByMinNotIn != nil {
+		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("createdBy")+") NOT IN (?)")
+		values = append(values, f.CreatedByMinNotIn)
+	}
+
+	if f.CreatedByMaxNotIn != nil {
+		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("createdBy")+") NOT IN (?)")
+		values = append(values, f.CreatedByMaxNotIn)
 	}
 
 	return
@@ -3599,6 +3959,11 @@ func (f *ConfiguratorSlotDefinitionFilterType) WhereContent(dialect gorm.Dialect
 		values = append(values, f.IDIn)
 	}
 
+	if f.IDNotIn != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("id")+" NOT IN (?)")
+		values = append(values, f.IDNotIn)
+	}
+
 	if f.IDNull != nil {
 		if *f.IDNull {
 			conditions = append(conditions, aliasPrefix+dialect.Quote("id")+" IS NULL")
@@ -3640,6 +4005,11 @@ func (f *ConfiguratorSlotDefinitionFilterType) WhereContent(dialect gorm.Dialect
 	if f.NameIn != nil {
 		conditions = append(conditions, aliasPrefix+dialect.Quote("name")+" IN (?)")
 		values = append(values, f.NameIn)
+	}
+
+	if f.NameNotIn != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("name")+" NOT IN (?)")
+		values = append(values, f.NameNotIn)
 	}
 
 	if f.NameLike != nil {
@@ -3700,6 +4070,11 @@ func (f *ConfiguratorSlotDefinitionFilterType) WhereContent(dialect gorm.Dialect
 		values = append(values, f.MinCountIn)
 	}
 
+	if f.MinCountNotIn != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("minCount")+" NOT IN (?)")
+		values = append(values, f.MinCountNotIn)
+	}
+
 	if f.MinCountNull != nil {
 		if *f.MinCountNull {
 			conditions = append(conditions, aliasPrefix+dialect.Quote("minCount")+" IS NULL")
@@ -3741,6 +4116,11 @@ func (f *ConfiguratorSlotDefinitionFilterType) WhereContent(dialect gorm.Dialect
 	if f.MaxCountIn != nil {
 		conditions = append(conditions, aliasPrefix+dialect.Quote("maxCount")+" IN (?)")
 		values = append(values, f.MaxCountIn)
+	}
+
+	if f.MaxCountNotIn != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("maxCount")+" NOT IN (?)")
+		values = append(values, f.MaxCountNotIn)
 	}
 
 	if f.MaxCountNull != nil {
@@ -3786,6 +4166,11 @@ func (f *ConfiguratorSlotDefinitionFilterType) WhereContent(dialect gorm.Dialect
 		values = append(values, f.DefaultCountIn)
 	}
 
+	if f.DefaultCountNotIn != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("defaultCount")+" NOT IN (?)")
+		values = append(values, f.DefaultCountNotIn)
+	}
+
 	if f.DefaultCountNull != nil {
 		if *f.DefaultCountNull {
 			conditions = append(conditions, aliasPrefix+dialect.Quote("defaultCount")+" IS NULL")
@@ -3827,6 +4212,11 @@ func (f *ConfiguratorSlotDefinitionFilterType) WhereContent(dialect gorm.Dialect
 	if f.DefinitionIDIn != nil {
 		conditions = append(conditions, aliasPrefix+dialect.Quote("definitionId")+" IN (?)")
 		values = append(values, f.DefinitionIDIn)
+	}
+
+	if f.DefinitionIDNotIn != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("definitionId")+" NOT IN (?)")
+		values = append(values, f.DefinitionIDNotIn)
 	}
 
 	if f.DefinitionIDNull != nil {
@@ -3872,6 +4262,11 @@ func (f *ConfiguratorSlotDefinitionFilterType) WhereContent(dialect gorm.Dialect
 		values = append(values, f.UpdatedAtIn)
 	}
 
+	if f.UpdatedAtNotIn != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("updatedAt")+" NOT IN (?)")
+		values = append(values, f.UpdatedAtNotIn)
+	}
+
 	if f.UpdatedAtNull != nil {
 		if *f.UpdatedAtNull {
 			conditions = append(conditions, aliasPrefix+dialect.Quote("updatedAt")+" IS NULL")
@@ -3913,6 +4308,11 @@ func (f *ConfiguratorSlotDefinitionFilterType) WhereContent(dialect gorm.Dialect
 	if f.CreatedAtIn != nil {
 		conditions = append(conditions, aliasPrefix+dialect.Quote("createdAt")+" IN (?)")
 		values = append(values, f.CreatedAtIn)
+	}
+
+	if f.CreatedAtNotIn != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("createdAt")+" NOT IN (?)")
+		values = append(values, f.CreatedAtNotIn)
 	}
 
 	if f.CreatedAtNull != nil {
@@ -3958,6 +4358,11 @@ func (f *ConfiguratorSlotDefinitionFilterType) WhereContent(dialect gorm.Dialect
 		values = append(values, f.UpdatedByIn)
 	}
 
+	if f.UpdatedByNotIn != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("updatedBy")+" NOT IN (?)")
+		values = append(values, f.UpdatedByNotIn)
+	}
+
 	if f.UpdatedByNull != nil {
 		if *f.UpdatedByNull {
 			conditions = append(conditions, aliasPrefix+dialect.Quote("updatedBy")+" IS NULL")
@@ -3999,6 +4404,11 @@ func (f *ConfiguratorSlotDefinitionFilterType) WhereContent(dialect gorm.Dialect
 	if f.CreatedByIn != nil {
 		conditions = append(conditions, aliasPrefix+dialect.Quote("createdBy")+" IN (?)")
 		values = append(values, f.CreatedByIn)
+	}
+
+	if f.CreatedByNotIn != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("createdBy")+" NOT IN (?)")
+		values = append(values, f.CreatedByNotIn)
 	}
 
 	if f.CreatedByNull != nil {
@@ -4085,6 +4495,16 @@ func (f *ConfiguratorSlotDefinitionFilterType) HavingContent(dialect gorm.Dialec
 		values = append(values, f.IDMaxIn)
 	}
 
+	if f.IDMinNotIn != nil {
+		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("id")+") NOT IN (?)")
+		values = append(values, f.IDMinNotIn)
+	}
+
+	if f.IDMaxNotIn != nil {
+		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("id")+") NOT IN (?)")
+		values = append(values, f.IDMaxNotIn)
+	}
+
 	if f.NameMin != nil {
 		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("name")+") = ?")
 		values = append(values, f.NameMin)
@@ -4153,6 +4573,16 @@ func (f *ConfiguratorSlotDefinitionFilterType) HavingContent(dialect gorm.Dialec
 	if f.NameMaxIn != nil {
 		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("name")+") IN (?)")
 		values = append(values, f.NameMaxIn)
+	}
+
+	if f.NameMinNotIn != nil {
+		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("name")+") NOT IN (?)")
+		values = append(values, f.NameMinNotIn)
+	}
+
+	if f.NameMaxNotIn != nil {
+		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("name")+") NOT IN (?)")
+		values = append(values, f.NameMaxNotIn)
 	}
 
 	if f.NameMinLike != nil {
@@ -4290,6 +4720,21 @@ func (f *ConfiguratorSlotDefinitionFilterType) HavingContent(dialect gorm.Dialec
 		values = append(values, f.MinCountAvgIn)
 	}
 
+	if f.MinCountMinNotIn != nil {
+		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("minCount")+") NOT IN (?)")
+		values = append(values, f.MinCountMinNotIn)
+	}
+
+	if f.MinCountMaxNotIn != nil {
+		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("minCount")+") NOT IN (?)")
+		values = append(values, f.MinCountMaxNotIn)
+	}
+
+	if f.MinCountAvgNotIn != nil {
+		conditions = append(conditions, "Avg("+aliasPrefix+dialect.Quote("minCount")+") NOT IN (?)")
+		values = append(values, f.MinCountAvgNotIn)
+	}
+
 	if f.MaxCountMin != nil {
 		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("maxCount")+") = ?")
 		values = append(values, f.MaxCountMin)
@@ -4393,6 +4838,21 @@ func (f *ConfiguratorSlotDefinitionFilterType) HavingContent(dialect gorm.Dialec
 	if f.MaxCountAvgIn != nil {
 		conditions = append(conditions, "Avg("+aliasPrefix+dialect.Quote("maxCount")+") IN (?)")
 		values = append(values, f.MaxCountAvgIn)
+	}
+
+	if f.MaxCountMinNotIn != nil {
+		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("maxCount")+") NOT IN (?)")
+		values = append(values, f.MaxCountMinNotIn)
+	}
+
+	if f.MaxCountMaxNotIn != nil {
+		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("maxCount")+") NOT IN (?)")
+		values = append(values, f.MaxCountMaxNotIn)
+	}
+
+	if f.MaxCountAvgNotIn != nil {
+		conditions = append(conditions, "Avg("+aliasPrefix+dialect.Quote("maxCount")+") NOT IN (?)")
+		values = append(values, f.MaxCountAvgNotIn)
 	}
 
 	if f.DefaultCountMin != nil {
@@ -4500,6 +4960,21 @@ func (f *ConfiguratorSlotDefinitionFilterType) HavingContent(dialect gorm.Dialec
 		values = append(values, f.DefaultCountAvgIn)
 	}
 
+	if f.DefaultCountMinNotIn != nil {
+		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("defaultCount")+") NOT IN (?)")
+		values = append(values, f.DefaultCountMinNotIn)
+	}
+
+	if f.DefaultCountMaxNotIn != nil {
+		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("defaultCount")+") NOT IN (?)")
+		values = append(values, f.DefaultCountMaxNotIn)
+	}
+
+	if f.DefaultCountAvgNotIn != nil {
+		conditions = append(conditions, "Avg("+aliasPrefix+dialect.Quote("defaultCount")+") NOT IN (?)")
+		values = append(values, f.DefaultCountAvgNotIn)
+	}
+
 	if f.DefinitionIDMin != nil {
 		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("definitionId")+") = ?")
 		values = append(values, f.DefinitionIDMin)
@@ -4568,6 +5043,16 @@ func (f *ConfiguratorSlotDefinitionFilterType) HavingContent(dialect gorm.Dialec
 	if f.DefinitionIDMaxIn != nil {
 		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("definitionId")+") IN (?)")
 		values = append(values, f.DefinitionIDMaxIn)
+	}
+
+	if f.DefinitionIDMinNotIn != nil {
+		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("definitionId")+") NOT IN (?)")
+		values = append(values, f.DefinitionIDMinNotIn)
+	}
+
+	if f.DefinitionIDMaxNotIn != nil {
+		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("definitionId")+") NOT IN (?)")
+		values = append(values, f.DefinitionIDMaxNotIn)
 	}
 
 	if f.UpdatedAtMin != nil {
@@ -4640,6 +5125,16 @@ func (f *ConfiguratorSlotDefinitionFilterType) HavingContent(dialect gorm.Dialec
 		values = append(values, f.UpdatedAtMaxIn)
 	}
 
+	if f.UpdatedAtMinNotIn != nil {
+		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("updatedAt")+") NOT IN (?)")
+		values = append(values, f.UpdatedAtMinNotIn)
+	}
+
+	if f.UpdatedAtMaxNotIn != nil {
+		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("updatedAt")+") NOT IN (?)")
+		values = append(values, f.UpdatedAtMaxNotIn)
+	}
+
 	if f.CreatedAtMin != nil {
 		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("createdAt")+") = ?")
 		values = append(values, f.CreatedAtMin)
@@ -4708,6 +5203,16 @@ func (f *ConfiguratorSlotDefinitionFilterType) HavingContent(dialect gorm.Dialec
 	if f.CreatedAtMaxIn != nil {
 		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("createdAt")+") IN (?)")
 		values = append(values, f.CreatedAtMaxIn)
+	}
+
+	if f.CreatedAtMinNotIn != nil {
+		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("createdAt")+") NOT IN (?)")
+		values = append(values, f.CreatedAtMinNotIn)
+	}
+
+	if f.CreatedAtMaxNotIn != nil {
+		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("createdAt")+") NOT IN (?)")
+		values = append(values, f.CreatedAtMaxNotIn)
 	}
 
 	if f.UpdatedByMin != nil {
@@ -4780,6 +5285,16 @@ func (f *ConfiguratorSlotDefinitionFilterType) HavingContent(dialect gorm.Dialec
 		values = append(values, f.UpdatedByMaxIn)
 	}
 
+	if f.UpdatedByMinNotIn != nil {
+		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("updatedBy")+") NOT IN (?)")
+		values = append(values, f.UpdatedByMinNotIn)
+	}
+
+	if f.UpdatedByMaxNotIn != nil {
+		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("updatedBy")+") NOT IN (?)")
+		values = append(values, f.UpdatedByMaxNotIn)
+	}
+
 	if f.CreatedByMin != nil {
 		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("createdBy")+") = ?")
 		values = append(values, f.CreatedByMin)
@@ -4848,6 +5363,16 @@ func (f *ConfiguratorSlotDefinitionFilterType) HavingContent(dialect gorm.Dialec
 	if f.CreatedByMaxIn != nil {
 		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("createdBy")+") IN (?)")
 		values = append(values, f.CreatedByMaxIn)
+	}
+
+	if f.CreatedByMinNotIn != nil {
+		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("createdBy")+") NOT IN (?)")
+		values = append(values, f.CreatedByMinNotIn)
+	}
+
+	if f.CreatedByMaxNotIn != nil {
+		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("createdBy")+") NOT IN (?)")
+		values = append(values, f.CreatedByMaxNotIn)
 	}
 
 	return
@@ -5044,6 +5569,11 @@ func (f *ConfiguratorItemFilterType) WhereContent(dialect gorm.Dialect, aliasPre
 		values = append(values, f.IDIn)
 	}
 
+	if f.IDNotIn != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("id")+" NOT IN (?)")
+		values = append(values, f.IDNotIn)
+	}
+
 	if f.IDNull != nil {
 		if *f.IDNull {
 			conditions = append(conditions, aliasPrefix+dialect.Quote("id")+" IS NULL")
@@ -5085,6 +5615,11 @@ func (f *ConfiguratorItemFilterType) WhereContent(dialect gorm.Dialect, aliasPre
 	if f.CodeIn != nil {
 		conditions = append(conditions, aliasPrefix+dialect.Quote("code")+" IN (?)")
 		values = append(values, f.CodeIn)
+	}
+
+	if f.CodeNotIn != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("code")+" NOT IN (?)")
+		values = append(values, f.CodeNotIn)
 	}
 
 	if f.CodeLike != nil {
@@ -5145,6 +5680,11 @@ func (f *ConfiguratorItemFilterType) WhereContent(dialect gorm.Dialect, aliasPre
 		values = append(values, f.NameIn)
 	}
 
+	if f.NameNotIn != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("name")+" NOT IN (?)")
+		values = append(values, f.NameNotIn)
+	}
+
 	if f.NameLike != nil {
 		conditions = append(conditions, aliasPrefix+dialect.Quote("name")+" LIKE ?")
 		values = append(values, strings.Replace(strings.Replace(*f.NameLike, "?", "_", -1), "*", "%", -1))
@@ -5203,6 +5743,11 @@ func (f *ConfiguratorItemFilterType) WhereContent(dialect gorm.Dialect, aliasPre
 		values = append(values, f.StockItemIDIn)
 	}
 
+	if f.StockItemIDNotIn != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("stockItemId")+" NOT IN (?)")
+		values = append(values, f.StockItemIDNotIn)
+	}
+
 	if f.StockItemIDNull != nil {
 		if *f.StockItemIDNull {
 			conditions = append(conditions, aliasPrefix+dialect.Quote("stockItemId")+" IS NULL")
@@ -5244,6 +5789,11 @@ func (f *ConfiguratorItemFilterType) WhereContent(dialect gorm.Dialect, aliasPre
 	if f.RawDataIn != nil {
 		conditions = append(conditions, aliasPrefix+dialect.Quote("rawData")+" IN (?)")
 		values = append(values, f.RawDataIn)
+	}
+
+	if f.RawDataNotIn != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("rawData")+" NOT IN (?)")
+		values = append(values, f.RawDataNotIn)
 	}
 
 	if f.RawDataLike != nil {
@@ -5304,6 +5854,11 @@ func (f *ConfiguratorItemFilterType) WhereContent(dialect gorm.Dialect, aliasPre
 		values = append(values, f.DefinitionIDIn)
 	}
 
+	if f.DefinitionIDNotIn != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("definitionId")+" NOT IN (?)")
+		values = append(values, f.DefinitionIDNotIn)
+	}
+
 	if f.DefinitionIDNull != nil {
 		if *f.DefinitionIDNull {
 			conditions = append(conditions, aliasPrefix+dialect.Quote("definitionId")+" IS NULL")
@@ -5345,6 +5900,11 @@ func (f *ConfiguratorItemFilterType) WhereContent(dialect gorm.Dialect, aliasPre
 	if f.UpdatedAtIn != nil {
 		conditions = append(conditions, aliasPrefix+dialect.Quote("updatedAt")+" IN (?)")
 		values = append(values, f.UpdatedAtIn)
+	}
+
+	if f.UpdatedAtNotIn != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("updatedAt")+" NOT IN (?)")
+		values = append(values, f.UpdatedAtNotIn)
 	}
 
 	if f.UpdatedAtNull != nil {
@@ -5390,6 +5950,11 @@ func (f *ConfiguratorItemFilterType) WhereContent(dialect gorm.Dialect, aliasPre
 		values = append(values, f.CreatedAtIn)
 	}
 
+	if f.CreatedAtNotIn != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("createdAt")+" NOT IN (?)")
+		values = append(values, f.CreatedAtNotIn)
+	}
+
 	if f.CreatedAtNull != nil {
 		if *f.CreatedAtNull {
 			conditions = append(conditions, aliasPrefix+dialect.Quote("createdAt")+" IS NULL")
@@ -5433,6 +5998,11 @@ func (f *ConfiguratorItemFilterType) WhereContent(dialect gorm.Dialect, aliasPre
 		values = append(values, f.UpdatedByIn)
 	}
 
+	if f.UpdatedByNotIn != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("updatedBy")+" NOT IN (?)")
+		values = append(values, f.UpdatedByNotIn)
+	}
+
 	if f.UpdatedByNull != nil {
 		if *f.UpdatedByNull {
 			conditions = append(conditions, aliasPrefix+dialect.Quote("updatedBy")+" IS NULL")
@@ -5474,6 +6044,11 @@ func (f *ConfiguratorItemFilterType) WhereContent(dialect gorm.Dialect, aliasPre
 	if f.CreatedByIn != nil {
 		conditions = append(conditions, aliasPrefix+dialect.Quote("createdBy")+" IN (?)")
 		values = append(values, f.CreatedByIn)
+	}
+
+	if f.CreatedByNotIn != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("createdBy")+" NOT IN (?)")
+		values = append(values, f.CreatedByNotIn)
 	}
 
 	if f.CreatedByNull != nil {
@@ -5560,6 +6135,16 @@ func (f *ConfiguratorItemFilterType) HavingContent(dialect gorm.Dialect, aliasPr
 		values = append(values, f.IDMaxIn)
 	}
 
+	if f.IDMinNotIn != nil {
+		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("id")+") NOT IN (?)")
+		values = append(values, f.IDMinNotIn)
+	}
+
+	if f.IDMaxNotIn != nil {
+		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("id")+") NOT IN (?)")
+		values = append(values, f.IDMaxNotIn)
+	}
+
 	if f.CodeMin != nil {
 		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("code")+") = ?")
 		values = append(values, f.CodeMin)
@@ -5628,6 +6213,16 @@ func (f *ConfiguratorItemFilterType) HavingContent(dialect gorm.Dialect, aliasPr
 	if f.CodeMaxIn != nil {
 		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("code")+") IN (?)")
 		values = append(values, f.CodeMaxIn)
+	}
+
+	if f.CodeMinNotIn != nil {
+		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("code")+") NOT IN (?)")
+		values = append(values, f.CodeMinNotIn)
+	}
+
+	if f.CodeMaxNotIn != nil {
+		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("code")+") NOT IN (?)")
+		values = append(values, f.CodeMaxNotIn)
 	}
 
 	if f.CodeMinLike != nil {
@@ -5730,6 +6325,16 @@ func (f *ConfiguratorItemFilterType) HavingContent(dialect gorm.Dialect, aliasPr
 		values = append(values, f.NameMaxIn)
 	}
 
+	if f.NameMinNotIn != nil {
+		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("name")+") NOT IN (?)")
+		values = append(values, f.NameMinNotIn)
+	}
+
+	if f.NameMaxNotIn != nil {
+		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("name")+") NOT IN (?)")
+		values = append(values, f.NameMaxNotIn)
+	}
+
 	if f.NameMinLike != nil {
 		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("name")+") LIKE ?")
 		values = append(values, strings.Replace(strings.Replace(*f.NameMinLike, "?", "_", -1), "*", "%", -1))
@@ -5830,6 +6435,16 @@ func (f *ConfiguratorItemFilterType) HavingContent(dialect gorm.Dialect, aliasPr
 		values = append(values, f.StockItemIDMaxIn)
 	}
 
+	if f.StockItemIDMinNotIn != nil {
+		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("stockItemId")+") NOT IN (?)")
+		values = append(values, f.StockItemIDMinNotIn)
+	}
+
+	if f.StockItemIDMaxNotIn != nil {
+		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("stockItemId")+") NOT IN (?)")
+		values = append(values, f.StockItemIDMaxNotIn)
+	}
+
 	if f.RawDataMin != nil {
 		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("rawData")+") = ?")
 		values = append(values, f.RawDataMin)
@@ -5898,6 +6513,16 @@ func (f *ConfiguratorItemFilterType) HavingContent(dialect gorm.Dialect, aliasPr
 	if f.RawDataMaxIn != nil {
 		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("rawData")+") IN (?)")
 		values = append(values, f.RawDataMaxIn)
+	}
+
+	if f.RawDataMinNotIn != nil {
+		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("rawData")+") NOT IN (?)")
+		values = append(values, f.RawDataMinNotIn)
+	}
+
+	if f.RawDataMaxNotIn != nil {
+		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("rawData")+") NOT IN (?)")
+		values = append(values, f.RawDataMaxNotIn)
 	}
 
 	if f.RawDataMinLike != nil {
@@ -6000,6 +6625,16 @@ func (f *ConfiguratorItemFilterType) HavingContent(dialect gorm.Dialect, aliasPr
 		values = append(values, f.DefinitionIDMaxIn)
 	}
 
+	if f.DefinitionIDMinNotIn != nil {
+		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("definitionId")+") NOT IN (?)")
+		values = append(values, f.DefinitionIDMinNotIn)
+	}
+
+	if f.DefinitionIDMaxNotIn != nil {
+		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("definitionId")+") NOT IN (?)")
+		values = append(values, f.DefinitionIDMaxNotIn)
+	}
+
 	if f.UpdatedAtMin != nil {
 		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("updatedAt")+") = ?")
 		values = append(values, f.UpdatedAtMin)
@@ -6068,6 +6703,16 @@ func (f *ConfiguratorItemFilterType) HavingContent(dialect gorm.Dialect, aliasPr
 	if f.UpdatedAtMaxIn != nil {
 		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("updatedAt")+") IN (?)")
 		values = append(values, f.UpdatedAtMaxIn)
+	}
+
+	if f.UpdatedAtMinNotIn != nil {
+		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("updatedAt")+") NOT IN (?)")
+		values = append(values, f.UpdatedAtMinNotIn)
+	}
+
+	if f.UpdatedAtMaxNotIn != nil {
+		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("updatedAt")+") NOT IN (?)")
+		values = append(values, f.UpdatedAtMaxNotIn)
 	}
 
 	if f.CreatedAtMin != nil {
@@ -6140,6 +6785,16 @@ func (f *ConfiguratorItemFilterType) HavingContent(dialect gorm.Dialect, aliasPr
 		values = append(values, f.CreatedAtMaxIn)
 	}
 
+	if f.CreatedAtMinNotIn != nil {
+		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("createdAt")+") NOT IN (?)")
+		values = append(values, f.CreatedAtMinNotIn)
+	}
+
+	if f.CreatedAtMaxNotIn != nil {
+		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("createdAt")+") NOT IN (?)")
+		values = append(values, f.CreatedAtMaxNotIn)
+	}
+
 	if f.UpdatedByMin != nil {
 		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("updatedBy")+") = ?")
 		values = append(values, f.UpdatedByMin)
@@ -6210,6 +6865,16 @@ func (f *ConfiguratorItemFilterType) HavingContent(dialect gorm.Dialect, aliasPr
 		values = append(values, f.UpdatedByMaxIn)
 	}
 
+	if f.UpdatedByMinNotIn != nil {
+		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("updatedBy")+") NOT IN (?)")
+		values = append(values, f.UpdatedByMinNotIn)
+	}
+
+	if f.UpdatedByMaxNotIn != nil {
+		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("updatedBy")+") NOT IN (?)")
+		values = append(values, f.UpdatedByMaxNotIn)
+	}
+
 	if f.CreatedByMin != nil {
 		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("createdBy")+") = ?")
 		values = append(values, f.CreatedByMin)
@@ -6278,6 +6943,16 @@ func (f *ConfiguratorItemFilterType) HavingContent(dialect gorm.Dialect, aliasPr
 	if f.CreatedByMaxIn != nil {
 		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("createdBy")+") IN (?)")
 		values = append(values, f.CreatedByMaxIn)
+	}
+
+	if f.CreatedByMinNotIn != nil {
+		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("createdBy")+") NOT IN (?)")
+		values = append(values, f.CreatedByMinNotIn)
+	}
+
+	if f.CreatedByMaxNotIn != nil {
+		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("createdBy")+") NOT IN (?)")
+		values = append(values, f.CreatedByMaxNotIn)
 	}
 
 	return
@@ -6456,6 +7131,11 @@ func (f *ConfiguratorAttributeFilterType) WhereContent(dialect gorm.Dialect, ali
 		values = append(values, f.IDIn)
 	}
 
+	if f.IDNotIn != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("id")+" NOT IN (?)")
+		values = append(values, f.IDNotIn)
+	}
+
 	if f.IDNull != nil {
 		if *f.IDNull {
 			conditions = append(conditions, aliasPrefix+dialect.Quote("id")+" IS NULL")
@@ -6497,6 +7177,11 @@ func (f *ConfiguratorAttributeFilterType) WhereContent(dialect gorm.Dialect, ali
 	if f.StringValueIn != nil {
 		conditions = append(conditions, aliasPrefix+dialect.Quote("stringValue")+" IN (?)")
 		values = append(values, f.StringValueIn)
+	}
+
+	if f.StringValueNotIn != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("stringValue")+" NOT IN (?)")
+		values = append(values, f.StringValueNotIn)
 	}
 
 	if f.StringValueLike != nil {
@@ -6557,6 +7242,11 @@ func (f *ConfiguratorAttributeFilterType) WhereContent(dialect gorm.Dialect, ali
 		values = append(values, f.FloatValueIn)
 	}
 
+	if f.FloatValueNotIn != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("floatValue")+" NOT IN (?)")
+		values = append(values, f.FloatValueNotIn)
+	}
+
 	if f.FloatValueNull != nil {
 		if *f.FloatValueNull {
 			conditions = append(conditions, aliasPrefix+dialect.Quote("floatValue")+" IS NULL")
@@ -6598,6 +7288,11 @@ func (f *ConfiguratorAttributeFilterType) WhereContent(dialect gorm.Dialect, ali
 	if f.IntValueIn != nil {
 		conditions = append(conditions, aliasPrefix+dialect.Quote("intValue")+" IN (?)")
 		values = append(values, f.IntValueIn)
+	}
+
+	if f.IntValueNotIn != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("intValue")+" NOT IN (?)")
+		values = append(values, f.IntValueNotIn)
 	}
 
 	if f.IntValueNull != nil {
@@ -6643,6 +7338,11 @@ func (f *ConfiguratorAttributeFilterType) WhereContent(dialect gorm.Dialect, ali
 		values = append(values, f.DefinitionIDIn)
 	}
 
+	if f.DefinitionIDNotIn != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("definitionId")+" NOT IN (?)")
+		values = append(values, f.DefinitionIDNotIn)
+	}
+
 	if f.DefinitionIDNull != nil {
 		if *f.DefinitionIDNull {
 			conditions = append(conditions, aliasPrefix+dialect.Quote("definitionId")+" IS NULL")
@@ -6684,6 +7384,11 @@ func (f *ConfiguratorAttributeFilterType) WhereContent(dialect gorm.Dialect, ali
 	if f.ItemIDIn != nil {
 		conditions = append(conditions, aliasPrefix+dialect.Quote("itemId")+" IN (?)")
 		values = append(values, f.ItemIDIn)
+	}
+
+	if f.ItemIDNotIn != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("itemId")+" NOT IN (?)")
+		values = append(values, f.ItemIDNotIn)
 	}
 
 	if f.ItemIDNull != nil {
@@ -6729,6 +7434,11 @@ func (f *ConfiguratorAttributeFilterType) WhereContent(dialect gorm.Dialect, ali
 		values = append(values, f.UpdatedAtIn)
 	}
 
+	if f.UpdatedAtNotIn != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("updatedAt")+" NOT IN (?)")
+		values = append(values, f.UpdatedAtNotIn)
+	}
+
 	if f.UpdatedAtNull != nil {
 		if *f.UpdatedAtNull {
 			conditions = append(conditions, aliasPrefix+dialect.Quote("updatedAt")+" IS NULL")
@@ -6770,6 +7480,11 @@ func (f *ConfiguratorAttributeFilterType) WhereContent(dialect gorm.Dialect, ali
 	if f.CreatedAtIn != nil {
 		conditions = append(conditions, aliasPrefix+dialect.Quote("createdAt")+" IN (?)")
 		values = append(values, f.CreatedAtIn)
+	}
+
+	if f.CreatedAtNotIn != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("createdAt")+" NOT IN (?)")
+		values = append(values, f.CreatedAtNotIn)
 	}
 
 	if f.CreatedAtNull != nil {
@@ -6815,6 +7530,11 @@ func (f *ConfiguratorAttributeFilterType) WhereContent(dialect gorm.Dialect, ali
 		values = append(values, f.UpdatedByIn)
 	}
 
+	if f.UpdatedByNotIn != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("updatedBy")+" NOT IN (?)")
+		values = append(values, f.UpdatedByNotIn)
+	}
+
 	if f.UpdatedByNull != nil {
 		if *f.UpdatedByNull {
 			conditions = append(conditions, aliasPrefix+dialect.Quote("updatedBy")+" IS NULL")
@@ -6856,6 +7576,11 @@ func (f *ConfiguratorAttributeFilterType) WhereContent(dialect gorm.Dialect, ali
 	if f.CreatedByIn != nil {
 		conditions = append(conditions, aliasPrefix+dialect.Quote("createdBy")+" IN (?)")
 		values = append(values, f.CreatedByIn)
+	}
+
+	if f.CreatedByNotIn != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("createdBy")+" NOT IN (?)")
+		values = append(values, f.CreatedByNotIn)
 	}
 
 	if f.CreatedByNull != nil {
@@ -6942,6 +7667,16 @@ func (f *ConfiguratorAttributeFilterType) HavingContent(dialect gorm.Dialect, al
 		values = append(values, f.IDMaxIn)
 	}
 
+	if f.IDMinNotIn != nil {
+		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("id")+") NOT IN (?)")
+		values = append(values, f.IDMinNotIn)
+	}
+
+	if f.IDMaxNotIn != nil {
+		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("id")+") NOT IN (?)")
+		values = append(values, f.IDMaxNotIn)
+	}
+
 	if f.StringValueMin != nil {
 		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("stringValue")+") = ?")
 		values = append(values, f.StringValueMin)
@@ -7010,6 +7745,16 @@ func (f *ConfiguratorAttributeFilterType) HavingContent(dialect gorm.Dialect, al
 	if f.StringValueMaxIn != nil {
 		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("stringValue")+") IN (?)")
 		values = append(values, f.StringValueMaxIn)
+	}
+
+	if f.StringValueMinNotIn != nil {
+		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("stringValue")+") NOT IN (?)")
+		values = append(values, f.StringValueMinNotIn)
+	}
+
+	if f.StringValueMaxNotIn != nil {
+		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("stringValue")+") NOT IN (?)")
+		values = append(values, f.StringValueMaxNotIn)
 	}
 
 	if f.StringValueMinLike != nil {
@@ -7147,6 +7892,21 @@ func (f *ConfiguratorAttributeFilterType) HavingContent(dialect gorm.Dialect, al
 		values = append(values, f.FloatValueAvgIn)
 	}
 
+	if f.FloatValueMinNotIn != nil {
+		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("floatValue")+") NOT IN (?)")
+		values = append(values, f.FloatValueMinNotIn)
+	}
+
+	if f.FloatValueMaxNotIn != nil {
+		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("floatValue")+") NOT IN (?)")
+		values = append(values, f.FloatValueMaxNotIn)
+	}
+
+	if f.FloatValueAvgNotIn != nil {
+		conditions = append(conditions, "Avg("+aliasPrefix+dialect.Quote("floatValue")+") NOT IN (?)")
+		values = append(values, f.FloatValueAvgNotIn)
+	}
+
 	if f.IntValueMin != nil {
 		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("intValue")+") = ?")
 		values = append(values, f.IntValueMin)
@@ -7252,6 +8012,21 @@ func (f *ConfiguratorAttributeFilterType) HavingContent(dialect gorm.Dialect, al
 		values = append(values, f.IntValueAvgIn)
 	}
 
+	if f.IntValueMinNotIn != nil {
+		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("intValue")+") NOT IN (?)")
+		values = append(values, f.IntValueMinNotIn)
+	}
+
+	if f.IntValueMaxNotIn != nil {
+		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("intValue")+") NOT IN (?)")
+		values = append(values, f.IntValueMaxNotIn)
+	}
+
+	if f.IntValueAvgNotIn != nil {
+		conditions = append(conditions, "Avg("+aliasPrefix+dialect.Quote("intValue")+") NOT IN (?)")
+		values = append(values, f.IntValueAvgNotIn)
+	}
+
 	if f.DefinitionIDMin != nil {
 		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("definitionId")+") = ?")
 		values = append(values, f.DefinitionIDMin)
@@ -7320,6 +8095,16 @@ func (f *ConfiguratorAttributeFilterType) HavingContent(dialect gorm.Dialect, al
 	if f.DefinitionIDMaxIn != nil {
 		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("definitionId")+") IN (?)")
 		values = append(values, f.DefinitionIDMaxIn)
+	}
+
+	if f.DefinitionIDMinNotIn != nil {
+		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("definitionId")+") NOT IN (?)")
+		values = append(values, f.DefinitionIDMinNotIn)
+	}
+
+	if f.DefinitionIDMaxNotIn != nil {
+		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("definitionId")+") NOT IN (?)")
+		values = append(values, f.DefinitionIDMaxNotIn)
 	}
 
 	if f.ItemIDMin != nil {
@@ -7392,6 +8177,16 @@ func (f *ConfiguratorAttributeFilterType) HavingContent(dialect gorm.Dialect, al
 		values = append(values, f.ItemIDMaxIn)
 	}
 
+	if f.ItemIDMinNotIn != nil {
+		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("itemId")+") NOT IN (?)")
+		values = append(values, f.ItemIDMinNotIn)
+	}
+
+	if f.ItemIDMaxNotIn != nil {
+		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("itemId")+") NOT IN (?)")
+		values = append(values, f.ItemIDMaxNotIn)
+	}
+
 	if f.UpdatedAtMin != nil {
 		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("updatedAt")+") = ?")
 		values = append(values, f.UpdatedAtMin)
@@ -7460,6 +8255,16 @@ func (f *ConfiguratorAttributeFilterType) HavingContent(dialect gorm.Dialect, al
 	if f.UpdatedAtMaxIn != nil {
 		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("updatedAt")+") IN (?)")
 		values = append(values, f.UpdatedAtMaxIn)
+	}
+
+	if f.UpdatedAtMinNotIn != nil {
+		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("updatedAt")+") NOT IN (?)")
+		values = append(values, f.UpdatedAtMinNotIn)
+	}
+
+	if f.UpdatedAtMaxNotIn != nil {
+		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("updatedAt")+") NOT IN (?)")
+		values = append(values, f.UpdatedAtMaxNotIn)
 	}
 
 	if f.CreatedAtMin != nil {
@@ -7532,6 +8337,16 @@ func (f *ConfiguratorAttributeFilterType) HavingContent(dialect gorm.Dialect, al
 		values = append(values, f.CreatedAtMaxIn)
 	}
 
+	if f.CreatedAtMinNotIn != nil {
+		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("createdAt")+") NOT IN (?)")
+		values = append(values, f.CreatedAtMinNotIn)
+	}
+
+	if f.CreatedAtMaxNotIn != nil {
+		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("createdAt")+") NOT IN (?)")
+		values = append(values, f.CreatedAtMaxNotIn)
+	}
+
 	if f.UpdatedByMin != nil {
 		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("updatedBy")+") = ?")
 		values = append(values, f.UpdatedByMin)
@@ -7602,6 +8417,16 @@ func (f *ConfiguratorAttributeFilterType) HavingContent(dialect gorm.Dialect, al
 		values = append(values, f.UpdatedByMaxIn)
 	}
 
+	if f.UpdatedByMinNotIn != nil {
+		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("updatedBy")+") NOT IN (?)")
+		values = append(values, f.UpdatedByMinNotIn)
+	}
+
+	if f.UpdatedByMaxNotIn != nil {
+		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("updatedBy")+") NOT IN (?)")
+		values = append(values, f.UpdatedByMaxNotIn)
+	}
+
 	if f.CreatedByMin != nil {
 		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("createdBy")+") = ?")
 		values = append(values, f.CreatedByMin)
@@ -7670,6 +8495,16 @@ func (f *ConfiguratorAttributeFilterType) HavingContent(dialect gorm.Dialect, al
 	if f.CreatedByMaxIn != nil {
 		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("createdBy")+") IN (?)")
 		values = append(values, f.CreatedByMaxIn)
+	}
+
+	if f.CreatedByMinNotIn != nil {
+		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("createdBy")+") NOT IN (?)")
+		values = append(values, f.CreatedByMinNotIn)
+	}
+
+	if f.CreatedByMaxNotIn != nil {
+		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("createdBy")+") NOT IN (?)")
+		values = append(values, f.CreatedByMaxNotIn)
 	}
 
 	return
@@ -7857,6 +8692,11 @@ func (f *ConfiguratorSlotFilterType) WhereContent(dialect gorm.Dialect, aliasPre
 		values = append(values, f.IDIn)
 	}
 
+	if f.IDNotIn != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("id")+" NOT IN (?)")
+		values = append(values, f.IDNotIn)
+	}
+
 	if f.IDNull != nil {
 		if *f.IDNull {
 			conditions = append(conditions, aliasPrefix+dialect.Quote("id")+" IS NULL")
@@ -7898,6 +8738,11 @@ func (f *ConfiguratorSlotFilterType) WhereContent(dialect gorm.Dialect, aliasPre
 	if f.CountIn != nil {
 		conditions = append(conditions, aliasPrefix+dialect.Quote("count")+" IN (?)")
 		values = append(values, f.CountIn)
+	}
+
+	if f.CountNotIn != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("count")+" NOT IN (?)")
+		values = append(values, f.CountNotIn)
 	}
 
 	if f.CountNull != nil {
@@ -7943,6 +8788,11 @@ func (f *ConfiguratorSlotFilterType) WhereContent(dialect gorm.Dialect, aliasPre
 		values = append(values, f.ItemIDIn)
 	}
 
+	if f.ItemIDNotIn != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("itemId")+" NOT IN (?)")
+		values = append(values, f.ItemIDNotIn)
+	}
+
 	if f.ItemIDNull != nil {
 		if *f.ItemIDNull {
 			conditions = append(conditions, aliasPrefix+dialect.Quote("itemId")+" IS NULL")
@@ -7984,6 +8834,11 @@ func (f *ConfiguratorSlotFilterType) WhereContent(dialect gorm.Dialect, aliasPre
 	if f.DefinitionIDIn != nil {
 		conditions = append(conditions, aliasPrefix+dialect.Quote("definitionId")+" IN (?)")
 		values = append(values, f.DefinitionIDIn)
+	}
+
+	if f.DefinitionIDNotIn != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("definitionId")+" NOT IN (?)")
+		values = append(values, f.DefinitionIDNotIn)
 	}
 
 	if f.DefinitionIDNull != nil {
@@ -8029,6 +8884,11 @@ func (f *ConfiguratorSlotFilterType) WhereContent(dialect gorm.Dialect, aliasPre
 		values = append(values, f.ParentItemIDIn)
 	}
 
+	if f.ParentItemIDNotIn != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("parentItemId")+" NOT IN (?)")
+		values = append(values, f.ParentItemIDNotIn)
+	}
+
 	if f.ParentItemIDNull != nil {
 		if *f.ParentItemIDNull {
 			conditions = append(conditions, aliasPrefix+dialect.Quote("parentItemId")+" IS NULL")
@@ -8070,6 +8930,11 @@ func (f *ConfiguratorSlotFilterType) WhereContent(dialect gorm.Dialect, aliasPre
 	if f.UpdatedAtIn != nil {
 		conditions = append(conditions, aliasPrefix+dialect.Quote("updatedAt")+" IN (?)")
 		values = append(values, f.UpdatedAtIn)
+	}
+
+	if f.UpdatedAtNotIn != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("updatedAt")+" NOT IN (?)")
+		values = append(values, f.UpdatedAtNotIn)
 	}
 
 	if f.UpdatedAtNull != nil {
@@ -8115,6 +8980,11 @@ func (f *ConfiguratorSlotFilterType) WhereContent(dialect gorm.Dialect, aliasPre
 		values = append(values, f.CreatedAtIn)
 	}
 
+	if f.CreatedAtNotIn != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("createdAt")+" NOT IN (?)")
+		values = append(values, f.CreatedAtNotIn)
+	}
+
 	if f.CreatedAtNull != nil {
 		if *f.CreatedAtNull {
 			conditions = append(conditions, aliasPrefix+dialect.Quote("createdAt")+" IS NULL")
@@ -8158,6 +9028,11 @@ func (f *ConfiguratorSlotFilterType) WhereContent(dialect gorm.Dialect, aliasPre
 		values = append(values, f.UpdatedByIn)
 	}
 
+	if f.UpdatedByNotIn != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("updatedBy")+" NOT IN (?)")
+		values = append(values, f.UpdatedByNotIn)
+	}
+
 	if f.UpdatedByNull != nil {
 		if *f.UpdatedByNull {
 			conditions = append(conditions, aliasPrefix+dialect.Quote("updatedBy")+" IS NULL")
@@ -8199,6 +9074,11 @@ func (f *ConfiguratorSlotFilterType) WhereContent(dialect gorm.Dialect, aliasPre
 	if f.CreatedByIn != nil {
 		conditions = append(conditions, aliasPrefix+dialect.Quote("createdBy")+" IN (?)")
 		values = append(values, f.CreatedByIn)
+	}
+
+	if f.CreatedByNotIn != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("createdBy")+" NOT IN (?)")
+		values = append(values, f.CreatedByNotIn)
 	}
 
 	if f.CreatedByNull != nil {
@@ -8283,6 +9163,16 @@ func (f *ConfiguratorSlotFilterType) HavingContent(dialect gorm.Dialect, aliasPr
 	if f.IDMaxIn != nil {
 		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("id")+") IN (?)")
 		values = append(values, f.IDMaxIn)
+	}
+
+	if f.IDMinNotIn != nil {
+		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("id")+") NOT IN (?)")
+		values = append(values, f.IDMinNotIn)
+	}
+
+	if f.IDMaxNotIn != nil {
+		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("id")+") NOT IN (?)")
+		values = append(values, f.IDMaxNotIn)
 	}
 
 	if f.CountMin != nil {
@@ -8390,6 +9280,21 @@ func (f *ConfiguratorSlotFilterType) HavingContent(dialect gorm.Dialect, aliasPr
 		values = append(values, f.CountAvgIn)
 	}
 
+	if f.CountMinNotIn != nil {
+		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("count")+") NOT IN (?)")
+		values = append(values, f.CountMinNotIn)
+	}
+
+	if f.CountMaxNotIn != nil {
+		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("count")+") NOT IN (?)")
+		values = append(values, f.CountMaxNotIn)
+	}
+
+	if f.CountAvgNotIn != nil {
+		conditions = append(conditions, "Avg("+aliasPrefix+dialect.Quote("count")+") NOT IN (?)")
+		values = append(values, f.CountAvgNotIn)
+	}
+
 	if f.ItemIDMin != nil {
 		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("itemId")+") = ?")
 		values = append(values, f.ItemIDMin)
@@ -8458,6 +9363,16 @@ func (f *ConfiguratorSlotFilterType) HavingContent(dialect gorm.Dialect, aliasPr
 	if f.ItemIDMaxIn != nil {
 		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("itemId")+") IN (?)")
 		values = append(values, f.ItemIDMaxIn)
+	}
+
+	if f.ItemIDMinNotIn != nil {
+		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("itemId")+") NOT IN (?)")
+		values = append(values, f.ItemIDMinNotIn)
+	}
+
+	if f.ItemIDMaxNotIn != nil {
+		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("itemId")+") NOT IN (?)")
+		values = append(values, f.ItemIDMaxNotIn)
 	}
 
 	if f.DefinitionIDMin != nil {
@@ -8530,6 +9445,16 @@ func (f *ConfiguratorSlotFilterType) HavingContent(dialect gorm.Dialect, aliasPr
 		values = append(values, f.DefinitionIDMaxIn)
 	}
 
+	if f.DefinitionIDMinNotIn != nil {
+		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("definitionId")+") NOT IN (?)")
+		values = append(values, f.DefinitionIDMinNotIn)
+	}
+
+	if f.DefinitionIDMaxNotIn != nil {
+		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("definitionId")+") NOT IN (?)")
+		values = append(values, f.DefinitionIDMaxNotIn)
+	}
+
 	if f.ParentItemIDMin != nil {
 		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("parentItemId")+") = ?")
 		values = append(values, f.ParentItemIDMin)
@@ -8598,6 +9523,16 @@ func (f *ConfiguratorSlotFilterType) HavingContent(dialect gorm.Dialect, aliasPr
 	if f.ParentItemIDMaxIn != nil {
 		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("parentItemId")+") IN (?)")
 		values = append(values, f.ParentItemIDMaxIn)
+	}
+
+	if f.ParentItemIDMinNotIn != nil {
+		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("parentItemId")+") NOT IN (?)")
+		values = append(values, f.ParentItemIDMinNotIn)
+	}
+
+	if f.ParentItemIDMaxNotIn != nil {
+		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("parentItemId")+") NOT IN (?)")
+		values = append(values, f.ParentItemIDMaxNotIn)
 	}
 
 	if f.UpdatedAtMin != nil {
@@ -8670,6 +9605,16 @@ func (f *ConfiguratorSlotFilterType) HavingContent(dialect gorm.Dialect, aliasPr
 		values = append(values, f.UpdatedAtMaxIn)
 	}
 
+	if f.UpdatedAtMinNotIn != nil {
+		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("updatedAt")+") NOT IN (?)")
+		values = append(values, f.UpdatedAtMinNotIn)
+	}
+
+	if f.UpdatedAtMaxNotIn != nil {
+		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("updatedAt")+") NOT IN (?)")
+		values = append(values, f.UpdatedAtMaxNotIn)
+	}
+
 	if f.CreatedAtMin != nil {
 		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("createdAt")+") = ?")
 		values = append(values, f.CreatedAtMin)
@@ -8738,6 +9683,16 @@ func (f *ConfiguratorSlotFilterType) HavingContent(dialect gorm.Dialect, aliasPr
 	if f.CreatedAtMaxIn != nil {
 		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("createdAt")+") IN (?)")
 		values = append(values, f.CreatedAtMaxIn)
+	}
+
+	if f.CreatedAtMinNotIn != nil {
+		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("createdAt")+") NOT IN (?)")
+		values = append(values, f.CreatedAtMinNotIn)
+	}
+
+	if f.CreatedAtMaxNotIn != nil {
+		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("createdAt")+") NOT IN (?)")
+		values = append(values, f.CreatedAtMaxNotIn)
 	}
 
 	if f.UpdatedByMin != nil {
@@ -8810,6 +9765,16 @@ func (f *ConfiguratorSlotFilterType) HavingContent(dialect gorm.Dialect, aliasPr
 		values = append(values, f.UpdatedByMaxIn)
 	}
 
+	if f.UpdatedByMinNotIn != nil {
+		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("updatedBy")+") NOT IN (?)")
+		values = append(values, f.UpdatedByMinNotIn)
+	}
+
+	if f.UpdatedByMaxNotIn != nil {
+		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("updatedBy")+") NOT IN (?)")
+		values = append(values, f.UpdatedByMaxNotIn)
+	}
+
 	if f.CreatedByMin != nil {
 		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("createdBy")+") = ?")
 		values = append(values, f.CreatedByMin)
@@ -8878,6 +9843,16 @@ func (f *ConfiguratorSlotFilterType) HavingContent(dialect gorm.Dialect, aliasPr
 	if f.CreatedByMaxIn != nil {
 		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("createdBy")+") IN (?)")
 		values = append(values, f.CreatedByMaxIn)
+	}
+
+	if f.CreatedByMinNotIn != nil {
+		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("createdBy")+") NOT IN (?)")
+		values = append(values, f.CreatedByMinNotIn)
+	}
+
+	if f.CreatedByMaxNotIn != nil {
+		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("createdBy")+") NOT IN (?)")
+		values = append(values, f.CreatedByMaxNotIn)
 	}
 
 	return

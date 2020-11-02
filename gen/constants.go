@@ -350,6 +350,9 @@ input ConfiguratorItemDefinitionCategoryFilterType {
   id_in: [ID!]
   idMin_in: [ID!]
   idMax_in: [ID!]
+  id_not_in: [ID!]
+  idMin_not_in: [ID!]
+  idMax_not_in: [ID!]
   id_null: Boolean
   code: String
   codeMin: String
@@ -372,6 +375,9 @@ input ConfiguratorItemDefinitionCategoryFilterType {
   code_in: [String!]
   codeMin_in: [String!]
   codeMax_in: [String!]
+  code_not_in: [String!]
+  codeMin_not_in: [String!]
+  codeMax_not_in: [String!]
   code_like: String
   codeMin_like: String
   codeMax_like: String
@@ -403,6 +409,9 @@ input ConfiguratorItemDefinitionCategoryFilterType {
   name_in: [String!]
   nameMin_in: [String!]
   nameMax_in: [String!]
+  name_not_in: [String!]
+  nameMin_not_in: [String!]
+  nameMax_not_in: [String!]
   name_like: String
   nameMin_like: String
   nameMax_like: String
@@ -434,6 +443,9 @@ input ConfiguratorItemDefinitionCategoryFilterType {
   type_in: [String!]
   typeMin_in: [String!]
   typeMax_in: [String!]
+  type_not_in: [String!]
+  typeMin_not_in: [String!]
+  typeMax_not_in: [String!]
   type_like: String
   typeMin_like: String
   typeMax_like: String
@@ -465,6 +477,9 @@ input ConfiguratorItemDefinitionCategoryFilterType {
   primary_in: [Boolean!]
   primaryMin_in: [Boolean!]
   primaryMax_in: [Boolean!]
+  primary_not_in: [Boolean!]
+  primaryMin_not_in: [Boolean!]
+  primaryMax_not_in: [Boolean!]
   primary_null: Boolean
   updatedAt: Time
   updatedAtMin: Time
@@ -487,6 +502,9 @@ input ConfiguratorItemDefinitionCategoryFilterType {
   updatedAt_in: [Time!]
   updatedAtMin_in: [Time!]
   updatedAtMax_in: [Time!]
+  updatedAt_not_in: [Time!]
+  updatedAtMin_not_in: [Time!]
+  updatedAtMax_not_in: [Time!]
   updatedAt_null: Boolean
   createdAt: Time
   createdAtMin: Time
@@ -509,6 +527,9 @@ input ConfiguratorItemDefinitionCategoryFilterType {
   createdAt_in: [Time!]
   createdAtMin_in: [Time!]
   createdAtMax_in: [Time!]
+  createdAt_not_in: [Time!]
+  createdAtMin_not_in: [Time!]
+  createdAtMax_not_in: [Time!]
   createdAt_null: Boolean
   updatedBy: ID
   updatedByMin: ID
@@ -531,6 +552,9 @@ input ConfiguratorItemDefinitionCategoryFilterType {
   updatedBy_in: [ID!]
   updatedByMin_in: [ID!]
   updatedByMax_in: [ID!]
+  updatedBy_not_in: [ID!]
+  updatedByMin_not_in: [ID!]
+  updatedByMax_not_in: [ID!]
   updatedBy_null: Boolean
   createdBy: ID
   createdByMin: ID
@@ -553,6 +577,9 @@ input ConfiguratorItemDefinitionCategoryFilterType {
   createdBy_in: [ID!]
   createdByMin_in: [ID!]
   createdByMax_in: [ID!]
+  createdBy_not_in: [ID!]
+  createdByMin_not_in: [ID!]
+  createdByMax_not_in: [ID!]
   createdBy_null: Boolean
   definitions: ConfiguratorItemDefinitionFilterType
 }
@@ -651,6 +678,9 @@ input ConfiguratorItemDefinitionFilterType {
   id_in: [ID!]
   idMin_in: [ID!]
   idMax_in: [ID!]
+  id_not_in: [ID!]
+  idMin_not_in: [ID!]
+  idMax_not_in: [ID!]
   id_null: Boolean
   code: String
   codeMin: String
@@ -673,6 +703,9 @@ input ConfiguratorItemDefinitionFilterType {
   code_in: [String!]
   codeMin_in: [String!]
   codeMax_in: [String!]
+  code_not_in: [String!]
+  codeMin_not_in: [String!]
+  codeMax_not_in: [String!]
   code_like: String
   codeMin_like: String
   codeMax_like: String
@@ -704,6 +737,9 @@ input ConfiguratorItemDefinitionFilterType {
   name_in: [String!]
   nameMin_in: [String!]
   nameMax_in: [String!]
+  name_not_in: [String!]
+  nameMin_not_in: [String!]
+  nameMax_not_in: [String!]
   name_like: String
   nameMin_like: String
   nameMax_like: String
@@ -735,6 +771,9 @@ input ConfiguratorItemDefinitionFilterType {
   categoryId_in: [ID!]
   categoryIdMin_in: [ID!]
   categoryIdMax_in: [ID!]
+  categoryId_not_in: [ID!]
+  categoryIdMin_not_in: [ID!]
+  categoryIdMax_not_in: [ID!]
   categoryId_null: Boolean
   updatedAt: Time
   updatedAtMin: Time
@@ -757,6 +796,9 @@ input ConfiguratorItemDefinitionFilterType {
   updatedAt_in: [Time!]
   updatedAtMin_in: [Time!]
   updatedAtMax_in: [Time!]
+  updatedAt_not_in: [Time!]
+  updatedAtMin_not_in: [Time!]
+  updatedAtMax_not_in: [Time!]
   updatedAt_null: Boolean
   createdAt: Time
   createdAtMin: Time
@@ -779,6 +821,9 @@ input ConfiguratorItemDefinitionFilterType {
   createdAt_in: [Time!]
   createdAtMin_in: [Time!]
   createdAtMax_in: [Time!]
+  createdAt_not_in: [Time!]
+  createdAtMin_not_in: [Time!]
+  createdAtMax_not_in: [Time!]
   createdAt_null: Boolean
   updatedBy: ID
   updatedByMin: ID
@@ -801,6 +846,9 @@ input ConfiguratorItemDefinitionFilterType {
   updatedBy_in: [ID!]
   updatedByMin_in: [ID!]
   updatedByMax_in: [ID!]
+  updatedBy_not_in: [ID!]
+  updatedByMin_not_in: [ID!]
+  updatedByMax_not_in: [ID!]
   updatedBy_null: Boolean
   createdBy: ID
   createdByMin: ID
@@ -823,6 +871,9 @@ input ConfiguratorItemDefinitionFilterType {
   createdBy_in: [ID!]
   createdByMin_in: [ID!]
   createdByMax_in: [ID!]
+  createdBy_not_in: [ID!]
+  createdByMin_not_in: [ID!]
+  createdByMax_not_in: [ID!]
   createdBy_null: Boolean
   attributes: ConfiguratorAttributeDefinitionFilterType
   slots: ConfiguratorSlotDefinitionFilterType
@@ -907,6 +958,9 @@ input ConfiguratorAttributeDefinitionFilterType {
   id_in: [ID!]
   idMin_in: [ID!]
   idMax_in: [ID!]
+  id_not_in: [ID!]
+  idMin_not_in: [ID!]
+  idMax_not_in: [ID!]
   id_null: Boolean
   name: String
   nameMin: String
@@ -929,6 +983,9 @@ input ConfiguratorAttributeDefinitionFilterType {
   name_in: [String!]
   nameMin_in: [String!]
   nameMax_in: [String!]
+  name_not_in: [String!]
+  nameMin_not_in: [String!]
+  nameMax_not_in: [String!]
   name_like: String
   nameMin_like: String
   nameMax_like: String
@@ -960,6 +1017,9 @@ input ConfiguratorAttributeDefinitionFilterType {
   type_in: [ConfiguratorAttributeType!]
   typeMin_in: [ConfiguratorAttributeType!]
   typeMax_in: [ConfiguratorAttributeType!]
+  type_not_in: [ConfiguratorAttributeType!]
+  typeMin_not_in: [ConfiguratorAttributeType!]
+  typeMax_not_in: [ConfiguratorAttributeType!]
   type_null: Boolean
   updatedAt: Time
   updatedAtMin: Time
@@ -982,6 +1042,9 @@ input ConfiguratorAttributeDefinitionFilterType {
   updatedAt_in: [Time!]
   updatedAtMin_in: [Time!]
   updatedAtMax_in: [Time!]
+  updatedAt_not_in: [Time!]
+  updatedAtMin_not_in: [Time!]
+  updatedAtMax_not_in: [Time!]
   updatedAt_null: Boolean
   createdAt: Time
   createdAtMin: Time
@@ -1004,6 +1067,9 @@ input ConfiguratorAttributeDefinitionFilterType {
   createdAt_in: [Time!]
   createdAtMin_in: [Time!]
   createdAtMax_in: [Time!]
+  createdAt_not_in: [Time!]
+  createdAtMin_not_in: [Time!]
+  createdAtMax_not_in: [Time!]
   createdAt_null: Boolean
   updatedBy: ID
   updatedByMin: ID
@@ -1026,6 +1092,9 @@ input ConfiguratorAttributeDefinitionFilterType {
   updatedBy_in: [ID!]
   updatedByMin_in: [ID!]
   updatedByMax_in: [ID!]
+  updatedBy_not_in: [ID!]
+  updatedByMin_not_in: [ID!]
+  updatedByMax_not_in: [ID!]
   updatedBy_null: Boolean
   createdBy: ID
   createdByMin: ID
@@ -1048,6 +1117,9 @@ input ConfiguratorAttributeDefinitionFilterType {
   createdBy_in: [ID!]
   createdByMin_in: [ID!]
   createdByMax_in: [ID!]
+  createdBy_not_in: [ID!]
+  createdByMin_not_in: [ID!]
+  createdByMax_not_in: [ID!]
   createdBy_null: Boolean
   definitions: ConfiguratorItemDefinitionFilterType
   attributes: ConfiguratorAttributeFilterType
@@ -1148,6 +1220,9 @@ input ConfiguratorSlotDefinitionFilterType {
   id_in: [ID!]
   idMin_in: [ID!]
   idMax_in: [ID!]
+  id_not_in: [ID!]
+  idMin_not_in: [ID!]
+  idMax_not_in: [ID!]
   id_null: Boolean
   name: String
   nameMin: String
@@ -1170,6 +1245,9 @@ input ConfiguratorSlotDefinitionFilterType {
   name_in: [String!]
   nameMin_in: [String!]
   nameMax_in: [String!]
+  name_not_in: [String!]
+  nameMin_not_in: [String!]
+  nameMax_not_in: [String!]
   name_like: String
   nameMin_like: String
   nameMax_like: String
@@ -1208,6 +1286,10 @@ input ConfiguratorSlotDefinitionFilterType {
   minCountMin_in: [Float!]
   minCountMax_in: [Float!]
   minCountAvg_in: [Float!]
+  minCount_not_in: [Float!]
+  minCountMin_not_in: [Float!]
+  minCountMax_not_in: [Float!]
+  minCountAvg_not_in: [Float!]
   minCount_null: Boolean
   maxCount: Float
   maxCountMin: Float
@@ -1237,6 +1319,10 @@ input ConfiguratorSlotDefinitionFilterType {
   maxCountMin_in: [Float!]
   maxCountMax_in: [Float!]
   maxCountAvg_in: [Float!]
+  maxCount_not_in: [Float!]
+  maxCountMin_not_in: [Float!]
+  maxCountMax_not_in: [Float!]
+  maxCountAvg_not_in: [Float!]
   maxCount_null: Boolean
   defaultCount: Float
   defaultCountMin: Float
@@ -1266,6 +1352,10 @@ input ConfiguratorSlotDefinitionFilterType {
   defaultCountMin_in: [Float!]
   defaultCountMax_in: [Float!]
   defaultCountAvg_in: [Float!]
+  defaultCount_not_in: [Float!]
+  defaultCountMin_not_in: [Float!]
+  defaultCountMax_not_in: [Float!]
+  defaultCountAvg_not_in: [Float!]
   defaultCount_null: Boolean
   definitionId: ID
   definitionIdMin: ID
@@ -1288,6 +1378,9 @@ input ConfiguratorSlotDefinitionFilterType {
   definitionId_in: [ID!]
   definitionIdMin_in: [ID!]
   definitionIdMax_in: [ID!]
+  definitionId_not_in: [ID!]
+  definitionIdMin_not_in: [ID!]
+  definitionIdMax_not_in: [ID!]
   definitionId_null: Boolean
   updatedAt: Time
   updatedAtMin: Time
@@ -1310,6 +1403,9 @@ input ConfiguratorSlotDefinitionFilterType {
   updatedAt_in: [Time!]
   updatedAtMin_in: [Time!]
   updatedAtMax_in: [Time!]
+  updatedAt_not_in: [Time!]
+  updatedAtMin_not_in: [Time!]
+  updatedAtMax_not_in: [Time!]
   updatedAt_null: Boolean
   createdAt: Time
   createdAtMin: Time
@@ -1332,6 +1428,9 @@ input ConfiguratorSlotDefinitionFilterType {
   createdAt_in: [Time!]
   createdAtMin_in: [Time!]
   createdAtMax_in: [Time!]
+  createdAt_not_in: [Time!]
+  createdAtMin_not_in: [Time!]
+  createdAtMax_not_in: [Time!]
   createdAt_null: Boolean
   updatedBy: ID
   updatedByMin: ID
@@ -1354,6 +1453,9 @@ input ConfiguratorSlotDefinitionFilterType {
   updatedBy_in: [ID!]
   updatedByMin_in: [ID!]
   updatedByMax_in: [ID!]
+  updatedBy_not_in: [ID!]
+  updatedByMin_not_in: [ID!]
+  updatedByMax_not_in: [ID!]
   updatedBy_null: Boolean
   createdBy: ID
   createdByMin: ID
@@ -1376,6 +1478,9 @@ input ConfiguratorSlotDefinitionFilterType {
   createdBy_in: [ID!]
   createdByMin_in: [ID!]
   createdByMax_in: [ID!]
+  createdBy_not_in: [ID!]
+  createdByMin_not_in: [ID!]
+  createdByMax_not_in: [ID!]
   createdBy_null: Boolean
   definition: ConfiguratorItemDefinitionFilterType
   slots: ConfiguratorSlotFilterType
@@ -1480,6 +1585,9 @@ input ConfiguratorItemFilterType {
   id_in: [ID!]
   idMin_in: [ID!]
   idMax_in: [ID!]
+  id_not_in: [ID!]
+  idMin_not_in: [ID!]
+  idMax_not_in: [ID!]
   id_null: Boolean
   code: String
   codeMin: String
@@ -1502,6 +1610,9 @@ input ConfiguratorItemFilterType {
   code_in: [String!]
   codeMin_in: [String!]
   codeMax_in: [String!]
+  code_not_in: [String!]
+  codeMin_not_in: [String!]
+  codeMax_not_in: [String!]
   code_like: String
   codeMin_like: String
   codeMax_like: String
@@ -1533,6 +1644,9 @@ input ConfiguratorItemFilterType {
   name_in: [String!]
   nameMin_in: [String!]
   nameMax_in: [String!]
+  name_not_in: [String!]
+  nameMin_not_in: [String!]
+  nameMax_not_in: [String!]
   name_like: String
   nameMin_like: String
   nameMax_like: String
@@ -1564,6 +1678,9 @@ input ConfiguratorItemFilterType {
   stockItemId_in: [ID!]
   stockItemIdMin_in: [ID!]
   stockItemIdMax_in: [ID!]
+  stockItemId_not_in: [ID!]
+  stockItemIdMin_not_in: [ID!]
+  stockItemIdMax_not_in: [ID!]
   stockItemId_null: Boolean
   rawData: String
   rawDataMin: String
@@ -1586,6 +1703,9 @@ input ConfiguratorItemFilterType {
   rawData_in: [String!]
   rawDataMin_in: [String!]
   rawDataMax_in: [String!]
+  rawData_not_in: [String!]
+  rawDataMin_not_in: [String!]
+  rawDataMax_not_in: [String!]
   rawData_like: String
   rawDataMin_like: String
   rawDataMax_like: String
@@ -1617,6 +1737,9 @@ input ConfiguratorItemFilterType {
   definitionId_in: [ID!]
   definitionIdMin_in: [ID!]
   definitionIdMax_in: [ID!]
+  definitionId_not_in: [ID!]
+  definitionIdMin_not_in: [ID!]
+  definitionIdMax_not_in: [ID!]
   definitionId_null: Boolean
   updatedAt: Time
   updatedAtMin: Time
@@ -1639,6 +1762,9 @@ input ConfiguratorItemFilterType {
   updatedAt_in: [Time!]
   updatedAtMin_in: [Time!]
   updatedAtMax_in: [Time!]
+  updatedAt_not_in: [Time!]
+  updatedAtMin_not_in: [Time!]
+  updatedAtMax_not_in: [Time!]
   updatedAt_null: Boolean
   createdAt: Time
   createdAtMin: Time
@@ -1661,6 +1787,9 @@ input ConfiguratorItemFilterType {
   createdAt_in: [Time!]
   createdAtMin_in: [Time!]
   createdAtMax_in: [Time!]
+  createdAt_not_in: [Time!]
+  createdAtMin_not_in: [Time!]
+  createdAtMax_not_in: [Time!]
   createdAt_null: Boolean
   updatedBy: ID
   updatedByMin: ID
@@ -1683,6 +1812,9 @@ input ConfiguratorItemFilterType {
   updatedBy_in: [ID!]
   updatedByMin_in: [ID!]
   updatedByMax_in: [ID!]
+  updatedBy_not_in: [ID!]
+  updatedByMin_not_in: [ID!]
+  updatedByMax_not_in: [ID!]
   updatedBy_null: Boolean
   createdBy: ID
   createdByMin: ID
@@ -1705,6 +1837,9 @@ input ConfiguratorItemFilterType {
   createdBy_in: [ID!]
   createdByMin_in: [ID!]
   createdByMax_in: [ID!]
+  createdBy_not_in: [ID!]
+  createdByMin_not_in: [ID!]
+  createdByMax_not_in: [ID!]
   createdBy_null: Boolean
   definition: ConfiguratorItemDefinitionFilterType
   attributes: ConfiguratorAttributeFilterType
@@ -1795,6 +1930,9 @@ input ConfiguratorAttributeFilterType {
   id_in: [ID!]
   idMin_in: [ID!]
   idMax_in: [ID!]
+  id_not_in: [ID!]
+  idMin_not_in: [ID!]
+  idMax_not_in: [ID!]
   id_null: Boolean
   stringValue: String
   stringValueMin: String
@@ -1817,6 +1955,9 @@ input ConfiguratorAttributeFilterType {
   stringValue_in: [String!]
   stringValueMin_in: [String!]
   stringValueMax_in: [String!]
+  stringValue_not_in: [String!]
+  stringValueMin_not_in: [String!]
+  stringValueMax_not_in: [String!]
   stringValue_like: String
   stringValueMin_like: String
   stringValueMax_like: String
@@ -1855,6 +1996,10 @@ input ConfiguratorAttributeFilterType {
   floatValueMin_in: [Float!]
   floatValueMax_in: [Float!]
   floatValueAvg_in: [Float!]
+  floatValue_not_in: [Float!]
+  floatValueMin_not_in: [Float!]
+  floatValueMax_not_in: [Float!]
+  floatValueAvg_not_in: [Float!]
   floatValue_null: Boolean
   intValue: Int
   intValueMin: Int
@@ -1884,6 +2029,10 @@ input ConfiguratorAttributeFilterType {
   intValueMin_in: [Int!]
   intValueMax_in: [Int!]
   intValueAvg_in: [Int!]
+  intValue_not_in: [Int!]
+  intValueMin_not_in: [Int!]
+  intValueMax_not_in: [Int!]
+  intValueAvg_not_in: [Int!]
   intValue_null: Boolean
   definitionId: ID
   definitionIdMin: ID
@@ -1906,6 +2055,9 @@ input ConfiguratorAttributeFilterType {
   definitionId_in: [ID!]
   definitionIdMin_in: [ID!]
   definitionIdMax_in: [ID!]
+  definitionId_not_in: [ID!]
+  definitionIdMin_not_in: [ID!]
+  definitionIdMax_not_in: [ID!]
   definitionId_null: Boolean
   itemId: ID
   itemIdMin: ID
@@ -1928,6 +2080,9 @@ input ConfiguratorAttributeFilterType {
   itemId_in: [ID!]
   itemIdMin_in: [ID!]
   itemIdMax_in: [ID!]
+  itemId_not_in: [ID!]
+  itemIdMin_not_in: [ID!]
+  itemIdMax_not_in: [ID!]
   itemId_null: Boolean
   updatedAt: Time
   updatedAtMin: Time
@@ -1950,6 +2105,9 @@ input ConfiguratorAttributeFilterType {
   updatedAt_in: [Time!]
   updatedAtMin_in: [Time!]
   updatedAtMax_in: [Time!]
+  updatedAt_not_in: [Time!]
+  updatedAtMin_not_in: [Time!]
+  updatedAtMax_not_in: [Time!]
   updatedAt_null: Boolean
   createdAt: Time
   createdAtMin: Time
@@ -1972,6 +2130,9 @@ input ConfiguratorAttributeFilterType {
   createdAt_in: [Time!]
   createdAtMin_in: [Time!]
   createdAtMax_in: [Time!]
+  createdAt_not_in: [Time!]
+  createdAtMin_not_in: [Time!]
+  createdAtMax_not_in: [Time!]
   createdAt_null: Boolean
   updatedBy: ID
   updatedByMin: ID
@@ -1994,6 +2155,9 @@ input ConfiguratorAttributeFilterType {
   updatedBy_in: [ID!]
   updatedByMin_in: [ID!]
   updatedByMax_in: [ID!]
+  updatedBy_not_in: [ID!]
+  updatedByMin_not_in: [ID!]
+  updatedByMax_not_in: [ID!]
   updatedBy_null: Boolean
   createdBy: ID
   createdByMin: ID
@@ -2016,6 +2180,9 @@ input ConfiguratorAttributeFilterType {
   createdBy_in: [ID!]
   createdByMin_in: [ID!]
   createdByMax_in: [ID!]
+  createdBy_not_in: [ID!]
+  createdByMin_not_in: [ID!]
+  createdByMax_not_in: [ID!]
   createdBy_null: Boolean
   definition: ConfiguratorAttributeDefinitionFilterType
   item: ConfiguratorItemFilterType
@@ -2099,6 +2266,9 @@ input ConfiguratorSlotFilterType {
   id_in: [ID!]
   idMin_in: [ID!]
   idMax_in: [ID!]
+  id_not_in: [ID!]
+  idMin_not_in: [ID!]
+  idMax_not_in: [ID!]
   id_null: Boolean
   count: Float
   countMin: Float
@@ -2128,6 +2298,10 @@ input ConfiguratorSlotFilterType {
   countMin_in: [Float!]
   countMax_in: [Float!]
   countAvg_in: [Float!]
+  count_not_in: [Float!]
+  countMin_not_in: [Float!]
+  countMax_not_in: [Float!]
+  countAvg_not_in: [Float!]
   count_null: Boolean
   itemId: ID
   itemIdMin: ID
@@ -2150,6 +2324,9 @@ input ConfiguratorSlotFilterType {
   itemId_in: [ID!]
   itemIdMin_in: [ID!]
   itemIdMax_in: [ID!]
+  itemId_not_in: [ID!]
+  itemIdMin_not_in: [ID!]
+  itemIdMax_not_in: [ID!]
   itemId_null: Boolean
   definitionId: ID
   definitionIdMin: ID
@@ -2172,6 +2349,9 @@ input ConfiguratorSlotFilterType {
   definitionId_in: [ID!]
   definitionIdMin_in: [ID!]
   definitionIdMax_in: [ID!]
+  definitionId_not_in: [ID!]
+  definitionIdMin_not_in: [ID!]
+  definitionIdMax_not_in: [ID!]
   definitionId_null: Boolean
   parentItemId: ID
   parentItemIdMin: ID
@@ -2194,6 +2374,9 @@ input ConfiguratorSlotFilterType {
   parentItemId_in: [ID!]
   parentItemIdMin_in: [ID!]
   parentItemIdMax_in: [ID!]
+  parentItemId_not_in: [ID!]
+  parentItemIdMin_not_in: [ID!]
+  parentItemIdMax_not_in: [ID!]
   parentItemId_null: Boolean
   updatedAt: Time
   updatedAtMin: Time
@@ -2216,6 +2399,9 @@ input ConfiguratorSlotFilterType {
   updatedAt_in: [Time!]
   updatedAtMin_in: [Time!]
   updatedAtMax_in: [Time!]
+  updatedAt_not_in: [Time!]
+  updatedAtMin_not_in: [Time!]
+  updatedAtMax_not_in: [Time!]
   updatedAt_null: Boolean
   createdAt: Time
   createdAtMin: Time
@@ -2238,6 +2424,9 @@ input ConfiguratorSlotFilterType {
   createdAt_in: [Time!]
   createdAtMin_in: [Time!]
   createdAtMax_in: [Time!]
+  createdAt_not_in: [Time!]
+  createdAtMin_not_in: [Time!]
+  createdAtMax_not_in: [Time!]
   createdAt_null: Boolean
   updatedBy: ID
   updatedByMin: ID
@@ -2260,6 +2449,9 @@ input ConfiguratorSlotFilterType {
   updatedBy_in: [ID!]
   updatedByMin_in: [ID!]
   updatedByMax_in: [ID!]
+  updatedBy_not_in: [ID!]
+  updatedByMin_not_in: [ID!]
+  updatedByMax_not_in: [ID!]
   updatedBy_null: Boolean
   createdBy: ID
   createdByMin: ID
@@ -2282,6 +2474,9 @@ input ConfiguratorSlotFilterType {
   createdBy_in: [ID!]
   createdByMin_in: [ID!]
   createdByMax_in: [ID!]
+  createdBy_not_in: [ID!]
+  createdByMin_not_in: [ID!]
+  createdByMax_not_in: [ID!]
   createdBy_null: Boolean
   item: ConfiguratorItemFilterType
   definition: ConfiguratorSlotDefinitionFilterType
