@@ -3,18 +3,27 @@ package src
 import (
 	"context"
 	"fmt"
+	"time"
 
+	"github.com/aws/aws-xray-sdk-go/xray"
 	"github.com/graphql-services/graphql-configurator/gen"
+	"github.com/patrickmn/go-cache"
 )
 
 type AssemblyInputHelper struct {
 }
 
-func (h *AssemblyInputHelper) CreateItem(ctx context.Context, r *gen.GeneratedResolver, inputItem *gen.ConfiguratorAssemblyItemInput) (string, error) {
-	return createItem(ctx, r, inputItem)
+func (h *AssemblyInputHelper) CreateItem(ctx context.Context, r *gen.GeneratedResolver, inputItem *gen.ConfiguratorAssemblyItemInput) (id string, err error) {
+	ctx, seg := xray.BeginSubsegment(ctx, "create-configurator-assembly")
+	id, err = createItem(ctx, r, inputItem)
+	seg.Close(err)
+	return
 }
-func (h *AssemblyInputHelper) UpdateItem(ctx context.Context, r *gen.GeneratedResolver, inputItem *gen.ConfiguratorAssemblyItemInput) (string, error) {
-	return createOrUpdateItem(ctx, r, inputItem)
+func (h *AssemblyInputHelper) UpdateItem(ctx context.Context, r *gen.GeneratedResolver, inputItem *gen.ConfiguratorAssemblyItemInput) (id string, err error) {
+	ctx, seg := xray.BeginSubsegment(ctx, "update-configurator-assembly")
+	id, err = createOrUpdateItem(ctx, r, inputItem)
+	seg.Close(err)
+	return
 }
 
 func createItem(ctx context.Context, r *gen.GeneratedResolver, inputItem *gen.ConfiguratorAssemblyItemInput) (id string, err error) {
@@ -67,6 +76,7 @@ func createOrUpdateItem(ctx context.Context, r *gen.GeneratedResolver, inputItem
 			return
 		}
 	}
+
 	slotIDs := map[string]bool{}
 	for _, slotInput := range inputItem.Slots {
 		var slotID string
@@ -128,12 +138,40 @@ func createOrUpdateAttribute(ctx context.Context, r *gen.GeneratedResolver, item
 	return
 }
 
-func createOrUpdateSlot(ctx context.Context, r *gen.GeneratedResolver, itemID string, input *gen.ConfiguratorAssemblySlotInput) (slotID string, err error) {
-	_, _err := r.Handlers.QueryConfiguratorSlotDefinition(ctx, r, gen.QueryConfiguratorSlotDefinitionHandlerOptions{
-		ID: &input.DefinitionID,
+var slotDefinitionExistsCache *cache.Cache
+
+func slotDefinitionExists(ctx context.Context, r *gen.GeneratedResolver, definitionId string) (res bool, err error) {
+	if slotDefinitionExistsCache == nil {
+		slotDefinitionExistsCache = cache.New(time.Minute, 10*time.Minute)
+	}
+
+	exists, found := slotDefinitionExistsCache.Get(definitionId)
+	if found {
+		res = exists.(bool)
+		return
+	}
+
+	item, err := r.Handlers.QueryConfiguratorSlotDefinition(ctx, r, gen.QueryConfiguratorSlotDefinitionHandlerOptions{
+		ID: &definitionId,
 	})
-	if _err != nil {
-		err = _err
+	if err != nil {
+		return
+	}
+	res = item != nil
+	slotDefinitionExistsCache.Set(definitionId, res, cache.DefaultExpiration)
+	return
+}
+
+func createOrUpdateSlot(ctx context.Context, r *gen.GeneratedResolver, itemID string, input *gen.ConfiguratorAssemblySlotInput) (slotID string, err error) {
+	// _, _err := r.Handlers.QueryConfiguratorSlotDefinition(ctx, r, gen.QueryConfiguratorSlotDefinitionHandlerOptions{
+	// 	ID: &input.DefinitionID,
+	// })
+	exists, err := slotDefinitionExists(ctx, r, input.DefinitionID)
+	if err != nil {
+		return
+	}
+	if !exists {
+		err = fmt.Errorf("Slot definition '%s' not found", input.DefinitionID)
 		return
 	}
 
@@ -144,10 +182,14 @@ func createOrUpdateSlot(ctx context.Context, r *gen.GeneratedResolver, itemID st
 	}
 
 	if input.Item != nil {
-		subItemID, _err := createOrUpdateItem(ctx, r, input.Item)
-		if _err != nil {
-			err = _err
-			return
+		var subItemID string
+		if input.Item.ID != nil {
+			subItemID = *input.Item.ID
+		} else {
+			subItemID, err = createOrUpdateItem(ctx, r, input.Item)
+			if err != nil {
+				return
+			}
 		}
 		slotValues["itemId"] = subItemID
 	}

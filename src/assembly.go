@@ -3,6 +3,7 @@ package src
 import (
 	"context"
 
+	"github.com/aws/aws-xray-sdk-go/xray"
 	"github.com/graphql-services/graphql-configurator/gen"
 )
 
@@ -12,14 +13,15 @@ type AssemblyHelper struct {
 
 func (as *AssemblyHelper) Load(ctx context.Context, ID string) (*gen.ConfiguratorAssembly, error) {
 	cache := map[string]*gen.ConfiguratorAssemblyItem{}
+	ctx, seg := xray.BeginSubsegment(ctx, "load-item")
 	item, err := LoadItem(ctx, as.r, ID, cache)
+	seg.Close(err)
 	return &gen.ConfiguratorAssembly{
 		ID:   ID,
 		Item: item,
 	}, err
 }
 func LoadItem(ctx context.Context, r *gen.GeneratedResolver, ID string, itemCache map[string]*gen.ConfiguratorAssemblyItem) (*gen.ConfiguratorAssemblyItem, error) {
-
 	if item, exists := itemCache[ID]; exists {
 		return item, nil
 	}
