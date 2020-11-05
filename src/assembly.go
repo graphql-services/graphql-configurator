@@ -2,6 +2,7 @@ package src
 
 import (
 	"context"
+	"fmt"
 
 	"github.com/aws/aws-xray-sdk-go/xray"
 	"github.com/graphql-services/graphql-configurator/gen"
@@ -29,6 +30,10 @@ func LoadItem(ctx context.Context, r *gen.GeneratedResolver, ID string, itemCach
 	item, err := r.Handlers.QueryConfiguratorItem(ctx, r, gen.QueryConfiguratorItemHandlerOptions{ID: &ID})
 	if err != nil {
 		return nil, err
+	}
+
+	if item == nil {
+		return nil, fmt.Errorf("Item with id '%s' not found", ID)
 	}
 
 	_attributes, err := r.Handlers.ConfiguratorItemAttributes(ctx, r, item)
