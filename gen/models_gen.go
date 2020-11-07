@@ -163,6 +163,31 @@ type ConfiguratorAttributeDefinitionFilterType struct {
 	TypeMinNotIn      []ConfiguratorAttributeType                  `json:"typeMin_not_in"`
 	TypeMaxNotIn      []ConfiguratorAttributeType                  `json:"typeMax_not_in"`
 	TypeNull          *bool                                        `json:"type_null"`
+	Primary           *bool                                        `json:"primary"`
+	PrimaryMin        *bool                                        `json:"primaryMin"`
+	PrimaryMax        *bool                                        `json:"primaryMax"`
+	PrimaryNe         *bool                                        `json:"primary_ne"`
+	PrimaryMinNe      *bool                                        `json:"primaryMin_ne"`
+	PrimaryMaxNe      *bool                                        `json:"primaryMax_ne"`
+	PrimaryGt         *bool                                        `json:"primary_gt"`
+	PrimaryMinGt      *bool                                        `json:"primaryMin_gt"`
+	PrimaryMaxGt      *bool                                        `json:"primaryMax_gt"`
+	PrimaryLt         *bool                                        `json:"primary_lt"`
+	PrimaryMinLt      *bool                                        `json:"primaryMin_lt"`
+	PrimaryMaxLt      *bool                                        `json:"primaryMax_lt"`
+	PrimaryGte        *bool                                        `json:"primary_gte"`
+	PrimaryMinGte     *bool                                        `json:"primaryMin_gte"`
+	PrimaryMaxGte     *bool                                        `json:"primaryMax_gte"`
+	PrimaryLte        *bool                                        `json:"primary_lte"`
+	PrimaryMinLte     *bool                                        `json:"primaryMin_lte"`
+	PrimaryMaxLte     *bool                                        `json:"primaryMax_lte"`
+	PrimaryIn         []bool                                       `json:"primary_in"`
+	PrimaryMinIn      []bool                                       `json:"primaryMin_in"`
+	PrimaryMaxIn      []bool                                       `json:"primaryMax_in"`
+	PrimaryNotIn      []bool                                       `json:"primary_not_in"`
+	PrimaryMinNotIn   []bool                                       `json:"primaryMin_not_in"`
+	PrimaryMaxNotIn   []bool                                       `json:"primaryMax_not_in"`
+	PrimaryNull       *bool                                        `json:"primary_null"`
 	UpdatedAt         *time.Time                                   `json:"updatedAt"`
 	UpdatedAtMin      *time.Time                                   `json:"updatedAtMin"`
 	UpdatedAtMax      *time.Time                                   `json:"updatedAtMax"`
@@ -277,6 +302,9 @@ type ConfiguratorAttributeDefinitionSortType struct {
 	Type              *ObjectSortType                     `json:"type"`
 	TypeMin           *ObjectSortType                     `json:"typeMin"`
 	TypeMax           *ObjectSortType                     `json:"typeMax"`
+	Primary           *ObjectSortType                     `json:"primary"`
+	PrimaryMin        *ObjectSortType                     `json:"primaryMin"`
+	PrimaryMax        *ObjectSortType                     `json:"primaryMax"`
 	UpdatedAt         *ObjectSortType                     `json:"updatedAt"`
 	UpdatedAtMin      *ObjectSortType                     `json:"updatedAtMin"`
 	UpdatedAtMax      *ObjectSortType                     `json:"updatedAtMax"`
@@ -748,31 +776,6 @@ type ConfiguratorItemDefinitionCategoryFilterType struct {
 	TypeMinSuffix     *string                                         `json:"typeMin_suffix"`
 	TypeMaxSuffix     *string                                         `json:"typeMax_suffix"`
 	TypeNull          *bool                                           `json:"type_null"`
-	Primary           *bool                                           `json:"primary"`
-	PrimaryMin        *bool                                           `json:"primaryMin"`
-	PrimaryMax        *bool                                           `json:"primaryMax"`
-	PrimaryNe         *bool                                           `json:"primary_ne"`
-	PrimaryMinNe      *bool                                           `json:"primaryMin_ne"`
-	PrimaryMaxNe      *bool                                           `json:"primaryMax_ne"`
-	PrimaryGt         *bool                                           `json:"primary_gt"`
-	PrimaryMinGt      *bool                                           `json:"primaryMin_gt"`
-	PrimaryMaxGt      *bool                                           `json:"primaryMax_gt"`
-	PrimaryLt         *bool                                           `json:"primary_lt"`
-	PrimaryMinLt      *bool                                           `json:"primaryMin_lt"`
-	PrimaryMaxLt      *bool                                           `json:"primaryMax_lt"`
-	PrimaryGte        *bool                                           `json:"primary_gte"`
-	PrimaryMinGte     *bool                                           `json:"primaryMin_gte"`
-	PrimaryMaxGte     *bool                                           `json:"primaryMax_gte"`
-	PrimaryLte        *bool                                           `json:"primary_lte"`
-	PrimaryMinLte     *bool                                           `json:"primaryMin_lte"`
-	PrimaryMaxLte     *bool                                           `json:"primaryMax_lte"`
-	PrimaryIn         []bool                                          `json:"primary_in"`
-	PrimaryMinIn      []bool                                          `json:"primaryMin_in"`
-	PrimaryMaxIn      []bool                                          `json:"primaryMax_in"`
-	PrimaryNotIn      []bool                                          `json:"primary_not_in"`
-	PrimaryMinNotIn   []bool                                          `json:"primaryMin_not_in"`
-	PrimaryMaxNotIn   []bool                                          `json:"primaryMax_not_in"`
-	PrimaryNull       *bool                                           `json:"primary_null"`
 	UpdatedAt         *time.Time                                      `json:"updatedAt"`
 	UpdatedAtMin      *time.Time                                      `json:"updatedAtMin"`
 	UpdatedAtMax      *time.Time                                      `json:"updatedAtMax"`
@@ -889,9 +892,6 @@ type ConfiguratorItemDefinitionCategorySortType struct {
 	Type              *ObjectSortType                     `json:"type"`
 	TypeMin           *ObjectSortType                     `json:"typeMin"`
 	TypeMax           *ObjectSortType                     `json:"typeMax"`
-	Primary           *ObjectSortType                     `json:"primary"`
-	PrimaryMin        *ObjectSortType                     `json:"primaryMin"`
-	PrimaryMax        *ObjectSortType                     `json:"primaryMax"`
 	UpdatedAt         *ObjectSortType                     `json:"updatedAt"`
 	UpdatedAtMin      *ObjectSortType                     `json:"updatedAtMin"`
 	UpdatedAtMax      *ObjectSortType                     `json:"updatedAtMax"`

@@ -342,54 +342,6 @@ func (f *ConfiguratorItemDefinitionCategoryFilterType) WhereContent(dialect gorm
 		}
 	}
 
-	if f.Primary != nil {
-		conditions = append(conditions, aliasPrefix+dialect.Quote("primary")+" = ?")
-		values = append(values, f.Primary)
-	}
-
-	if f.PrimaryNe != nil {
-		conditions = append(conditions, aliasPrefix+dialect.Quote("primary")+" != ?")
-		values = append(values, f.PrimaryNe)
-	}
-
-	if f.PrimaryGt != nil {
-		conditions = append(conditions, aliasPrefix+dialect.Quote("primary")+" > ?")
-		values = append(values, f.PrimaryGt)
-	}
-
-	if f.PrimaryLt != nil {
-		conditions = append(conditions, aliasPrefix+dialect.Quote("primary")+" < ?")
-		values = append(values, f.PrimaryLt)
-	}
-
-	if f.PrimaryGte != nil {
-		conditions = append(conditions, aliasPrefix+dialect.Quote("primary")+" >= ?")
-		values = append(values, f.PrimaryGte)
-	}
-
-	if f.PrimaryLte != nil {
-		conditions = append(conditions, aliasPrefix+dialect.Quote("primary")+" <= ?")
-		values = append(values, f.PrimaryLte)
-	}
-
-	if f.PrimaryIn != nil {
-		conditions = append(conditions, aliasPrefix+dialect.Quote("primary")+" IN (?)")
-		values = append(values, f.PrimaryIn)
-	}
-
-	if f.PrimaryNotIn != nil {
-		conditions = append(conditions, aliasPrefix+dialect.Quote("primary")+" NOT IN (?)")
-		values = append(values, f.PrimaryNotIn)
-	}
-
-	if f.PrimaryNull != nil {
-		if *f.PrimaryNull {
-			conditions = append(conditions, aliasPrefix+dialect.Quote("primary")+" IS NULL")
-		} else {
-			conditions = append(conditions, aliasPrefix+dialect.Quote("primary")+" IS NOT NULL")
-		}
-	}
-
 	if f.UpdatedAt != nil {
 		conditions = append(conditions, aliasPrefix+dialect.Quote("updatedAt")+" = ?")
 		values = append(values, f.UpdatedAt)
@@ -996,86 +948,6 @@ func (f *ConfiguratorItemDefinitionCategoryFilterType) HavingContent(dialect gor
 	if f.TypeMaxSuffix != nil {
 		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("type")+") LIKE ?")
 		values = append(values, fmt.Sprintf("%%%s", *f.TypeMaxSuffix))
-	}
-
-	if f.PrimaryMin != nil {
-		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("primary")+") = ?")
-		values = append(values, f.PrimaryMin)
-	}
-
-	if f.PrimaryMax != nil {
-		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("primary")+") = ?")
-		values = append(values, f.PrimaryMax)
-	}
-
-	if f.PrimaryMinNe != nil {
-		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("primary")+") != ?")
-		values = append(values, f.PrimaryMinNe)
-	}
-
-	if f.PrimaryMaxNe != nil {
-		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("primary")+") != ?")
-		values = append(values, f.PrimaryMaxNe)
-	}
-
-	if f.PrimaryMinGt != nil {
-		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("primary")+") > ?")
-		values = append(values, f.PrimaryMinGt)
-	}
-
-	if f.PrimaryMaxGt != nil {
-		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("primary")+") > ?")
-		values = append(values, f.PrimaryMaxGt)
-	}
-
-	if f.PrimaryMinLt != nil {
-		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("primary")+") < ?")
-		values = append(values, f.PrimaryMinLt)
-	}
-
-	if f.PrimaryMaxLt != nil {
-		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("primary")+") < ?")
-		values = append(values, f.PrimaryMaxLt)
-	}
-
-	if f.PrimaryMinGte != nil {
-		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("primary")+") >= ?")
-		values = append(values, f.PrimaryMinGte)
-	}
-
-	if f.PrimaryMaxGte != nil {
-		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("primary")+") >= ?")
-		values = append(values, f.PrimaryMaxGte)
-	}
-
-	if f.PrimaryMinLte != nil {
-		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("primary")+") <= ?")
-		values = append(values, f.PrimaryMinLte)
-	}
-
-	if f.PrimaryMaxLte != nil {
-		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("primary")+") <= ?")
-		values = append(values, f.PrimaryMaxLte)
-	}
-
-	if f.PrimaryMinIn != nil {
-		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("primary")+") IN (?)")
-		values = append(values, f.PrimaryMinIn)
-	}
-
-	if f.PrimaryMaxIn != nil {
-		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("primary")+") IN (?)")
-		values = append(values, f.PrimaryMaxIn)
-	}
-
-	if f.PrimaryMinNotIn != nil {
-		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("primary")+") NOT IN (?)")
-		values = append(values, f.PrimaryMinNotIn)
-	}
-
-	if f.PrimaryMaxNotIn != nil {
-		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("primary")+") NOT IN (?)")
-		values = append(values, f.PrimaryMaxNotIn)
 	}
 
 	if f.UpdatedAtMin != nil {
@@ -2986,6 +2858,54 @@ func (f *ConfiguratorAttributeDefinitionFilterType) WhereContent(dialect gorm.Di
 		}
 	}
 
+	if f.Primary != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("primary")+" = ?")
+		values = append(values, f.Primary)
+	}
+
+	if f.PrimaryNe != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("primary")+" != ?")
+		values = append(values, f.PrimaryNe)
+	}
+
+	if f.PrimaryGt != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("primary")+" > ?")
+		values = append(values, f.PrimaryGt)
+	}
+
+	if f.PrimaryLt != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("primary")+" < ?")
+		values = append(values, f.PrimaryLt)
+	}
+
+	if f.PrimaryGte != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("primary")+" >= ?")
+		values = append(values, f.PrimaryGte)
+	}
+
+	if f.PrimaryLte != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("primary")+" <= ?")
+		values = append(values, f.PrimaryLte)
+	}
+
+	if f.PrimaryIn != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("primary")+" IN (?)")
+		values = append(values, f.PrimaryIn)
+	}
+
+	if f.PrimaryNotIn != nil {
+		conditions = append(conditions, aliasPrefix+dialect.Quote("primary")+" NOT IN (?)")
+		values = append(values, f.PrimaryNotIn)
+	}
+
+	if f.PrimaryNull != nil {
+		if *f.PrimaryNull {
+			conditions = append(conditions, aliasPrefix+dialect.Quote("primary")+" IS NULL")
+		} else {
+			conditions = append(conditions, aliasPrefix+dialect.Quote("primary")+" IS NOT NULL")
+		}
+	}
+
 	if f.UpdatedAt != nil {
 		conditions = append(conditions, aliasPrefix+dialect.Quote("updatedAt")+" = ?")
 		values = append(values, f.UpdatedAt)
@@ -3452,6 +3372,86 @@ func (f *ConfiguratorAttributeDefinitionFilterType) HavingContent(dialect gorm.D
 	if f.TypeMaxNotIn != nil {
 		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("type")+") NOT IN (?)")
 		values = append(values, f.TypeMaxNotIn)
+	}
+
+	if f.PrimaryMin != nil {
+		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("primary")+") = ?")
+		values = append(values, f.PrimaryMin)
+	}
+
+	if f.PrimaryMax != nil {
+		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("primary")+") = ?")
+		values = append(values, f.PrimaryMax)
+	}
+
+	if f.PrimaryMinNe != nil {
+		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("primary")+") != ?")
+		values = append(values, f.PrimaryMinNe)
+	}
+
+	if f.PrimaryMaxNe != nil {
+		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("primary")+") != ?")
+		values = append(values, f.PrimaryMaxNe)
+	}
+
+	if f.PrimaryMinGt != nil {
+		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("primary")+") > ?")
+		values = append(values, f.PrimaryMinGt)
+	}
+
+	if f.PrimaryMaxGt != nil {
+		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("primary")+") > ?")
+		values = append(values, f.PrimaryMaxGt)
+	}
+
+	if f.PrimaryMinLt != nil {
+		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("primary")+") < ?")
+		values = append(values, f.PrimaryMinLt)
+	}
+
+	if f.PrimaryMaxLt != nil {
+		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("primary")+") < ?")
+		values = append(values, f.PrimaryMaxLt)
+	}
+
+	if f.PrimaryMinGte != nil {
+		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("primary")+") >= ?")
+		values = append(values, f.PrimaryMinGte)
+	}
+
+	if f.PrimaryMaxGte != nil {
+		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("primary")+") >= ?")
+		values = append(values, f.PrimaryMaxGte)
+	}
+
+	if f.PrimaryMinLte != nil {
+		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("primary")+") <= ?")
+		values = append(values, f.PrimaryMinLte)
+	}
+
+	if f.PrimaryMaxLte != nil {
+		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("primary")+") <= ?")
+		values = append(values, f.PrimaryMaxLte)
+	}
+
+	if f.PrimaryMinIn != nil {
+		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("primary")+") IN (?)")
+		values = append(values, f.PrimaryMinIn)
+	}
+
+	if f.PrimaryMaxIn != nil {
+		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("primary")+") IN (?)")
+		values = append(values, f.PrimaryMaxIn)
+	}
+
+	if f.PrimaryMinNotIn != nil {
+		conditions = append(conditions, "Min("+aliasPrefix+dialect.Quote("primary")+") NOT IN (?)")
+		values = append(values, f.PrimaryMinNotIn)
+	}
+
+	if f.PrimaryMaxNotIn != nil {
+		conditions = append(conditions, "Max("+aliasPrefix+dialect.Quote("primary")+") NOT IN (?)")
+		values = append(values, f.PrimaryMaxNotIn)
 	}
 
 	if f.UpdatedAtMin != nil {

@@ -108,12 +108,6 @@ func CreateConfiguratorItemDefinitionCategoryHandler(ctx context.Context, r *Gen
 		event.AddNewValue("type", changes.Type)
 	}
 
-	if _, ok := input["primary"]; ok && (item.Primary != changes.Primary) && (item.Primary == nil || changes.Primary == nil || *item.Primary != *changes.Primary) {
-		item.Primary = changes.Primary
-
-		event.AddNewValue("primary", changes.Primary)
-	}
-
 	err = tx.Create(item).Error
 	if err != nil {
 		tx.Rollback()
@@ -186,12 +180,6 @@ func UpdateConfiguratorItemDefinitionCategoryHandler(ctx context.Context, r *Gen
 		event.AddOldValue("type", item.Type)
 		event.AddNewValue("type", changes.Type)
 		item.Type = changes.Type
-	}
-
-	if _, ok := input["primary"]; ok && (item.Primary != changes.Primary) && (item.Primary == nil || changes.Primary == nil || *item.Primary != *changes.Primary) {
-		event.AddOldValue("primary", item.Primary)
-		event.AddNewValue("primary", changes.Primary)
-		item.Primary = changes.Primary
 	}
 
 	err = tx.Save(item).Error
@@ -570,6 +558,12 @@ func CreateConfiguratorAttributeDefinitionHandler(ctx context.Context, r *Genera
 		event.AddNewValue("type", changes.Type)
 	}
 
+	if _, ok := input["primary"]; ok && (item.Primary != changes.Primary) && (item.Primary == nil || changes.Primary == nil || *item.Primary != *changes.Primary) {
+		item.Primary = changes.Primary
+
+		event.AddNewValue("primary", changes.Primary)
+	}
+
 	err = tx.Create(item).Error
 	if err != nil {
 		tx.Rollback()
@@ -643,6 +637,12 @@ func UpdateConfiguratorAttributeDefinitionHandler(ctx context.Context, r *Genera
 		event.AddOldValue("type", item.Type)
 		event.AddNewValue("type", changes.Type)
 		item.Type = changes.Type
+	}
+
+	if _, ok := input["primary"]; ok && (item.Primary != changes.Primary) && (item.Primary == nil || changes.Primary == nil || *item.Primary != *changes.Primary) {
+		event.AddOldValue("primary", item.Primary)
+		event.AddNewValue("primary", changes.Primary)
+		item.Primary = changes.Primary
 	}
 
 	err = tx.Save(item).Error

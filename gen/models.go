@@ -18,7 +18,6 @@ type ConfiguratorItemDefinitionCategory struct {
 	Code      *string    `json:"code" gorm:"column:code;unique"`
 	Name      *string    `json:"name" gorm:"column:name"`
 	Type      *string    `json:"type" gorm:"column:type"`
-	Primary   *bool      `json:"primary" gorm:"column:primary"`
 	UpdatedAt *time.Time `json:"updatedAt" gorm:"column:updatedAt"`
 	CreatedAt time.Time  `json:"createdAt" gorm:"column:createdAt"`
 	UpdatedBy *string    `json:"updatedBy" gorm:"column:updatedBy"`
@@ -34,7 +33,6 @@ type ConfiguratorItemDefinitionCategoryChanges struct {
 	Code      *string
 	Name      *string
 	Type      *string
-	Primary   *bool
 	UpdatedAt *time.Time
 	CreatedAt time.Time
 	UpdatedBy *string
@@ -94,6 +92,7 @@ type ConfiguratorAttributeDefinition struct {
 	ID        string                     `json:"id" gorm:"column:id;primary_key"`
 	Name      *string                    `json:"name" gorm:"column:name"`
 	Type      *ConfiguratorAttributeType `json:"type" gorm:"column:type"`
+	Primary   *bool                      `json:"primary" gorm:"column:primary"`
 	UpdatedAt *time.Time                 `json:"updatedAt" gorm:"column:updatedAt"`
 	CreatedAt time.Time                  `json:"createdAt" gorm:"column:createdAt"`
 	UpdatedBy *string                    `json:"updatedBy" gorm:"column:updatedBy"`
@@ -110,6 +109,7 @@ type ConfiguratorAttributeDefinitionChanges struct {
 	ID        string
 	Name      *string
 	Type      *ConfiguratorAttributeType
+	Primary   *bool
 	UpdatedAt *time.Time
 	CreatedAt time.Time
 	UpdatedBy *string

@@ -72,21 +72,6 @@ func (s ConfiguratorItemDefinitionCategorySortType) ApplyWithAlias(ctx context.C
 		*sorts = append(*sorts, sort)
 	}
 
-	if s.Primary != nil {
-		sort := SortInfo{Field: aliasPrefix + dialect.Quote("primary"), Direction: s.Primary.String()}
-		*sorts = append(*sorts, sort)
-	}
-
-	if s.PrimaryMin != nil {
-		sort := SortInfo{Field: "Min(" + aliasPrefix + dialect.Quote("primary") + ")", Direction: s.PrimaryMin.String(), IsAggregation: true}
-		*sorts = append(*sorts, sort)
-	}
-
-	if s.PrimaryMax != nil {
-		sort := SortInfo{Field: "Max(" + aliasPrefix + dialect.Quote("primary") + ")", Direction: s.PrimaryMax.String(), IsAggregation: true}
-		*sorts = append(*sorts, sort)
-	}
-
 	if s.UpdatedAt != nil {
 		sort := SortInfo{Field: aliasPrefix + dialect.Quote("updatedAt"), Direction: s.UpdatedAt.String()}
 		*sorts = append(*sorts, sort)
@@ -366,6 +351,21 @@ func (s ConfiguratorAttributeDefinitionSortType) ApplyWithAlias(ctx context.Cont
 
 	if s.NameMax != nil {
 		sort := SortInfo{Field: "Max(" + aliasPrefix + dialect.Quote("name") + ")", Direction: s.NameMax.String(), IsAggregation: true}
+		*sorts = append(*sorts, sort)
+	}
+
+	if s.Primary != nil {
+		sort := SortInfo{Field: aliasPrefix + dialect.Quote("primary"), Direction: s.Primary.String()}
+		*sorts = append(*sorts, sort)
+	}
+
+	if s.PrimaryMin != nil {
+		sort := SortInfo{Field: "Min(" + aliasPrefix + dialect.Quote("primary") + ")", Direction: s.PrimaryMin.String(), IsAggregation: true}
+		*sorts = append(*sorts, sort)
+	}
+
+	if s.PrimaryMax != nil {
+		sort := SortInfo{Field: "Max(" + aliasPrefix + dialect.Quote("primary") + ")", Direction: s.PrimaryMax.String(), IsAggregation: true}
 		*sorts = append(*sorts, sort)
 	}
 

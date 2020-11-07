@@ -141,7 +141,6 @@ type ConfiguratorItemDefinitionCategory {
   code: String
   name: String
   type: String
-  primary: Boolean
   definitions: [ConfiguratorItemDefinition!]!
   updatedAt: Time
   createdAt: Time!
@@ -185,6 +184,7 @@ type ConfiguratorAttributeDefinition {
   id: ID!
   name: String
   type: ConfiguratorAttributeType
+  primary: Boolean
   definitions: [ConfiguratorItemDefinition!]!
   attributes: [ConfiguratorAttribute!]!
   updatedAt: Time
@@ -280,7 +280,6 @@ input ConfiguratorItemDefinitionCategoryCreateInput {
   code: String
   name: String
   type: String
-  primary: Boolean
   definitionsIds: [ID!]
 }
 
@@ -288,7 +287,6 @@ input ConfiguratorItemDefinitionCategoryUpdateInput {
   code: String
   name: String
   type: String
-  primary: Boolean
   definitionsIds: [ID!]
 }
 
@@ -305,9 +303,6 @@ input ConfiguratorItemDefinitionCategorySortType {
   type: ObjectSortType
   typeMin: ObjectSortType
   typeMax: ObjectSortType
-  primary: ObjectSortType
-  primaryMin: ObjectSortType
-  primaryMax: ObjectSortType
   updatedAt: ObjectSortType
   updatedAtMin: ObjectSortType
   updatedAtMax: ObjectSortType
@@ -456,31 +451,6 @@ input ConfiguratorItemDefinitionCategoryFilterType {
   typeMin_suffix: String
   typeMax_suffix: String
   type_null: Boolean
-  primary: Boolean
-  primaryMin: Boolean
-  primaryMax: Boolean
-  primary_ne: Boolean
-  primaryMin_ne: Boolean
-  primaryMax_ne: Boolean
-  primary_gt: Boolean
-  primaryMin_gt: Boolean
-  primaryMax_gt: Boolean
-  primary_lt: Boolean
-  primaryMin_lt: Boolean
-  primaryMax_lt: Boolean
-  primary_gte: Boolean
-  primaryMin_gte: Boolean
-  primaryMax_gte: Boolean
-  primary_lte: Boolean
-  primaryMin_lte: Boolean
-  primaryMax_lte: Boolean
-  primary_in: [Boolean!]
-  primaryMin_in: [Boolean!]
-  primaryMax_in: [Boolean!]
-  primary_not_in: [Boolean!]
-  primaryMin_not_in: [Boolean!]
-  primaryMax_not_in: [Boolean!]
-  primary_null: Boolean
   updatedAt: Time
   updatedAtMin: Time
   updatedAtMax: Time
@@ -891,6 +861,7 @@ input ConfiguratorAttributeDefinitionCreateInput {
   id: ID
   name: String
   type: ConfiguratorAttributeType
+  primary: Boolean
   definitionsIds: [ID!]
   attributesIds: [ID!]
 }
@@ -898,6 +869,7 @@ input ConfiguratorAttributeDefinitionCreateInput {
 input ConfiguratorAttributeDefinitionUpdateInput {
   name: String
   type: ConfiguratorAttributeType
+  primary: Boolean
   definitionsIds: [ID!]
   attributesIds: [ID!]
 }
@@ -912,6 +884,9 @@ input ConfiguratorAttributeDefinitionSortType {
   type: ObjectSortType
   typeMin: ObjectSortType
   typeMax: ObjectSortType
+  primary: ObjectSortType
+  primaryMin: ObjectSortType
+  primaryMax: ObjectSortType
   updatedAt: ObjectSortType
   updatedAtMin: ObjectSortType
   updatedAtMax: ObjectSortType
@@ -1021,6 +996,31 @@ input ConfiguratorAttributeDefinitionFilterType {
   typeMin_not_in: [ConfiguratorAttributeType!]
   typeMax_not_in: [ConfiguratorAttributeType!]
   type_null: Boolean
+  primary: Boolean
+  primaryMin: Boolean
+  primaryMax: Boolean
+  primary_ne: Boolean
+  primaryMin_ne: Boolean
+  primaryMax_ne: Boolean
+  primary_gt: Boolean
+  primaryMin_gt: Boolean
+  primaryMax_gt: Boolean
+  primary_lt: Boolean
+  primaryMin_lt: Boolean
+  primaryMax_lt: Boolean
+  primary_gte: Boolean
+  primaryMin_gte: Boolean
+  primaryMax_gte: Boolean
+  primary_lte: Boolean
+  primaryMin_lte: Boolean
+  primaryMax_lte: Boolean
+  primary_in: [Boolean!]
+  primaryMin_in: [Boolean!]
+  primaryMax_in: [Boolean!]
+  primary_not_in: [Boolean!]
+  primaryMin_not_in: [Boolean!]
+  primaryMax_not_in: [Boolean!]
+  primary_null: Boolean
   updatedAt: Time
   updatedAtMin: Time
   updatedAtMax: Time

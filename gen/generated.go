@@ -114,6 +114,7 @@ type ComplexityRoot struct {
 		DefinitionsIds        func(childComplexity int) int
 		ID                    func(childComplexity int) int
 		Name                  func(childComplexity int) int
+		Primary               func(childComplexity int) int
 		Type                  func(childComplexity int) int
 		UpdatedAt             func(childComplexity int) int
 		UpdatedBy             func(childComplexity int) int
@@ -186,7 +187,6 @@ type ComplexityRoot struct {
 		DefinitionsIds        func(childComplexity int) int
 		ID                    func(childComplexity int) int
 		Name                  func(childComplexity int) int
-		Primary               func(childComplexity int) int
 		Type                  func(childComplexity int) int
 		UpdatedAt             func(childComplexity int) int
 		UpdatedBy             func(childComplexity int) int
@@ -764,6 +764,13 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.ConfiguratorAttributeDefinition.Name(childComplexity), true
 
+	case "ConfiguratorAttributeDefinition.primary":
+		if e.complexity.ConfiguratorAttributeDefinition.Primary == nil {
+			break
+		}
+
+		return e.complexity.ConfiguratorAttributeDefinition.Primary(childComplexity), true
+
 	case "ConfiguratorAttributeDefinition.type":
 		if e.complexity.ConfiguratorAttributeDefinition.Type == nil {
 			break
@@ -1202,13 +1209,6 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.ConfiguratorItemDefinitionCategory.Name(childComplexity), true
-
-	case "ConfiguratorItemDefinitionCategory.primary":
-		if e.complexity.ConfiguratorItemDefinitionCategory.Primary == nil {
-			break
-		}
-
-		return e.complexity.ConfiguratorItemDefinitionCategory.Primary(childComplexity), true
 
 	case "ConfiguratorItemDefinitionCategory.type":
 		if e.complexity.ConfiguratorItemDefinitionCategory.Type == nil {
@@ -2257,7 +2257,6 @@ type ConfiguratorItemDefinitionCategory {
   code: String
   name: String
   type: String
-  primary: Boolean
   definitions: [ConfiguratorItemDefinition!]!
   updatedAt: Time
   createdAt: Time!
@@ -2301,6 +2300,7 @@ type ConfiguratorAttributeDefinition {
   id: ID!
   name: String
   type: ConfiguratorAttributeType
+  primary: Boolean
   definitions: [ConfiguratorItemDefinition!]!
   attributes: [ConfiguratorAttribute!]!
   updatedAt: Time
@@ -2392,7 +2392,6 @@ input ConfiguratorItemDefinitionCategoryCreateInput {
   code: String
   name: String
   type: String
-  primary: Boolean
   definitionsIds: [ID!]
 }
 
@@ -2400,7 +2399,6 @@ input ConfiguratorItemDefinitionCategoryUpdateInput {
   code: String
   name: String
   type: String
-  primary: Boolean
   definitionsIds: [ID!]
 }
 
@@ -2417,9 +2415,6 @@ input ConfiguratorItemDefinitionCategorySortType {
   type: ObjectSortType
   typeMin: ObjectSortType
   typeMax: ObjectSortType
-  primary: ObjectSortType
-  primaryMin: ObjectSortType
-  primaryMax: ObjectSortType
   updatedAt: ObjectSortType
   updatedAtMin: ObjectSortType
   updatedAtMax: ObjectSortType
@@ -2568,31 +2563,6 @@ input ConfiguratorItemDefinitionCategoryFilterType {
   typeMin_suffix: String
   typeMax_suffix: String
   type_null: Boolean
-  primary: Boolean
-  primaryMin: Boolean
-  primaryMax: Boolean
-  primary_ne: Boolean
-  primaryMin_ne: Boolean
-  primaryMax_ne: Boolean
-  primary_gt: Boolean
-  primaryMin_gt: Boolean
-  primaryMax_gt: Boolean
-  primary_lt: Boolean
-  primaryMin_lt: Boolean
-  primaryMax_lt: Boolean
-  primary_gte: Boolean
-  primaryMin_gte: Boolean
-  primaryMax_gte: Boolean
-  primary_lte: Boolean
-  primaryMin_lte: Boolean
-  primaryMax_lte: Boolean
-  primary_in: [Boolean!]
-  primaryMin_in: [Boolean!]
-  primaryMax_in: [Boolean!]
-  primary_not_in: [Boolean!]
-  primaryMin_not_in: [Boolean!]
-  primaryMax_not_in: [Boolean!]
-  primary_null: Boolean
   updatedAt: Time
   updatedAtMin: Time
   updatedAtMax: Time
@@ -3003,6 +2973,7 @@ input ConfiguratorAttributeDefinitionCreateInput {
   id: ID
   name: String
   type: ConfiguratorAttributeType
+  primary: Boolean
   definitionsIds: [ID!]
   attributesIds: [ID!]
 }
@@ -3010,6 +2981,7 @@ input ConfiguratorAttributeDefinitionCreateInput {
 input ConfiguratorAttributeDefinitionUpdateInput {
   name: String
   type: ConfiguratorAttributeType
+  primary: Boolean
   definitionsIds: [ID!]
   attributesIds: [ID!]
 }
@@ -3024,6 +2996,9 @@ input ConfiguratorAttributeDefinitionSortType {
   type: ObjectSortType
   typeMin: ObjectSortType
   typeMax: ObjectSortType
+  primary: ObjectSortType
+  primaryMin: ObjectSortType
+  primaryMax: ObjectSortType
   updatedAt: ObjectSortType
   updatedAtMin: ObjectSortType
   updatedAtMax: ObjectSortType
@@ -3133,6 +3108,31 @@ input ConfiguratorAttributeDefinitionFilterType {
   typeMin_not_in: [ConfiguratorAttributeType!]
   typeMax_not_in: [ConfiguratorAttributeType!]
   type_null: Boolean
+  primary: Boolean
+  primaryMin: Boolean
+  primaryMax: Boolean
+  primary_ne: Boolean
+  primaryMin_ne: Boolean
+  primaryMax_ne: Boolean
+  primary_gt: Boolean
+  primaryMin_gt: Boolean
+  primaryMax_gt: Boolean
+  primary_lt: Boolean
+  primaryMin_lt: Boolean
+  primaryMax_lt: Boolean
+  primary_gte: Boolean
+  primaryMin_gte: Boolean
+  primaryMax_gte: Boolean
+  primary_lte: Boolean
+  primaryMin_lte: Boolean
+  primaryMax_lte: Boolean
+  primary_in: [Boolean!]
+  primaryMin_in: [Boolean!]
+  primaryMax_in: [Boolean!]
+  primary_not_in: [Boolean!]
+  primaryMin_not_in: [Boolean!]
+  primaryMax_not_in: [Boolean!]
+  primary_null: Boolean
   updatedAt: Time
   updatedAtMin: Time
   updatedAtMax: Time
@@ -7310,6 +7310,40 @@ func (ec *executionContext) _ConfiguratorAttributeDefinition_type(ctx context.Co
 	return ec.marshalOConfiguratorAttributeType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐConfiguratorAttributeType(ctx, field.Selections, res)
 }
 
+func (ec *executionContext) _ConfiguratorAttributeDefinition_primary(ctx context.Context, field graphql.CollectedField, obj *ConfiguratorAttributeDefinition) (ret graphql.Marshaler) {
+	ctx = ec.Tracer.StartFieldExecution(ctx, field)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+		ec.Tracer.EndFieldExecution(ctx)
+	}()
+	rctx := &graphql.ResolverContext{
+		Object:   "ConfiguratorAttributeDefinition",
+		Field:    field,
+		Args:     nil,
+		IsMethod: false,
+	}
+	ctx = graphql.WithResolverContext(ctx, rctx)
+	ctx = ec.Tracer.StartFieldResolverExecution(ctx, rctx)
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Primary, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*bool)
+	rctx.Result = res
+	ctx = ec.Tracer.StartFieldChildExecution(ctx)
+	return ec.marshalOBoolean2ᚖbool(ctx, field.Selections, res)
+}
+
 func (ec *executionContext) _ConfiguratorAttributeDefinition_definitions(ctx context.Context, field graphql.CollectedField, obj *ConfiguratorAttributeDefinition) (ret graphql.Marshaler) {
 	ctx = ec.Tracer.StartFieldExecution(ctx, field)
 	defer func() {
@@ -9522,40 +9556,6 @@ func (ec *executionContext) _ConfiguratorItemDefinitionCategory_type(ctx context
 	rctx.Result = res
 	ctx = ec.Tracer.StartFieldChildExecution(ctx)
 	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
-}
-
-func (ec *executionContext) _ConfiguratorItemDefinitionCategory_primary(ctx context.Context, field graphql.CollectedField, obj *ConfiguratorItemDefinitionCategory) (ret graphql.Marshaler) {
-	ctx = ec.Tracer.StartFieldExecution(ctx, field)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-		ec.Tracer.EndFieldExecution(ctx)
-	}()
-	rctx := &graphql.ResolverContext{
-		Object:   "ConfiguratorItemDefinitionCategory",
-		Field:    field,
-		Args:     nil,
-		IsMethod: false,
-	}
-	ctx = graphql.WithResolverContext(ctx, rctx)
-	ctx = ec.Tracer.StartFieldResolverExecution(ctx, rctx)
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.Primary, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*bool)
-	rctx.Result = res
-	ctx = ec.Tracer.StartFieldChildExecution(ctx)
-	return ec.marshalOBoolean2ᚖbool(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) _ConfiguratorItemDefinitionCategory_definitions(ctx context.Context, field graphql.CollectedField, obj *ConfiguratorItemDefinitionCategory) (ret graphql.Marshaler) {
@@ -15184,6 +15184,156 @@ func (ec *executionContext) unmarshalInputConfiguratorAttributeDefinitionFilterT
 			if err != nil {
 				return it, err
 			}
+		case "primary":
+			var err error
+			it.Primary, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "primaryMin":
+			var err error
+			it.PrimaryMin, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "primaryMax":
+			var err error
+			it.PrimaryMax, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "primary_ne":
+			var err error
+			it.PrimaryNe, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "primaryMin_ne":
+			var err error
+			it.PrimaryMinNe, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "primaryMax_ne":
+			var err error
+			it.PrimaryMaxNe, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "primary_gt":
+			var err error
+			it.PrimaryGt, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "primaryMin_gt":
+			var err error
+			it.PrimaryMinGt, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "primaryMax_gt":
+			var err error
+			it.PrimaryMaxGt, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "primary_lt":
+			var err error
+			it.PrimaryLt, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "primaryMin_lt":
+			var err error
+			it.PrimaryMinLt, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "primaryMax_lt":
+			var err error
+			it.PrimaryMaxLt, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "primary_gte":
+			var err error
+			it.PrimaryGte, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "primaryMin_gte":
+			var err error
+			it.PrimaryMinGte, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "primaryMax_gte":
+			var err error
+			it.PrimaryMaxGte, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "primary_lte":
+			var err error
+			it.PrimaryLte, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "primaryMin_lte":
+			var err error
+			it.PrimaryMinLte, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "primaryMax_lte":
+			var err error
+			it.PrimaryMaxLte, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "primary_in":
+			var err error
+			it.PrimaryIn, err = ec.unmarshalOBoolean2ᚕboolᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "primaryMin_in":
+			var err error
+			it.PrimaryMinIn, err = ec.unmarshalOBoolean2ᚕboolᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "primaryMax_in":
+			var err error
+			it.PrimaryMaxIn, err = ec.unmarshalOBoolean2ᚕboolᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "primary_not_in":
+			var err error
+			it.PrimaryNotIn, err = ec.unmarshalOBoolean2ᚕboolᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "primaryMin_not_in":
+			var err error
+			it.PrimaryMinNotIn, err = ec.unmarshalOBoolean2ᚕboolᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "primaryMax_not_in":
+			var err error
+			it.PrimaryMaxNotIn, err = ec.unmarshalOBoolean2ᚕboolᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "primary_null":
+			var err error
+			it.PrimaryNull, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "updatedAt":
 			var err error
 			it.UpdatedAt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
@@ -15859,6 +16009,24 @@ func (ec *executionContext) unmarshalInputConfiguratorAttributeDefinitionSortTyp
 		case "typeMax":
 			var err error
 			it.TypeMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "primary":
+			var err error
+			it.Primary, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "primaryMin":
+			var err error
+			it.PrimaryMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "primaryMax":
+			var err error
+			it.PrimaryMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -18670,156 +18838,6 @@ func (ec *executionContext) unmarshalInputConfiguratorItemDefinitionCategoryFilt
 			if err != nil {
 				return it, err
 			}
-		case "primary":
-			var err error
-			it.Primary, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
-			if err != nil {
-				return it, err
-			}
-		case "primaryMin":
-			var err error
-			it.PrimaryMin, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
-			if err != nil {
-				return it, err
-			}
-		case "primaryMax":
-			var err error
-			it.PrimaryMax, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
-			if err != nil {
-				return it, err
-			}
-		case "primary_ne":
-			var err error
-			it.PrimaryNe, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
-			if err != nil {
-				return it, err
-			}
-		case "primaryMin_ne":
-			var err error
-			it.PrimaryMinNe, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
-			if err != nil {
-				return it, err
-			}
-		case "primaryMax_ne":
-			var err error
-			it.PrimaryMaxNe, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
-			if err != nil {
-				return it, err
-			}
-		case "primary_gt":
-			var err error
-			it.PrimaryGt, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
-			if err != nil {
-				return it, err
-			}
-		case "primaryMin_gt":
-			var err error
-			it.PrimaryMinGt, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
-			if err != nil {
-				return it, err
-			}
-		case "primaryMax_gt":
-			var err error
-			it.PrimaryMaxGt, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
-			if err != nil {
-				return it, err
-			}
-		case "primary_lt":
-			var err error
-			it.PrimaryLt, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
-			if err != nil {
-				return it, err
-			}
-		case "primaryMin_lt":
-			var err error
-			it.PrimaryMinLt, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
-			if err != nil {
-				return it, err
-			}
-		case "primaryMax_lt":
-			var err error
-			it.PrimaryMaxLt, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
-			if err != nil {
-				return it, err
-			}
-		case "primary_gte":
-			var err error
-			it.PrimaryGte, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
-			if err != nil {
-				return it, err
-			}
-		case "primaryMin_gte":
-			var err error
-			it.PrimaryMinGte, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
-			if err != nil {
-				return it, err
-			}
-		case "primaryMax_gte":
-			var err error
-			it.PrimaryMaxGte, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
-			if err != nil {
-				return it, err
-			}
-		case "primary_lte":
-			var err error
-			it.PrimaryLte, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
-			if err != nil {
-				return it, err
-			}
-		case "primaryMin_lte":
-			var err error
-			it.PrimaryMinLte, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
-			if err != nil {
-				return it, err
-			}
-		case "primaryMax_lte":
-			var err error
-			it.PrimaryMaxLte, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
-			if err != nil {
-				return it, err
-			}
-		case "primary_in":
-			var err error
-			it.PrimaryIn, err = ec.unmarshalOBoolean2ᚕboolᚄ(ctx, v)
-			if err != nil {
-				return it, err
-			}
-		case "primaryMin_in":
-			var err error
-			it.PrimaryMinIn, err = ec.unmarshalOBoolean2ᚕboolᚄ(ctx, v)
-			if err != nil {
-				return it, err
-			}
-		case "primaryMax_in":
-			var err error
-			it.PrimaryMaxIn, err = ec.unmarshalOBoolean2ᚕboolᚄ(ctx, v)
-			if err != nil {
-				return it, err
-			}
-		case "primary_not_in":
-			var err error
-			it.PrimaryNotIn, err = ec.unmarshalOBoolean2ᚕboolᚄ(ctx, v)
-			if err != nil {
-				return it, err
-			}
-		case "primaryMin_not_in":
-			var err error
-			it.PrimaryMinNotIn, err = ec.unmarshalOBoolean2ᚕboolᚄ(ctx, v)
-			if err != nil {
-				return it, err
-			}
-		case "primaryMax_not_in":
-			var err error
-			it.PrimaryMaxNotIn, err = ec.unmarshalOBoolean2ᚕboolᚄ(ctx, v)
-			if err != nil {
-				return it, err
-			}
-		case "primary_null":
-			var err error
-			it.PrimaryNull, err = ec.unmarshalOBoolean2ᚖbool(ctx, v)
-			if err != nil {
-				return it, err
-			}
 		case "updatedAt":
 			var err error
 			it.UpdatedAt, err = ec.unmarshalOTime2ᚖtimeᚐTime(ctx, v)
@@ -19507,24 +19525,6 @@ func (ec *executionContext) unmarshalInputConfiguratorItemDefinitionCategorySort
 		case "typeMax":
 			var err error
 			it.TypeMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
-			if err != nil {
-				return it, err
-			}
-		case "primary":
-			var err error
-			it.Primary, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
-			if err != nil {
-				return it, err
-			}
-		case "primaryMin":
-			var err error
-			it.PrimaryMin, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
-			if err != nil {
-				return it, err
-			}
-		case "primaryMax":
-			var err error
-			it.PrimaryMax, err = ec.unmarshalOObjectSortType2ᚖgithubᚗcomᚋgraphqlᚑservicesᚋgraphqlᚑconfiguratorᚋgenᚐObjectSortType(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -27123,6 +27123,8 @@ func (ec *executionContext) _ConfiguratorAttributeDefinition(ctx context.Context
 			out.Values[i] = ec._ConfiguratorAttributeDefinition_name(ctx, field, obj)
 		case "type":
 			out.Values[i] = ec._ConfiguratorAttributeDefinition_type(ctx, field, obj)
+		case "primary":
+			out.Values[i] = ec._ConfiguratorAttributeDefinition_primary(ctx, field, obj)
 		case "definitions":
 			field := field
 			out.Concurrently(i, func() (res graphql.Marshaler) {
@@ -27770,8 +27772,6 @@ func (ec *executionContext) _ConfiguratorItemDefinitionCategory(ctx context.Cont
 			out.Values[i] = ec._ConfiguratorItemDefinitionCategory_name(ctx, field, obj)
 		case "type":
 			out.Values[i] = ec._ConfiguratorItemDefinitionCategory_type(ctx, field, obj)
-		case "primary":
-			out.Values[i] = ec._ConfiguratorItemDefinitionCategory_primary(ctx, field, obj)
 		case "definitions":
 			field := field
 			out.Concurrently(i, func() (res graphql.Marshaler) {
