@@ -14,11 +14,12 @@ type ConfiguratorItemDefinition @entity {
     @relationship(inverse: definitions)
   slots: [ConfiguratorSlotDefinition!]!
     @relationship(inverse: definition, onDelete: RESTRICT)
-  items: [ConfiguratorItem!]! @relationship(inverse: definition)
+  items: [ConfiguratorItem!]!
+    @relationship(inverse: definition, onDelete: RESTRICT)
   allowedInSlots: [ConfiguratorSlotDefinition!]!
     @relationship(inverse: allowedItemDefinitions)
   category: ConfiguratorItemDefinitionCategory
-    @relationship(inverse: definitions)
+    @relationship(inverse: definitions, onDelete: RESTRICT)
 }
 
 enum ConfiguratorAttributeType {
@@ -41,7 +42,8 @@ type ConfiguratorSlotDefinition @entity {
   maxCount: Float @column
   defaultCount: Float @column
 
-  definition: ConfiguratorItemDefinition @relationship(inverse: slots)
+  definition: ConfiguratorItemDefinition
+    @relationship(inverse: slots, onDelete: RESTRICT)
   slots: [ConfiguratorSlot!]! @relationship(inverse: definition)
   allowedItemDefinitions: [ConfiguratorItemDefinition!]!
     @relationship(inverse: allowedInSlots)

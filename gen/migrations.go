@@ -51,7 +51,7 @@ func AutoMigrate(db *gorm.DB) (err error) {
 		if err != nil {
 			return err
 		}
-		err = _db.Model(ConfiguratorItemDefinition{}).AddForeignKey("categoryId", TableName("configurator_item_definition_categories")+"(id)", "SET NULL", "SET NULL").Error
+		err = _db.Model(ConfiguratorItemDefinition{}).AddForeignKey("categoryId", TableName("configurator_item_definition_categories")+"(id)", "RESTRICT", "SET NULL").Error
 		if err != nil {
 			return err
 		}
@@ -69,7 +69,7 @@ func AutoMigrate(db *gorm.DB) (err error) {
 		if err != nil {
 			return err
 		}
-		err = _db.Model(ConfiguratorSlotDefinition{}).AddForeignKey("definitionId", TableName("configurator_item_definitions")+"(id)", "SET NULL", "SET NULL").Error
+		err = _db.Model(ConfiguratorSlotDefinition{}).AddForeignKey("definitionId", TableName("configurator_item_definitions")+"(id)", "RESTRICT", "SET NULL").Error
 		if err != nil {
 			return err
 		}
@@ -114,7 +114,7 @@ func AutoMigrate(db *gorm.DB) (err error) {
 		if err != nil {
 			return err
 		}
-		err = _db.Model(ConfiguratorSlot{}).AddForeignKey("itemId", TableName("configurator_items")+"(id)", "SET NULL", "SET NULL").Error
+		err = _db.Model(ConfiguratorSlot{}).AddForeignKey("itemId", TableName("configurator_items")+"(id)", "RESTRICT", "SET NULL").Error
 		if err != nil {
 			return err
 		}
@@ -132,7 +132,7 @@ func AutoMigrate(db *gorm.DB) (err error) {
 		if err != nil {
 			return err
 		}
-		err = _db.Model(ConfiguratorSlot{}).AddForeignKey("parentItemId", TableName("configurator_items")+"(id)", "SET NULL", "SET NULL").Error
+		err = _db.Model(ConfiguratorSlot{}).AddForeignKey("parentItemId", TableName("configurator_items")+"(id)", "CASCADE", "SET NULL").Error
 		if err != nil {
 			return err
 		}
